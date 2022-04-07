@@ -124,6 +124,9 @@ class _LayoutWebState extends State<LayoutWeb> {
                   ),
                 ),
                 SizedBox(
+                  width: 5.w,
+                ),
+                SizedBox(
                   height: 50.h,
                   width: 35.w,
                   child: Card(
@@ -136,7 +139,7 @@ class _LayoutWebState extends State<LayoutWeb> {
                       children: [
                         TextFieldWidget(
                           controller: controller,
-                          hintText: "Nome",
+                          hintText: "RA",
                           width: 30.w,
                           keyboardType: TextInputType.name,
                           fontSize: 15.sp,
@@ -150,8 +153,8 @@ class _LayoutWebState extends State<LayoutWeb> {
                           fontSize: 15.sp,
                         ),
                         SizedBox(
-                          height: 65,
-                          width: 30.w,
+                          height: 60,
+                          width: 25.w,
                           child: ElevatedButton(
                             onPressed: (){
 
