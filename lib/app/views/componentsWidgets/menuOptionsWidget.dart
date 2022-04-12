@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/helpers/platformType.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../stylePages/appColors.dart';
-import '../textWidget.dart';
+import 'textWidget.dart';
 
 class MenuOptionsWidget extends StatelessWidget {
   final String text;

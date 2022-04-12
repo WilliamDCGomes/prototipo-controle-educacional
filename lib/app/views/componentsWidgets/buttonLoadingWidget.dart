@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../stylePages/appColors.dart';
-import '../textWidget.dart';
+import 'textWidget.dart';
 
 class ButtonLoadingWidget extends StatelessWidget {
   final String? hintText;

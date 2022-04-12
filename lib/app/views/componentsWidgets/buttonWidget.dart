@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../stylePages/appColors.dart';
-import '../textWidget.dart';
+import 'textWidget.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String? hintText;

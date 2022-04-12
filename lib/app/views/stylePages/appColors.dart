@@ -14,4 +14,6 @@ class AppColors {
   final Color greenColor = const Color(0XFF008001);
   final Color blackColor91Percent = const Color(0XFF919191);
   final Color grayColor = const Color(0XFFE1E1E1);
+  final Color backgroundFirstScreenColor = const Color(0XFFF6F6F6);
+  final Color purpleDefaultColor = const Color(0XFF62407E);
 }
