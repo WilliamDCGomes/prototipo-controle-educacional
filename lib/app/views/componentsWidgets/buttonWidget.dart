@@ -34,11 +34,11 @@ class ButtonWidget extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
-            backgroundColor ?? AppColors().whiteColor,
+            backgroundColor ?? AppColors().backgroundButtonColor,
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radioButton ?? 5.h),
+              borderRadius: BorderRadius.circular(radioButton ?? 1.h),
             ),
           ),
         ),

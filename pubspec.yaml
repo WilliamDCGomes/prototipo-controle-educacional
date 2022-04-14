@@ -39,21 +39,21 @@ flavorizr:
   flavors:
     dev:
       app:
-        name: "Protótipo de Controle Educacional DEV"
+        name: "PCE DEV"
       android:
         applicationId: "com.trabalhotcc.prototipo_controle_educacional_dev"
       ios:
         bundleId: "com.trabalhotcc.prototipo_controle_educacional_dev"
     hmlg:
       app:
-        name: "Protótipo de Controle Educacional HMLG"
+        name: "PCE HMLG"
       android:
         applicationId: "com.trabalhotcc.prototipo_controle_educacional_hmlg"
       ios:
         bundleId: "com.trabalhotcc.prototipo_controle_educacional_hmlg"
     prod:
       app:
-        name: "Protótipo de Controle Educacional"
+        name: "PCE"
       android:
         applicationId: "com.trabalhotcc.prototipo_controle_educacional"
       ios:

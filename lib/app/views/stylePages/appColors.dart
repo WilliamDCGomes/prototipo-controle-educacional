@@ -11,9 +11,14 @@ class AppColors {
   final Color blackColor = Colors.black;
   final Color transparentColor = Colors.transparent;
   final Color standardColor = Color(0XFF62407E);
+  final Color appBarColor = Color(0XFF492260);
+  final Color bottomBarColor = Color(0XFF664583);
   final Color greenColor = const Color(0XFF008001);
   final Color blackColor91Percent = const Color(0XFF919191);
   final Color grayColor = const Color(0XFFE1E1E1);
-  final Color backgroundFirstScreenColor = const Color(0XFFF6F6F6);
   final Color purpleDefaultColor = const Color(0XFF62407E);
+  final Color backgroundColor = const Color(0XFFF2F1F1);
+  final Color backgroundButtonColor = const Color(0XFF603E7C);
+
+  final List<Color> backgroundFirstScreenColor = const [Color(0XFFCDB5DB), Color(0XFFF0EBF3)];
 }

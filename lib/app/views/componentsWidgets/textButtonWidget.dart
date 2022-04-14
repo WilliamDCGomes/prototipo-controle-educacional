@@ -19,7 +19,7 @@ class TextFieldWidget extends StatelessWidget {
         onPressed: onTap,
         style: TextButton.styleFrom(
           primary: AppColors().purpleDefaultColor,
-          backgroundColor: AppColors().backgroundFirstScreenColor,
+          backgroundColor: AppColors().transparentColor,
         ),
         child: TextWidget(
           hintText ?? "",

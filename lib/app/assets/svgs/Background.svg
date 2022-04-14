@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="428" height="926" viewBox="0 0 428 926">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_21901" data-name="Retângulo 21901" width="428" height="926" fill="#fff"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" y1="-0.009" x2="1.012" y2="1.021" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#70518f"/>
+      <stop offset="1" stop-color="#421957"/>
+    </linearGradient>
+  </defs>
+  <g id="Background" clip-path="url(#clip-path)">
+    <g id="Retângulo_2" data-name="Retângulo 2" stroke="#707070" stroke-width="1" opacity="0.42">
+      <rect width="428" height="926" stroke="none"/>
+      <rect x="0.5" y="0.5" width="427" height="925" fill="none"/>
+    </g>
+    <rect id="Retângulo_1" data-name="Retângulo 1" width="428" height="1287" transform="translate(428 1107) rotate(180)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
