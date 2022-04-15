@@ -23,7 +23,6 @@ class TextFieldWidget extends StatelessWidget {
   final Function()? onTap;
   final Function()? onEditingComplete;
   final Function(String)? onChanged;
-  final Function(String)? onSubmitted;
   final TextEditingController controller;
 
   const TextFieldWidget(
@@ -48,7 +47,6 @@ class TextFieldWidget extends StatelessWidget {
         this.onTap,
         this.onEditingComplete,
         this.onChanged,
-        this.onSubmitted,
         required this.controller,
       }) : super(key: key);
 
@@ -57,12 +55,13 @@ class TextFieldWidget extends StatelessWidget {
     return SizedBox(
       height: height ?? 65,
       width: width ?? 200,
-      child: TextField(
+      child: TextFormField(
         obscureText: isPassword ?? false,
         maxLength: maxLength,
         style: textStyle ?? standardTextStyle(),
         textAlignVertical: textAlignVertical ?? TextAlignVertical.center,
         focusNode: focusNode,
+        cursorColor: AppColors().purpleDefaultColor,
         keyboardType: keyboardType ?? TextInputType.text,
         decoration: decoration ?? standardDecoration(),
         enabled: ableField ?? true,
@@ -70,7 +69,6 @@ class TextFieldWidget extends StatelessWidget {
         onTap: onTap,
         onEditingComplete: onEditingComplete,
         onChanged: onChanged,
-        onSubmitted: onSubmitted,
         controller: controller,
       ),
     );
@@ -81,14 +79,15 @@ class TextFieldWidget extends StatelessWidget {
     if(height != null)
       heightInput = height!;
     return InputDecoration(
-      hintText: hintText,
-      hintStyle: TextStyle(
+      labelText: hintText,
+      labelStyle: TextStyle(
           fontSize: 2.h,
-          color: hintTextColor ?? AppColors().whiteColor
+          color: hintTextColor ?? AppColors().purpleDefaultColor,
       ),
       suffixIcon: iconTextField,
       enabledBorder: _getBorderLayout(),
       border: _getBorderLayout(),
+      focusedBorder: _getBorderLayout(),
       contentPadding: EdgeInsets.only(
           bottom: heightInput / 2,  // HE
           left: 10// RE THE IMPORTANT PART
@@ -98,7 +97,7 @@ class TextFieldWidget extends StatelessWidget {
 
   TextStyle standardTextStyle(){
     return TextStyle(
-      color: textColor ?? AppColors().whiteColor,
+      color: textColor ?? AppColors().purpleDefaultColor,
       fontSize: fontSize ?? 2.h,
     );
   }
@@ -107,7 +106,8 @@ class TextFieldWidget extends StatelessWidget {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
-        color: borderColor ?? AppColors().whiteColor,
+        color: borderColor ?? AppColors().purpleDefaultColor,
+        width: .25.h,
       ),
     );
   }

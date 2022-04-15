@@ -10,10 +10,10 @@ class InitialPageController extends GetxController {
   loadFirstScreen(context){
     //Configurar para que possa ir direto a tela de menu iniciar
     if(PlatformType().isPhone(context) || PlatformType().isTablet(context))
-      Get.to(() => WelcomePageTabletPhonePage());
+      Get.offAll(() => WelcomePageTabletPhonePage());
     else if(PlatformType().isWeb())
-      Get.to(() => WelcomePageWebPage());
+      Get.offAll(() => WelcomePageWebPage());
     else if(PlatformType().isWatch(context))
-      Get.to(() => WelcomePageWatchPage());
+      Get.offAll(() => WelcomePageWatchPage());
   }
 }

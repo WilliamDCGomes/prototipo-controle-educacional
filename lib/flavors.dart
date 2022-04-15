@@ -8,11 +8,11 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.HMLG:
-        return 'Protótipo de Controle Educacional HMLG';
+        return 'PCE HMLG';
       case Flavor.PROD:
-        return 'Protótipo de Controle Educacional';
+        return 'PCE';
       default:
-        return 'Protótipo de Controle Educacional DEV';
+        return 'PCE DEV';
     }
   }
 

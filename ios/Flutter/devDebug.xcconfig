@@ -2,4 +2,4 @@
 
 FLUTTER_TARGET=lib/main_dev.dart
 ASSET_PREFIX=dev
-BUNDLE_NAME=Protótipo de Controle Educacional DEV
+BUNDLE_NAME=PCE DEV

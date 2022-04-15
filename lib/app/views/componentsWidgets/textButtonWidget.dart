@@ -3,13 +3,19 @@ import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'textWidget.dart';
 
-class TextFieldWidget extends StatelessWidget {
+class TextButtonWidget extends StatelessWidget {
   final String? hintText;
+  final double? fontSize;
+  final TextWidget? textWidget;
+  final RichText? richText;
   final Function()? onTap;
 
-  const TextFieldWidget(
+  const TextButtonWidget(
       { Key? key,
         this.hintText,
+        this.fontSize,
+        this.textWidget,
+        this.richText,
         this.onTap,
       }) : super(key: key);
 
@@ -21,10 +27,10 @@ class TextFieldWidget extends StatelessWidget {
           primary: AppColors().purpleDefaultColor,
           backgroundColor: AppColors().transparentColor,
         ),
-        child: TextWidget(
+        child: richText ?? TextWidget(
           hintText ?? "",
           textColor: AppColors().purpleDefaultColor,
-          fontSize: 17.sp,
+          fontSize: fontSize ?? 17.sp,
           fontWeight: FontWeight.bold,
         ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/views/componentsWidgets/textWidget.dart';
+import 'package:im_stepper/stepper.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../controllers/welcomePageController.dart';
@@ -20,97 +19,98 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
   late WelcomePageController controller;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) => controller.activeStep.value = 0);
+  }
+
+  @override
   Widget build(BuildContext context) {
     controller = Get.put(WelcomePageController());
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2.5.h),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: AppColors().backgroundFirstScreenColor,
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: AppColors().transparentColor,
-        body: SafeArea(
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Obx(() =>
+      WillPopScope(
+        onWillPop: () => controller.backStepper(),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: AppColors().backgroundFirstScreenColor,
+            ),
+          ),
+          child: Scaffold(
+            backgroundColor: AppColors().transparentColor,
+            body: SafeArea(
+              child: Stack(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 2.h, right: 2.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextFieldWidget(
-
-                          hintText: "Pular Introdução",
-                          onTap: () => controller.jumpIntroduction(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 2.h, right: 2.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButtonWidget(
+                              hintText: "Pular Introdução",
+                              onTap: () => controller.goToLoginPage(),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 2.h),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            controller.getCurrentPage(),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5.h),
+                              child: DotStepper(
+                                dotCount: 3,
+                                dotRadius: 1.h,
+                                activeStep: controller.activeStep.value,
+                                shape: Shape.circle,
+                                spacing: 2.w,
+                                indicator: Indicator.magnify,
+                                fixedDotDecoration: FixedDotDecoration(
+                                  color: AppColors().grayStepColor,
+                                ),
+                                indicatorDecoration: IndicatorDecoration(
+                                  // style: PaintingStyle.stroke,
+                                  // strokeWidth: 8,
+                                  color: AppColors().orangeColor,
+                                ),
+                                onDotTapped: (tappedDotIndex) {
+                                  controller.activeStep.value = tappedDotIndex;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5.h),
+                              child: ButtonWidget(
+                                hintText: "PRÓXIMO",
+                                fontWeight: FontWeight.bold,
+                                widthButton: 75.w,
+                                onPressed: () => controller.nextPage(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 2.h),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SvgPicture.asset(
-                          '${Paths().svgsPath}Ilustracao_01.svg',
-                          height: 30.h,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 3.h),
-                          child: TextWidget(
-                            "Bem vindo ao",
-                            textColor: AppColors().purpleDefaultColor,
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        TextWidget(
-                          "Protótipo de Controle Educacional",
-                          textColor: AppColors().purpleDefaultColor,
-                          fontSize: 19.sp,
-                          textAlign: TextAlign.center,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5.w, top: 2.h, right: 5.w),
-                          child: TextWidget(
-                            "O aplicativo oficial para os universitários terem acesso a todos os conteúdos acadêmico.",
-                            textColor: AppColors().purpleDefaultColor,
-                            fontSize: 17.sp,
-                            textAlign: TextAlign.center,
-                            maxLines: 10,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.h),
-                          child: ButtonWidget(
-                            hintText: "PRÓXIMO",
-                            fontWeight: FontWeight.bold,
-                            widthButton: 75.w,
-                          ),
-                        ),
-                      ],
+                    padding: EdgeInsets.only(top: 78.h),
+                    child: Image.asset(
+                      '${Paths().imagesPath}Ilustracao_Rodape.png',
+                      width: 100.w,
                     ),
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 70.h),
-                child: SvgPicture.asset(
-                  '${Paths().svgsPath}Ilustracao_Rodape.svg',
-                  height: 30.h,
-                  width: 100.w,
-                  color: Colors.red,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
