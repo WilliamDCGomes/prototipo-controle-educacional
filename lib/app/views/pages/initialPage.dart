@@ -17,8 +17,14 @@ class _InitialPageState extends State<InitialPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
-      await Future.delayed(Duration(milliseconds: 2500));
-      InitialPageController().loadFirstScreen(context);
+      await Future.delayed(
+          Duration(
+              milliseconds: 2500
+          ),
+          () {
+            InitialPageController().loadFirstScreen(context);
+          }
+      );
     });
   }
 
