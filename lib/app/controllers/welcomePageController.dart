@@ -1,17 +1,20 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/StepperPagesWidget.dart';
 
 class WelcomePageController extends GetxController {
-  late RxInt activeStep;
+  late int activeStep;
   late bool allowSwipe;
   late double lastScreenValue;
+  late CarouselController carouselController;
 
   WelcomePageController(){
-    activeStep = 0.obs;
     allowSwipe = true;
     lastScreenValue = 0;
+    activeStep = 0;
+    carouselController = CarouselController();
   }
 
   goToLoginPage(){
@@ -19,7 +22,7 @@ class WelcomePageController extends GetxController {
   }
 
   Widget getCurrentPage(){
-    switch(activeStep.value){
+    switch(activeStep){
       case 0:
         return StepperPagesWidget(
           imagePath: 'Ilustracao_01.png',
@@ -44,22 +47,27 @@ class WelcomePageController extends GetxController {
     }
   }
 
-  nextPage(){
-    if(activeStep.value < 2)
-      activeStep.value++;
+  nextPage() async {
+    await carouselController.onReady;
+    if(activeStep < 2) {
+      activeStep++;
+      carouselController.nextPage();
+    }
     else
       goToLoginPage();
   }
 
-  previousPage(){
-    if(activeStep.value > 0)
-      activeStep.value--;
+  previousPage() async {
+    await carouselController.onReady;
+    if(activeStep > 0) {
+      activeStep--;
+      carouselController.previousPage();
+    }
   }
 
   backStepper() async {
-    bool backScreen = false;
-    if (activeStep.value > 0) {
-      activeStep.value--;
+    late bool backScreen;
+    if (activeStep > 0) {
       backScreen = false;
     }
     else

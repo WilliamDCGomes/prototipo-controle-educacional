@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
@@ -21,95 +22,127 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) => controller.activeStep.value = 0);
+    WidgetsBinding.instance!.addPostFrameCallback((_){
+      setState(() {
+        controller.activeStep = 0;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     controller = Get.put(WelcomePageController());
 
-    return Obx(() =>
-      WillPopScope(
-        onWillPop: () => controller.backStepper(),
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: AppColors().backgroundFirstScreenColor,
-              ),
+    return WillPopScope(
+      onWillPop: () async {
+        bool returnFuction = await controller.backStepper();
+        if(!returnFuction)
+          setState(() {
+            controller.activeStep--;
+            controller.carouselController.jumpToPage(controller.activeStep);
+          });
+        return returnFuction;
+      },
+      child: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: AppColors().backgroundFirstScreenColor,
             ),
-            child: Scaffold(
-              backgroundColor: AppColors().transparentColor,
-              body: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 2.h, right: 2.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButtonWidget(
-                              hintText: "Pular Introdução",
-                              onTap: () => controller.goToLoginPage(),
-                            ),
-                          ],
-                        ),
+          ),
+          child: Scaffold(
+            backgroundColor: AppColors().transparentColor,
+            body: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 2.h, right: 2.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButtonWidget(
+                            hintText: "Pular Introdução",
+                            onTap: () => controller.goToLoginPage(),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 2.h),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            controller.getCurrentPage(),
-                            Padding(
-                              padding: EdgeInsets.only(top: 5.h),
-                              child: DotStepper(
-                                dotCount: 3,
-                                dotRadius: 1.h,
-                                activeStep: controller.activeStep.value,
-                                shape: Shape.circle,
-                                spacing: 2.w,
-                                indicator: Indicator.magnify,
-                                fixedDotDecoration: FixedDotDecoration(
-                                  color: AppColors().grayStepColor,
-                                ),
-                                indicatorDecoration: IndicatorDecoration(
-                                  // style: PaintingStyle.stroke,
-                                  // strokeWidth: 8,
-                                  color: AppColors().orangeColor,
-                                ),
-                                onDotTapped: (tappedDotIndex) {
-                                  controller.activeStep.value = tappedDotIndex;
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 5.h),
-                              child: ButtonWidget(
-                                hintText: "PRÓXIMO",
-                                fontWeight: FontWeight.bold,
-                                widthButton: 75.w,
-                                onPressed: () => controller.nextPage(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 78.h),
-                    child: Image.asset(
-                      '${Paths().imagesPath}Ilustracao_Rodape.png',
-                      width: 100.w,
                     ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 2.h),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CarouselSlider.builder(
+                            carouselController: controller.carouselController,
+                            itemCount: 3,
+                            options: CarouselOptions(
+                              height: 55.h,
+                              viewportFraction: 1,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              enlargeCenterPage: true,
+                              enableInfiniteScroll: false,
+                              onPageChanged: (itemIndex, reason){
+                                setState(() {
+                                  controller.activeStep = itemIndex;
+                                });
+                              }
+                            ),
+                            itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                              return controller.getCurrentPage();
+                            },
+                          ),
+                          DotStepper(
+                            dotCount: 3,
+                            dotRadius: 1.h,
+                            activeStep: controller.activeStep,
+                            shape: Shape.circle,
+                            spacing: 2.w,
+                            indicator: Indicator.magnify,
+                            fixedDotDecoration: FixedDotDecoration(
+                              color: AppColors().grayStepColor,
+                            ),
+                            indicatorDecoration: IndicatorDecoration(
+                              // style: PaintingStyle.stroke,
+                              // strokeWidth: 8,
+                              color: AppColors().orangeColor,
+                            ),
+                            onDotTapped: (tappedDotIndex) {
+                              setState(() {
+                                controller.activeStep = tappedDotIndex;
+                                controller.carouselController.jumpToPage(tappedDotIndex);
+                              });
+                            },
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.h),
+                            child: ButtonWidget(
+                              hintText: "PRÓXIMO",
+                              fontWeight: FontWeight.bold,
+                              widthButton: 75.w,
+                              onPressed: (){
+                                setState(() {
+                                  controller.nextPage();
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 79.h),
+                  child: Image.asset(
+                    '${Paths().imagesPath}Ilustracao_Rodape.png',
+                    height: 23.h,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -25,7 +25,7 @@ class StepperPagesWidget extends StatelessWidget {
       children: [
         Image.asset(
           Paths().imagesPath + imagePath,
-          height: 30.h,
+          height: 25.h,
         ),
         Padding(
           padding: EdgeInsets.only(top: 3.h),
