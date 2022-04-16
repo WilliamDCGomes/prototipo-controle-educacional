@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'richTextTwoDifferentWidget.dart';
 import 'textWidget.dart';
 
 class TextButtonWidget extends StatelessWidget {
   final String? hintText;
   final double? fontSize;
   final TextWidget? textWidget;
-  final RichText? richText;
+  final TextAlign? textAlign;
+  final RichTextTwoDifferentWidget? richText;
   final Function()? onTap;
 
   const TextButtonWidget(
@@ -15,6 +17,7 @@ class TextButtonWidget extends StatelessWidget {
         this.hintText,
         this.fontSize,
         this.textWidget,
+        this.textAlign,
         this.richText,
         this.onTap,
       }) : super(key: key);
@@ -32,6 +35,7 @@ class TextButtonWidget extends StatelessWidget {
           textColor: AppColors().purpleDefaultColor,
           fontSize: fontSize ?? 17.sp,
           fontWeight: FontWeight.bold,
+          textAlign: textAlign,
         ),
     );
   }

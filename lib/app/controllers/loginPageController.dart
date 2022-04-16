@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   LoginController(){
     raInputController = TextEditingController();
     passwordInputController = TextEditingController();
-    passwordFieldEnabled = false.obs;
+    passwordFieldEnabled = true.obs;
   }
 
   createAccount(){

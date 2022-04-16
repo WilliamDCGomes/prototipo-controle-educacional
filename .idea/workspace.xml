@@ -10,15 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01def35c-3c9a-456c-9e19-a6fbd5d49fb4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/richTextTwoDifferentWidget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/projeto_tcc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projeto_tcc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/projeto_tcc_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/projeto_tcc_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controllers/loginPageController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/loginPageController.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textButtonWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textButtonWidget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textFieldWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textFieldWidget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +37,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="27qKsUvlNTXuINcEalUIDSoYmtN" />
   <component name="ProjectLevelVcsManager">
@@ -51,7 +62,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="dart.settings" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -60,8 +71,9 @@
       <recent name="C:\Users\William Douglas\Documents\Projetos\projeto_tcc\lib\app\assets\svgs" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.main_dev">
+  <component name="RunManager" selected="Flutter.main.dart">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="buildFlavor" value="dev" />
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
       <method v="2" />
     </configuration>
@@ -79,6 +91,19 @@
       <option name="buildFlavor" value="prod" />
       <option name="filePath" value="$PROJECT_DIR$/lib/main-prod.dart" />
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="projeto_tcc" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="projeto_tcc" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="Flutter.main.dart" />

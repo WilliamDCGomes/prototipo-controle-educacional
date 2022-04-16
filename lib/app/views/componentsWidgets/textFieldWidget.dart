@@ -75,7 +75,7 @@ class TextFieldWidget extends StatelessWidget {
   }
 
   InputDecoration standardDecoration(){
-    double heightInput = 65;
+    double heightInput = height ?? 65;
     if(height != null)
       heightInput = height!;
     return InputDecoration(
