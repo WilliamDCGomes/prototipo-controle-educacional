@@ -10,36 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01def35c-3c9a-456c-9e19-a6fbd5d49fb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/app/assets/images/Ilustracao_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/assets/images/Ilustracao_02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/assets/images/Ilustracao_03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/assets/images/Ilustracao_Rodape.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/controllers/loginPageController.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/tabletPhoneComponentWidget/StepperPagesWidget.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/projeto_tcc_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/projeto_tcc_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/devDebug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/devDebug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/assets/svgs/Ilustracacao_Topo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/assets/svgs/Ilustracao_Topo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/assets/svgs/Ilustracao_01.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/assets/svgs/Ilustracao_02.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/assets/svgs/Ilustracao_03.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/assets/svgs/Ilustracao_Rodape.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/controllers/initialPageController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/initialPageController.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/controllers/welcomePageController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/welcomePageController.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textButtonWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textButtonWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textFieldWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textFieldWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/welcomePageTabletPhonePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/welcomePageTabletPhonePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/stylePages/appColors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/stylePages/appColors.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flavors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flavors.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,9 +76,9 @@
     </configuration>
     <list>
       <item itemvalue="Flutter.main.dart" />
-      <item itemvalue="Flutter.main_prod" />
       <item itemvalue="Flutter.main_dev" />
       <item itemvalue="Flutter.main_hmlg" />
+      <item itemvalue="Flutter.main_prod" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
