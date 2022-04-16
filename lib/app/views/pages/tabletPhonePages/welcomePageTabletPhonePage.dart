@@ -31,18 +31,18 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
     return Obx(() =>
       WillPopScope(
         onWillPop: () => controller.backStepper(),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: AppColors().backgroundFirstScreenColor,
+        child: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: AppColors().backgroundFirstScreenColor,
+              ),
             ),
-          ),
-          child: Scaffold(
-            backgroundColor: AppColors().transparentColor,
-            body: SafeArea(
-              child: Stack(
+            child: Scaffold(
+              backgroundColor: AppColors().transparentColor,
+              body: Stack(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
