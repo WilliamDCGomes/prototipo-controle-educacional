@@ -85,6 +85,8 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                               enlargeStrategy: CenterPageEnlargeStrategy.height,
                               enlargeCenterPage: true,
                               enableInfiniteScroll: false,
+                              autoPlay: true,
+                              autoPlayInterval: Duration(seconds: 5),
                               onPageChanged: (itemIndex, reason){
                                 setState(() {
                                   controller.activeStep = itemIndex;

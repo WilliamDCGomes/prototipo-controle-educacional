@@ -10,18 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01def35c-3c9a-456c-9e19-a6fbd5d49fb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/richTextTwoDifferentWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/controllers/loginPageController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/loginPageController.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textButtonWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textButtonWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textFieldWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/textFieldWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/welcomePageTabletPhonePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/welcomePageTabletPhonePage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
