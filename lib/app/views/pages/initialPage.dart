@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projeto_tcc/app/helpers/platformType.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -17,13 +18,20 @@ class _InitialPageState extends State<InitialPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
-      await Future.delayed(Duration(milliseconds: 2500));
-      InitialPageController().loadFirstScreen(context);
+      await Future.delayed(
+          Duration(
+              milliseconds: 2500
+          ),
+          () {
+            InitialPageController().loadFirstScreen(context);
+          }
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Stack(
         children: [

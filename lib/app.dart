@@ -15,6 +15,8 @@ class App extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: AppColors().appBarColor,
       systemNavigationBarColor: AppColors().bottomBarColor,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
     return ResponsiveSizer(builder: (context, orientation, screentype) {
