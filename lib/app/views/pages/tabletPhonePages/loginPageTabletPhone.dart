@@ -146,7 +146,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                             Padding(
                               padding: EdgeInsets.only(top: 3.h),
                               child: ButtonWidget(
-                                hintText: "PRÓXIMO",
+                                hintText: "LOGAR",
                                 fontWeight: FontWeight.bold,
                                 widthButton: 75.w,
                                 onPressed: () => controller.loginPressed(),

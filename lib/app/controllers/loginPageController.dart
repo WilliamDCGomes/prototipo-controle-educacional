@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import '../views/pages/tabletPhonePages/mainMenuTabletPhonePage.dart';
 
 class LoginController extends GetxController {
   late TextEditingController raInputController;
@@ -17,6 +18,6 @@ class LoginController extends GetxController {
   }
 
   loginPressed(){
-
+    Get.offAll(MainMenuTabletPhonePage());
   }
 }
