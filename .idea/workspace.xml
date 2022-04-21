@@ -10,11 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01def35c-3c9a-456c-9e19-a6fbd5d49fb4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/controllers/welcomePageController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/welcomePageController.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/componentsWidgets/tabletPhoneComponentWidget/StepperPagesWidget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/componentsWidgets/tabletPhoneComponentWidget/StepperPagesWidget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/welcomePageTabletPhonePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/pages/tabletPhonePages/welcomePageTabletPhonePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/views/pages/initialPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/views/pages/initialPage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
