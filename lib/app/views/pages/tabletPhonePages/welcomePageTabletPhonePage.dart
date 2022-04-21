@@ -112,7 +112,7 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                             dotRadius: 1.h,
                             activeStep: controller.activeStep,
                             shape: Shape.circle,
-                            spacing: 2.w,
+                            spacing: 3.w,
                             indicator: Indicator.magnify,
                             fixedDotDecoration: FixedDotDecoration(
                               color: AppColors().grayStepColor,

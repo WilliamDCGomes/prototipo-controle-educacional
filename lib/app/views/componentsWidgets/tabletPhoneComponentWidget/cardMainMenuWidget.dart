@@ -21,69 +21,72 @@ class CardMainMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 18.h,
-      width: 95.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2.5.h),
-        color: AppColors().purpleDefaultColor,
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(2.h, .5.h, 2.h, 1.h),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  height: .5.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 66.w,
-                      child: TextWidget(
-                        firstText,
-                        textColor: AppColors().whiteColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.sp,
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0),
+      child: Container(
+        height: 18.h,
+        width: 95.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2.5.h),
+          color: AppColors().purpleDefaultColor,
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(2.h, .5.h, 2.h, 1.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: .5.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 66.w,
+                        child: TextWidget(
+                          firstText,
+                          textColor: AppColors().whiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                        ),
                       ),
-                    ),
-                    SvgPicture.asset(
-                      Paths().svgsPath + imagePath,
-                      width: 4.h,
-                    ),
-                  ],
-                ),
-                TextWidget(
-                  secondText,
-                  maxLines: 1,
-                  textColor: AppColors().whiteColor,
-                  fontSize: 18.sp,
-                  textAlign: TextAlign.start,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 5.w),
-                  child: TextWidget(
-                    thirdText,
+                      SvgPicture.asset(
+                        Paths().svgsPath + imagePath,
+                        width: 4.h,
+                      ),
+                    ],
+                  ),
+                  TextWidget(
+                    secondText,
                     maxLines: 1,
                     textColor: AppColors().whiteColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
+                    fontSize: 18.sp,
                     textAlign: TextAlign.start,
                   ),
-                ),
-                SizedBox(
-                  height: .5.h,
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(left: 5.w),
+                    child: TextWidget(
+                      thirdText,
+                      maxLines: 1,
+                      textColor: AppColors().whiteColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.sp,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  SizedBox(
+                    height: .5.h,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

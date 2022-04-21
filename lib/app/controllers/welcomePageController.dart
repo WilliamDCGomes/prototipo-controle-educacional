@@ -5,14 +5,10 @@ import '../views/componentsWidgets/tabletPhoneComponentWidget/stepperPagesWidget
 
 class WelcomePageController extends GetxController {
   late int activeStep;
-  late bool allowSwipe;
-  late double lastScreenValue;
   late List<StepperPagesWidget> pageIntroduction;
   late CarouselController carouselController;
 
   WelcomePageController(){
-    allowSwipe = true;
-    lastScreenValue = 0;
     activeStep = 0;
     carouselController = CarouselController();
     _loadIntroductionPages();

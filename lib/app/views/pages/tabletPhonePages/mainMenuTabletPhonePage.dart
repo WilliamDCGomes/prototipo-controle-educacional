@@ -1,10 +1,11 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../controllers/mainMenuTabletPhoneController.dart';
 import '../../../helpers/paths.dart';
-import '../../componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
 import '../../componentsWidgets/textButtonWidget.dart';
 import '../../componentsWidgets/textWidget.dart';
 import '../../stylePages/appColors.dart';
@@ -18,6 +19,16 @@ class MainMenuTabletPhonePage extends StatefulWidget {
 
 class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> {
   late MainMenuTabletPhoneController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_){
+      setState(() {
+        controller.activeStep = 0;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,14 +134,59 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> {
                         Padding(
                           padding: EdgeInsets.only(top: 9.h),
                           child: Center(
-                            child: CardMainMenuWidget(
-                              imagePath: "Icone_Notificacao.svg",
-                              firstText: "Meu Painel",
-                              secondText: "Ciência da Computação",
-                              thirdText: "4º Ano",
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 1.h),
+                                  child: CarouselSlider.builder(
+                                    carouselController: controller.carouselController,
+                                    itemCount: 3,
+                                    options: CarouselOptions(
+                                        height: 18.h,
+                                        viewportFraction: 1,
+                                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                        enlargeCenterPage: true,
+                                        enableInfiniteScroll: false,
+                                        onPageChanged: (itemIndex, reason){
+                                          setState(() {
+                                            controller.activeStep = itemIndex;
+                                          });
+                                        }
+                                    ),
+                                    itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                                      return controller.cardMainMenuList.elementAt(itemIndex);
+                                    },
+                                  ),
+                                ),
+                                DotStepper(
+                                  dotCount: 3,
+                                  dotRadius: 1.h,
+                                  activeStep: controller.activeStep,
+                                  shape: Shape.stadium,
+                                  spacing: 3.w,
+                                  indicator: Indicator.magnify,
+                                  fixedDotDecoration: FixedDotDecoration(
+                                    color: AppColors().grayStepColor,
+                                  ),
+                                  indicatorDecoration: IndicatorDecoration(
+                                    // style: PaintingStyle.stroke,
+                                    // strokeWidth: 8,
+                                    color: AppColors().purpleDefaultColor,
+                                  ),
+                                  onDotTapped: (tappedDotIndex) {
+                                    setState(() {
+                                      controller.activeStep = tappedDotIndex;
+                                      controller.carouselController.jumpToPage(tappedDotIndex);
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ),
+
+
+
 
 
                       ],

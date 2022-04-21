@@ -22,5 +22,5 @@ class AppColors {
   final Color backgroundColor = const Color(0XFFF2F1F1);
   final Color backgroundButtonColor = const Color(0XFF603E7C);
 
-  final List<Color> backgroundFirstScreenColor = const [Color(0XFFBCB8BC), Color(0XFFF6F6F6)];
+  final List<Color> backgroundFirstScreenColor = const [Color(0XFFE7E3E3), Color(0XFFFFFFFF)];
 }
