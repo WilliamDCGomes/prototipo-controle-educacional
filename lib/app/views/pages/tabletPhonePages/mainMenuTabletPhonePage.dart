@@ -103,7 +103,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> {
                                           textAlign: TextAlign.start,
                                         ),
                                         Obx(() => TextWidget(
-                                          controller.courseName.value,
+                                          controller.welcomePhrase.value,
                                           textColor: AppColors().blackColor,
                                           fontSize: 17.sp,
                                           textAlign: TextAlign.start,

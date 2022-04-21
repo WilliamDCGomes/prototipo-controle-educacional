@@ -31,7 +31,7 @@ class StepperPagesWidget extends StatelessWidget {
           child: TextWidget(
             firstText,
             textColor: AppColors().purpleDefaultColor,
-            fontSize: 22.sp,
+            fontSize: 21.sp,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.center,
           ),
@@ -39,7 +39,7 @@ class StepperPagesWidget extends StatelessWidget {
         TextWidget(
           secondText,
           textColor: AppColors().purpleDefaultColor,
-          fontSize: 19.sp,
+          fontSize: 18.sp,
           textAlign: TextAlign.center,
         ),
         Padding(
@@ -47,7 +47,7 @@ class StepperPagesWidget extends StatelessWidget {
           child: TextWidget(
             thirdText,
             textColor: AppColors().purpleDefaultColor,
-            fontSize: 17.sp,
+            fontSize: 16.sp,
             textAlign: TextAlign.center,
             maxLines: 10,
           ),
