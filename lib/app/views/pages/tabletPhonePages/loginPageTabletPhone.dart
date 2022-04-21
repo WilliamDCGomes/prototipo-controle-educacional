@@ -47,12 +47,16 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                     '${Paths().svgsPath}Ilustracao_Topo.svg',
                     width: 30.w,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 78.h),
-                    child: Image.asset(
-                      '${Paths().imagesPath}Ilustracao_Rodape.png',
-                      width: 100.w,
-                    ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Image.asset(
+                        '${Paths().imagesPath}Ilustracao_Rodape.png',
+                        height: 14.h,
+                      ),
+                    ],
                   ),
                   Center(
                     child: SizedBox(

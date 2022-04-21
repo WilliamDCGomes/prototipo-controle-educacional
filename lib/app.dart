@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       statusBarColor: AppColors().appBarColor,
       systemNavigationBarColor: AppColors().bottomBarColor,
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.light,
     ));
 
     return ResponsiveSizer(builder: (context, orientation, screentype) {

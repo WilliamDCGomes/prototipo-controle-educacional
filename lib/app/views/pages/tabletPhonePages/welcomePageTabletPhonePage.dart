@@ -44,18 +44,28 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
         return returnFuction;
       },
       child: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: AppColors().backgroundFirstScreenColor,
+        child: Material(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: AppColors().backgroundFirstScreenColor,
+              ),
             ),
-          ),
-          child: Scaffold(
-            backgroundColor: AppColors().transparentColor,
-            body: Stack(
+            child: Stack(
               children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Image.asset(
+                      '${Paths().imagesPath}Ilustracao_Rodape.png',
+                      height: 14.h,
+                    ),
+                  ],
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -80,21 +90,21 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                             carouselController: controller.carouselController,
                             itemCount: 3,
                             options: CarouselOptions(
-                              height: 55.h,
-                              viewportFraction: 1,
-                              enlargeStrategy: CenterPageEnlargeStrategy.height,
-                              enlargeCenterPage: true,
-                              enableInfiniteScroll: false,
-                              autoPlay: true,
-                              autoPlayInterval: Duration(seconds: 5),
-                              onPageChanged: (itemIndex, reason){
-                                setState(() {
-                                  controller.activeStep = itemIndex;
-                                });
-                              }
+                                height: 55.h,
+                                viewportFraction: 1,
+                                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                enlargeCenterPage: true,
+                                enableInfiniteScroll: false,
+                                autoPlay: true,
+                                autoPlayInterval: Duration(seconds: 5),
+                                onPageChanged: (itemIndex, reason){
+                                  setState(() {
+                                    controller.activeStep = itemIndex;
+                                  });
+                                }
                             ),
                             itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                              return controller.getCurrentPage();
+                              return controller.pageIntroduction.elementAt(itemIndex);
                             },
                           ),
                           DotStepper(
@@ -136,13 +146,6 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                       ),
                     ),
                   ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 79.h),
-                  child: Image.asset(
-                    '${Paths().imagesPath}Ilustracao_Rodape.png',
-                    height: 23.h,
-                  ),
                 ),
               ],
             ),
