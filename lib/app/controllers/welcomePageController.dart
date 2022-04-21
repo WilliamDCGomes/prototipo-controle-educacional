@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/loginPageTabletPhone.dart';
-import '../views/componentsWidgets/tabletPhoneComponentWidget/StepperPagesWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/stepperPagesWidget.dart';
 
 class WelcomePageController extends GetxController {
   late int activeStep;
