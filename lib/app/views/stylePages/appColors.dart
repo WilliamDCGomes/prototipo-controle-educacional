@@ -16,6 +16,7 @@ class AppColors {
   final Color greenColor = const Color(0XFF008001);
   final Color blackColor91Percent = const Color(0XFF919191);
   final Color grayColor = const Color(0XFFE1E1E1);
+  final Color lightGrayColor = const Color(0XFFF2F1F1);
   final Color grayStepColor = const Color(0XFFC9C9C9);
   final Color orangeColor = const Color(0XFFEA6F55);
   final Color purpleDefaultColor = const Color(0XFF62407E);

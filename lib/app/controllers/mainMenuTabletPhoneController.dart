@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:get/get.dart';
+import '../enums/enums.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
@@ -56,5 +57,24 @@ class MainMenuTabletPhoneController extends GetxController {
       welcomePhrase = "Boa tarde!".obs;
     else
       welcomePhrase = "Boa noite!".obs;
+  }
+
+  quickActionsClicked(quickActionsOptions chosenOption){
+    switch(chosenOption){
+      case quickActionsOptions.classTime:
+        break;
+      case quickActionsOptions.gradesFaults:
+        break;
+      case quickActionsOptions.studentCard:
+        break;
+      case quickActionsOptions.academicCalendar:
+        break;
+      case quickActionsOptions.academicRecord:
+        break;
+      case quickActionsOptions.schoolStatement:
+        break;
+      case quickActionsOptions.newsEvents:
+        break;
+    }
   }
 }

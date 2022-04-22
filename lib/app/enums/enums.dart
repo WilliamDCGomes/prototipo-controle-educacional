@@ -3,3 +3,13 @@ enum Flavor {
   HMLG,
   PROD,
 }
+
+enum quickActionsOptions {
+  classTime,
+  gradesFaults,
+  studentCard,
+  academicCalendar,
+  academicRecord,
+  schoolStatement,
+  newsEvents,
+}
