@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -25,5 +26,9 @@ class PlatformType{
   bool isWatch(context){
     var shortestSide = MediaQuery.of(context).size.shortestSide;
     return shortestSide < 250;
+  }
+
+  bool isAndroid(){
+    return Platform.isAndroid;
   }
 }

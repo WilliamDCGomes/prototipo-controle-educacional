@@ -34,7 +34,7 @@ class MenuOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 13.h,
+      width: PlatformType().isAndroid() ? 13.h : 14.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2.5.h),
         color: AppColors().lightGrayColor,
@@ -44,7 +44,7 @@ class MenuOptionsWidget extends StatelessWidget {
         borderRadius: 2.h,
         widgetCustom: SizedBox(
           height: 12.h,
-          width: 13.h,
+          width: PlatformType().isAndroid() ? 13.h : 14.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
