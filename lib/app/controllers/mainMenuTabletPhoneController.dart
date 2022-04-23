@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../enums/enums.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/homeTabWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
@@ -11,6 +12,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString courseName;
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
+  late List<Widget> tabMainMenuList;
   late TabController tabController;
   late CarouselController carouselController;
 
@@ -24,6 +26,12 @@ class MainMenuTabletPhoneController extends GetxController {
   _initializeVariables(){
     activeStep = 0;
     carouselController = CarouselController();
+    tabMainMenuList = [
+      HomeTabWidget(controller: this),
+      HomeTabWidget(controller: this),
+      HomeTabWidget(controller: this),
+      HomeTabWidget(controller: this),
+    ];
   }
 
   _getValues(){
@@ -65,7 +73,14 @@ class MainMenuTabletPhoneController extends GetxController {
       welcomePhrase = "Boa noite!".obs;
   }
 
-  quickActionsClicked(quickActionsOptions chosenOption){
+  openProfile() async {
+    await Future.delayed(Duration(milliseconds: 200));
+
+  }
+
+  quickActionsClicked(quickActionsOptions chosenOption) async {
+    await Future.delayed(Duration(milliseconds: 200));
+
     switch(chosenOption){
       case quickActionsOptions.classTime:
         break;

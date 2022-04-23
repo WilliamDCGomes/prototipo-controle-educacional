@@ -100,9 +100,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                                   TextButtonWidget(
                                     hintText: "Esqueceu o RA?",
                                     fontSize: 16.sp,
-                                    onTap: () {
-
-                                    },
+                                    onTap: () => controller.forgotRa(),
                                   ),
                                 ],
                               ),
@@ -140,9 +138,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                                   TextButtonWidget(
                                     hintText: "Esqueceu a Senha?",
                                     fontSize: 16.sp,
-                                    onTap: () {
-
-                                    },
+                                    onTap: () => controller.forgotPassword(),
                                   ),
                                 ],
                               ),

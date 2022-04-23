@@ -14,8 +14,9 @@ class WelcomePageController extends GetxController {
     _loadIntroductionPages();
   }
 
-  goToLoginPage(){
-    Get.offAll(LoginPageTablePhone());
+  goToLoginPage() async {
+    await Future.delayed(Duration(milliseconds: 200));
+    await Get.offAll(LoginPageTablePhone());
   }
 
   _loadIntroductionPages(){
