@@ -10,9 +10,12 @@ import 'textWidget.dart';
 class MenuOptionsWidget extends StatelessWidget {
   final String text;
   final String? imagePath;
+  final int? maxLines;
   final Icon? icon;
   final double? widthButton;
   final double? textSize;
+  final double? imageSize;
+  final double? widthOption;
   final FontWeight? fontWeight;
   final Color? textColor;
   final List<Color>? colors;
@@ -22,9 +25,12 @@ class MenuOptionsWidget extends StatelessWidget {
       { Key? key,
         required this.text,
         this.imagePath,
+        this.maxLines,
         this.icon,
         this.widthButton,
         this.textSize,
+        this.imageSize,
+        this.widthOption,
         this.fontWeight,
         this.textColor,
         this.colors,
@@ -34,7 +40,7 @@ class MenuOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: PlatformType().isAndroid() ? 13.h : 14.h,
+      width: widthOption ?? (PlatformType().isAndroid() ? 13.h : 14.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2.5.h),
         color: AppColors().lightGrayColor,
@@ -44,7 +50,7 @@ class MenuOptionsWidget extends StatelessWidget {
         borderRadius: 2.h,
         widgetCustom: SizedBox(
           height: 12.h,
-          width: PlatformType().isAndroid() ? 13.h : 14.h,
+          width: widthOption ?? (PlatformType().isAndroid() ? 13.h : 14.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -54,7 +60,7 @@ class MenuOptionsWidget extends StatelessWidget {
                 child: Center(
                   child: SvgPicture.asset(
                     Paths().svgsPath + (imagePath ?? ""),
-                    height: 6.h,
+                    height: imageSize ?? 6.h,
                   ),
                 ),
               ),
@@ -66,7 +72,7 @@ class MenuOptionsWidget extends StatelessWidget {
                     textColor: textColor ?? AppColors().whiteColor,
                     fontSize: textSize ?? (PlatformType().isPhone(context) ?
                     15.sp : 14.sp),
-                    maxLines: 2,
+                    maxLines: maxLines ?? 2,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

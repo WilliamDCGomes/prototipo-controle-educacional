@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../enums/enums.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
@@ -10,14 +11,19 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString courseName;
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
+  late TabController tabController;
   late CarouselController carouselController;
 
   MainMenuTabletPhoneController(){
-    activeStep = 0;
-    carouselController = CarouselController();
+    _initializeVariables();
     _getValues();
     _loadCardsMainMenu();
     _getWelcomePhrase();
+  }
+
+  _initializeVariables(){
+    activeStep = 0;
+    carouselController = CarouselController();
   }
 
   _getValues(){

@@ -18,7 +18,9 @@ class AppColors {
   final Color grayColor = const Color(0XFFE1E1E1);
   final Color lightGrayColor = const Color(0XFFF2F1F1);
   final Color grayStepColor = const Color(0XFFC9C9C9);
+  final Color grayTabColor = const Color(0XFFCECECE);
   final Color orangeColor = const Color(0XFFEA6F55);
+  final Color purpleTabColor = const Color(0XFF5C3876);
   final Color purpleDefaultColor = const Color(0XFF62407E);
   final Color backgroundColor = const Color(0XFFF2F1F1);
   final Color backgroundButtonColor = const Color(0XFF603E7C);
