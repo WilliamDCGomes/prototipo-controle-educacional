@@ -14,6 +14,7 @@ class AppColors {
   final Color appBarColor = Color(0XFF492260);
   final Color bottomBarColor = Color(0XFF664583);
   final Color greenColor = const Color(0XFF008001);
+  final Color arrowBlackColor = const Color(0XFF4F4C4D);
   final Color blackColor91Percent = const Color(0XFF919191);
   final Color grayColor = const Color(0XFFE1E1E1);
   final Color lightGrayColor = const Color(0XFFF2F1F1);

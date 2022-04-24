@@ -118,8 +118,6 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                               color: AppColors().grayStepColor,
                             ),
                             indicatorDecoration: IndicatorDecoration(
-                              // style: PaintingStyle.stroke,
-                              // strokeWidth: 8,
                               color: AppColors().orangeColor,
                             ),
                             onDotTapped: (tappedDotIndex) {

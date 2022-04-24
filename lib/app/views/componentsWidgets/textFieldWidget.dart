@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -8,6 +9,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool? ableField;
   final bool? justRead;
   final bool? isPassword;
+  final bool? enableSuggestions;
   final double? height;
   final double? width;
   final double? fontSize;
@@ -16,6 +18,7 @@ class TextFieldWidget extends StatelessWidget {
   final Color? hintTextColor;
   final Color? borderColor;
   final TextStyle? textStyle;
+  final TextAlign? textAlign;
   final TextAlignVertical? textAlignVertical;
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
@@ -32,6 +35,7 @@ class TextFieldWidget extends StatelessWidget {
         this.ableField,
         this.justRead,
         this.isPassword,
+        this.enableSuggestions,
         this.height,
         this.width,
         this.fontSize,
@@ -40,6 +44,7 @@ class TextFieldWidget extends StatelessWidget {
         this.hintTextColor,
         this.borderColor,
         this.textStyle,
+        this.textAlign,
         this.textAlignVertical,
         this.focusNode,
         this.keyboardType,
@@ -58,7 +63,9 @@ class TextFieldWidget extends StatelessWidget {
       child: TextFormField(
         obscureText: isPassword ?? false,
         maxLength: maxLength,
+        enableSuggestions: enableSuggestions ?? false,
         style: textStyle ?? standardTextStyle(),
+        textAlign: textAlign ?? TextAlign.start,
         textAlignVertical: textAlignVertical ?? TextAlignVertical.center,
         focusNode: focusNode,
         cursorColor: AppColors().purpleDefaultColor,

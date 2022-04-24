@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../views/pages/tabletPhonePages/mainMenuTabletPhonePage.dart';
+import '../views/pages/tabletPhonePages/registerUserTabletPhone.dart';
 
 class LoginController extends GetxController {
   late TextEditingController raInputController;
@@ -8,6 +9,10 @@ class LoginController extends GetxController {
   late RxBool passwordFieldEnabled;
 
   LoginController(){
+    _initializeVariables();
+  }
+
+  _initializeVariables(){
     raInputController = TextEditingController();
     passwordInputController = TextEditingController();
     passwordFieldEnabled = true.obs;
@@ -23,6 +28,7 @@ class LoginController extends GetxController {
 
   createAccount() async {
     await Future.delayed(Duration(milliseconds: 200));
+    await Get.to(RegisterUserTabletPhone());
   }
 
   loginPressed(){
