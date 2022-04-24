@@ -88,6 +88,8 @@ class MainMenuTabletPhoneController extends GetxController {
         break;
       case quickActionsOptions.studentCard:
         break;
+      case quickActionsOptions.onlineStudentCard:
+        break;
       case quickActionsOptions.academicCalendar:
         break;
       case quickActionsOptions.academicRecord:

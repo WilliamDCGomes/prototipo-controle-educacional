@@ -8,6 +8,7 @@ enum quickActionsOptions {
   classTime,
   gradesFaults,
   studentCard,
+  onlineStudentCard,
   academicCalendar,
   academicRecord,
   schoolStatement,

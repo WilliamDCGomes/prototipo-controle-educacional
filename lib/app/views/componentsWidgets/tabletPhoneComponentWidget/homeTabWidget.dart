@@ -226,6 +226,12 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   MenuOptionsWidget(
+                                    text: "Carteirinha Online",
+                                    imagePath: "Icone_Carterinha_Estudante.svg",
+                                    textColor: AppColors().blackColor,
+                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.onlineStudentCard),
+                                  ),
+                                  MenuOptionsWidget(
                                     text: "Histórico Acadêmico",
                                     imagePath: "Icone_Historico_Academico.svg",
                                     textColor: AppColors().blackColor,
@@ -237,7 +243,6 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     textColor: AppColors().blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.newsEvents),
                                   ),
-                                  SizedBox(width: PlatformType().isAndroid() ? 13.h : 14.h,),
                                 ],
                               ),
                             ),
