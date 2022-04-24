@@ -111,7 +111,7 @@ class TextFieldWidget extends StatelessWidget {
   TextStyle standardTextStyle(){
     return TextStyle(
       color: textColor ?? AppColors().purpleDefaultColor,
-      fontSize: fontSize ?? 2.h,
+      fontSize: fontSize ?? 16.sp,
     );
   }
 

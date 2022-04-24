@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import '../helpers/brazilAddressInformations.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/bodyRegisterStepperWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/headerRegisterStepperWidget.dart';
 import '../views/stylePages/masksForTextFields.dart';
@@ -9,12 +10,13 @@ class RegisterUserController extends GetxController {
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool confirmPasswordFieldEnabled;
+  late RxString ufSelected;
+  late RxList<String> ufsList;
   late MaskTextInputFormatter maskCellPhoneFormatter;
   late TextEditingController nameTextController;
   late TextEditingController birthDateTextController;
   late TextEditingController cpfTextController;
   late TextEditingController cepTextController;
-  late TextEditingController ufTextController;
   late TextEditingController cityTextController;
   late TextEditingController streetTextController;
   late TextEditingController houseNumberTextController;
@@ -44,18 +46,20 @@ class RegisterUserController extends GetxController {
 
   RegisterUserController(){
     _initializeVariables();
+    _getUfsNames();
   }
 
   _initializeVariables(){
     activeStep = 0.obs;
+    ufSelected = "".obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
+    ufsList = [""].obs;
     maskCellPhoneFormatter = MasksForTextFields().phoneNumberAcceptExtraNumberMask;
     nameTextController = TextEditingController();
     birthDateTextController = TextEditingController();
     cpfTextController = TextEditingController();
     cepTextController = TextEditingController();
-    ufTextController = TextEditingController();
     cityTextController = TextEditingController();
     streetTextController = TextEditingController();
     houseNumberTextController = TextEditingController();
@@ -147,6 +151,14 @@ class RegisterUserController extends GetxController {
         controller: this,
       ),
     ];
+  }
+
+  _getUfsNames() async {
+    ufsList.clear();
+    List<String> states = await BrazilAddressInformations().getUfsNames();
+    for(var uf in states) {
+      ufsList.add(uf);
+    }
   }
 
   nextButtonPressed(){

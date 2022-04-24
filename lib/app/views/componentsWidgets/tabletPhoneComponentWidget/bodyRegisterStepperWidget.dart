@@ -4,18 +4,24 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../controllers/registerUserController.dart';
 import '../../stylePages/appColors.dart';
 import '../../stylePages/masksForTextFields.dart';
+import '../dropdownButtonWidget.dart';
 import '../textFieldWidget.dart';
 
-class BodyRegisterStepperWidget extends StatelessWidget {
-  final RegisterUserController controller;
-  final int indexView;
+class BodyRegisterStepperWidget extends StatefulWidget {
+  late final RegisterUserController controller;
+  late final int indexView;
 
-  const BodyRegisterStepperWidget(
+  BodyRegisterStepperWidget(
       { Key? key,
         required this.controller,
         required this.indexView,
       }) : super(key: key);
 
+  @override
+  State<BodyRegisterStepperWidget> createState() => _BodyRegisterStepperWidgetState();
+}
+
+class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,14 +29,14 @@ class BodyRegisterStepperWidget extends StatelessWidget {
       children: [
         // Entrys da primeira stepper
         Visibility(
-          visible: indexView == 0,
+          visible: widget.indexView == 0,
           child: SizedBox(
             height: 30.h,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   TextFieldWidget(
-                    controller: controller.nameTextController,
+                    controller: widget.controller.nameTextController,
                     hintText: "Nome",
                     height: 6.h,
                     width: 90.w,
@@ -40,7 +46,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
                     child: TextFieldWidget(
-                      controller: controller.birthDateTextController,
+                      controller: widget.controller.birthDateTextController,
                       hintText: "Data de Nascimento",
                       height: 6.h,
                       width: 90.w,
@@ -51,7 +57,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
                     child: TextFieldWidget(
-                      controller: controller.cpfTextController,
+                      controller: widget.controller.cpfTextController,
                       hintText: "CPF",
                       height: 6.h,
                       width: 90.w,
@@ -67,89 +73,99 @@ class BodyRegisterStepperWidget extends StatelessWidget {
 
         // Entrys da segunda stepper
         Visibility(
-          visible: indexView == 1,
+          visible: widget.indexView == 1,
           child: SizedBox(
-            height: 50.h,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    controller: controller.cepTextController,
-                    hintText: "Cep",
-                    height: 6.h,
-                    width: 90.w,
-                    keyboardType: TextInputType.number,
-                    maskTextInputFormatter: MasksForTextFields().cepMask,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextFieldWidget(
-                          controller: controller.ufTextController,
-                          hintText: "Uf",
-                          height: 6.h,
-                          width: 30.w,
-                          keyboardType: TextInputType.text,
-                        ),
-                        TextFieldWidget(
-                          controller: controller.cityTextController,
-                          hintText: "Cidade",
-                          height: 6.h,
-                          width: 58.w,
-                          keyboardType: TextInputType.name,
-                          enableSuggestions: true,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextFieldWidget(
-                          controller: controller.streetTextController,
-                          hintText: "Logradouro",
-                          height: 6.h,
-                          width: 68.w,
-                          keyboardType: TextInputType.streetAddress,
-                          enableSuggestions: true,
-                        ),
-                        TextFieldWidget(
-                          controller: controller.houseNumberTextController,
-                          hintText: "Nº",
-                          height: 6.h,
-                          width: 20.w,
-                          keyboardType: TextInputType.number,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: TextFieldWidget(
-                      controller: controller.neighborhoodTextController,
-                      hintText: "Bairro",
+            height: 45.h,
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                      controller: widget.controller.cepTextController,
+                      hintText: "Cep",
                       height: 6.h,
                       width: 90.w,
-                      keyboardType: TextInputType.name,
-                      enableSuggestions: true,
+                      keyboardType: TextInputType.number,
+                      maskTextInputFormatter: MasksForTextFields().cepMask,
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: TextFieldWidget(
-                      controller: controller.complementTextController,
-                      hintText: "Complemento",
-                      height: 6.h,
-                      width: 90.w,
-                      keyboardType: TextInputType.text,
-                      enableSuggestions: true,
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: Obx(() => SizedBox(
+                        height: 5.6.h,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            DropdownButtonWidget(
+                              itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
+                              hintText: "Uf",
+                              height: 6.h,
+                              width: 23.w,
+                              rxListItems: widget.controller.ufsList,
+                              onChanged: (selectedState) {
+                                widget.controller.ufSelected.value = selectedState ?? "";
+                              },
+                            ),
+                            TextFieldWidget(
+                              controller: widget.controller.cityTextController,
+                              hintText: "Cidade",
+                              height: 6.h,
+                              width: 65.w,
+                              keyboardType: TextInputType.name,
+                              enableSuggestions: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                      ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextFieldWidget(
+                            controller: widget.controller.streetTextController,
+                            hintText: "Logradouro",
+                            height: 6.h,
+                            width: 68.w,
+                            keyboardType: TextInputType.streetAddress,
+                            enableSuggestions: true,
+                          ),
+                          TextFieldWidget(
+                            controller: widget.controller.houseNumberTextController,
+                            hintText: "Nº",
+                            height: 6.h,
+                            width: 20.w,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: TextFieldWidget(
+                        controller: widget.controller.neighborhoodTextController,
+                        hintText: "Bairro",
+                        height: 6.h,
+                        width: 90.w,
+                        keyboardType: TextInputType.name,
+                        enableSuggestions: true,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: TextFieldWidget(
+                        controller: widget.controller.complementTextController,
+                        hintText: "Complemento",
+                        height: 6.h,
+                        width: 90.w,
+                        keyboardType: TextInputType.text,
+                        enableSuggestions: true,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -157,14 +173,14 @@ class BodyRegisterStepperWidget extends StatelessWidget {
 
         // Entrys da terceira stepper
         Visibility(
-          visible: indexView == 2,
+          visible: widget.indexView == 2,
           child: SizedBox(
             height: 30.h,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   TextFieldWidget(
-                    controller: controller.institutionTextController,
+                    controller: widget.controller.institutionTextController,
                     hintText: "Instituição",
                     height: 6.h,
                     width: 90.w,
@@ -174,7 +190,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
                     child: TextFieldWidget(
-                      controller: controller.courseTextController,
+                      controller: widget.controller.courseTextController,
                       hintText: "Curso",
                       height: 6.h,
                       width: 90.w,
@@ -185,7 +201,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
                     child: TextFieldWidget(
-                      controller: controller.periodTextController,
+                      controller: widget.controller.periodTextController,
                       hintText: "Período",
                       height: 6.h,
                       width: 90.w,
@@ -201,56 +217,59 @@ class BodyRegisterStepperWidget extends StatelessWidget {
 
         // Entrys da quarta stepper
         Visibility(
-          visible: indexView == 3,
+          visible: widget.indexView == 3,
           child: SizedBox(
             height: 40.h,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    controller: controller.phoneTextController,
-                    hintText: "Telefone",
-                    height: 6.h,
-                    width: 90.w,
-                    keyboardType: TextInputType.phone,
-                    maskTextInputFormatter: MasksForTextFields().phoneNumberMask,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: TextFieldWidget(
-                      controller: controller.cellPhoneTextController,
-                      hintText: "Celular",
+            child: Scrollbar(
+              isAlwaysShown: true,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                      controller: widget.controller.phoneTextController,
+                      hintText: "Telefone",
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.phone,
-                      maskTextInputFormatter: controller.maskCellPhoneFormatter,
+                      maskTextInputFormatter: MasksForTextFields().phoneNumberMask,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: TextFieldWidget(
+                        controller: widget.controller.cellPhoneTextController,
+                        hintText: "Celular",
+                        height: 6.h,
+                        width: 90.w,
+                        keyboardType: TextInputType.phone,
+                        maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
 
-                      onChanged: (cellPhoneTyped) => controller.phoneTextFieldEdited(cellPhoneTyped),
+                        onChanged: (cellPhoneTyped) => widget.controller.phoneTextFieldEdited(cellPhoneTyped),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: TextFieldWidget(
-                      controller: controller.emailTextController,
-                      hintText: "E-mail",
-                      height: 6.h,
-                      width: 90.w,
-                      keyboardType: TextInputType.emailAddress,
-                      enableSuggestions: true,
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: TextFieldWidget(
+                        controller: widget.controller.emailTextController,
+                        hintText: "E-mail",
+                        height: 6.h,
+                        width: 90.w,
+                        keyboardType: TextInputType.emailAddress,
+                        enableSuggestions: true,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: TextFieldWidget(
-                      controller: controller.confirmEmailTextController,
-                      hintText: "Confirme o E-mail",
-                      height: 6.h,
-                      width: 90.w,
-                      keyboardType: TextInputType.emailAddress,
-                      enableSuggestions: true,
+                    Padding(
+                      padding: EdgeInsets.only(top: 5.h),
+                      child: TextFieldWidget(
+                        controller: widget.controller.confirmEmailTextController,
+                        hintText: "Confirme o E-mail",
+                        height: 6.h,
+                        width: 90.w,
+                        keyboardType: TextInputType.emailAddress,
+                        enableSuggestions: true,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -258,7 +277,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
 
         // Entrys da quinta stepper
         Visibility(
-          visible: indexView == 4,
+          visible: widget.indexView == 4,
           child: SizedBox(
             height: 10.h,
             width: 50,
@@ -267,7 +286,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextFieldWidget(
-                    controller: controller.cellPhoneVerification1TextController,
+                    controller: widget.controller.cellPhoneVerification1TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -276,7 +295,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.cellPhoneVerification2TextController,
+                    controller: widget.controller.cellPhoneVerification2TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -285,7 +304,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.cellPhoneVerification3TextController,
+                    controller: widget.controller.cellPhoneVerification3TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -294,7 +313,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.cellPhoneVerification4TextController,
+                    controller: widget.controller.cellPhoneVerification4TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -303,7 +322,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.cellPhoneVerification5TextController,
+                    controller: widget.controller.cellPhoneVerification5TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -319,7 +338,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
 
         // Entrys da sexta stepper
         Visibility(
-          visible: indexView == 5,
+          visible: widget.indexView == 5,
           child: SizedBox(
             height: 10.h,
             child: SingleChildScrollView(
@@ -327,7 +346,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextFieldWidget(
-                    controller: controller.emailVerification1TextController,
+                    controller: widget.controller.emailVerification1TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -336,7 +355,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.emailVerification2TextController,
+                    controller: widget.controller.emailVerification2TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -345,7 +364,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.emailVerification3TextController,
+                    controller: widget.controller.emailVerification3TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -354,7 +373,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.emailVerification4TextController,
+                    controller: widget.controller.emailVerification4TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -363,7 +382,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                   TextFieldWidget(
-                    controller: controller.emailVerification5TextController,
+                    controller: widget.controller.emailVerification5TextController,
                     height: 6.h,
                     width: 8.w,
                     keyboardType: TextInputType.number,
@@ -379,25 +398,25 @@ class BodyRegisterStepperWidget extends StatelessWidget {
 
         // Entrys da sétima stepper
         Visibility(
-          visible: indexView == 6,
+          visible: widget.indexView == 6,
           child: SizedBox(
             height: 20.h,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Obx(() => TextFieldWidget(
-                    controller: controller.passwordTextController,
+                    controller: widget.controller.passwordTextController,
                     hintText: "Senha",
                     height: 6.h,
                     width: 90.w,
-                    isPassword: controller.passwordFieldEnabled.value,
+                    isPassword: widget.controller.passwordFieldEnabled.value,
                     iconTextField: GestureDetector(
                       onTap: () {
-                        controller.passwordFieldEnabled.value =
-                        !controller.passwordFieldEnabled.value;
+                        widget.controller.passwordFieldEnabled.value =
+                        !widget.controller.passwordFieldEnabled.value;
                       },
                       child: Icon(
-                        controller.passwordFieldEnabled.value
+                        widget.controller.passwordFieldEnabled.value
                             ? Icons.visibility_off
                             : Icons.visibility,
                         color: AppColors().purpleDefaultColor,
@@ -408,18 +427,18 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
                     child: Obx(() => TextFieldWidget(
-                      controller: controller.confirmPasswordTextController,
+                      controller: widget.controller.confirmPasswordTextController,
                       hintText: "Confirme a Senha",
                       height: 6.h,
                       width: 90.w,
-                      isPassword: controller.confirmPasswordFieldEnabled.value,
+                      isPassword: widget.controller.confirmPasswordFieldEnabled.value,
                       iconTextField: GestureDetector(
                         onTap: () {
-                          controller.confirmPasswordFieldEnabled.value =
-                          !controller.confirmPasswordFieldEnabled.value;
+                          widget.controller.confirmPasswordFieldEnabled.value =
+                          !widget.controller.confirmPasswordFieldEnabled.value;
                         },
                         child: Icon(
-                          controller.confirmPasswordFieldEnabled.value
+                          widget.controller.confirmPasswordFieldEnabled.value
                               ? Icons.visibility_off
                               : Icons.visibility,
                           color: AppColors().purpleDefaultColor,
