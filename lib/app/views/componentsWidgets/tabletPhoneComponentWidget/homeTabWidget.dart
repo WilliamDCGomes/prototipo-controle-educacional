@@ -62,9 +62,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButtonWidget(
-                            onTap: (){
-
-                            },
+                            onTap: () => widget.controller.openProfile(),
                             borderRadius: 2.h,
                             widgetCustom: Row(
                               children: [

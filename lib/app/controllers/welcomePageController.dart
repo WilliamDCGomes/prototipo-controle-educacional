@@ -14,8 +14,9 @@ class WelcomePageController extends GetxController {
     _loadIntroductionPages();
   }
 
-  goToLoginPage(){
-    Get.offAll(LoginPageTablePhone());
+  goToLoginPage() async {
+    await Future.delayed(Duration(milliseconds: 200));
+    await Get.offAll(LoginPageTablePhone());
   }
 
   _loadIntroductionPages(){
@@ -60,18 +61,12 @@ class WelcomePageController extends GetxController {
   }
 
   backStepper() async {
-    late bool backScreen;
-    if (activeStep > 0) {
-      backScreen = false;
-    }
-    else
-      backScreen = true;
     return await Future.delayed(
         const Duration(
             milliseconds: 100
         ),
         () {
-          return backScreen;
+          return activeStep <= 0;
         }
     );
   }

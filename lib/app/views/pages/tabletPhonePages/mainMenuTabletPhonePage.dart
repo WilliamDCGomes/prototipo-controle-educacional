@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../controllers/mainMenuTabletPhoneController.dart';
 import '../../../helpers/paths.dart';
-import '../../componentsWidgets/tabletPhoneComponentWidget/homeTabWidget.dart';
 import '../../stylePages/appColors.dart';
 
 class MainMenuTabletPhonePage extends StatefulWidget {
@@ -48,12 +47,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
               ),
               child: TabBarView(
                 controller: controller.tabController,
-                children: [
-                  HomeTabWidget(controller: controller),
-                  HomeTabWidget(controller: controller),
-                  HomeTabWidget(controller: controller),
-                  HomeTabWidget(controller: controller),
-                ],
+                children: controller.tabMainMenuList,
               ),
             ),
             bottomNavigationBar: Container(
