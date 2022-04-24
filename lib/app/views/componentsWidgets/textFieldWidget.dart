@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -23,9 +23,11 @@ class TextFieldWidget extends StatelessWidget {
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
   final InputDecoration? decoration;
+  final MaskTextInputFormatter? maskTextInputFormatter;
   final Function()? onTap;
   final Function()? onEditingComplete;
   final Function(String)? onChanged;
+  final Function(String?)? onSaved;
   final TextEditingController controller;
 
   const TextFieldWidget(
@@ -49,9 +51,11 @@ class TextFieldWidget extends StatelessWidget {
         this.focusNode,
         this.keyboardType,
         this.decoration,
+        this.maskTextInputFormatter,
         this.onTap,
         this.onEditingComplete,
         this.onChanged,
+        this.onSaved,
         required this.controller,
       }) : super(key: key);
 
@@ -71,11 +75,13 @@ class TextFieldWidget extends StatelessWidget {
         cursorColor: AppColors().purpleDefaultColor,
         keyboardType: keyboardType ?? TextInputType.text,
         decoration: decoration ?? standardDecoration(),
+        inputFormatters: maskTextInputFormatter != null ? [maskTextInputFormatter!] : null,
         enabled: ableField ?? true,
         readOnly: justRead ?? false,
         onTap: onTap,
         onEditingComplete: onEditingComplete,
         onChanged: onChanged,
+        onSaved: onSaved,
         controller: controller,
       ),
     );

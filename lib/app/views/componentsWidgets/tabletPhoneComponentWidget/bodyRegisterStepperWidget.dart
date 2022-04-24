@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../controllers/registerUserController.dart';
 import '../../stylePages/appColors.dart';
+import '../../stylePages/masksForTextFields.dart';
 import '../textFieldWidget.dart';
 
 class BodyRegisterStepperWidget extends StatelessWidget {
@@ -44,6 +45,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.number,
+                      maskTextInputFormatter: MasksForTextFields().birthDateMask,
                     ),
                   ),
                   Padding(
@@ -54,6 +56,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.number,
+                      maskTextInputFormatter: MasksForTextFields().cpfMask,
                     ),
                   ),
                 ],
@@ -76,6 +79,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     height: 6.h,
                     width: 90.w,
                     keyboardType: TextInputType.number,
+                    maskTextInputFormatter: MasksForTextFields().cepMask,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
@@ -209,6 +213,7 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                     height: 6.h,
                     width: 90.w,
                     keyboardType: TextInputType.phone,
+                    maskTextInputFormatter: MasksForTextFields().phoneNumberMask,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
@@ -218,6 +223,9 @@ class BodyRegisterStepperWidget extends StatelessWidget {
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.phone,
+                      maskTextInputFormatter: controller.maskCellPhoneFormatter,
+
+                      onChanged: (cellPhoneTyped) => controller.phoneTextFieldEdited(cellPhoneTyped),
                     ),
                   ),
                   Padding(

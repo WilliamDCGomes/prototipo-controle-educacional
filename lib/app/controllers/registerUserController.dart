@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/bodyRegisterStepperWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/headerRegisterStepperWidget.dart';
+import '../views/stylePages/masksForTextFields.dart';
 
 class RegisterUserController extends GetxController {
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool confirmPasswordFieldEnabled;
+  late MaskTextInputFormatter maskCellPhoneFormatter;
   late TextEditingController nameTextController;
   late TextEditingController birthDateTextController;
   late TextEditingController cpfTextController;
@@ -47,6 +50,7 @@ class RegisterUserController extends GetxController {
     activeStep = 0.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
+    maskCellPhoneFormatter = MasksForTextFields().phoneNumberAcceptExtraNumberMask;
     nameTextController = TextEditingController();
     birthDateTextController = TextEditingController();
     cpfTextController = TextEditingController();
@@ -164,5 +168,12 @@ class RegisterUserController extends GetxController {
           return currentIndex <= 0;
         }
     );
+  }
+
+  phoneTextFieldEdited(String cellPhoneTyped){
+    if(cellPhoneTyped.length > 14)
+      cellPhoneTextController.value = maskCellPhoneFormatter.updateMask(mask: "(##) #####-####");
+    else
+      cellPhoneTextController.value = maskCellPhoneFormatter.updateMask(mask: "(##) ####-#####");
   }
 }
