@@ -47,18 +47,20 @@ class MainMenuTabletPhoneController extends GetxController {
         firstText: "Meu Painel",
         secondText: "Ciência da Computação",
         thirdText: "4º Ano",
+        fourthText: "7º Semestre",
+        showSeparator: true,
       ),
       CardMainMenuWidget(
         imagePath: "Icone_Notificacao.svg",
-        firstText: "Meu Painel",
-        secondText: "Ciência da Computação",
-        thirdText: "4º Ano",
+        firstText: "Próxima Aula",
+        secondText: "Banco de Dados",
+        thirdText: "19:00   às   20:50",
       ),
       CardMainMenuWidget(
         imagePath: "Icone_Notificacao.svg",
-        firstText: "Meu Painel",
-        secondText: "Ciência da Computação",
-        thirdText: "4º Ano",
+        firstText: "Próxima Prova",
+        secondText: "Programação Orientada a Objetos",
+        thirdText: "21:00   às   22:30",
       ),
     ];
   }

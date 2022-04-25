@@ -67,13 +67,16 @@ class MenuOptionsWidget extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 1.h),
-                  child: TextWidget(
-                    text,
-                    textColor: textColor ?? AppColors().whiteColor,
-                    fontSize: textSize ?? (PlatformType().isPhone(context) ?
-                    15.sp : 14.sp),
-                    maxLines: maxLines ?? 2,
-                    fontWeight: FontWeight.bold,
+                  child: SizedBox(
+                    height: 3.5.h,
+                    child: TextWidget(
+                      text,
+                      textColor: textColor ?? AppColors().whiteColor,
+                      fontSize: textSize ?? (PlatformType().isPhone(context) ?
+                      15.sp : 14.sp),
+                      maxLines: maxLines ?? 2,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

@@ -82,13 +82,16 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    TextFieldWidget(
-                      controller: widget.controller.cepTextController,
-                      hintText: "Cep",
-                      height: 6.h,
-                      width: 90.w,
-                      keyboardType: TextInputType.number,
-                      maskTextInputFormatter: MasksForTextFields().cepMask,
+                    Padding(
+                      padding: EdgeInsets.only(top: .5.h),
+                      child: TextFieldWidget(
+                        controller: widget.controller.cepTextController,
+                        hintText: "Cep",
+                        height: 6.h,
+                        width: 90.w,
+                        keyboardType: TextInputType.number,
+                        maskTextInputFormatter: MasksForTextFields().cepMask,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 5.h),

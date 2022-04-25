@@ -10,6 +10,8 @@ class CardMainMenuWidget extends StatelessWidget {
   final String firstText;
   final String secondText;
   final String thirdText;
+  final String? fourthText;
+  final bool? showSeparator;
 
   const CardMainMenuWidget(
       { Key? key,
@@ -17,6 +19,8 @@ class CardMainMenuWidget extends StatelessWidget {
         required this.firstText,
         required this.secondText,
         required this.thirdText,
+        this.fourthText,
+        this.showSeparator,
       }) : super(key: key);
 
   @override
@@ -70,13 +74,42 @@ class CardMainMenuWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 5.w),
-                    child: TextWidget(
-                      thirdText,
-                      maxLines: 1,
-                      textColor: AppColors().whiteColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.sp,
-                      textAlign: TextAlign.start,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 45.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                thirdText,
+                                maxLines: 1,
+                                textColor: AppColors().whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                              Visibility(
+                                visible: showSeparator ?? false,
+                                child: Container(
+                                  height: 3.h,
+                                  width: .5.w,
+                                  color: AppColors().whiteColor,
+                                ),
+                              ),
+                              TextWidget(
+                                fourthText ?? "",
+                                maxLines: 1,
+                                textColor: AppColors().whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
