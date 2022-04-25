@@ -62,12 +62,15 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextButtonWidget(
-                              onTap: () => controller.backButtonPressed(),
+                              onTap: () => controller.backArrowButtonPressed(),
                               widgetCustom: Icon(
                                 Icons.arrow_back,
                                 color: AppColors().arrowBlackColor,
                                 size: 3.h,
                               ),
+                              componentAlignment: Alignment.centerLeft,
+                              componentPadding: EdgeInsets.zero,
+                              width: 3.h,
                             ),
                             TextWidget(
                               "Cadastro",
@@ -86,7 +89,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4.h),
+                        padding: EdgeInsets.fromLTRB(0, 2.h, 0, 4.h),
                         child: Obx(() => DotStepper(
                             dotCount: 7,
                             dotRadius: 1.h,
@@ -115,6 +118,25 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                           fontWeight: FontWeight.bold,
                           widthButton: 90.w,
                           onPressed: () => controller.nextButtonPressed(),
+                        ),
+                      ),
+                      Obx(() => Visibility(
+                          visible: controller.activeStep.value == 0,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 2.h),
+                            child: Center(
+                              child: SizedBox(
+                                width: 75.w,
+                                child: TextWidget(
+                                  controller.lgpdPhrase,
+                                  textColor: AppColors().blackColor,
+                                  fontSize: 15.sp,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 3,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

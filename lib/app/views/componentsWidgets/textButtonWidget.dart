@@ -8,8 +8,12 @@ class TextButtonWidget extends StatelessWidget {
   final String? hintText;
   final double? fontSize;
   final double? borderRadius;
+  final double? width;
   final TextWidget? textWidget;
   final TextAlign? textAlign;
+  final Alignment? componentAlignment;
+  final EdgeInsets? componentPadding;
+  final Size? maximumSize;
   final RichTextTwoDifferentWidget? richText;
   final Widget? widgetCustom;
   final Function()? onTap;
@@ -19,8 +23,12 @@ class TextButtonWidget extends StatelessWidget {
         this.hintText,
         this.fontSize,
         this.borderRadius,
+        this.width,
         this.textWidget,
         this.textAlign,
+        this.componentAlignment,
+        this.componentPadding,
+        this.maximumSize,
         this.richText,
         this.widgetCustom,
         this.onTap,
@@ -28,25 +36,31 @@ class TextButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: onTap,
-        style: TextButton.styleFrom(
-          primary: AppColors().purpleDefaultColor,
-          backgroundColor: AppColors().transparentColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+    return SizedBox(
+      width: width,
+      child: TextButton(
+          onPressed: onTap,
+          style: TextButton.styleFrom(
+            primary: AppColors().purpleDefaultColor,
+            backgroundColor: AppColors().transparentColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            ),
+            alignment: componentAlignment,
+            padding: componentPadding,
+            maximumSize: maximumSize,
           ),
-        ),
-        child: richText ?? (
-          widgetCustom ??
-          TextWidget(
-            hintText ?? "",
-            textColor: AppColors().purpleDefaultColor,
-            fontSize: fontSize ?? 17.sp,
-            fontWeight: FontWeight.bold,
-            textAlign: textAlign,
-          )
-        ),
+          child: richText ?? (
+            widgetCustom ??
+            TextWidget(
+              hintText ?? "",
+              textColor: AppColors().purpleDefaultColor,
+              fontSize: fontSize ?? 17.sp,
+              fontWeight: FontWeight.bold,
+              textAlign: textAlign,
+            )
+          ),
+      ),
     );
   }
 }

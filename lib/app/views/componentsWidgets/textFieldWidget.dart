@@ -94,7 +94,7 @@ class TextFieldWidget extends StatelessWidget {
     return InputDecoration(
       labelText: hintText,
       labelStyle: TextStyle(
-          fontSize: 2.h,
+          fontSize: 16.sp,
           color: hintTextColor ?? AppColors().purpleDefaultColor,
       ),
       suffixIcon: iconTextField,

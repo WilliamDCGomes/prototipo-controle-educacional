@@ -4,13 +4,17 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../helpers/brazilAddressInformations.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/bodyRegisterStepperWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/headerRegisterStepperWidget.dart';
+import '../views/pages/tabletPhonePages/registrationCompletedTabletPhone.dart';
 import '../views/stylePages/masksForTextFields.dart';
 
 class RegisterUserController extends GetxController {
+  late String lgpdPhrase;
+  late List<String> periodList;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool confirmPasswordFieldEnabled;
   late RxString ufSelected;
+  late RxString periodSelected;
   late RxList<String> ufsList;
   late MaskTextInputFormatter maskCellPhoneFormatter;
   late TextEditingController nameTextController;
@@ -24,16 +28,12 @@ class RegisterUserController extends GetxController {
   late TextEditingController complementTextController;
   late TextEditingController institutionTextController;
   late TextEditingController courseTextController;
-  late TextEditingController periodTextController;
   late TextEditingController phoneTextController;
   late TextEditingController cellPhoneTextController;
   late TextEditingController emailTextController;
   late TextEditingController confirmEmailTextController;
-  late TextEditingController cellPhoneVerification1TextController;
-  late TextEditingController cellPhoneVerification2TextController;
-  late TextEditingController cellPhoneVerification3TextController;
-  late TextEditingController cellPhoneVerification4TextController;
-  late TextEditingController cellPhoneVerification5TextController;
+  late TextEditingController pinPutSMSController;
+  late TextEditingController pinPutEmailController;
   late TextEditingController emailVerification1TextController;
   late TextEditingController emailVerification2TextController;
   late TextEditingController emailVerification3TextController;
@@ -50,11 +50,19 @@ class RegisterUserController extends GetxController {
   }
 
   _initializeVariables(){
+    lgpdPhrase = "Ao avançar, você esta de acordo e concorda com as Políticas de Privacidade e com os Termos de Serviço.";
     activeStep = 0.obs;
     ufSelected = "".obs;
+    periodSelected = "".obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
     ufsList = [""].obs;
+    periodList = [
+      "Matutino",
+      "Vespertino",
+      "Noturno",
+      "Integral",
+    ];
     maskCellPhoneFormatter = MasksForTextFields().phoneNumberAcceptExtraNumberMask;
     nameTextController = TextEditingController();
     birthDateTextController = TextEditingController();
@@ -67,16 +75,12 @@ class RegisterUserController extends GetxController {
     complementTextController = TextEditingController();
     institutionTextController = TextEditingController();
     courseTextController = TextEditingController();
-    periodTextController = TextEditingController();
     phoneTextController = TextEditingController();
     cellPhoneTextController = TextEditingController();
     emailTextController = TextEditingController();
     confirmEmailTextController = TextEditingController();
-    cellPhoneVerification1TextController = TextEditingController();
-    cellPhoneVerification2TextController = TextEditingController();
-    cellPhoneVerification3TextController = TextEditingController();
-    cellPhoneVerification4TextController = TextEditingController();
-    cellPhoneVerification5TextController = TextEditingController();
+    pinPutSMSController = TextEditingController();
+    pinPutEmailController = TextEditingController();
     emailVerification1TextController = TextEditingController();
     emailVerification2TextController = TextEditingController();
     emailVerification3TextController = TextEditingController();
@@ -164,6 +168,8 @@ class RegisterUserController extends GetxController {
   nextButtonPressed(){
     if(activeStep.value < 6)
       activeStep.value ++;
+    else
+      Get.offAll(RegistrationCompletedTabletPhone());
   }
 
   backButtonPressed() async {
@@ -180,6 +186,14 @@ class RegisterUserController extends GetxController {
           return currentIndex <= 0;
         }
     );
+  }
+
+  backArrowButtonPressed() {
+    if (activeStep.value > 0) {
+      activeStep.value--;
+    }
+    else
+      Get.back();
   }
 
   phoneTextFieldEdited(String cellPhoneTyped){

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/helpers/platformType.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../controllers/registerUserController.dart';
 import '../../stylePages/appColors.dart';
 import '../../stylePages/masksForTextFields.dart';
 import '../dropdownButtonWidget.dart';
+import '../pinPutWidget.dart';
 import '../textFieldWidget.dart';
 
 class BodyRegisterStepperWidget extends StatefulWidget {
@@ -75,7 +77,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
         Visibility(
           visible: widget.indexView == 1,
           child: SizedBox(
-            height: 45.h,
+            height: PlatformType().isTablet(context) ? 50.h : 45.h,
             child: Scrollbar(
               child: SingleChildScrollView(
                 child: Column(
@@ -200,13 +202,16 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5.h),
-                    child: TextFieldWidget(
-                      controller: widget.controller.periodTextController,
-                      hintText: "Período",
-                      height: 6.h,
-                      width: 90.w,
-                      keyboardType: TextInputType.text,
-                      enableSuggestions: true,
+                    child: Obx(() => DropdownButtonWidget(
+                        itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
+                        hintText: "Período",
+                        height: 5.6.h,
+                        width: 90.w,
+                        listItems: widget.controller.periodList,
+                        onChanged: (selectedPeriod) {
+                          widget.controller.periodSelected.value = selectedPeriod ?? "";
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -281,57 +286,10 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
           child: SizedBox(
             height: 10.h,
             width: 50,
-            child: SingleChildScrollView(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextFieldWidget(
-                    controller: widget.controller.cellPhoneVerification1TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.cellPhoneVerification2TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.cellPhoneVerification3TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.cellPhoneVerification4TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.cellPhoneVerification5TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                ],
-              ),
+            child: PinPutWidget(
+              pinController: widget.controller.pinPutSMSController,
+              height: 7.h,
+              width: 6.h,
             ),
           ),
         ),
@@ -341,57 +299,11 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
           visible: widget.indexView == 5,
           child: SizedBox(
             height: 10.h,
-            child: SingleChildScrollView(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextFieldWidget(
-                    controller: widget.controller.emailVerification1TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.emailVerification2TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.emailVerification3TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.emailVerification4TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                  TextFieldWidget(
-                    controller: widget.controller.emailVerification5TextController,
-                    height: 6.h,
-                    width: 8.w,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                  ),
-                ],
-              ),
+            width: 50,
+            child: PinPutWidget(
+              pinController: widget.controller.pinPutEmailController,
+              height: 7.h,
+              width: 6.h,
             ),
           ),
         ),

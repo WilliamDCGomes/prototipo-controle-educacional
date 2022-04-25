@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../helpers/platformType.dart';
 import '../../stylePages/appColors.dart';
 import '../textWidget.dart';
 
@@ -19,37 +20,40 @@ class HeaderRegisterStepperWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 5.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextWidget(
-            firstText,
-            textColor: AppColors().blackColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.start,
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 2.h),
-            child: TextWidget(
-              secondText,
+      child: SizedBox(
+        height: PlatformType().isTablet(context) ? 15.h : 13.5.h,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextWidget(
+              firstText,
               textColor: AppColors().blackColor,
-              fontSize: 18.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.bold,
               textAlign: TextAlign.start,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 2.h),
-            child: TextWidget(
-              thirdText,
-              textColor: AppColors().blackColor,
-              fontSize: 15.sp,
-              textAlign: TextAlign.start,
-              maxLines: 3,
+            Padding(
+              padding: EdgeInsets.only(top: 2.h),
+              child: TextWidget(
+                secondText,
+                textColor: AppColors().blackColor,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                textAlign: TextAlign.start,
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.only(top: 2.h),
+              child: TextWidget(
+                thirdText,
+                textColor: AppColors().blackColor,
+                fontSize: 15.sp,
+                textAlign: TextAlign.start,
+                maxLines: 3,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
