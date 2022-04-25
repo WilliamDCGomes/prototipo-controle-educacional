@@ -54,13 +54,29 @@ class MainMenuTabletPhoneController extends GetxController {
         imagePath: "Icone_Notificacao.svg",
         firstText: "Próxima Aula",
         secondText: "Banco de Dados",
-        thirdText: "19:00   às   20:50",
+        thirdText: "19:00 às 20:50",
+        fourthText: "25/04",
+        showSeparator: true,
+      ),
+      CardMainMenuWidget(
+        imagePath: "Icone_Notificacao.svg",
+        firstText: "Próxima Fatura",
+        secondText: "R\$ 746,99",
+        thirdText: "Vencimento: 05/06",
       ),
       CardMainMenuWidget(
         imagePath: "Icone_Notificacao.svg",
         firstText: "Próxima Prova",
         secondText: "Programação Orientada a Objetos",
-        thirdText: "21:00   às   22:30",
+        thirdText: "21:00 às 22:30",
+        fourthText: "30/06",
+        showSeparator: true,
+      ),
+      CardMainMenuWidget(
+        imagePath: "Icone_Notificacao.svg",
+        firstText: "Última nota postada",
+        secondText: "Nota: 7,75",
+        thirdText: "Segurança de Rede de Computadores ddffddffdfdfd",
       ),
     ];
   }

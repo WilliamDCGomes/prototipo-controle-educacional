@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -53,8 +54,7 @@ class CardMainMenuWidget extends StatelessWidget {
                         child: TextWidget(
                           firstText,
                           textColor: AppColors().whiteColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
+                          fontSize: 18.sp,
                           textAlign: TextAlign.start,
                           maxLines: 1,
                         ),
@@ -67,19 +67,43 @@ class CardMainMenuWidget extends StatelessWidget {
                   ),
                   TextWidget(
                     secondText,
+                    fontWeight: FontWeight.bold,
                     maxLines: 1,
                     textColor: AppColors().whiteColor,
-                    fontSize: 18.sp,
+                    fontSize: 20.sp,
                     textAlign: TextAlign.start,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 45.w,
-                          child: Row(
+                  Visibility(
+                    visible: !(showSeparator ?? false),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 5.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 73.w,
+                            child: TextWidget(
+                              thirdText,
+                              maxLines: 1,
+                              textColor: AppColors().whiteColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.sp,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: showSeparator ?? false,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 5.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextWidget(
@@ -90,26 +114,29 @@ class CardMainMenuWidget extends StatelessWidget {
                                 fontSize: 16.sp,
                                 textAlign: TextAlign.start,
                               ),
-                              Visibility(
-                                visible: showSeparator ?? false,
+                              Padding(
+                                padding: EdgeInsets.only(left: 5.w),
                                 child: Container(
                                   height: 3.h,
                                   width: .5.w,
                                   color: AppColors().whiteColor,
                                 ),
                               ),
-                              TextWidget(
-                                fourthText ?? "",
-                                maxLines: 1,
-                                textColor: AppColors().whiteColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp,
-                                textAlign: TextAlign.start,
+                              Padding(
+                                padding: EdgeInsets.only(left: 5.w),
+                                child: TextWidget(
+                                  fourthText ?? "",
+                                  maxLines: 1,
+                                  textColor: AppColors().whiteColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.sp,
+                                  textAlign: TextAlign.start,
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
