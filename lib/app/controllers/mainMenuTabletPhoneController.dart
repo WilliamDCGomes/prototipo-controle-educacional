@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import '../enums/enums.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardAcademicRecordWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/cardTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/homeTabWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
@@ -15,10 +18,16 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
+  late List<Widget> curriculumTabList;
+  late List<Widget> deliveryTabList;
   late List<Widget> tabMainMenuList;
+  late List<Widget> tabAcademicRecordList;
   late TabController tabController;
+  late TabController tabAcademicController;
   late CarouselController carouselController;
   late CarouselController academicRecordCarouselController;
+  late TextEditingController curriculumSearchController;
+  late TextEditingController deliveriesSearchController;
 
   MainMenuTabletPhoneController(){
     _initializeVariables();
@@ -31,11 +40,81 @@ class MainMenuTabletPhoneController extends GetxController {
     activeStep = 0;
     carouselController = CarouselController();
     academicRecordCarouselController = CarouselController();
+    curriculumSearchController = TextEditingController();
+    deliveriesSearchController = TextEditingController();
     tabMainMenuList = [
       HomeTabWidget(controller: this),
       AcademicTabWidget(controller: this),
       AcademicTabWidget(controller: this),
       AcademicTabWidget(controller: this),
+    ];
+    tabAcademicRecordList = [
+      AcademicTabListWidget(
+        controller: this,
+        academicTabType: academicTabs.curriculum,
+      ),
+      AcademicTabListWidget(
+        controller: this,
+        academicTabType: academicTabs.deliveries,
+      ),
+    ];
+    curriculumTabList = [
+      CardTabListWidget(
+        firstValue: "Projeto I",
+        secondValue: "Segunda-Feira, 19:00 - 20:40",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Qualidade e Testes de Software",
+        secondValue: "Segunda-Feira, 21:00 - 22:30",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Tópicos em Computação",
+        secondValue: "Terça-Feira, 19:00 - 22:30",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Projeto I",
+        secondValue: "Quarta-Feira, 19:00 - 20:40",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Segurança em Sistemas de Informação",
+        secondValue: "Quarta-Feira, 21:00 - 22:30",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Ciência de Dados I",
+        secondValue: "Quinta-Feira, 19:00 - 22:30",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Modelagem Computacional em Grafos",
+        secondValue: "Sexta-Feira, 19:00 - 20:40",
+        thirdValue: "Laboratório A18",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+      CardTabListWidget(
+        firstValue: "Pesquisa Operacional",
+        secondValue: "Sexta-Feira, 19:00 - 20:40",
+        thirdValue: "Sala D14",
+        cardColor: AppColors().purpleDefaultColor,
+      ),
+    ];
+    deliveryTabList = [
+      CardTabListWidget(
+        firstValue: "",
+        secondValue: "",
+        thirdValue: "",
+        cardColor: AppColors().orangeColor,
+      ),
     ];
   }
 
@@ -87,24 +166,44 @@ class MainMenuTabletPhoneController extends GetxController {
 
     cardAcademicRecordList = [
       CardAcademicRecordWidget(
-        yearValueText: "2022",
+        yearValueText: "2019",
+        semesterValueText: "1º Semestre",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2019",
+        semesterValueText: "2º Semestre",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2020",
+        semesterValueText: "3º Semestre",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2020",
         semesterValueText: "4º Semestre",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2021",
+        semesterValueText: "5º Semestre",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2021",
+        semesterValueText: "6º Semestre",
+        mainMenuTabletPhoneController: this,
       ),
       CardAcademicRecordWidget(
         yearValueText: "2022",
-        semesterValueText: "4º Semestre",
+        semesterValueText: "7º Semestre",
+        mainMenuTabletPhoneController: this,
       ),
       CardAcademicRecordWidget(
         yearValueText: "2022",
-        semesterValueText: "4º Semestre",
-      ),
-      CardAcademicRecordWidget(
-        yearValueText: "2022",
-        semesterValueText: "4º Semestre",
-      ),
-      CardAcademicRecordWidget(
-        yearValueText: "2022",
-        semesterValueText: "4º Semestre",
+        semesterValueText: "8º Semestre",
+        mainMenuTabletPhoneController: this,
       ),
     ];
   }
@@ -127,6 +226,16 @@ class MainMenuTabletPhoneController extends GetxController {
   openConfiguration() async {
     await Future.delayed(Duration(milliseconds: 200));
 
+  }
+
+  previousAcademicRecordCard() async {
+    await Future.delayed(Duration(milliseconds: 100));
+    academicRecordCarouselController.previousPage();
+  }
+
+  nextAcademicRecordCard() async {
+    await Future.delayed(Duration(milliseconds: 100));
+    academicRecordCarouselController.nextPage();
   }
 
   quickActionsClicked(quickActionsOptions chosenOption) async {

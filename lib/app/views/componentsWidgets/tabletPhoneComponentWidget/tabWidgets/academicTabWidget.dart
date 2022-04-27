@@ -1,14 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:im_stepper/stepper.dart';
-import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../controllers/mainMenuTabletPhoneController.dart';
 import '../../../../helpers/paths.dart';
 import '../../../../helpers/platformType.dart';
 import '../../../stylePages/appColors.dart';
-import '../../menuOptionsWidget.dart';
 import '../../textButtonWidget.dart';
 import '../../textWidget.dart';
 
@@ -23,9 +20,13 @@ class AcademicTabWidget extends StatefulWidget {
   State<AcademicTabWidget> createState() => _AcademicTabWidgetState();
 }
 
-class _AcademicTabWidgetState extends State<AcademicTabWidget> {
+class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTickerProviderStateMixin {
   @override
   void initState() {
+    widget.controller.tabAcademicController = TabController(
+      length: 2,
+      vsync: this,
+    );
     super.initState();
 
     WidgetsBinding.instance!.addPostFrameCallback((_){
@@ -102,7 +103,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> {
                                   padding: EdgeInsets.only(bottom: 1.h),
                                   child: CarouselSlider.builder(
                                     carouselController: widget.controller.academicRecordCarouselController,
-                                    itemCount: 5,
+                                    itemCount: 8,
                                     options: CarouselOptions(
                                         height: 18.h,
                                         viewportFraction: 1,
@@ -122,99 +123,39 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: TextWidget(
-                                "Ações Rápidas",
-                                textColor: AppColors().blackColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                textAlign: TextAlign.start,
-                                maxLines: 1,
+                            SizedBox(
+                              height: 4.h,
+                              child: TabBar(
+                                controller: widget.controller.tabAcademicController,
+                                indicatorColor: AppColors().purpleDefaultColor,
+                                indicatorWeight: .3.h,
+                                labelStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17.sp,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                labelColor: AppColors().purpleTabColor,
+                                unselectedLabelColor: AppColors().grayTabColor,
+                                tabs: [
+                                  Tab(
+                                    text: "Grade Curricular",
+                                    height: 3.h,
+                                  ),
+                                  Tab(
+                                    text: "Entregas",
+                                    height: 3.h,
+                                  ),
+                                ],
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 2.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MenuOptionsWidget(
-                                    text: "Horário das Aulas",
-                                    imagePath: "Icone_Horario_Das_Aulas.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.classTime),
-                                  ),
-                                  MenuOptionsWidget(
-                                    text: "Notas e Faltas",
-                                    imagePath: "Icone_Notas_e_Faltas.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.gradesFaults),
-                                  ),
-                                  MenuOptionsWidget(
-                                    text: "Calendário Acadêmico",
-                                    imagePath: "Icone_Calendario_Academico.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicCalendar),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MenuOptionsWidget(
-                                    text: "Carteirinha Online",
-                                    imagePath: "Icone_Carterinha_Estudante.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.onlineStudentCard),
-                                  ),
-                                  MenuOptionsWidget(
-                                    text: "Histórico Acadêmico",
-                                    imagePath: "Icone_Historico_Academico.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicRecord),
-                                  ),
-                                  MenuOptionsWidget(
-                                    text: "Notícias e Eventos",
-                                    imagePath: "Icone_Noticias_e_Eventos.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.newsEvents),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: TextWidget(
-                                "Solicitações",
-                                textColor: AppColors().blackColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                textAlign: TextAlign.start,
-                                maxLines: 1,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h, bottom: 9.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MenuOptionsWidget(
-                                    text: "Carteirinha de Estudante",
-                                    imagePath: "Icone_Carterinha_Estudante.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.studentCard),
-                                  ),
-                                  MenuOptionsWidget(
-                                    text: "Declaração Escolar",
-                                    imagePath: "Icone_Declaracao_Escolar.svg",
-                                    textColor: AppColors().blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.schoolStatement),
-                                  ),
-                                  SizedBox(width: PlatformType().isAndroid() ? 13.h : 14.h,),
-                                ],
+                              child: SizedBox(
+                                height: 42.h,
+                                child: TabBarView(
+                                  controller: widget.controller.tabAcademicController,
+                                  children: widget.controller.tabAcademicRecordList,
+                                ),
                               ),
                             ),
                           ],

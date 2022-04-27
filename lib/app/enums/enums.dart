@@ -14,3 +14,8 @@ enum quickActionsOptions {
   schoolStatement,
   newsEvents,
 }
+
+enum academicTabs {
+  curriculum,
+  deliveries
+}

@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../controllers/mainMenuTabletPhoneController.dart';
 import '../../../helpers/paths.dart';
 import '../../stylePages/appColors.dart';
 import '../textButtonWidget.dart';
@@ -10,11 +10,13 @@ import '../textWidget.dart';
 class CardAcademicRecordWidget extends StatelessWidget {
   final String yearValueText;
   final String semesterValueText;
+  final MainMenuTabletPhoneController mainMenuTabletPhoneController;
 
   const CardAcademicRecordWidget(
       { Key? key,
         required this.yearValueText,
         required this.semesterValueText,
+        required this.mainMenuTabletPhoneController,
       }) : super(key: key);
 
   @override
@@ -39,10 +41,21 @@ class CardAcademicRecordWidget extends StatelessWidget {
                   SizedBox(
                     height: .5.h,
                   ),
-                  Center(
-                    child: SizedBox(
-                      width: 66.w,
-                      child: TextWidget(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButtonWidget(
+                        onTap: () => mainMenuTabletPhoneController.previousAcademicRecordCard(),
+                        height: 4.h,
+                        width: 4.h,
+                        componentPadding: EdgeInsets.zero,
+                        widgetCustom: Icon(
+                          Icons.arrow_back_ios_outlined,
+                          color: AppColors().purpleDefaultColor,
+                          size: 2.5.h,
+                        ),
+                      ),
+                      TextWidget(
                         yearValueText,
                         textColor: AppColors().purpleDefaultColor,
                         fontWeight: FontWeight.bold,
@@ -50,7 +63,18 @@ class CardAcademicRecordWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         maxLines: 1,
                       ),
-                    ),
+                      TextButtonWidget(
+                        onTap: () => mainMenuTabletPhoneController.nextAcademicRecordCard(),
+                        height: 4.h,
+                        width: 4.h,
+                        componentPadding: EdgeInsets.zero,
+                        widgetCustom: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          color: AppColors().purpleDefaultColor,
+                          size: 2.5.h,
+                        ),
+                      ),
+                    ],
                   ),
                   Center(
                     child: TextWidget(
@@ -77,7 +101,6 @@ class CardAcademicRecordWidget extends StatelessWidget {
                           " Ver Histórico Acadêmico",
                           maxLines: 1,
                           textColor: AppColors().blueLinkColor,
-                          fontWeight: FontWeight.bold,
                           fontSize: 17.sp,
                           textAlign: TextAlign.center,
                         ),
