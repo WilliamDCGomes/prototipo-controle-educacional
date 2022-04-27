@@ -8,6 +8,7 @@ class TextButtonWidget extends StatelessWidget {
   final String? hintText;
   final double? fontSize;
   final double? borderRadius;
+  final double? height;
   final double? width;
   final TextWidget? textWidget;
   final TextAlign? textAlign;
@@ -23,6 +24,7 @@ class TextButtonWidget extends StatelessWidget {
         this.hintText,
         this.fontSize,
         this.borderRadius,
+        this.height,
         this.width,
         this.textWidget,
         this.textAlign,
@@ -37,6 +39,7 @@ class TextButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: height,
       width: width,
       child: TextButton(
           onPressed: onTap,

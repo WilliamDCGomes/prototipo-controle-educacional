@@ -1,30 +1,29 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../controllers/mainMenuTabletPhoneController.dart';
-import '../../../helpers/paths.dart';
-import '../../../helpers/platformType.dart';
-import '../../stylePages/appColors.dart';
-import '../menuOptionsWidget.dart';
-import '../textButtonWidget.dart';
-import '../textWidget.dart';
+import '../../../../controllers/mainMenuTabletPhoneController.dart';
+import '../../../../helpers/paths.dart';
+import '../../../../helpers/platformType.dart';
+import '../../../stylePages/appColors.dart';
+import '../../menuOptionsWidget.dart';
+import '../../textButtonWidget.dart';
+import '../../textWidget.dart';
 
-class HomeTabWidget extends StatefulWidget {
+class AcademicTabWidget extends StatefulWidget {
   late final MainMenuTabletPhoneController controller;
-  HomeTabWidget({
+  AcademicTabWidget({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<HomeTabWidget> createState() => _HomeTabWidgetState();
+  State<AcademicTabWidget> createState() => _AcademicTabWidgetState();
 }
 
-class _HomeTabWidgetState extends State<HomeTabWidget> {
+class _AcademicTabWidgetState extends State<AcademicTabWidget> {
   @override
   void initState() {
     super.initState();
@@ -58,67 +57,33 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                   children: [
                     SizedBox(
                       height: 8.h,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextButtonWidget(
-                            onTap: () => widget.controller.openProfile(),
-                            borderRadius: 2.h,
-                            widgetCustom: Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: 3.w),
-                                  child: Container(
-                                    height: 7.h,
-                                    width: 7.h,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3.5.h),
-                                      color: AppColors().grayColor,
-                                    ),
-                                    child: Obx(
-                                          () => widget.controller.hasPicture.value ?
-                                      Image.asset(
-                                          ""
-                                      ) :
-                                      Center(
-                                        child: TextWidget(
-                                          widget.controller.nameInitials,
-                                          textColor: AppColors().standardColor,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20.sp,
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextWidget(
-                                      "Olá, William",
-                                      textColor: AppColors().blackColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.sp,
-                                      textAlign: TextAlign.start,
-                                    ),
-                                    Obx(() => TextWidget(
-                                      widget.controller.welcomePhrase.value,
-                                      textColor: AppColors().blackColor,
-                                      fontSize: 17.sp,
-                                      textAlign: TextAlign.start,
-                                    ),),
-                                  ],
-                                ),
-                              ],
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 2.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextWidget(
+                              "Acadêmico",
+                              textColor: AppColors().blackColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
                             ),
-                          ),
-                          SvgPicture.asset(
-                            '${Paths().svgsPath}Logo_Pce_Home.svg',
-                            width: 15.w,
-                          ),
-                        ],
+                            TextButtonWidget(
+                              onTap: () => widget.controller.openConfiguration(),
+                              height: 6.5.w,
+                              width: 7.w,
+                              componentPadding: EdgeInsets.all(.5.w),
+                              widgetCustom: SvgPicture.asset(
+                                '${Paths().svgsPath}Icone_Filtro.svg',
+                                height: 6.5.w,
+                                width: 6.5.w,
+                                color: AppColors().purpleDefaultColor,
+                                alignment: Alignment.centerRight,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -133,53 +98,27 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 9.h : 7.h,
                               ),
                               child: Center(
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 1.h),
-                                      child: CarouselSlider.builder(
-                                        carouselController: widget.controller.carouselController,
-                                        itemCount: 5,
-                                        options: CarouselOptions(
-                                            height: 18.h,
-                                            viewportFraction: 1,
-                                            enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                            enlargeCenterPage: true,
-                                            enableInfiniteScroll: false,
-                                            onPageChanged: (itemIndex, reason){
-                                              setState(() {
-                                                widget.controller.activeStep = itemIndex;
-                                              });
-                                            }
-                                        ),
-                                        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                          return widget.controller.cardMainMenuList.elementAt(itemIndex);
-                                        },
-                                      ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(bottom: 1.h),
+                                  child: CarouselSlider.builder(
+                                    carouselController: widget.controller.academicRecordCarouselController,
+                                    itemCount: 5,
+                                    options: CarouselOptions(
+                                        height: 18.h,
+                                        viewportFraction: 1,
+                                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                        enlargeCenterPage: true,
+                                        enableInfiniteScroll: false,
+                                        onPageChanged: (itemIndex, reason){
+                                          setState(() {
+                                            widget.controller.activeStep = itemIndex;
+                                          });
+                                        }
                                     ),
-                                    DotStepper(
-                                      dotCount: 5,
-                                      dotRadius: 1.h,
-                                      activeStep: widget.controller.activeStep,
-                                      shape: Shape.stadium,
-                                      spacing: 3.w,
-                                      indicator: Indicator.magnify,
-                                      fixedDotDecoration: FixedDotDecoration(
-                                        color: AppColors().grayStepColor,
-                                      ),
-                                      indicatorDecoration: IndicatorDecoration(
-                                        // style: PaintingStyle.stroke,
-                                        // strokeWidth: 8,
-                                        color: AppColors().purpleDefaultColor,
-                                      ),
-                                      onDotTapped: (tappedDotIndex) {
-                                        setState(() {
-                                          widget.controller.activeStep = tappedDotIndex;
-                                          widget.controller.carouselController.jumpToPage(tappedDotIndex);
-                                        });
-                                      },
-                                    ),
-                                  ],
+                                    itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                                      return widget.controller.cardAcademicRecordList.elementAt(itemIndex);
+                                    },
+                                  ),
                                 ),
                               ),
                             ),

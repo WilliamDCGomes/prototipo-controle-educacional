@@ -2,8 +2,10 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../enums/enums.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/cardAcademicRecordWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
-import '../views/componentsWidgets/tabletPhoneComponentWidget/homeTabWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/homeTabWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
@@ -12,25 +14,28 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString courseName;
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
+  late List<CardAcademicRecordWidget> cardAcademicRecordList;
   late List<Widget> tabMainMenuList;
   late TabController tabController;
   late CarouselController carouselController;
+  late CarouselController academicRecordCarouselController;
 
   MainMenuTabletPhoneController(){
     _initializeVariables();
     _getValues();
-    _loadCardsMainMenu();
+    _loadCards();
     _getWelcomePhrase();
   }
 
   _initializeVariables(){
     activeStep = 0;
     carouselController = CarouselController();
+    academicRecordCarouselController = CarouselController();
     tabMainMenuList = [
       HomeTabWidget(controller: this),
-      HomeTabWidget(controller: this),
-      HomeTabWidget(controller: this),
-      HomeTabWidget(controller: this),
+      AcademicTabWidget(controller: this),
+      AcademicTabWidget(controller: this),
+      AcademicTabWidget(controller: this),
     ];
   }
 
@@ -40,7 +45,7 @@ class MainMenuTabletPhoneController extends GetxController {
     courseName = "Ciência da Computação".obs;
   }
 
-  _loadCardsMainMenu(){
+  _loadCards(){
     cardMainMenuList = [
       CardMainMenuWidget(
         imagePath: "Icone_Notificacao.svg",
@@ -79,6 +84,29 @@ class MainMenuTabletPhoneController extends GetxController {
         thirdText: "Segurança de Rede de Computadores ddffddffdfdfd",
       ),
     ];
+
+    cardAcademicRecordList = [
+      CardAcademicRecordWidget(
+        yearValueText: "2022",
+        semesterValueText: "4º Semestre",
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2022",
+        semesterValueText: "4º Semestre",
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2022",
+        semesterValueText: "4º Semestre",
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2022",
+        semesterValueText: "4º Semestre",
+      ),
+      CardAcademicRecordWidget(
+        yearValueText: "2022",
+        semesterValueText: "4º Semestre",
+      ),
+    ];
   }
 
   _getWelcomePhrase() {
@@ -92,6 +120,11 @@ class MainMenuTabletPhoneController extends GetxController {
   }
 
   openProfile() async {
+    await Future.delayed(Duration(milliseconds: 200));
+
+  }
+
+  openConfiguration() async {
     await Future.delayed(Duration(milliseconds: 200));
 
   }
