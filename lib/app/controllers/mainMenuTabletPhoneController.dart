@@ -126,20 +126,36 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
     deliveryTabList = [
       CardTabListWidget(
-        firstValue: "Entrega Lista de Exercícios I",
-        secondValue: "Entrega: 12/04 - Segunda-Feira, 20:40",
-        thirdValue: "Banco de Dados Não Relacional",
+        firstValue: "Lista de Exercícios I",
+        secondValue: "Segunda-Feira, 12/04 às 20:40",
+        thirdValue: "Banco de Dados",
         cardColor: AppColors().orangeColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 0,
       ),
       CardTabListWidget(
-        firstValue: "Entrega Lista de Exercícios II",
-        secondValue: "Entrega: 15/04 - Quinta-Feira, 21:00",
+        firstValue: "Lista de Exercícios II",
+        secondValue: "Quinta-Feira, 15/04 às 21:00",
         thirdValue: "Projeto I",
         cardColor: AppColors().orangeColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 1,
+      ),
+      CardTabListWidget(
+        firstValue: "Trabalho de Segurança",
+        secondValue: "Quarta-Feira, 14/04 às 19:00",
+        thirdValue: "Segurança de Sistema",
+        cardColor: AppColors().orangeColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 2,
+      ),
+      CardTabListWidget(
+        firstValue: "Lista de Matemática",
+        secondValue: "Sexta-Feira, 16/04 às 21:30",
+        thirdValue: "Matemática",
+        cardColor: AppColors().orangeColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 3,
       ),
     ];
   }

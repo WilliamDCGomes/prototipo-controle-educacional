@@ -23,36 +23,39 @@ class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 90.w,
-      child: Column(
-        children: [
-          TextFieldWidget(
-            controller: widget.academicTabType == academicTabs.curriculum ?
-              widget.controller.curriculumSearchController :
-              widget.controller.deliveriesSearchController,
-            hintText: widget.academicTabType == academicTabs.curriculum ?
-              "Pesquisar Matéria" : "Pesquisar Trabalho",
-            height: 6.h,
-            width: 90.w,
-            iconTextField: Icon(
-              Icons.search,
-              color: AppColors().purpleDefaultColor,
+      child: Padding(
+        padding: EdgeInsets.only(top: .5.h),
+        child: Column(
+          children: [
+            TextFieldWidget(
+              controller: widget.academicTabType == academicTabs.curriculum ?
+                widget.controller.curriculumSearchController :
+                widget.controller.deliveriesSearchController,
+              hintText: widget.academicTabType == academicTabs.curriculum ?
+                "Pesquisar Matéria" : "Pesquisar Trabalho",
+              height: 6.h,
+              width: 90.w,
+              iconTextField: Icon(
+                Icons.search,
+                color: AppColors().purpleDefaultColor,
+              ),
+              keyboardType: TextInputType.name,
             ),
-            keyboardType: TextInputType.name,
-          ),
-          SizedBox(
-            height: 36.h,
-            child: ListView.builder(
-              itemCount: widget.academicTabType == academicTabs.curriculum ?
-                widget.controller.curriculumTabList.length :
-                widget.controller.deliveryTabList.length,
-              itemBuilder: (context, index) {
-                return widget.academicTabType == academicTabs.curriculum ?
-                widget.controller.curriculumTabList.elementAt(index) :
-                widget.controller.deliveryTabList.elementAt(index);
-              },
+            SizedBox(
+              height: 35.h,
+              child: ListView.builder(
+                itemCount: widget.academicTabType == academicTabs.curriculum ?
+                  widget.controller.curriculumTabList.length :
+                  widget.controller.deliveryTabList.length,
+                itemBuilder: (context, index) {
+                  return widget.academicTabType == academicTabs.curriculum ?
+                  widget.controller.curriculumTabList.elementAt(index) :
+                  widget.controller.deliveryTabList.elementAt(index);
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
