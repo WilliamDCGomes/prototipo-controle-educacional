@@ -64,56 +64,82 @@ class MainMenuTabletPhoneController extends GetxController {
         secondValue: "Segunda-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 0,
       ),
       CardTabListWidget(
         firstValue: "Qualidade e Testes de Software",
         secondValue: "Segunda-Feira, 21:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 1,
       ),
       CardTabListWidget(
         firstValue: "Tópicos em Computação",
         secondValue: "Terça-Feira, 19:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 2,
       ),
       CardTabListWidget(
         firstValue: "Projeto I",
         secondValue: "Quarta-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 3,
       ),
       CardTabListWidget(
         firstValue: "Segurança em Sistemas de Informação",
         secondValue: "Quarta-Feira, 21:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 4,
       ),
       CardTabListWidget(
         firstValue: "Ciência de Dados I",
         secondValue: "Quinta-Feira, 19:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 5,
       ),
       CardTabListWidget(
         firstValue: "Modelagem Computacional em Grafos",
         secondValue: "Sexta-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 6,
       ),
       CardTabListWidget(
         firstValue: "Pesquisa Operacional",
         secondValue: "Sexta-Feira, 19:00 - 20:40",
         thirdValue: "Sala D14",
         cardColor: AppColors().purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 7,
       ),
     ];
     deliveryTabList = [
       CardTabListWidget(
-        firstValue: "",
-        secondValue: "",
-        thirdValue: "",
+        firstValue: "Entrega Lista de Exercícios I",
+        secondValue: "Entrega: 12/04 - Segunda-Feira, 20:40",
+        thirdValue: "Banco de Dados Não Relacional",
         cardColor: AppColors().orangeColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 0,
+      ),
+      CardTabListWidget(
+        firstValue: "Entrega Lista de Exercícios II",
+        secondValue: "Entrega: 15/04 - Quinta-Feira, 21:00",
+        thirdValue: "Projeto I",
+        cardColor: AppColors().orangeColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 1,
       ),
     ];
   }
@@ -259,5 +285,10 @@ class MainMenuTabletPhoneController extends GetxController {
       case quickActionsOptions.newsEvents:
         break;
     }
+  }
+
+  void curriculumTabSelected(int curriculumIndexOfItem) async {
+    await Future.delayed(Duration(milliseconds: 200));
+    print("index: " + curriculumIndexOfItem.toString());
   }
 }

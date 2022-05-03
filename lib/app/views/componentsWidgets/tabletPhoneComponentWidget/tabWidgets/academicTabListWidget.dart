@@ -40,15 +40,15 @@ class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
             keyboardType: TextInputType.name,
           ),
           SizedBox(
-            height: 42.h,
+            height: 36.h,
             child: ListView.builder(
               itemCount: widget.academicTabType == academicTabs.curriculum ?
                 widget.controller.curriculumTabList.length :
                 widget.controller.deliveryTabList.length,
               itemBuilder: (context, index) {
                 return widget.academicTabType == academicTabs.curriculum ?
-                  widget.controller.curriculumTabList.elementAt(index) :
-                  widget.controller.deliveryTabList.elementAt(index);
+                widget.controller.curriculumTabList.elementAt(index) :
+                widget.controller.deliveryTabList.elementAt(index);
               },
             ),
           ),
