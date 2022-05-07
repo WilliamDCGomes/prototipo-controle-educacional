@@ -63,7 +63,7 @@ class RegisterUserController extends GetxController {
       "Noturno",
       "Integral",
     ];
-    maskCellPhoneFormatter = MasksForTextFields().phoneNumberAcceptExtraNumberMask;
+    maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
     nameTextController = TextEditingController();
     birthDateTextController = TextEditingController();
     cpfTextController = TextEditingController();
@@ -159,7 +159,7 @@ class RegisterUserController extends GetxController {
 
   _getUfsNames() async {
     ufsList.clear();
-    List<String> states = await BrazilAddressInformations().getUfsNames();
+    List<String> states = await BrazilAddressInformations.getUfsNames();
     for(var uf in states) {
       ufsList.add(uf);
     }

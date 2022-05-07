@@ -35,7 +35,7 @@ class TextWidget extends StatelessWidget {
       maxLines: maxLines,
       overflow: textOverflow ?? TextOverflow.ellipsis,
       style: TextStyle(
-        color: textColor ?? AppColors().whiteColor,
+        color: textColor ?? AppColors.whiteColor,
         backgroundColor: backgroundTextColor,
         fontSize: fontSize ?? (Platform.isAndroid ? 20 : 35),
         fontWeight: fontWeight ?? FontWeight.normal,

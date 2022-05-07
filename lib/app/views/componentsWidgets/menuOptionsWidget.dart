@@ -40,17 +40,17 @@ class MenuOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widthOption ?? (PlatformType().isAndroid() ? 13.h : 14.h),
+      width: widthOption ?? (PlatformType.isAndroid() ? 13.h : 14.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2.5.h),
-        color: AppColors().lightGrayColor,
+        color: AppColors.lightGrayColor,
       ),
       child: TextButtonWidget(
         onTap: onTap,
         borderRadius: 2.h,
         widgetCustom: SizedBox(
           height: 12.h,
-          width: widthOption ?? (PlatformType().isAndroid() ? 13.h : 14.h),
+          width: widthOption ?? (PlatformType.isAndroid() ? 13.h : 14.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -59,7 +59,7 @@ class MenuOptionsWidget extends StatelessWidget {
                 visible: imagePath != null && imagePath != "",
                 child: Center(
                   child: SvgPicture.asset(
-                    Paths().svgsPath + (imagePath ?? ""),
+                    Paths.svgsPath + (imagePath ?? ""),
                     height: imageSize ?? 6.h,
                   ),
                 ),
@@ -71,8 +71,8 @@ class MenuOptionsWidget extends StatelessWidget {
                     height: 3.5.h,
                     child: TextWidget(
                       text,
-                      textColor: textColor ?? AppColors().whiteColor,
-                      fontSize: textSize ?? (PlatformType().isPhone(context) ?
+                      textColor: textColor ?? AppColors.whiteColor,
+                      fontSize: textSize ?? (PlatformType.isPhone(context) ?
                       15.sp : 14.sp),
                       maxLines: maxLines ?? 2,
                       fontWeight: FontWeight.bold,

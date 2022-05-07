@@ -34,7 +34,7 @@ class ButtonWidget extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
-            backgroundColor ?? AppColors().backgroundButtonColor,
+            backgroundColor ?? AppColors.backgroundButtonColor,
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
@@ -44,7 +44,7 @@ class ButtonWidget extends StatelessWidget {
         ),
         child: TextWidget(
           hintText ?? "",
-          textColor: textColor ?? AppColors().whiteColor,
+          textColor: textColor ?? AppColors.whiteColor,
           fontSize: MediaQuery.of(context).orientation == Orientation.portrait ?
           16.sp : 13.sp,
           fontWeight: fontWeight ?? FontWeight.normal,

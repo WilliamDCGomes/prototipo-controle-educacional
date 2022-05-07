@@ -44,12 +44,12 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
           Padding(
             padding: EdgeInsets.only(top: 8.h),
             child: SvgPicture.asset(
-              '${Paths().svgsPath}Ilustracao_Topo.svg',
+              '${Paths.svgsPath}Ilustracao_Topo.svg',
               width: 25.w,
             ),
           ),
           Scaffold(
-            backgroundColor: AppColors().transparentColor,
+            backgroundColor: AppColors.transparentColor,
             body: Padding(
               padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
               child: SingleChildScrollView(
@@ -65,7 +65,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                           children: [
                             TextWidget(
                               "Acadêmico",
-                              textColor: AppColors().blackColor,
+                              textColor: AppColors.blackColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,
                               textAlign: TextAlign.start,
@@ -76,10 +76,10 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                               width: 7.w,
                               componentPadding: EdgeInsets.all(.5.w),
                               widgetCustom: SvgPicture.asset(
-                                '${Paths().svgsPath}Icone_Filtro.svg',
+                                '${Paths.svgsPath}Icone_Filtro.svg',
                                 height: 6.5.w,
                                 width: 6.5.w,
-                                color: AppColors().purpleDefaultColor,
+                                color: AppColors.purpleDefaultColor,
                                 alignment: Alignment.centerRight,
                               ),
                             ),
@@ -95,7 +95,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                top: PlatformType().isTablet(context) ?
+                                top: PlatformType.isTablet(context) ?
                                 9.h : 7.h,
                               ),
                               child: Center(
@@ -127,15 +127,15 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                               height: 4.h,
                               child: TabBar(
                                 controller: widget.controller.tabAcademicController,
-                                indicatorColor: AppColors().purpleDefaultColor,
+                                indicatorColor: AppColors.purpleDefaultColor,
                                 indicatorWeight: .3.h,
                                 labelStyle: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17.sp,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                labelColor: AppColors().purpleTabColor,
-                                unselectedLabelColor: AppColors().grayTabColor,
+                                labelColor: AppColors.purpleTabColor,
+                                unselectedLabelColor: AppColors.grayTabColor,
                                 tabs: [
                                   Tab(
                                     text: "Grade Curricular",

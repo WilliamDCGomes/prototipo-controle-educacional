@@ -23,14 +23,14 @@ class StepperPagesWidget extends StatelessWidget {
     return Column(
       children: [
         Image.asset(
-          Paths().imagesPath + imagePath,
+          Paths.imagesPath + imagePath,
           height: 25.h,
         ),
         Padding(
           padding: EdgeInsets.only(top: 3.h),
           child: TextWidget(
             firstText,
-            textColor: AppColors().purpleDefaultColor,
+            textColor: AppColors.purpleDefaultColor,
             fontSize: 21.sp,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.center,
@@ -38,7 +38,7 @@ class StepperPagesWidget extends StatelessWidget {
         ),
         TextWidget(
           secondText,
-          textColor: AppColors().purpleDefaultColor,
+          textColor: AppColors.purpleDefaultColor,
           fontSize: 18.sp,
           textAlign: TextAlign.center,
         ),
@@ -46,7 +46,7 @@ class StepperPagesWidget extends StatelessWidget {
           padding: EdgeInsets.only(left: 5.w, top: 2.h, right: 5.w),
           child: TextWidget(
             thirdText,
-            textColor: AppColors().purpleDefaultColor,
+            textColor: AppColors.purpleDefaultColor,
             fontSize: 16.sp,
             textAlign: TextAlign.center,
             maxLines: 10,

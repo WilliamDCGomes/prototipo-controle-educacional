@@ -44,12 +44,12 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
           Padding(
             padding: EdgeInsets.only(top: 8.h),
             child: SvgPicture.asset(
-              '${Paths().svgsPath}Ilustracao_Topo.svg',
+              '${Paths.svgsPath}Ilustracao_Topo.svg',
               width: 25.w,
             ),
           ),
           Scaffold(
-            backgroundColor: AppColors().transparentColor,
+            backgroundColor: AppColors.transparentColor,
             body: Padding(
               padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
               child: SingleChildScrollView(
@@ -73,7 +73,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     width: 7.h,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(3.5.h),
-                                      color: AppColors().grayColor,
+                                      color: AppColors.grayColor,
                                     ),
                                     child: Obx(
                                           () => widget.controller.hasPicture.value ?
@@ -83,7 +83,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                       Center(
                                         child: TextWidget(
                                           widget.controller.nameInitials,
-                                          textColor: AppColors().standardColor,
+                                          textColor: AppColors.standardColor,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20.sp,
                                           textAlign: TextAlign.start,
@@ -98,14 +98,14 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                   children: [
                                     TextWidget(
                                       "Olá, William",
-                                      textColor: AppColors().blackColor,
+                                      textColor: AppColors.blackColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.sp,
                                       textAlign: TextAlign.start,
                                     ),
                                     Obx(() => TextWidget(
                                       widget.controller.welcomePhrase.value,
-                                      textColor: AppColors().blackColor,
+                                      textColor: AppColors.blackColor,
                                       fontSize: 17.sp,
                                       textAlign: TextAlign.start,
                                     ),),
@@ -115,7 +115,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                             ),
                           ),
                           SvgPicture.asset(
-                            '${Paths().svgsPath}Logo_Pce_Home.svg',
+                            '${Paths.svgsPath}Logo_Pce_Home.svg',
                             width: 15.w,
                           ),
                         ],
@@ -129,7 +129,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                top: PlatformType().isTablet(context) ?
+                                top: PlatformType.isTablet(context) ?
                                 9.h : 7.h,
                               ),
                               child: Center(
@@ -165,12 +165,12 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                       spacing: 3.w,
                                       indicator: Indicator.magnify,
                                       fixedDotDecoration: FixedDotDecoration(
-                                        color: AppColors().grayStepColor,
+                                        color: AppColors.grayStepColor,
                                       ),
                                       indicatorDecoration: IndicatorDecoration(
                                         // style: PaintingStyle.stroke,
                                         // strokeWidth: 8,
-                                        color: AppColors().purpleDefaultColor,
+                                        color: AppColors.purpleDefaultColor,
                                       ),
                                       onDotTapped: (tappedDotIndex) {
                                         setState(() {
@@ -187,7 +187,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                               padding: EdgeInsets.only(top: 1.h),
                               child: TextWidget(
                                 "Ações Rápidas",
-                                textColor: AppColors().blackColor,
+                                textColor: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp,
                                 textAlign: TextAlign.start,
@@ -202,19 +202,19 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                   MenuOptionsWidget(
                                     text: "Horário das Aulas",
                                     imagePath: "Icone_Horario_Das_Aulas.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.classTime),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Notas e Faltas",
                                     imagePath: "Icone_Notas_e_Faltas.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.gradesFaults),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Calendário Acadêmico",
                                     imagePath: "Icone_Calendario_Academico.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicCalendar),
                                   ),
                                 ],
@@ -228,19 +228,19 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                   MenuOptionsWidget(
                                     text: "Carteirinha Online",
                                     imagePath: "Icone_Carterinha_Estudante.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.onlineStudentCard),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Histórico Acadêmico",
                                     imagePath: "Icone_Historico_Academico.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicRecord),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Notícias e Eventos",
                                     imagePath: "Icone_Noticias_e_Eventos.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.newsEvents),
                                   ),
                                 ],
@@ -250,7 +250,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                               padding: EdgeInsets.only(top: 1.h),
                               child: TextWidget(
                                 "Solicitações",
-                                textColor: AppColors().blackColor,
+                                textColor: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp,
                                 textAlign: TextAlign.start,
@@ -265,16 +265,16 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                   MenuOptionsWidget(
                                     text: "Carteirinha de Estudante",
                                     imagePath: "Icone_Carterinha_Estudante.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.studentCard),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Declaração Escolar",
                                     imagePath: "Icone_Declaracao_Escolar.svg",
-                                    textColor: AppColors().blackColor,
+                                    textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.schoolStatement),
                                   ),
-                                  SizedBox(width: PlatformType().isAndroid() ? 13.h : 14.h,),
+                                  SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
                                 ],
                               ),
                             ),

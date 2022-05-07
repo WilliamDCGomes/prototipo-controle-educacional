@@ -50,7 +50,7 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: AppColors().backgroundFirstScreenColor,
+                colors: AppColors.backgroundFirstScreenColor,
               ),
             ),
             child: Stack(
@@ -61,7 +61,7 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset(
-                      '${Paths().imagesPath}Ilustracao_Rodape.png',
+                      '${Paths.imagesPath}Ilustracao_Rodape.png',
                       height: 14.h,
                     ),
                   ],
@@ -115,10 +115,10 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                             spacing: 3.w,
                             indicator: Indicator.magnify,
                             fixedDotDecoration: FixedDotDecoration(
-                              color: AppColors().grayStepColor,
+                              color: AppColors.grayStepColor,
                             ),
                             indicatorDecoration: IndicatorDecoration(
-                              color: AppColors().orangeColor,
+                              color: AppColors.orangeColor,
                             ),
                             onDotTapped: (tappedDotIndex) {
                               setState(() {

@@ -33,7 +33,7 @@ class CardMainMenuWidget extends StatelessWidget {
         width: 95.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2.5.h),
-          color: AppColors().purpleDefaultColor,
+          color: AppColors.purpleDefaultColor,
         ),
         child: Stack(
           children: [
@@ -53,14 +53,14 @@ class CardMainMenuWidget extends StatelessWidget {
                         width: 66.w,
                         child: TextWidget(
                           firstText,
-                          textColor: AppColors().whiteColor,
+                          textColor: AppColors.whiteColor,
                           fontSize: 18.sp,
                           textAlign: TextAlign.start,
                           maxLines: 1,
                         ),
                       ),
                       SvgPicture.asset(
-                        Paths().svgsPath + imagePath,
+                        Paths.svgsPath + imagePath,
                         width: 4.h,
                       ),
                     ],
@@ -69,7 +69,7 @@ class CardMainMenuWidget extends StatelessWidget {
                     secondText,
                     fontWeight: FontWeight.bold,
                     maxLines: 1,
-                    textColor: AppColors().whiteColor,
+                    textColor: AppColors.whiteColor,
                     fontSize: 20.sp,
                     textAlign: TextAlign.start,
                   ),
@@ -85,7 +85,7 @@ class CardMainMenuWidget extends StatelessWidget {
                             child: TextWidget(
                               thirdText,
                               maxLines: 1,
-                              textColor: AppColors().whiteColor,
+                              textColor: AppColors.whiteColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 16.sp,
                               textAlign: TextAlign.start,
@@ -109,7 +109,7 @@ class CardMainMenuWidget extends StatelessWidget {
                               TextWidget(
                                 thirdText,
                                 maxLines: 1,
-                                textColor: AppColors().whiteColor,
+                                textColor: AppColors.whiteColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp,
                                 textAlign: TextAlign.start,
@@ -119,7 +119,7 @@ class CardMainMenuWidget extends StatelessWidget {
                                 child: Container(
                                   height: 3.h,
                                   width: .5.w,
-                                  color: AppColors().whiteColor,
+                                  color: AppColors.whiteColor,
                                 ),
                               ),
                               Padding(
@@ -127,7 +127,7 @@ class CardMainMenuWidget extends StatelessWidget {
                                 child: TextWidget(
                                   fourthText ?? "",
                                   maxLines: 1,
-                                  textColor: AppColors().whiteColor,
+                                  textColor: AppColors.whiteColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.sp,
                                   textAlign: TextAlign.start,

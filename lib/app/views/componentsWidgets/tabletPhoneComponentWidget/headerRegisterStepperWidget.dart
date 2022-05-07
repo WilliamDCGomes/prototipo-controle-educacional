@@ -21,13 +21,13 @@ class HeaderRegisterStepperWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 5.h),
       child: SizedBox(
-        height: PlatformType().isTablet(context) ? 15.h : 13.5.h,
+        height: PlatformType.isTablet(context) ? 15.h : 13.5.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextWidget(
               firstText,
-              textColor: AppColors().blackColor,
+              textColor: AppColors.blackColor,
               fontSize: 15.sp,
               fontWeight: FontWeight.bold,
               textAlign: TextAlign.start,
@@ -36,7 +36,7 @@ class HeaderRegisterStepperWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 2.h),
               child: TextWidget(
                 secondText,
-                textColor: AppColors().blackColor,
+                textColor: AppColors.blackColor,
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
                 textAlign: TextAlign.start,
@@ -46,7 +46,7 @@ class HeaderRegisterStepperWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 2.h),
               child: TextWidget(
                 thirdText,
-                textColor: AppColors().blackColor,
+                textColor: AppColors.blackColor,
                 fontSize: 15.sp,
                 textAlign: TextAlign.start,
                 maxLines: 3,

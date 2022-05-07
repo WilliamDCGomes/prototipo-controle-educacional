@@ -24,24 +24,24 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: AppColors().backgroundFirstScreenColor,
+            colors: AppColors.backgroundFirstScreenColor,
           ),
         ),
         child: Stack(
           children: [
             SvgPicture.asset(
-              '${Paths().svgsPath}Ilustracao_Topo.svg',
+              '${Paths.svgsPath}Ilustracao_Topo.svg',
               width: 26.w,
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: PlatformType().isTablet(context) ? 51.h : 47.h
+                top: PlatformType.isTablet(context) ? 51.h : 47.h
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset(
-                    '${Paths().imagesPath}Ilustracao_Finalizacao.png',
+                    '${Paths.imagesPath}Ilustracao_Finalizacao.png',
                     width: 30.w,
                   ),
                 ],
@@ -50,19 +50,19 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(5.w, 12.h, 5.w, 0),
               child: Scaffold(
-                backgroundColor: AppColors().transparentColor,
+                backgroundColor: AppColors.transparentColor,
                 body: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SvgPicture.asset(
-                      '${Paths().svgsPath}Logo_Finalizacao.svg',
+                      '${Paths.svgsPath}Logo_Finalizacao.svg',
                       width: 40.w,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 4.h),
                       child: SvgPicture.asset(
-                        '${Paths().svgsPath}Icone_Finalizacao.svg',
+                        '${Paths.svgsPath}Icone_Finalizacao.svg',
                         width: 15.w,
                       ),
                     ),
@@ -70,7 +70,7 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
                       padding: EdgeInsets.only(top: 2.h),
                       child: TextWidget(
                         controller.firstText,
-                        textColor: AppColors().purpleDefaultColor,
+                        textColor: AppColors.purpleDefaultColor,
                         fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                         textAlign: TextAlign.center,
@@ -80,7 +80,7 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
                       padding: EdgeInsets.only(top: 2.h),
                       child: TextWidget(
                         controller.secondText,
-                        textColor: AppColors().purpleDefaultColor,
+                        textColor: AppColors.purpleDefaultColor,
                         fontSize: 17.sp,
                         textAlign: TextAlign.center,
                         maxLines: 4,
@@ -90,7 +90,7 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
                       padding: EdgeInsets.only(top: 15.h),
                       child: TextWidget(
                         controller.thirdText,
-                        textColor: AppColors().blackColor,
+                        textColor: AppColors.blackColor,
                         fontSize: 17.sp,
                         textAlign: TextAlign.center,
                         maxLines: 4,
@@ -104,7 +104,7 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
                             onTap: () => controller.openWebSite(),
                             widgetCustom: TextWidget(
                               controller.siteText,
-                              textColor: AppColors().purpleDefaultColor,
+                              textColor: AppColors.purpleDefaultColor,
                               fontSize: 17.sp,
                               textAlign: TextAlign.center,
                               maxLines: 1,

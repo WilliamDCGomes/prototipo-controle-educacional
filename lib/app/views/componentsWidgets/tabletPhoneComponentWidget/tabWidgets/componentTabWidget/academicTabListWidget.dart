@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../controllers/mainMenuTabletPhoneController.dart';
-import '../../../stylePages/appColors.dart';
-import '../../textFieldWidget.dart';
+import '../../../../../controllers/mainMenuTabletPhoneController.dart';
+import '../../../../stylePages/appColors.dart';
+import '../../../textFieldWidget.dart';
 
 class AcademicTabListWidget extends StatefulWidget {
   late final MainMenuTabletPhoneController controller;
@@ -37,7 +37,7 @@ class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
               width: 90.w,
               iconTextField: Icon(
                 Icons.search,
-                color: AppColors().purpleDefaultColor,
+                color: AppColors.purpleDefaultColor,
               ),
               keyboardType: TextInputType.name,
             ),

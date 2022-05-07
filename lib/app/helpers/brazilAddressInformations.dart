@@ -1,16 +1,8 @@
 import 'package:dio/dio.dart';
-
 import 'internetConnection.dart';
 
 class BrazilAddressInformations {
-  static final BrazilAddressInformations _brazilAddressInformations =
-  BrazilAddressInformations._internal();
-  factory BrazilAddressInformations() {
-    return _brazilAddressInformations;
-  }
-  BrazilAddressInformations._internal();
-
-  List<String> _getStates() {
+  static List<String> _getStates() {
     return [
       "AC",
       "AL",
@@ -42,9 +34,9 @@ class BrazilAddressInformations {
     ];
   }
 
-  Future<List<String>> getUfsNames() async {
+  static Future<List<String>> getUfsNames() async {
     try{
-      if(await InternetConnection().checkConnection()){
+      if(await InternetConnection.checkConnection()){
         List<String> ufsList = [];
         final dio = Dio();
         Response response = await dio.get(
@@ -66,9 +58,9 @@ class BrazilAddressInformations {
     }
   }
 
-  Future<List<String>> getCityNames(String uf) async {
+  static Future<List<String>> getCityNames(String uf) async {
     try{
-      if(await InternetConnection().checkConnection()){
+      if(await InternetConnection.checkConnection()){
         List<String> citysList = [];
         final dio = Dio();
         Response response = await dio.get(

@@ -35,16 +35,16 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: AppColors().backgroundFirstScreenColor,
+              colors: AppColors.backgroundFirstScreenColor,
             ),
           ),
           child: Scaffold(
-            backgroundColor: AppColors().transparentColor,
+            backgroundColor: AppColors.transparentColor,
             body: SafeArea(
               child: Stack(
                 children: [
                   SvgPicture.asset(
-                    '${Paths().svgsPath}Ilustracao_Topo.svg',
+                    '${Paths.svgsPath}Ilustracao_Topo.svg',
                     width: 30.w,
                   ),
                   Column(
@@ -53,7 +53,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Image.asset(
-                        '${Paths().imagesPath}Ilustracao_Rodape.png',
+                        '${Paths.imagesPath}Ilustracao_Rodape.png',
                         height: 14.h,
                       ),
                     ],
@@ -67,7 +67,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                             Padding(
                               padding: EdgeInsets.only(top: 12.h),
                               child: SvgPicture.asset(
-                                '${Paths().svgsPath}Logo_Login.svg',
+                                '${Paths.svgsPath}Logo_Login.svg',
                                 width: 45.w,
                               ),
                             ),
@@ -75,7 +75,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                               padding: EdgeInsets.only(left: 15.w, top: 5.h, right: 15.w),
                               child: TextWidget(
                                 "O aplicativo oficial para os estudantes terem acesso a todos os conteúdos acadêmico.",
-                                textColor: AppColors().purpleDefaultColor,
+                                textColor: AppColors.purpleDefaultColor,
                                 fontSize: 17.sp,
                                 textAlign: TextAlign.center,
                                 maxLines: 10,
@@ -122,7 +122,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                                     controller.passwordFieldEnabled.value
                                         ? Icons.visibility_off
                                         : Icons.visibility,
-                                    color: AppColors().purpleDefaultColor,
+                                    color: AppColors.purpleDefaultColor,
                                   ),
                                 ),
                                 keyboardType: TextInputType.visiblePassword,

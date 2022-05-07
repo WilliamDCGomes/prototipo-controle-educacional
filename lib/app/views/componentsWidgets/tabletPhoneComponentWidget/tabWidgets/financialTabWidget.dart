@@ -1,34 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../controllers/mainMenuTabletPhoneController.dart';
-import '../../../helpers/paths.dart';
-import '../../stylePages/appColors.dart';
+import '../../../../controllers/mainMenuTabletPhoneController.dart';
+import '../../../../helpers/paths.dart';
+import '../../../stylePages/appColors.dart';
 
-class MainMenuTabletPhonePage extends StatefulWidget {
-  const MainMenuTabletPhonePage({Key? key}) : super(key: key);
+class FinancialTabWidget extends StatefulWidget {
+  late final MainMenuTabletPhoneController controller;
+  FinancialTabWidget({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
-  State<MainMenuTabletPhonePage> createState() => _MainMenuTabletPhonePageState();
+  State<FinancialTabWidget> createState() => _FinancialTabWidgetState();
 }
 
-class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with SingleTickerProviderStateMixin{
-  late MainMenuTabletPhoneController controller;
-
-  @override
-  void initState() {
-    controller = Get.put(MainMenuTabletPhoneController());
-    controller.tabController = TabController(
-      length: 4,
-      vsync: this,
-    );
-
-    super.initState();
-  }
-
+class _FinancialTabWidgetState extends State<FinancialTabWidget> {
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Material(
         child: GestureDetector(
@@ -46,8 +35,8 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                 ),
               ),
               child: TabBarView(
-                controller: controller.tabController,
-                children: controller.tabMainMenuList,
+                controller: widget.controller.tabController,
+                children: widget.controller.tabMainMenuList,
               ),
             ),
             bottomNavigationBar: Container(
@@ -61,7 +50,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                 color: AppColors.lightGrayColor,
               ),
               child: TabBar(
-                controller: controller.tabController,
+                controller: widget.controller.tabController,
                 indicatorColor: AppColors.purpleDefaultColor,
                 indicatorWeight: .3.h,
                 labelStyle: TextStyle(

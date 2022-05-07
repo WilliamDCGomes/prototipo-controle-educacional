@@ -42,14 +42,14 @@ class ButtonLoadingWidget extends StatelessWidget {
       onPressed: onPressed,
       loaderSize: loaderSize ?? 3.h,
       loaderStrokeWidth: loaderStrokeWidth ?? 4,
-      color: color ?? AppColors().whiteColor,
-      successColor: successColor ?? AppColors().greenColor,
+      color: color ?? AppColors.whiteColor,
+      successColor: successColor ?? AppColors.greenColor,
       borderRadius: borderRadius ?? 2.h,
-      valueColor: valueColor ?? AppColors().whiteColor,
+      valueColor: valueColor ?? AppColors.whiteColor,
       controller: controller,
       child: TextWidget(
         hintText ?? "",
-        textColor: textColor ?? AppColors().whiteColor,
+        textColor: textColor ?? AppColors.whiteColor,
         fontSize: 2.h,
       ),
     );

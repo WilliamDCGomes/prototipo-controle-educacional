@@ -46,13 +46,13 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: AppColors().backgroundFirstScreenColor,
+                colors: AppColors.backgroundFirstScreenColor,
               ),
             ),
             child: Padding(
               padding: EdgeInsets.fromLTRB(5.w, 2.h, 5.w, 0),
               child: Scaffold(
-                backgroundColor: AppColors().transparentColor,
+                backgroundColor: AppColors.transparentColor,
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -65,7 +65,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                               onTap: () => controller.backArrowButtonPressed(),
                               widgetCustom: Icon(
                                 Icons.arrow_back,
-                                color: AppColors().arrowBlackColor,
+                                color: AppColors.arrowBlackColor,
                                 size: 3.h,
                               ),
                               componentAlignment: Alignment.centerLeft,
@@ -74,7 +74,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                             ),
                             TextWidget(
                               "Cadastro",
-                              textColor: AppColors().purpleDefaultColor,
+                              textColor: AppColors.purpleDefaultColor,
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -98,10 +98,10 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                             spacing: 3.w,
                             indicator: Indicator.magnify,
                             fixedDotDecoration: FixedDotDecoration(
-                              color: AppColors().grayStepColor,
+                              color: AppColors.grayStepColor,
                             ),
                             indicatorDecoration: IndicatorDecoration(
-                              color: AppColors().orangeColor,
+                              color: AppColors.orangeColor,
                             ),
                             tappingEnabled: false,
                           ),
@@ -129,7 +129,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                                 width: 75.w,
                                 child: TextWidget(
                                   controller.lgpdPhrase,
-                                  textColor: AppColors().blackColor,
+                                  textColor: AppColors.blackColor,
                                   fontSize: 15.sp,
                                   textAlign: TextAlign.center,
                                   maxLines: 3,

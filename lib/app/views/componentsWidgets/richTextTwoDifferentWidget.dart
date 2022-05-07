@@ -36,7 +36,7 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
           TextSpan(
             text: firstText,
             style: TextStyle(
-              color: firstTextColor ?? AppColors().orangeColor,
+              color: firstTextColor ?? AppColors.orangeColor,
               fontSize: firstTextSize ?? 17.sp,
               fontWeight: firstTextFontWeight ?? FontWeight.bold,
               decoration: firstTextDecoration,
@@ -45,7 +45,7 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
           TextSpan(
             text: secondText,
             style: TextStyle(
-              color: secondTextColor ?? AppColors().purpleDefaultColor,
+              color: secondTextColor ?? AppColors.purpleDefaultColor,
               fontSize: secondTextSize ?? 16.sp,
               fontWeight: secondTextFontWeight ?? FontWeight.normal,
               decoration: secondTextDecoration ?? TextDecoration.underline,

@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../controllers/mainMenuTabletPhoneController.dart';
-import '../../../stylePages/appColors.dart';
-import '../../textButtonWidget.dart';
-import '../../textWidget.dart';
+import '../../../../../controllers/mainMenuTabletPhoneController.dart';
+import '../../../../stylePages/appColors.dart';
+import '../../../textButtonWidget.dart';
+import '../../../textWidget.dart';
 
 class CardTabListWidget extends StatelessWidget {
   final int itemIndex;
@@ -32,7 +31,7 @@ class CardTabListWidget extends StatelessWidget {
         height: 17.h,
         width: 90.w,
         child: Card(
-          color: AppColors().whiteColor,
+          color: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(2.5.h),
           ),
@@ -72,7 +71,7 @@ class CardTabListWidget extends StatelessWidget {
                                     width: 65.w,
                                     child: TextWidget(
                                       " " + firstValue,
-                                      textColor: AppColors().blackColor,
+                                      textColor: AppColors.blackColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 19.sp,
                                       textAlign: TextAlign.start,
@@ -89,14 +88,14 @@ class CardTabListWidget extends StatelessWidget {
                                 maxLines: 1,
                                 fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,
-                                textColor: AppColors().blackColor,
+                                textColor: AppColors.blackColor,
                                 textAlign: TextAlign.start,
                               ),
                             ),
                             TextWidget(
                               thirdValue,
                               maxLines: 1,
-                              textColor: AppColors().blackColor,
+                              textColor: AppColors.blackColor,
                               fontSize: 17.sp,
                               textAlign: TextAlign.start,
                             ),
@@ -110,7 +109,7 @@ class CardTabListWidget extends StatelessWidget {
                         width: 7.w,
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          color: AppColors().blackColor,
+                          color: AppColors.blackColor,
                           size: 4.h,
                         ),
                       ),

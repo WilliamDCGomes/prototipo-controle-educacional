@@ -44,8 +44,8 @@ class TextButtonWidget extends StatelessWidget {
       child: TextButton(
           onPressed: onTap,
           style: TextButton.styleFrom(
-            primary: AppColors().purpleDefaultColor,
-            backgroundColor: AppColors().transparentColor,
+            primary: AppColors.purpleDefaultColor,
+            backgroundColor: AppColors.transparentColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 0),
             ),
@@ -57,7 +57,7 @@ class TextButtonWidget extends StatelessWidget {
             widgetCustom ??
             TextWidget(
               hintText ?? "",
-              textColor: AppColors().purpleDefaultColor,
+              textColor: AppColors.purpleDefaultColor,
               fontSize: fontSize ?? 17.sp,
               fontWeight: FontWeight.bold,
               textAlign: textAlign,

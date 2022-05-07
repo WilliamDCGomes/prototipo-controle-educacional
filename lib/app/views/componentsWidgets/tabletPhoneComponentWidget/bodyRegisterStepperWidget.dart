@@ -53,7 +53,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.number,
-                      maskTextInputFormatter: MasksForTextFields().birthDateMask,
+                      maskTextInputFormatter: MasksForTextFields.birthDateMask,
                     ),
                   ),
                   Padding(
@@ -64,7 +64,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.number,
-                      maskTextInputFormatter: MasksForTextFields().cpfMask,
+                      maskTextInputFormatter: MasksForTextFields.cpfMask,
                     ),
                   ),
                 ],
@@ -77,7 +77,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
         Visibility(
           visible: widget.indexView == 1,
           child: SizedBox(
-            height: PlatformType().isTablet(context) ? 50.h : 45.h,
+            height: PlatformType.isTablet(context) ? 50.h : 45.h,
             child: Scrollbar(
               child: SingleChildScrollView(
                 child: Column(
@@ -90,7 +90,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                         height: 6.h,
                         width: 90.w,
                         keyboardType: TextInputType.number,
-                        maskTextInputFormatter: MasksForTextFields().cepMask,
+                        maskTextInputFormatter: MasksForTextFields.cepMask,
                       ),
                     ),
                     Padding(
@@ -239,7 +239,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.phone,
-                      maskTextInputFormatter: MasksForTextFields().phoneNumberMask,
+                      maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 5.h),
@@ -334,7 +334,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                         widget.controller.passwordFieldEnabled.value
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: AppColors().purpleDefaultColor,
+                        color: AppColors.purpleDefaultColor,
                       ),
                     ),
                     keyboardType: TextInputType.visiblePassword,
@@ -356,7 +356,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                           widget.controller.confirmPasswordFieldEnabled.value
                               ? Icons.visibility_off
                               : Icons.visibility,
-                          color: AppColors().purpleDefaultColor,
+                          color: AppColors.purpleDefaultColor,
                         ),
                       ),
                       keyboardType: TextInputType.visiblePassword,

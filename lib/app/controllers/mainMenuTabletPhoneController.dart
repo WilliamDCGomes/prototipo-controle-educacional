@@ -5,9 +5,9 @@ import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import '../enums/enums.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardAcademicRecordWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
-import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabListWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/academicTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabWidget.dart';
-import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/cardTabListWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/cardTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/homeTabWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
@@ -63,7 +63,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Projeto I",
         secondValue: "Segunda-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 0,
       ),
@@ -71,7 +71,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Qualidade e Testes de Software",
         secondValue: "Segunda-Feira, 21:00 - 22:30",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 1,
       ),
@@ -79,7 +79,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Tópicos em Computação",
         secondValue: "Terça-Feira, 19:00 - 22:30",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 2,
       ),
@@ -87,7 +87,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Projeto I",
         secondValue: "Quarta-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 3,
       ),
@@ -95,7 +95,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Segurança em Sistemas de Informação",
         secondValue: "Quarta-Feira, 21:00 - 22:30",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 4,
       ),
@@ -103,7 +103,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Ciência de Dados I",
         secondValue: "Quinta-Feira, 19:00 - 22:30",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 5,
       ),
@@ -111,7 +111,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Modelagem Computacional em Grafos",
         secondValue: "Sexta-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 6,
       ),
@@ -119,7 +119,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Pesquisa Operacional",
         secondValue: "Sexta-Feira, 19:00 - 20:40",
         thirdValue: "Sala D14",
-        cardColor: AppColors().purpleDefaultColor,
+        cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 7,
       ),
@@ -129,7 +129,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Lista de Exercícios I",
         secondValue: "Segunda-Feira, 12/04 às 20:40",
         thirdValue: "Banco de Dados",
-        cardColor: AppColors().orangeColor,
+        cardColor: AppColors.orangeColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 0,
       ),
@@ -137,7 +137,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Lista de Exercícios II",
         secondValue: "Quinta-Feira, 15/04 às 21:00",
         thirdValue: "Projeto I",
-        cardColor: AppColors().orangeColor,
+        cardColor: AppColors.orangeColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 1,
       ),
@@ -145,7 +145,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Trabalho de Segurança",
         secondValue: "Quarta-Feira, 14/04 às 19:00",
         thirdValue: "Segurança de Sistema",
-        cardColor: AppColors().orangeColor,
+        cardColor: AppColors.orangeColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 2,
       ),
@@ -153,7 +153,7 @@ class MainMenuTabletPhoneController extends GetxController {
         firstValue: "Lista de Matemática",
         secondValue: "Sexta-Feira, 16/04 às 21:30",
         thirdValue: "Matemática",
-        cardColor: AppColors().orangeColor,
+        cardColor: AppColors.orangeColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 3,
       ),

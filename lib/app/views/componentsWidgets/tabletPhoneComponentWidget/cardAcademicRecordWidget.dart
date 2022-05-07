@@ -28,7 +28,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
         width: 95.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2.5.h),
-          color: AppColors().whiteColor,
+          color: AppColors.whiteColor,
         ),
         child: Stack(
           children: [
@@ -51,13 +51,13 @@ class CardAcademicRecordWidget extends StatelessWidget {
                         componentPadding: EdgeInsets.zero,
                         widgetCustom: Icon(
                           Icons.arrow_back_ios_outlined,
-                          color: AppColors().purpleDefaultColor,
+                          color: AppColors.purpleDefaultColor,
                           size: 2.5.h,
                         ),
                       ),
                       TextWidget(
                         yearValueText,
-                        textColor: AppColors().purpleDefaultColor,
+                        textColor: AppColors.purpleDefaultColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 21.sp,
                         textAlign: TextAlign.center,
@@ -70,7 +70,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
                         componentPadding: EdgeInsets.zero,
                         widgetCustom: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          color: AppColors().purpleDefaultColor,
+                          color: AppColors.purpleDefaultColor,
                           size: 2.5.h,
                         ),
                       ),
@@ -81,7 +81,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
                       semesterValueText,
                       maxLines: 1,
                       fontSize: 19.sp,
-                      textColor: AppColors().purpleDefaultColor,
+                      textColor: AppColors.purpleDefaultColor,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -94,13 +94,13 @@ class CardAcademicRecordWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          Paths().svgsPath + "Icone_Copiar.svg",
+                          Paths.svgsPath + "Icone_Copiar.svg",
                           width: 2.h,
                         ),
                         TextWidget(
                           " Ver Histórico Acadêmico",
                           maxLines: 1,
-                          textColor: AppColors().blueLinkColor,
+                          textColor: AppColors.blueLinkColor,
                           fontSize: 17.sp,
                           textAlign: TextAlign.center,
                         ),

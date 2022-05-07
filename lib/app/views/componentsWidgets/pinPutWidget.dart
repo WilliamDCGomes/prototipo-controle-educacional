@@ -28,12 +28,12 @@ class PinPutWidget extends StatelessWidget {
         height: height ?? 65,
         textStyle: TextStyle(
           fontSize: 16.sp,
-          color: AppColors().purpleDefaultColor,
+          color: AppColors.purpleDefaultColor,
           fontWeight: FontWeight.bold,
         ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: AppColors().purpleDefaultColor,
+            color: AppColors.purpleDefaultColor,
             width: .25.h,
           ),
           borderRadius: BorderRadius.circular(1.h),
