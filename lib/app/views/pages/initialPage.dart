@@ -35,7 +35,7 @@ class _InitialPageState extends State<InitialPage> {
       child: Stack(
         children: [
           Image.asset(
-            '${Paths.imagesPath}background.png',
+            Paths.background,
             fit: BoxFit.fitHeight,
             height: 100.h,
             width: 100.w,
@@ -49,7 +49,7 @@ class _InitialPageState extends State<InitialPage> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 7.h),
                   child: Image.asset(
-                    '${Paths.imagesPath}logo_pce.png',
+                    Paths.logo_pce,
                     height: PlatformType.isPhone(context) ? 18.h : 12.h,
                   ),
                 ),

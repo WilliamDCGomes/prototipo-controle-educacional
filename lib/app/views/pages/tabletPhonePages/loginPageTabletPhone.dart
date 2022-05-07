@@ -44,7 +44,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
               child: Stack(
                 children: [
                   SvgPicture.asset(
-                    '${Paths.svgsPath}Ilustracao_Topo.svg',
+                    Paths.Ilustracao_Topo,
                     width: 30.w,
                   ),
                   Column(
@@ -53,7 +53,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Image.asset(
-                        '${Paths.imagesPath}Ilustracao_Rodape.png',
+                        Paths.Ilustracao_Rodape,
                         height: 14.h,
                       ),
                     ],
@@ -67,7 +67,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                             Padding(
                               padding: EdgeInsets.only(top: 12.h),
                               child: SvgPicture.asset(
-                                '${Paths.svgsPath}Logo_Login.svg',
+                                Paths.Logo_Login,
                                 width: 45.w,
                               ),
                             ),

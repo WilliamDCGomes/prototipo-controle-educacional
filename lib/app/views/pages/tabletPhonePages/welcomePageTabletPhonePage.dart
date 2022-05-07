@@ -61,7 +61,7 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset(
-                      '${Paths.imagesPath}Ilustracao_Rodape.png',
+                      Paths.Ilustracao_Rodape,
                       height: 14.h,
                     ),
                   ],

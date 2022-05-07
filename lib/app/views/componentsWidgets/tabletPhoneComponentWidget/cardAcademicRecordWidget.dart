@@ -94,7 +94,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          Paths.svgsPath + "Icone_Copiar.svg",
+                         Paths.Icone_Copiar,
                           width: 2.h,
                         ),
                         TextWidget(

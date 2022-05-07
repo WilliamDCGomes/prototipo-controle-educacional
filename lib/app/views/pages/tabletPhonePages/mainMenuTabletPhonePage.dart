@@ -75,7 +75,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                   Tab(
                     text: "Home",
                     icon: ImageIcon(
-                      AssetImage(Paths.imagesPath + "Icone_Home.png"),
+                      AssetImage(Paths.Icone_Home),
                       size: 4.h,
                     ),
                     height: 9.h,
@@ -83,7 +83,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                   Tab(
                     text: "Acadêmico",
                     icon: ImageIcon(
-                      AssetImage(Paths.imagesPath + "Icone_Academico.png"),
+                      AssetImage(Paths.Icone_Academico),
                       size: 4.h,
                     ),
                     height: 9.h,
@@ -91,7 +91,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                   Tab(
                     text: "Financeiro",
                     icon: ImageIcon(
-                      AssetImage(Paths.imagesPath + "Icone_Financeiro.png"),
+                      AssetImage(Paths.Icone_Financeiro),
                       size: 4.h,
                     ),
                     height: 9.h,
@@ -99,7 +99,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                   Tab(
                     text: "Perfil",
                     icon: ImageIcon(
-                      AssetImage(Paths.imagesPath + "Icone_Perfil.png"),
+                      AssetImage(Paths.Icone_Perfil),
                       size: 4.h,
                     ),
                     height: 9.h,

@@ -30,7 +30,7 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
         child: Stack(
           children: [
             SvgPicture.asset(
-              '${Paths.svgsPath}Ilustracao_Topo.svg',
+              Paths.Ilustracao_Topo,
               width: 26.w,
             ),
             Padding(
@@ -41,7 +41,7 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset(
-                    '${Paths.imagesPath}Ilustracao_Finalizacao.png',
+                    Paths.Ilustracao_Finalizacao,
                     width: 30.w,
                   ),
                 ],
@@ -56,13 +56,13 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SvgPicture.asset(
-                      '${Paths.svgsPath}Logo_Finalizacao.svg',
+                      Paths.Logo_Finalizacao,
                       width: 40.w,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 4.h),
                       child: SvgPicture.asset(
-                        '${Paths.svgsPath}Icone_Finalizacao.svg',
+                        Paths.Icone_Finalizacao,
                         width: 15.w,
                       ),
                     ),

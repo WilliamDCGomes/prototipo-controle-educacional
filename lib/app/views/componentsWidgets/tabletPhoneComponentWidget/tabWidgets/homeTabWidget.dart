@@ -44,7 +44,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
           Padding(
             padding: EdgeInsets.only(top: 8.h),
             child: SvgPicture.asset(
-              '${Paths.svgsPath}Ilustracao_Topo.svg',
+              Paths.Ilustracao_Topo,
               width: 25.w,
             ),
           ),
@@ -115,7 +115,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                             ),
                           ),
                           SvgPicture.asset(
-                            '${Paths.svgsPath}Logo_Pce_Home.svg',
+                            Paths.Logo_Pce_Home,
                             width: 15.w,
                           ),
                         ],

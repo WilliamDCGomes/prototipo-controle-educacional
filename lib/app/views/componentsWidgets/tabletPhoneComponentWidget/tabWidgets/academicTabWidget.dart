@@ -44,7 +44,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
           Padding(
             padding: EdgeInsets.only(top: 8.h),
             child: SvgPicture.asset(
-              '${Paths.svgsPath}Ilustracao_Topo.svg',
+              Paths.Ilustracao_Topo,
               width: 25.w,
             ),
           ),
@@ -76,7 +76,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                               width: 7.w,
                               componentPadding: EdgeInsets.all(.5.w),
                               widgetCustom: SvgPicture.asset(
-                                '${Paths.svgsPath}Icone_Filtro.svg',
+                                Paths.Icone_Filtro,
                                 height: 6.5.w,
                                 width: 6.5.w,
                                 color: AppColors.purpleDefaultColor,
