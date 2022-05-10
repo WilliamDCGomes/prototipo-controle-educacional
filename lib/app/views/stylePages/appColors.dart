@@ -8,6 +8,7 @@ class AppColors {
   static final Color appBarColor = Color(0XFF492260);
   static final Color bottomBarColor = Color(0XFF664583);
   static final Color blueLinkColor = Color(0XFF5797AF);
+  static final Color blueMoneyFinancialCardColor = Color(0XFF5A93C4);
   static final Color greenColor = const Color(0XFF008001);
   static final Color arrowBlackColor = const Color(0XFF4F4C4D);
   static final Color blackColor91Percent = const Color(0XFF919191);

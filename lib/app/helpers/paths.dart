@@ -14,8 +14,11 @@ class Paths{
   static final String Ilustracao_Finalizacao = "${imagesPath}Ilustracao_Finalizacao.png";
   static final String Ilustracao_Rodape = "${imagesPath}Ilustracao_Rodape.png";
   static final String logo_pce = "${imagesPath}logo_pce.png";
+  static final String Cartao_Roxo_PCE = "${imagesPath}Cartao_Roxo_PCE.png";
+  static final String Cartao_Laranja_PCE = "${imagesPath}Cartao_Laranja_PCE.png";
 
   static final String Background = "${svgsPath}Background.svg";
+  static final String Icone_Editar = "${svgsPath}Icone_Editar.svg";
   static final String Icone_Calendario_Academico = "${svgsPath}Icone_Calendario_Academico.svg";
   static final String Icone_Carterinha_Estudante = "${svgsPath}Icone_Carterinha_Estudante.svg";
   static final String Icone_Carterinho_Online = "${svgsPath}Icone_Carterinho_Online.svg";

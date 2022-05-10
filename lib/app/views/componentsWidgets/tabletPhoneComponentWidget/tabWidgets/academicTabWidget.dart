@@ -28,12 +28,6 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
       vsync: this,
     );
     super.initState();
-
-    WidgetsBinding.instance!.addPostFrameCallback((_){
-      setState(() {
-        widget.controller.activeStep = 0;
-      });
-    });
   }
 
   @override
@@ -103,7 +97,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                                   padding: EdgeInsets.only(bottom: 1.h),
                                   child: CarouselSlider.builder(
                                     carouselController: widget.controller.academicRecordCarouselController,
-                                    itemCount: 8,
+                                    itemCount: widget.controller.cardAcademicRecordList.length,
                                     options: CarouselOptions(
                                         height: 18.h,
                                         viewportFraction: 1,

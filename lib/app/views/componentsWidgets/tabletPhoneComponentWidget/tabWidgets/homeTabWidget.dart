@@ -139,7 +139,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                       padding: EdgeInsets.only(bottom: 1.h),
                                       child: CarouselSlider.builder(
                                         carouselController: widget.controller.carouselController,
-                                        itemCount: 5,
+                                        itemCount: widget.controller.cardMainMenuList.length,
                                         options: CarouselOptions(
                                             height: 18.h,
                                             viewportFraction: 1,
@@ -158,7 +158,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                       ),
                                     ),
                                     DotStepper(
-                                      dotCount: 5,
+                                      dotCount: widget.controller.cardMainMenuList.length,
                                       dotRadius: 1.h,
                                       activeStep: widget.controller.activeStep,
                                       shape: Shape.stadium,

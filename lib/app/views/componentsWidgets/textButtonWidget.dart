@@ -11,9 +11,11 @@ class TextButtonWidget extends StatelessWidget {
   final double? height;
   final double? width;
   final TextWidget? textWidget;
+  final TextDecoration? textDecoration;
   final TextAlign? textAlign;
   final Alignment? componentAlignment;
   final EdgeInsets? componentPadding;
+  final FontWeight? fontWeight;
   final Size? maximumSize;
   final RichTextTwoDifferentWidget? richText;
   final Widget? widgetCustom;
@@ -27,9 +29,11 @@ class TextButtonWidget extends StatelessWidget {
         this.height,
         this.width,
         this.textWidget,
+        this.textDecoration,
         this.textAlign,
         this.componentAlignment,
         this.componentPadding,
+        this.fontWeight,
         this.maximumSize,
         this.richText,
         this.widgetCustom,
@@ -59,8 +63,9 @@ class TextButtonWidget extends StatelessWidget {
               hintText ?? "",
               textColor: AppColors.purpleDefaultColor,
               fontSize: fontSize ?? 17.sp,
-              fontWeight: FontWeight.bold,
+              fontWeight: fontWeight ?? FontWeight.bold,
               textAlign: textAlign,
+              textDecoration: textDecoration,
             )
           ),
       ),

@@ -19,3 +19,8 @@ enum academicTabs {
   curriculum,
   deliveries
 }
+
+enum creditDebtCardType {
+  mastercard,
+  visa
+}

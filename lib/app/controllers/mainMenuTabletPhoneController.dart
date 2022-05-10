@@ -2,29 +2,39 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../enums/enums.dart';
+import '../views/componentsWidgets/creditDebtCardWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardAcademicRecordWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/academicTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/cardPaymentListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/cardTabListWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/financialTabWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/homeTabWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
+  late int creditDebtCardActiveStep;
   late String nameInitials;
+  late double creditDebtCardWidgetHeight;
   late RxBool hasPicture;
   late RxString courseName;
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
+  late List<CreditDebtCardWidget> creditDebtCardList;
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
+  late List<CardPaymentListWidget> cardPaymentList;
   late List<Widget> curriculumTabList;
   late List<Widget> deliveryTabList;
   late List<Widget> tabMainMenuList;
   late List<Widget> tabAcademicRecordList;
   late TabController tabController;
   late TabController tabAcademicController;
+  late TabController tabFinancialController;
   late CarouselController carouselController;
+  late CarouselController carouselCreditDebtCardController;
   late CarouselController academicRecordCarouselController;
   late TextEditingController curriculumSearchController;
   late TextEditingController deliveriesSearchController;
@@ -38,14 +48,17 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _initializeVariables(){
     activeStep = 0;
+    creditDebtCardWidgetHeight = 20.h;
+    creditDebtCardActiveStep = 0;
     carouselController = CarouselController();
+    carouselCreditDebtCardController = CarouselController();
     academicRecordCarouselController = CarouselController();
     curriculumSearchController = TextEditingController();
     deliveriesSearchController = TextEditingController();
     tabMainMenuList = [
       HomeTabWidget(controller: this),
       AcademicTabWidget(controller: this),
-      AcademicTabWidget(controller: this),
+      FinancialTabWidget(controller: this),
       AcademicTabWidget(controller: this),
     ];
     tabAcademicRecordList = [
@@ -158,6 +171,32 @@ class MainMenuTabletPhoneController extends GetxController {
         itemIndex: 3,
       ),
     ];
+    cardPaymentList = [
+      CardPaymentListWidget(
+        firstValue: "Futura",
+        secondValue: "05/07/2022",
+        thirdValue: "R\$ 743,99",
+        cardColor: AppColors.purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 0,
+      ),
+      CardPaymentListWidget(
+        firstValue: "Futura",
+        secondValue: "05/08/2022",
+        thirdValue: "R\$ 743,99",
+        cardColor: AppColors.purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 0,
+      ),
+      CardPaymentListWidget(
+        firstValue: "Futura",
+        secondValue: "05/09/2022",
+        thirdValue: "R\$ 743,99",
+        cardColor: AppColors.purpleDefaultColor,
+        mainMenuTabletPhoneController: this,
+        itemIndex: 0,
+      ),
+    ];
   }
 
   _getValues(){
@@ -246,6 +285,22 @@ class MainMenuTabletPhoneController extends GetxController {
         yearValueText: "2022",
         semesterValueText: "8º Semestre",
         mainMenuTabletPhoneController: this,
+      ),
+    ];
+    creditDebtCardList = [
+      CreditDebtCardWidget(
+        numericEnd: "0365",
+        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        cardExpirationDate: "02/29",
+        creditDebtCardTypeEnum: creditDebtCardType.mastercard,
+        height: creditDebtCardWidgetHeight,
+      ),
+      CreditDebtCardWidget(
+        numericEnd: "5967",
+        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        cardExpirationDate: "10/27",
+        creditDebtCardTypeEnum: creditDebtCardType.visa,
+        height: creditDebtCardWidgetHeight,
       ),
     ];
   }

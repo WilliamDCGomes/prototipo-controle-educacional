@@ -85,27 +85,31 @@ class CardAcademicRecordWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  TextButtonWidget(
-                    onTap: () {
+                  Column(
+                    children: [
+                      TextButtonWidget(
+                        onTap: () {
 
-                    },
-                    widgetCustom: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                         Paths.Icone_Copiar,
-                          width: 2.h,
+                        },
+                        widgetCustom: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                             Paths.Icone_Copiar,
+                              width: 2.h,
+                            ),
+                            TextWidget(
+                              " Ver Histórico Acadêmico",
+                              maxLines: 1,
+                              textColor: AppColors.blueLinkColor,
+                              fontSize: 17.sp,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
-                        TextWidget(
-                          " Ver Histórico Acadêmico",
-                          maxLines: 1,
-                          textColor: AppColors.blueLinkColor,
-                          fontSize: 17.sp,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
