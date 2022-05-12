@@ -109,7 +109,7 @@ class CardTabListWidget extends StatelessWidget {
                         width: 7.w,
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          color: AppColors.blackColor,
+                          color: cardColor,
                           size: 4.h,
                         ),
                       ),

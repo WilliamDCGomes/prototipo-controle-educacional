@@ -37,4 +37,6 @@ class Paths{
   static final String Logo_Login = "${svgsPath}Logo_Login.svg";
   static final String Logo_Pce = "${svgsPath}Logo_Pce.svg";
   static final String Logo_Pce_Home = "${svgsPath}Logo_Pce_Home.svg";
+  static final String Icone_Redefinir_Senha = "${svgsPath}Icone_Redefinir_Senha.svg";
+  static final String Icone_Sair = "${svgsPath}Icone_Sair.svg";
 }

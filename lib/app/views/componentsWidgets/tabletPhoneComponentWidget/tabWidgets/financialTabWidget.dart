@@ -138,7 +138,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                                 carouselController: widget.controller.carouselCreditDebtCardController,
                                 itemCount: widget.controller.creditDebtCardList.length,
                                 options: CarouselOptions(
-                                    viewportFraction: .9,
+                                    viewportFraction: .85,
                                     enlargeStrategy: CenterPageEnlargeStrategy.height,
                                     enlargeCenterPage: true,
                                     enableInfiniteScroll: false,

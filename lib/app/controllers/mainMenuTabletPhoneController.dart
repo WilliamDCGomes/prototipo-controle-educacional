@@ -1,18 +1,22 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/stylePages/appColors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../enums/enums.dart';
+import '../helpers/paths.dart';
 import '../views/componentsWidgets/creditDebtCardWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardAcademicRecordWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/cardMainMenuWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/academicTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academicTabWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/cardPaymentListWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/cardProfileTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/cardTabListWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/financialTabWidget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/homeTabWidget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/profileTabWidget.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
@@ -23,6 +27,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString courseName;
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
+  late List<CardProfileTabListWidget> cardProfileTabList;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
   late List<CardPaymentListWidget> cardPaymentList;
@@ -59,7 +64,7 @@ class MainMenuTabletPhoneController extends GetxController {
       HomeTabWidget(controller: this),
       AcademicTabWidget(controller: this),
       FinancialTabWidget(controller: this),
-      AcademicTabWidget(controller: this),
+      ProfileTabWidget(controller: this),
     ];
     tabAcademicRecordList = [
       AcademicTabListWidget(
@@ -195,6 +200,52 @@ class MainMenuTabletPhoneController extends GetxController {
         cardColor: AppColors.purpleDefaultColor,
         mainMenuTabletPhoneController: this,
         itemIndex: 0,
+      ),
+    ];
+    cardProfileTabList = [
+      CardProfileTabListWidget(
+        id: 0,
+        iconCard: SvgPicture.asset(
+          Paths.Icone_Noticias_e_Eventos,
+        ),
+        titleIconPath: "Notícias e Eventos",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardProfileTabListWidget(
+        id: 1,
+        iconCard: Icon(
+          Icons.settings,
+          color: AppColors.purpleDefaultColor,
+          size: 5.h,
+        ),
+        titleIconPath: "Configurações",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardProfileTabListWidget(
+        id: 2,
+        iconCard: SvgPicture.asset(
+          Paths.Icone_Redefinir_Senha,
+        ),
+        titleIconPath: "Redefinir Senha",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardProfileTabListWidget(
+        id: 3,
+        iconCard: Icon(
+          Icons.qr_code_scanner,
+          color: AppColors.purpleDefaultColor,
+          size: 5.h,
+        ),
+        titleIconPath: "Vincular SmartWactch",
+        mainMenuTabletPhoneController: this,
+      ),
+      CardProfileTabListWidget(
+        id: 4,
+        iconCard: SvgPicture.asset(
+          Paths.Icone_Sair,
+        ),
+        titleIconPath: "Sair",
+        mainMenuTabletPhoneController: this,
       ),
     ];
   }
@@ -358,8 +409,13 @@ class MainMenuTabletPhoneController extends GetxController {
     }
   }
 
-  void curriculumTabSelected(int curriculumIndexOfItem) async {
+  curriculumTabSelected(int curriculumIndexOfItem) async {
     await Future.delayed(Duration(milliseconds: 200));
     print("index: " + curriculumIndexOfItem.toString());
+  }
+
+  cardProfileSelected(int indexCardSelected) async {
+    await Future.delayed(Duration(milliseconds: 200));
+    print("index perfil: " + indexCardSelected.toString());
   }
 }

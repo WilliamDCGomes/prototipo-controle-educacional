@@ -64,16 +64,18 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                           TextButtonWidget(
                             onTap: () => widget.controller.openProfile(),
                             borderRadius: 2.h,
+                            componentPadding: EdgeInsets.symmetric(horizontal: 2.w),
                             widgetCustom: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(right: 3.w),
                                   child: Container(
-                                    height: 7.h,
-                                    width: 7.h,
+                                    height: 6.5.h,
+                                    width: 6.5.h,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3.5.h),
-                                      color: AppColors.grayColor,
+                                      borderRadius: BorderRadius.circular(3.25.h),
+                                      color: AppColors.standardColor,
                                     ),
                                     child: Obx(
                                           () => widget.controller.hasPicture.value ?
@@ -83,7 +85,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                       Center(
                                         child: TextWidget(
                                           widget.controller.nameInitials,
-                                          textColor: AppColors.standardColor,
+                                          textColor: AppColors.grayColor,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20.sp,
                                           textAlign: TextAlign.start,
