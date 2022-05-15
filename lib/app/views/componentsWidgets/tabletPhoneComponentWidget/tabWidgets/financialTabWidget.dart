@@ -32,7 +32,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
     );
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
         widget.controller.creditDebtCardActiveStep = 0;
       });

@@ -229,7 +229,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
           child: SizedBox(
             height: 40.h,
             child: Scrollbar(
-              isAlwaysShown: true,
+              thumbVisibility: true,
               child: SingleChildScrollView(
                 child: Column(
                   children: [

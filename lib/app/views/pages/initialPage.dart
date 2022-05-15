@@ -16,7 +16,7 @@ class _InitialPageState extends State<InitialPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(
           Duration(
               milliseconds: 2500

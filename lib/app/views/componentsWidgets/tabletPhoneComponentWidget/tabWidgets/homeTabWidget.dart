@@ -29,7 +29,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
         widget.controller.activeStep = 0;
       });

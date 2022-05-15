@@ -21,7 +21,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
         controller.activeStep.value = 0;
       });
