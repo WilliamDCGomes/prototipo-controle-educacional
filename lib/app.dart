@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'app/views/stylePages/appColors.dart';
+import 'app/views/style-pages/app-colors.dart';
 import 'flavors.dart';
 
 class App extends StatelessWidget {
