@@ -30,7 +30,6 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Stack(
         children: [

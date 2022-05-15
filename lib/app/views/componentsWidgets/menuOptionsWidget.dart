@@ -1,9 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:projeto_tcc/app/helpers/platformType.dart';
 import 'package:projeto_tcc/app/views/componentsWidgets/textButtonWidget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../helpers/paths.dart';
 import '../stylePages/appColors.dart';
 import 'textWidget.dart';
 
@@ -48,8 +48,9 @@ class MenuOptionsWidget extends StatelessWidget {
       child: TextButtonWidget(
         onTap: onTap,
         borderRadius: 2.h,
+        componentPadding: EdgeInsets.symmetric(horizontal: 1.h),
         widgetCustom: SizedBox(
-          height: 12.h,
+          height: 13.h,
           width: widthOption ?? (PlatformType.isAndroid() ? 13.h : 14.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +60,7 @@ class MenuOptionsWidget extends StatelessWidget {
                 visible: imagePath != null && imagePath != "",
                 child: Center(
                   child: SvgPicture.asset(
-                    Paths.svgsPath + (imagePath ?? ""),
+                    imagePath ?? "",
                     height: imageSize ?? 6.h,
                   ),
                 ),
@@ -68,12 +69,13 @@ class MenuOptionsWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 1.h),
                   child: SizedBox(
-                    height: 3.5.h,
+                    height: 4.h,
                     child: TextWidget(
                       text,
                       textColor: textColor ?? AppColors.whiteColor,
-                      fontSize: textSize ?? (PlatformType.isPhone(context) ?
-                      15.sp : 14.sp),
+                      fontSize: textSize ?? (
+                          PlatformType.isPhone(context) ? 15.sp : 14.sp
+                      ),
                       maxLines: maxLines ?? 2,
                       fontWeight: FontWeight.bold,
                     ),

@@ -77,7 +77,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
         Visibility(
           visible: widget.indexView == 1,
           child: SizedBox(
-            height: PlatformType.isTablet(context) ? 50.h : 45.h,
+            height: PlatformType.isTablet(context) ? 50.h : 48.h,
             child: Scrollbar(
               child: SingleChildScrollView(
                 child: Column(

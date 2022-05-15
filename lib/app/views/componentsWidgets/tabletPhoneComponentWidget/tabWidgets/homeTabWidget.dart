@@ -203,19 +203,19 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 children: [
                                   MenuOptionsWidget(
                                     text: "Horário das Aulas",
-                                    imagePath: "Icone_Horario_Das_Aulas.svg",
+                                    imagePath: Paths.Icone_Horario_Das_Aulas,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.classTime),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Notas e Faltas",
-                                    imagePath: "Icone_Notas_e_Faltas.svg",
+                                    imagePath: Paths.Icone_Notas_e_Faltas,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.gradesFaults),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Calendário Acadêmico",
-                                    imagePath: "Icone_Calendario_Academico.svg",
+                                    imagePath: Paths.Icone_Calendario_Academico,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicCalendar),
                                   ),
@@ -229,19 +229,19 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 children: [
                                   MenuOptionsWidget(
                                     text: "Carteirinha Online",
-                                    imagePath: "Icone_Carterinha_Estudante.svg",
+                                    imagePath: Paths.Icone_Carterinha_Estudante,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.onlineStudentCard),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Histórico Acadêmico",
-                                    imagePath: "Icone_Historico_Academico.svg",
+                                    imagePath: Paths.Icone_Historico_Academico,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicRecord),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Notícias e Eventos",
-                                    imagePath: "Icone_Noticias_e_Eventos.svg",
+                                    imagePath: Paths.Icone_Noticias_e_Eventos,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.newsEvents),
                                   ),
@@ -266,13 +266,13 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 children: [
                                   MenuOptionsWidget(
                                     text: "Carteirinha de Estudante",
-                                    imagePath: "Icone_Carterinha_Estudante.svg",
+                                    imagePath: Paths.Icone_Carterinha_Estudante,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.studentCard),
                                   ),
                                   MenuOptionsWidget(
                                     text: "Declaração Escolar",
-                                    imagePath: "Icone_Declaracao_Escolar.svg",
+                                    imagePath: Paths.Icone_Declaracao_Escolar,
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.schoolStatement),
                                   ),

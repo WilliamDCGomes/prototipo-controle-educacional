@@ -51,48 +51,45 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
               width: 25.w,
             ),
           ),
-          Scaffold(
-            backgroundColor: AppColors.transparentColor,
-            body: Padding(
-              padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 8.h,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            "Financeiro",
-                            textColor: AppColors.blackColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.sp,
-                            textAlign: TextAlign.start,
-                          ),
-                          SvgPicture.asset(
-                            Paths.Logo_Pce_Home,
-                            width: 15.w,
-                          ),
-                        ],
-                      ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 8.h,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextWidget(
+                          "Financeiro",
+                          textColor: AppColors.blackColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp,
+                          textAlign: TextAlign.start,
+                        ),
+                        SvgPicture.asset(
+                          Paths.Logo_Pce_Home,
+                          width: 15.w,
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 72.h ,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: PlatformType.isTablet(context) ?
-                              9.h : 7.h,
-                            ),
-                            child: Center(
-                              child: Padding(
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: PlatformType.isTablet(context) ?
+                            9.h : 7.h,
+                          ),
+                          child: Center(
+                            child: Padding(
                                 padding: EdgeInsets.only(bottom: 1.h),
                                 child: CardFinancialWidget(
                                   statusText: "Aberta",
@@ -101,170 +98,162 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                                   hasCardRegistered: true,
                                   mainMenuTabletPhoneController: widget.controller,
                                 )
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 2.w,
+                            vertical: 1.h,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                "Cartão Cadastrado",
+                                textColor: AppColors.blackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17.sp,
+                                textAlign: TextAlign.start,
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 2.w,
-                              vertical: 1.h,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(
-                                  "Cartão Cadastrado",
-                                  textColor: AppColors.blackColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.sp,
-                                  textAlign: TextAlign.start,
-                                ),
-                                TextButtonWidget(
-                                  onTap: () {
+                              TextButtonWidget(
+                                onTap: () {
 
-                                  },
-                                  hintText: "Ver Todos",
-                                  fontWeight: FontWeight.normal,
-                                  textDecoration: TextDecoration.underline,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 1.h),
-                            child: SizedBox(
-                              height: widget.controller.creditDebtCardWidgetHeight,
-                              child: CarouselSlider.builder(
-                                carouselController: widget.controller.carouselCreditDebtCardController,
-                                itemCount: widget.controller.creditDebtCardList.length,
-                                options: CarouselOptions(
-                                    viewportFraction: .85,
-                                    enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                    enlargeCenterPage: true,
-                                    enableInfiniteScroll: false,
-                                    onPageChanged: (itemIndex, reason){
-                                      setState(() {
-                                        widget.controller.creditDebtCardActiveStep = itemIndex;
-                                      });
-                                    }
-                                ),
-                                itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                  return widget.controller.creditDebtCardList.elementAt(itemIndex);
                                 },
+                                hintText: "Ver Todos",
+                                fontWeight: FontWeight.normal,
+                                textDecoration: TextDecoration.underline,
                               ),
-                            ),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 2.h),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TextButtonWidget(
-                                  onTap: () {
-
-                                  },
-                                  componentPadding: EdgeInsets.zero,
-                                  widgetCustom: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 2.w),
-                                        child: SizedBox(
-                                          width: 80.w,
-                                          child: TextWidget(
-                                            "Cartão de Crédito William Douglas",
-                                            textColor: AppColors.blackColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17.sp,
-                                            textAlign: TextAlign.end,
-                                          ),
-                                        ),
-                                      ),
-                                      SvgPicture.asset(
-                                        Paths.Icone_Editar,
-                                        height: 2.h,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Visibility(
-                            visible: widget.controller.creditDebtCardList.length > 1,
-                            child: Center(
-                              child: DotStepper(
-                                dotCount: widget.controller.creditDebtCardList.length,
-                                dotRadius: 1.h,
-                                activeStep: widget.controller.creditDebtCardActiveStep,
-                                shape: Shape.stadium,
-                                spacing: 3.w,
-                                indicator: Indicator.magnify,
-                                fixedDotDecoration: FixedDotDecoration(
-                                  color: AppColors.grayStepColor,
-                                ),
-                                indicatorDecoration: IndicatorDecoration(
-                                  color: AppColors.purpleDefaultColor,
-                                ),
-                                onDotTapped: (tappedDotIndex) {
-                                  setState(() {
-                                    widget.controller.creditDebtCardActiveStep = tappedDotIndex;
-                                    widget.controller.carouselCreditDebtCardController.jumpToPage(tappedDotIndex);
-                                  });
-                                },
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 1.h),
+                          child: SizedBox(
+                            height: widget.controller.creditDebtCardWidgetHeight,
+                            child: CarouselSlider.builder(
+                              carouselController: widget.controller.carouselCreditDebtCardController,
+                              itemCount: widget.controller.creditDebtCardList.length,
+                              options: CarouselOptions(
+                                  viewportFraction: .85,
+                                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                  enlargeCenterPage: true,
+                                  enableInfiniteScroll: false,
+                                  onPageChanged: (itemIndex, reason){
+                                    setState(() {
+                                      widget.controller.creditDebtCardActiveStep = itemIndex;
+                                    });
+                                  }
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(20.w, 2.h, 20.w, 0),
-                            child: ButtonWidget(
-                              hintText: "Adicionar Cartão",
-                              fontWeight: FontWeight.bold,
-                              heightButton: 5.h,
-                              onPressed: () {
-
+                              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                                return widget.controller.creditDebtCardList.elementAt(itemIndex);
                               },
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(2.w, 2.h, 2.w, 1.h),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(
-                                  "Últimos Pagamentos",
-                                  textColor: AppColors.blackColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.sp,
-                                  textAlign: TextAlign.start,
-                                ),
-                                TextButtonWidget(
-                                  onTap: () {
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 2.h),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButtonWidget(
+                                onTap: () {
 
-                                  },
-                                  hintText: "Ver Todos",
-                                  fontWeight: FontWeight.normal,
-                                  textDecoration: TextDecoration.underline,
+                                },
+                                componentPadding: EdgeInsets.zero,
+                                widgetCustom: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 2.w),
+                                      child: TextWidget(
+                                        "Cartão de Crédito William Douglas",
+                                        textColor: AppColors.blackColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17.sp,
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                    SvgPicture.asset(
+                                      Paths.Icone_Editar,
+                                      height: 2.h,
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Visibility(
+                          visible: widget.controller.creditDebtCardList.length > 1,
+                          child: Center(
+                            child: DotStepper(
+                              dotCount: widget.controller.creditDebtCardList.length,
+                              dotRadius: 1.h,
+                              activeStep: widget.controller.creditDebtCardActiveStep,
+                              shape: Shape.stadium,
+                              spacing: 3.w,
+                              indicator: Indicator.magnify,
+                              fixedDotDecoration: FixedDotDecoration(
+                                color: AppColors.grayStepColor,
+                              ),
+                              indicatorDecoration: IndicatorDecoration(
+                                color: AppColors.purpleDefaultColor,
+                              ),
+                              onDotTapped: (tappedDotIndex) {
+                                setState(() {
+                                  widget.controller.creditDebtCardActiveStep = tappedDotIndex;
+                                  widget.controller.carouselCreditDebtCardController.jumpToPage(tappedDotIndex);
+                                });
+                              },
                             ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.controller.cardPaymentList,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20.w, 2.h, 20.w, 0),
+                          child: ButtonWidget(
+                            hintText: "Adicionar Cartão",
+                            fontWeight: FontWeight.bold,
+                            heightButton: 5.h,
+                            onPressed: () {
+
+                            },
                           ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(2.w, 2.h, 2.w, 1.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                "Últimos Pagamentos",
+                                textColor: AppColors.blackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                              TextButtonWidget(
+                                onTap: () {
 
-
-
-
-                        ],
-                      ),
+                                },
+                                hintText: "Ver Todos",
+                                fontWeight: FontWeight.normal,
+                                textDecoration: TextDecoration.underline,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: widget.controller.cardPaymentList,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

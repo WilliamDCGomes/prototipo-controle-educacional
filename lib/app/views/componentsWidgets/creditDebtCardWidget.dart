@@ -88,9 +88,7 @@ class CreditDebtCardWidget extends StatelessWidget {
                 ),
               ),
             ),
-          )
-
-
+          ),
         ],
       ),
     );
