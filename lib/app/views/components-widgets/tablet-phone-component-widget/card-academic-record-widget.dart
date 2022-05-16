@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../controllers/grades-faults-controller.dart';
 import '../../../controllers/main-menu-tablet-phone-controller.dart';
 import '../../../helpers/paths.dart';
 import '../../style-pages/app-colors.dart';
@@ -10,13 +11,15 @@ import '../text-widget.dart';
 class CardAcademicRecordWidget extends StatelessWidget {
   final String yearValueText;
   final String semesterValueText;
-  final MainMenuTabletPhoneController mainMenuTabletPhoneController;
+  final GradesFaultsController? gadesFaultsController;
+  final MainMenuTabletPhoneController? mainMenuTabletPhoneController;
 
   const CardAcademicRecordWidget(
       { Key? key,
         required this.yearValueText,
         required this.semesterValueText,
-        required this.mainMenuTabletPhoneController,
+        this.gadesFaultsController,
+        this.mainMenuTabletPhoneController,
       }) : super(key: key);
 
   @override
@@ -45,7 +48,9 @@ class CardAcademicRecordWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButtonWidget(
-                        onTap: () => mainMenuTabletPhoneController.previousAcademicRecordCard(),
+                        onTap: () => mainMenuTabletPhoneController != null ?
+                          mainMenuTabletPhoneController!.previousAcademicRecordCard() :
+                          gadesFaultsController!.previousAcademicRecordCard(),
                         height: 4.h,
                         width: 4.h,
                         componentPadding: EdgeInsets.zero,
@@ -64,7 +69,9 @@ class CardAcademicRecordWidget extends StatelessWidget {
                         maxLines: 1,
                       ),
                       TextButtonWidget(
-                        onTap: () => mainMenuTabletPhoneController.nextAcademicRecordCard(),
+                        onTap: () => mainMenuTabletPhoneController != null ?
+                          mainMenuTabletPhoneController!.nextAcademicRecordCard() :
+                          gadesFaultsController!.nextAcademicRecordCard(),
                         height: 4.h,
                         width: 4.h,
                         componentPadding: EdgeInsets.zero,

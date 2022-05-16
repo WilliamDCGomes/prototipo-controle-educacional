@@ -202,12 +202,6 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   MenuOptionsWidget(
-                                    text: "Horário das Aulas",
-                                    imagePath: Paths.Icone_Horario_Das_Aulas,
-                                    textColor: AppColors.blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.classTime),
-                                  ),
-                                  MenuOptionsWidget(
                                     text: "Notas e Faltas",
                                     imagePath: Paths.Icone_Notas_e_Faltas,
                                     textColor: AppColors.blackColor,
@@ -219,6 +213,12 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.academicCalendar),
                                   ),
+                                  MenuOptionsWidget(
+                                    text: "Carteirinha Online",
+                                    imagePath: Paths.Icone_Carterinha_Estudante,
+                                    textColor: AppColors.blackColor,
+                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.onlineStudentCard),
+                                  ),
                                 ],
                               ),
                             ),
@@ -227,12 +227,6 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  MenuOptionsWidget(
-                                    text: "Carteirinha Online",
-                                    imagePath: Paths.Icone_Carterinha_Estudante,
-                                    textColor: AppColors.blackColor,
-                                    onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.onlineStudentCard),
-                                  ),
                                   MenuOptionsWidget(
                                     text: "Histórico Acadêmico",
                                     imagePath: Paths.Icone_Historico_Academico,
@@ -245,6 +239,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     textColor: AppColors.blackColor,
                                     onTap: () => widget.controller.quickActionsClicked(quickActionsOptions.newsEvents),
                                   ),
+                                  SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
                                 ],
                               ),
                             ),

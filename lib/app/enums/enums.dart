@@ -5,7 +5,6 @@ enum Flavor {
 }
 
 enum quickActionsOptions {
-  classTime,
   gradesFaults,
   studentCard,
   onlineStudentCard,

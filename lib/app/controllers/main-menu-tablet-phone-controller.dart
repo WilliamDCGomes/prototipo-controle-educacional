@@ -17,6 +17,7 @@ import '../views/components-Widgets/tablet-phone-component-widget/tab-widgets/co
 import '../views/components-Widgets/tablet-phone-component-widget/tab-widgets/financial-tab-widget.dart';
 import '../views/components-Widgets/tablet-phone-component-widget/tab-widgets/home-tab-widget.dart';
 import '../views/components-Widgets/tablet-phone-component-widget/tab-widgets/profile-tab-widget.dart';
+import '../views/pages/tablet-phone-pages/grades-faults-tablet-phone-page.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
@@ -338,6 +339,7 @@ class MainMenuTabletPhoneController extends GetxController {
         mainMenuTabletPhoneController: this,
       ),
     ];
+
     creditDebtCardList = [
       CreditDebtCardWidget(
         numericEnd: "0365",
@@ -390,9 +392,8 @@ class MainMenuTabletPhoneController extends GetxController {
     await Future.delayed(Duration(milliseconds: 200));
 
     switch(chosenOption){
-      case quickActionsOptions.classTime:
-        break;
       case quickActionsOptions.gradesFaults:
+        Get.to(GradesFaultsTabletPhonePage());
         break;
       case quickActionsOptions.studentCard:
         break;
