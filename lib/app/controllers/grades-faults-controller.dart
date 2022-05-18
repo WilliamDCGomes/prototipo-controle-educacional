@@ -1,14 +1,21 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../views/components-Widgets/tablet-phone-component-widget/card-academic-record-widget.dart';
 
 class GradesFaultsController extends GetxController {
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
   late CarouselController academicRecordCarouselController;
+  late TextEditingController searchDisciplineController;
 
   GradesFaultsController(){
-    academicRecordCarouselController = CarouselController();
+    _inicializeVariables();
     _loadList();
+  }
+
+  _inicializeVariables(){
+    searchDisciplineController = TextEditingController();
+    academicRecordCarouselController = CarouselController();
   }
 
   _loadList(){

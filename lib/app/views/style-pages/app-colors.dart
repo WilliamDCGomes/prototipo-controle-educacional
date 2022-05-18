@@ -18,6 +18,7 @@ class AppColors {
   static final Color grayStepColor = const Color(0XFFC9C9C9);
   static final Color grayTabColor = const Color(0XFFCECECE);
   static final Color orangeColor = const Color(0XFFEA6F55);
+  static final Color orangeTextColor = const Color(0XFFEF8C4D);
   static final Color purpleTabColor = const Color(0XFF5C3876);
   static final Color purpleDefaultColor = const Color(0XFF62407E);
   static final Color backgroundColor = const Color(0XFFF2F1F1);

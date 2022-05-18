@@ -7,7 +7,9 @@ import '../../../controllers/grades-faults-controller.dart';
 import '../../../helpers/paths.dart';
 import '../../../helpers/platform-type.dart';
 import '../../components-Widgets/text-button-widget.dart';
+import '../../components-Widgets/text-field-widget.dart';
 import '../../components-Widgets/text-widget.dart';
+import '../../components-widgets/tablet-phone-component-widget/discipline_header_card_widget.dart';
 import '../../style-Pages/app-colors.dart';
 
 class GradesFaultsTabletPhonePage extends StatefulWidget {
@@ -52,41 +54,44 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
               Scaffold(
                 backgroundColor: AppColors.transparentColor,
                 body: Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.fromLTRB(0, 2.h, 0, 0),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 8.h,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextWidget(
-                                  "Botas e Faltas",
-                                  textColor: AppColors.blackColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
-                                ),
-                                TextButtonWidget(
-                                  onTap: () {
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 2.h),
+                          child: SizedBox(
+                            height: 8.h,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 2.w),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextWidget(
+                                    "Notas e Faltas",
+                                    textColor: AppColors.blackColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  TextButtonWidget(
+                                    onTap: () {
 
-                                  },
-                                  height: 6.5.w,
-                                  width: 7.w,
-                                  componentPadding: EdgeInsets.all(.5.w),
-                                  widgetCustom: Center(
-                                    child: Icon(
-                                      Icons.download_rounded,
-                                      size: 6.w,
-                                      color: AppColors.purpleDefaultColor,
+                                    },
+                                    height: 6.5.w,
+                                    width: 7.w,
+                                    componentPadding: EdgeInsets.all(.5.w),
+                                    widgetCustom: Center(
+                                      child: Icon(
+                                        Icons.download_rounded,
+                                        size: 6.w,
+                                        color: AppColors.purpleDefaultColor,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -100,6 +105,8 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                                   padding: EdgeInsets.only(
                                     top: PlatformType.isTablet(context) ?
                                     9.h : 7.h,
+                                    left: 2.h,
+                                    right: 2.h,
                                   ),
                                   child: Center(
                                     child: Padding(
@@ -125,6 +132,25 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                                       ),
                                     ),
                                   ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: .5.h, left: 2.h, right: 2.h),
+                                  child: TextFieldWidget(
+                                    controller: controller.searchDisciplineController,
+                                    hintText: "Pesquise a Disciplina",
+                                    height: 6.h,
+                                    width: 90.w,
+                                    iconTextField: Icon(
+                                      Icons.search,
+                                      color: AppColors.purpleDefaultColor,
+                                    ),
+                                    keyboardType: TextInputType.name,
+                                  ),
+                                ),
+                                DisciplineHeaderCardWidget(
+                                  disciplineCode: "0215",
+                                  disciplineName: "Projeto I",
+                                  disciplineWorkload: "40",
                                 ),
                               ],
                             ),
