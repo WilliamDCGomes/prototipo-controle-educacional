@@ -31,7 +31,6 @@ class DisciplineBodyCardWidget extends StatelessWidget {
             child: TextWidget(
               firstCardInformation,
               textColor: AppColors.blackColor,
-              fontWeight: FontWeight.bold,
               fontSize: 14.5.sp,
               textAlign: TextAlign.center,
             ),

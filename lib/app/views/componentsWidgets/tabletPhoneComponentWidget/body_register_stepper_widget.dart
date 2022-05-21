@@ -335,6 +335,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                             ? Icons.visibility_off
                             : Icons.visibility,
                         color: AppColors.purpleDefaultColor,
+                        size: 2.5.h,
                       ),
                     ),
                     keyboardType: TextInputType.visiblePassword,
@@ -357,6 +358,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                               ? Icons.visibility_off
                               : Icons.visibility,
                           color: AppColors.purpleDefaultColor,
+                          size: 2.5.h,
                         ),
                       ),
                       keyboardType: TextInputType.visiblePassword,

@@ -55,6 +55,7 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenWidget> {
             iconTextField: Icon(
               Icons.search,
               color: AppColors.purpleDefaultColor,
+              size: 3.h,
             ),
             keyboardType: TextInputType.name,
           ),

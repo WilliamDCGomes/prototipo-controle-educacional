@@ -121,6 +121,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                   color: AppColors.purpleDefaultColor,
+                                  size: 2.5.h,
                                 ),
                               ),
                               keyboardType: TextInputType.visiblePassword,
