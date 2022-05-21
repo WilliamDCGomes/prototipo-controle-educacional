@@ -3,6 +3,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../stylePages/app_colors.dart';
 
 class RichTextTwoDifferentWidget extends StatelessWidget {
+  final int? maxLines;
   final String? firstText;
   final String? secondText;
   final double? firstTextSize;
@@ -11,11 +12,13 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
   final Color? secondTextColor;
   final FontWeight? firstTextFontWeight;
   final FontWeight? secondTextFontWeight;
+  final TextOverflow? textOverflow;
   final TextDecoration? firstTextDecoration;
   final TextDecoration? secondTextDecoration;
 
   const RichTextTwoDifferentWidget(
       { Key? key,
+        this.maxLines,
         this.firstText,
         this.secondText,
         this.firstTextSize,
@@ -24,6 +27,7 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
         this.secondTextColor,
         this.firstTextFontWeight,
         this.secondTextFontWeight,
+        this.textOverflow,
         this.firstTextDecoration,
         this.secondTextDecoration,
       }) : super(key: key);
@@ -31,6 +35,7 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      maxLines: maxLines,
       text: TextSpan(
         children: [
           TextSpan(
@@ -40,6 +45,7 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
               fontSize: firstTextSize ?? 17.sp,
               fontWeight: firstTextFontWeight ?? FontWeight.bold,
               decoration: firstTextDecoration,
+              overflow: textOverflow ?? TextOverflow.ellipsis,
             ),
           ),
           TextSpan(
@@ -49,6 +55,7 @@ class RichTextTwoDifferentWidget extends StatelessWidget {
               fontSize: secondTextSize ?? 16.sp,
               fontWeight: secondTextFontWeight ?? FontWeight.normal,
               decoration: secondTextDecoration ?? TextDecoration.underline,
+              overflow: textOverflow ?? TextOverflow.ellipsis,
             ),
           ),
         ],

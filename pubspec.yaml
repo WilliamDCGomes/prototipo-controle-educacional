@@ -16,7 +16,7 @@ dependencies:
   email_validator: ^2.0.1
   flutter_svg: ^0.23.0+1
   flutter_flavorizr: ^2.0.0
-  font_awesome_flutter: ^9.0.0
+  font_awesome_flutter: ^10.1.0
   intl: ^0.17.0
   get: ^4.3.8
   responsive_sizer: 3.0.4+4

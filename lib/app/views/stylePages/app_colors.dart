@@ -11,12 +11,15 @@ class AppColors {
   static final Color lightOrangeColor = Color(0XFFFEBB94);
   static final Color blueMoneyFinancialCardColor = Color(0XFF5A93C4);
   static final Color greenColor = const Color(0XFF008001);
+  static final Color redColor = const Color(0XFFC81B1B);
+  static final Color yellowDarkColor = const Color(0XFFE2CE1C);
   static final Color arrowBlackColor = const Color(0XFF4F4C4D);
   static final Color blackColor91Percent = const Color(0XFF919191);
   static final Color grayColor = const Color(0XFFE1E1E1);
   static final Color lightGrayColor = const Color(0XFFF2F1F1);
   static final Color grayStepColor = const Color(0XFFC9C9C9);
   static final Color grayTabColor = const Color(0XFFCECECE);
+  static final Color grayAcademicCardColor = const Color(0XFFDEDADA);
   static final Color orangeColor = const Color(0XFFEA6F55);
   static final Color orangeTextColor = const Color(0XFFEF8C4D);
   static final Color purpleTabColor = const Color(0XFF5C3876);

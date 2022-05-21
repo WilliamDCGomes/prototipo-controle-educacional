@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../stylePages/app_colors.dart';
-import '../text_widget.dart';
+import '../../../stylePages/app_colors.dart';
+import '../../rich_text_two_different_widget.dart';
+import '../../text_widget.dart';
 
 class DisciplineHeaderCardWidget extends StatelessWidget {
   final String disciplineCode;
@@ -22,30 +23,23 @@ class DisciplineHeaderCardWidget extends StatelessWidget {
       height: 5.h,
       width: 100.w,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 1.h),
+        padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            TextWidget(
-              "$disciplineCode -",
-              textColor: AppColors.whiteColor,
-              fontSize: 16.sp,
-              textAlign: TextAlign.start,
-              maxLines: 1,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 5.w),
-              child: TextWidget(
-                disciplineName,
-                textColor: AppColors.whiteColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 17.sp,
-                textAlign: TextAlign.start,
+            Expanded(
+              child: RichTextTwoDifferentWidget(
+                firstText: "$disciplineCode - ",
+                firstTextColor: AppColors.whiteColor,
+                firstTextFontWeight: FontWeight.normal,
+                firstTextSize: 16.sp,
+                secondText: disciplineName,
+                secondTextColor: AppColors.whiteColor,
+                secondTextFontWeight: FontWeight.bold,
+                secondTextSize: 16.sp,
+                secondTextDecoration: TextDecoration.none,
                 maxLines: 1,
               ),
-            ),
-            Expanded(
-              child: SizedBox(),
             ),
             Container(
               height: 3.h,
