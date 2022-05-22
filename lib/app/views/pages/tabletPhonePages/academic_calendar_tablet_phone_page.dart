@@ -1,28 +1,28 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../controllers/grades_faults_controller.dart';
+import '../../../controllers/academic_calendar_controller.dart';
 import '../../../helpers/paths.dart';
-import '../../../helpers/platform_type.dart';
+import '../../componentsWidgets/button_widget.dart';
+import '../../componentsWidgets/tabletPhoneComponentWidget/calendar_widget.dart';
 import '../../componentsWidgets/tabletPhoneComponentWidget/title_with_back_button_widget.dart';
 import '../../componentsWidgets/text_button_widget.dart';
 import '../../stylePages/app_colors.dart';
 
-class GradesFaultsTabletPhonePage extends StatefulWidget {
-  const GradesFaultsTabletPhonePage({Key? key}) : super(key: key);
+class AcademicCalendarTabletPhonePage extends StatefulWidget {
+  const AcademicCalendarTabletPhonePage({Key? key}) : super(key: key);
 
   @override
-  State<GradesFaultsTabletPhonePage> createState() => _GradesFaultsTabletPhonePageState();
+  State<AcademicCalendarTabletPhonePage> createState() => _AcademicCalendarTabletPhonePageState();
 }
 
-class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePage> {
-  late GradesFaultsController controller;
+class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTabletPhonePage> {
+  late AcademicCalendarController controller;
 
   @override
   void initState() {
-    controller = Get.put(GradesFaultsController());
+    controller = Get.put(AcademicCalendarController());
     super.initState();
   }
 
@@ -64,7 +64,7 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TitleWithBackButtonWidget(
-                                title: "Notas e Faltas",
+                                title: "Calendário Acadêmico",
                               ),
                               TextButtonWidget(
                                 onTap: () {
@@ -87,25 +87,23 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(
-                            top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                          padding: EdgeInsets.only(top: 5.h),
+                          child: CalendarWidget(
+                            dataSource: controller.getDataSource(),
                           ),
-                          child: Center(
-                            child: CarouselSlider.builder(
-                              carouselController: controller.academicRecordCarouselController,
-                              itemCount: controller.cardAcademicRecordList.length,
-                              options: CarouselOptions(
-                                viewportFraction: 1,
-                                height: 100.h,
-                                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                enlargeCenterPage: true,
-                                enableInfiniteScroll: false,
-                              ),
-                              itemBuilder: (context, itemIndex, pageViewIndex) {
-                                return controller.cardAcademicRecordList[itemIndex];
-                              },
-                            ),
-                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.h),
+                        child: ButtonWidget(
+                          hintText: "COMPARTILHAR",
+                          fontWeight: FontWeight.bold,
+                          widthButton: 100.w,
+                          backgroundColor: AppColors.orangeColor,
+                          textColor: AppColors.whiteColor,
+                          onPressed: () {
+
+                          },
                         ),
                       ),
                     ],

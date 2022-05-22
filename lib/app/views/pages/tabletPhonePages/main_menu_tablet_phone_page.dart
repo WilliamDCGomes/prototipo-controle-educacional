@@ -58,7 +58,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                   topRight: Radius.circular(4.5.h),
                   topLeft: Radius.circular(4.5.h),
                 ),
-                color: AppColors.lightGrayColor,
+                color: AppColors.backgroundColor,
               ),
               child: TabBar(
                 controller: controller.tabController,

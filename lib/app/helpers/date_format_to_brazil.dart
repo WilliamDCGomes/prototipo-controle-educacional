@@ -7,6 +7,11 @@ class DateFormatToBrazil {
       return DateFormat('dd-MM-yyyy').format(date).replaceAll('-', '/');
     return "";
   }
+  static String formatDateFull(DateTime? date) {
+    if(date != null)
+      return DateFormat.yMMMMd('pt_BR').format(date).replaceAll('-', '/');
+    return "";
+  }
 
   static String mounthAndYear(DateTime? date) {
     if(date != null) {

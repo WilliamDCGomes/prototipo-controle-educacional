@@ -43,7 +43,7 @@ class MenuOptionsWidget extends StatelessWidget {
       width: widthOption ?? (PlatformType.isAndroid() ? 13.h : 14.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2.5.h),
-        color: AppColors.lightGrayColor,
+        color: AppColors.backgroundColor,
       ),
       child: TextButtonWidget(
         onTap: onTap,

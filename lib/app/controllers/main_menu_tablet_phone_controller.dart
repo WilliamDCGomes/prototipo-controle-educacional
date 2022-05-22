@@ -19,6 +19,7 @@ import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/compone
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/financial_tab_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/home_tab_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/profile_tab_widget.dart';
+import '../views/pages/tabletPhonePages/academic_calendar_tablet_phone_page.dart';
 import '../views/pages/tabletPhonePages/grades_faults_tablet_phone_page.dart';
 import '../views/stylePages/app_colors.dart';
 
@@ -148,64 +149,56 @@ class MainMenuTabletPhoneController extends GetxController {
         secondValue: "Segunda-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 0,
+        onTap: () async => await curriculumTabSelected(0),
       ),
       CardTabListWidget(
         firstValue: "Qualidade e Testes de Software",
         secondValue: "Segunda-Feira, 21:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 1,
+        onTap: () async => await curriculumTabSelected(1),
       ),
       CardTabListWidget(
         firstValue: "Tópicos em Computação",
         secondValue: "Terça-Feira, 19:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 2,
+        onTap: () async => await curriculumTabSelected(2),
       ),
       CardTabListWidget(
         firstValue: "Projeto I",
         secondValue: "Quarta-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 3,
+        onTap: () async => await curriculumTabSelected(3),
       ),
       CardTabListWidget(
         firstValue: "Segurança em Sistemas de Informação",
         secondValue: "Quarta-Feira, 21:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 4,
+        onTap: () async => await curriculumTabSelected(4),
       ),
       CardTabListWidget(
         firstValue: "Ciência de Dados I",
         secondValue: "Quinta-Feira, 19:00 - 22:30",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 5,
+        onTap: () async => await await curriculumTabSelected(5),
       ),
       CardTabListWidget(
         firstValue: "Modelagem Computacional em Grafos",
         secondValue: "Sexta-Feira, 19:00 - 20:40",
         thirdValue: "Laboratório A18",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 6,
+        onTap: () async => await curriculumTabSelected(6),
       ),
       CardTabListWidget(
         firstValue: "Pesquisa Operacional",
         secondValue: "Sexta-Feira, 19:00 - 20:40",
         thirdValue: "Sala D14",
         cardColor: AppColors.purpleDefaultColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 7,
+        onTap: () async => await curriculumTabSelected(7),
       ),
     ];
     deliveryTabList = [
@@ -214,32 +207,28 @@ class MainMenuTabletPhoneController extends GetxController {
         secondValue: "Segunda-Feira, 12/04 às 20:40",
         thirdValue: "Banco de Dados",
         cardColor: AppColors.orangeColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 0,
+        onTap: () async => await cardProfileSelected(0),
       ),
       CardTabListWidget(
         firstValue: "Lista de Exercícios II",
         secondValue: "Quinta-Feira, 15/04 às 21:00",
         thirdValue: "Projeto I",
         cardColor: AppColors.orangeColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 1,
+        onTap: () async => await cardProfileSelected(1),
       ),
       CardTabListWidget(
         firstValue: "Trabalho de Segurança",
         secondValue: "Quarta-Feira, 14/04 às 19:00",
         thirdValue: "Segurança de Sistema",
         cardColor: AppColors.orangeColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 2,
+        onTap: () async => await cardProfileSelected(2),
       ),
       CardTabListWidget(
         firstValue: "Lista de Matemática",
         secondValue: "Sexta-Feira, 16/04 às 21:30",
         thirdValue: "Matemática",
         cardColor: AppColors.orangeColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 3,
+        onTap: () async => await cardProfileSelected(3),
       ),
     ];
     cardPaymentList = [
@@ -465,6 +454,7 @@ class MainMenuTabletPhoneController extends GetxController {
       case quickActionsOptions.onlineStudentCard:
         break;
       case quickActionsOptions.academicCalendar:
+        Get.to(AcademicCalendarTabletPhonePage());
         break;
       case quickActionsOptions.academicRecord:
         break;

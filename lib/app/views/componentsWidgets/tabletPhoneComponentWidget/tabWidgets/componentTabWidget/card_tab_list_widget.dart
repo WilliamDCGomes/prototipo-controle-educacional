@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../controllers/main_menu_tablet_phone_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../text_button_widget.dart';
 import '../../../text_widget.dart';
 
 class CardTabListWidget extends StatelessWidget {
-  final int itemIndex;
   final String firstValue;
   final String secondValue;
   final String thirdValue;
   final Color cardColor;
-  final MainMenuTabletPhoneController mainMenuTabletPhoneController;
+  final Function()? onTap;
 
   const CardTabListWidget(
       { Key? key,
-        required this.itemIndex,
         required this.firstValue,
         required this.secondValue,
         required this.thirdValue,
         required this.cardColor,
-        required this.mainMenuTabletPhoneController,
+        this.onTap,
       }) : super(key: key);
 
   @override
@@ -37,7 +34,7 @@ class CardTabListWidget extends StatelessWidget {
           ),
           elevation: 3,
           child: TextButtonWidget(
-            onTap: () => mainMenuTabletPhoneController.curriculumTabSelected(itemIndex),
+            onTap: onTap,
             borderRadius: 2.5.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(

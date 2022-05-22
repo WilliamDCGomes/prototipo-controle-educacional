@@ -86,7 +86,7 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                     Center(
                       child: TextWidget(
                         widget.controller.nameInitials,
-                        textColor: AppColors.lightGrayColor,
+                        textColor: AppColors.backgroundColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 26.sp,
                         textAlign: TextAlign.start,
