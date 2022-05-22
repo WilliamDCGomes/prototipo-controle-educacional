@@ -78,29 +78,29 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: PlatformType.isTablet(context) ?
+                    9.h : 7.h,
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 1.h),
+                      child: CardFinancialWidget(
+                        statusText: "Aberta",
+                        paymentDay: "05/06/2022",
+                        plotValue: "R\$ 743,99",
+                        hasCardRegistered: true,
+                        mainMenuTabletPhoneController: widget.controller,
+                      )
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: PlatformType.isTablet(context) ?
-                            9.h : 7.h,
-                          ),
-                          child: Center(
-                            child: Padding(
-                                padding: EdgeInsets.only(bottom: 1.h),
-                                child: CardFinancialWidget(
-                                  statusText: "Aberta",
-                                  paymentDay: "05/06/2022",
-                                  plotValue: "R\$ 743,99",
-                                  hasCardRegistered: true,
-                                  mainMenuTabletPhoneController: widget.controller,
-                                )
-                            ),
-                          ),
-                        ),
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 2.w,
