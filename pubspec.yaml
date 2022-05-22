@@ -21,10 +21,11 @@ dependencies:
   sqflite: ^2.0.2+1
   im_stepper: ^0.1.3
   flutter_svg: ^1.0.3
+  reorderables: ^0.5.0
   carousel_slider: ^4.1.1
-  responsive_sizer: 3.0.8
   cupertino_icons: ^1.0.4
   email_validator: ^2.0.1
+  responsive_sizer: ^3.0.8
   flutter_flavorizr: ^2.1.3
   font_awesome_flutter: ^10.1.0
   rounded_loading_button: ^2.1.0

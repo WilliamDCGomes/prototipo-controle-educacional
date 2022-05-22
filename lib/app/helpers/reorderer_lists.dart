@@ -7,4 +7,9 @@ class ReorderListHelper {
     list.insert(newIndex, itemReordered);
     return list;
   }
+  static List reorderWrap(int oldIndex, int newIndex, List list){
+    var itemReordered = list.removeAt(oldIndex);
+    list.insert(newIndex, itemReordered);
+    return list;
+  }
 }

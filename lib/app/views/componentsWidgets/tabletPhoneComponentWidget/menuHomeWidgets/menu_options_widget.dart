@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:projeto_tcc/app/helpers/platform_type.dart';
 import 'package:projeto_tcc/app/views/componentsWidgets/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../stylePages/app_colors.dart';
-import 'text_widget.dart';
+import '../../../stylePages/app_colors.dart';
+import '../../text_widget.dart';
 
 class MenuOptionsWidget extends StatelessWidget {
   final String text;

@@ -5,9 +5,12 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../enums/enums.dart';
 import '../helpers/paths.dart';
+import '../helpers/platform_type.dart';
 import '../views/componentsWidgets/credit_debt_card_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/card_academic_record_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/card_main_menu_widget.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/menuHomeWidgets/group_menu_home_widgets.dart';
+import '../views/componentsWidgets/tabletPhoneComponentWidget/menuHomeWidgets/menu_options_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/academic_tab_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/academic_tab_list_widget.dart';
 import '../views/componentsWidgets/tabletPhoneComponentWidget/tabWidgets/componentTabWidget/card_payment_list_widget.dart';
@@ -28,6 +31,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString courseName;
   late RxString welcomePhrase;
   late List<CardMainMenuWidget> cardMainMenuList;
+  late List<GroupMenuHomeWidget> groupMenuHomeList;
   late List<CardProfileTabListWidget> cardProfileTabList;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
@@ -47,6 +51,7 @@ class MainMenuTabletPhoneController extends GetxController {
 
   MainMenuTabletPhoneController(){
     _initializeVariables();
+    _initializeLists();
     _getValues();
     _loadCards();
     _getWelcomePhrase();
@@ -61,11 +66,70 @@ class MainMenuTabletPhoneController extends GetxController {
     academicRecordCarouselController = CarouselController();
     curriculumSearchController = TextEditingController();
     deliveriesSearchController = TextEditingController();
+  }
+
+  _initializeLists(){
     tabMainMenuList = [
       HomeTabWidget(controller: this),
       AcademicTabWidget(controller: this),
       FinancialTabWidget(controller: this),
       ProfileTabWidget(controller: this),
+    ];
+    groupMenuHomeList = [
+      GroupMenuHomeWidget(
+        titleGroupMenu:  "Ações Rápidas",
+        menuOptionsList: [
+          MenuOptionsWidget(
+            text: "Notas e Faltas",
+            imagePath: Paths.Icone_Notas_e_Faltas,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.gradesFaults),
+          ),
+          MenuOptionsWidget(
+            text: "Calendário Acadêmico",
+            imagePath: Paths.Icone_Calendario_Academico,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.academicCalendar),
+          ),
+          MenuOptionsWidget(
+            text: "Carteirinha Online",
+            imagePath: Paths.Icone_Carterinha_Estudante,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.onlineStudentCard),
+          ),
+          MenuOptionsWidget(
+            text: "Histórico Acadêmico",
+            imagePath: Paths.Icone_Historico_Academico,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.academicRecord),
+          ),
+          MenuOptionsWidget(
+            text: "Notícias e Eventos",
+            imagePath: Paths.Icone_Noticias_e_Eventos,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.newsEvents),
+          ),
+        ],
+      ),
+      GroupMenuHomeWidget(
+        titleGroupMenu:  "Solicitações",
+        menuOptionsList: [
+          MenuOptionsWidget(
+            text: "Carteirinha de Estudante",
+            imagePath: Paths.Icone_Carterinha_Estudante,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.studentCard),
+          ),
+          MenuOptionsWidget(
+            text: "Declaração Escolar",
+            imagePath: Paths.Icone_Declaracao_Escolar,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.schoolStatement),
+          ),
+          SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
+          SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
+        ],
+      ),
     ];
     tabAcademicRecordList = [
       AcademicTabListWidget(
