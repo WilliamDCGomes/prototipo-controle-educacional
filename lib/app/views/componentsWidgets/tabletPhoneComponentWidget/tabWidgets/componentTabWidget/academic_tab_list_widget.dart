@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../controllers/main_menu_tablet_phone_controller.dart';
+import '../../../../../helpers/reorderer_lists.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../text_field_widget.dart';
 
@@ -42,17 +43,29 @@ class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
               ),
               keyboardType: TextInputType.name,
             ),
-            SizedBox(
-              height: 35.h,
-              child: ListView.builder(
+            Expanded(
+              child: ReorderableListView.builder(
                 itemCount: widget.academicTabType == academicTabs.curriculum ?
                   widget.controller.curriculumTabList.length :
                   widget.controller.deliveryTabList.length,
                 itemBuilder: (context, index) {
-                  return widget.academicTabType == academicTabs.curriculum ?
-                  widget.controller.curriculumTabList.elementAt(index) :
-                  widget.controller.deliveryTabList.elementAt(index);
+                  return Container(
+                    key: Key("$index"),
+                    child: widget.academicTabType == academicTabs.curriculum ?
+                      widget.controller.curriculumTabList[index] :
+                      widget.controller.deliveryTabList[index],
+                  );
                 },
+                onReorder: (oldIndex, newIndex) {
+                  var newList = ReorderListHelper.reorderList(
+                    oldIndex,
+                    newIndex,
+                    widget.academicTabType == academicTabs.curriculum ?
+                      widget.controller.curriculumTabList :
+                      widget.controller.deliveryTabList,
+                  );
+                  //TODO Fazer um método para salvar a nova lista
+                }
               ),
             ),
           ],
