@@ -109,6 +109,7 @@ class MainMenuTabletPhoneController extends GetxController {
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.newsEvents),
           ),
+          SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
         ],
       ),
       GroupMenuHomeWidget(
