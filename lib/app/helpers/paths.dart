@@ -16,6 +16,7 @@ class Paths{
   static final String logo_pce = "${imagesPath}logo_pce.png";
   static final String Cartao_Roxo_PCE = "${imagesPath}cartao_roxo_pce.png";
   static final String Cartao_Laranja_PCE = "${imagesPath}cartao_laranja_pce.png";
+  static final String Carteirinha_PCE = "${imagesPath}carteirinha_pce.png";
 
   static final String Background = "${svgsPath}background.svg";
   static final String Icone_Editar = "${svgsPath}icone_editar.svg";
