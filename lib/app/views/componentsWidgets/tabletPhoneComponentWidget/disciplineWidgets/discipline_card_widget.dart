@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../helpers/format_numbers.dart';
+import '../../text_button_widget.dart';
+import '../../../pages/popups/tabletPhonePopups/bottom_sheet_popup.dart';
+import '../popupsWidgets/tabletPhonePopupsWidgets/discipline_information_popup_widget.dart';
 import 'discipline_body_card_widget.dart';
 import 'discipline_header_card_widget.dart';
 
@@ -8,7 +12,9 @@ class DisciplineCardWidget extends StatelessWidget {
   final String disciplineName;
   final String disciplineWorkload;
   final String firstCardInformation;
-  final String noteAverage;
+  final String professorDiscipline;
+  final double? firstNote;
+  final double? secondNote;
   final bool? approved;
 
   const DisciplineCardWidget(
@@ -17,7 +23,9 @@ class DisciplineCardWidget extends StatelessWidget {
         required this.disciplineName,
         required this.disciplineWorkload,
         required this.firstCardInformation,
-        required this.noteAverage,
+        required this.professorDiscipline,
+        this.firstNote,
+        this.secondNote,
         this.approved,
       }) : super(key: key);
 
@@ -25,20 +33,40 @@ class DisciplineCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 2.h),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          DisciplineHeaderCardWidget(
-            disciplineCode: disciplineCode,
-            disciplineName: disciplineName,
-            disciplineWorkload: disciplineWorkload,
-          ),
-          DisciplineBodyCardWidget(
-            firstCardInformation: firstCardInformation,
-            noteAverage: noteAverage,
-            approved: approved,
-          ),
-        ],
+      child: TextButtonWidget(
+        onTap: (){
+          BottomSheetPopup.showAlert(
+            context,
+            DisciplineInformationPopupWidget.getWidgetList(
+              context,
+              disciplineCode,
+              disciplineName,
+              disciplineWorkload,
+              firstCardInformation,
+              professorDiscipline,
+              firstNote,
+              secondNote,
+              approved,
+            ),
+          );
+        },
+        componentPadding: EdgeInsets.zero,
+        widgetCustom: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DisciplineHeaderCardWidget(
+              disciplineCode: disciplineCode,
+              disciplineName: disciplineName,
+              disciplineWorkload: disciplineWorkload,
+            ),
+            DisciplineBodyCardWidget(
+              firstCardInformation: firstCardInformation,
+              noteAverage: firstNote != null && secondNote != null ?
+                FormatNumbers.getNumberAverage(firstNote!, secondNote!) : "-",
+              approved: approved,
+            ),
+          ],
+        ),
       ),
     );
   }
