@@ -2,27 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/student_card_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
+import '../widgets/student_card_widget.dart';
 
-class StudentCardTabletPhonePage extends StatefulWidget {
-  const StudentCardTabletPhonePage({Key? key}) : super(key: key);
+class StudentCardTabletPhonePage extends StatelessWidget {
+  final StudentCardController controller = Get.put(StudentCardController());
 
-  @override
-  State<StudentCardTabletPhonePage> createState() => _StudentCardTabletPhonePageState();
-}
-
-class _StudentCardTabletPhonePageState extends State<StudentCardTabletPhonePage> {
-  late StudentCardController controller;
-
-  @override
-  void initState() {
-    controller = Get.put(StudentCardController());
-    super.initState();
-  }
+  StudentCardTabletPhonePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,99 +59,110 @@ class _StudentCardTabletPhonePageState extends State<StudentCardTabletPhonePage>
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 8.h),
-                        child: Stack(
+                        child: StudentCardWidget(
+                          imageBasePath: controller.imageBasePath,
+                          cardNumber: controller.cardNumber,
+                          raNumber: controller.raNumber,
+                          nameStudent: controller.studentName,
+                          validateCard: controller.validateCard,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 6.5.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Center(
-                              child: Image.asset(
-                                Paths.Carteirinha_PCE,
-                                width: 90.w,
+                            Padding(
+                              padding: EdgeInsets.only(top: 5.h),
+                              child: TextWidget(
+                                "Nome:",
+                                textColor: AppColors.blackColor,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
                               ),
                             ),
-                            SizedBox(
-                              width: 90.w,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 5.w, top: 5.h, right: 5.w),
-                                child: TextWidget(
-                                  "0026 2659 0211 0365",
-                                  textColor: AppColors.whiteColor,
-                                  fontSize: 17.sp,
-                                  textAlign: TextAlign.start,
-                                  maxLines: 1,
-                                ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 1.h),
+                              child: TextWidget(
+                                controller.studentName,
+                                textColor: AppColors.blackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
                               ),
                             ),
-                            SizedBox(
-                              width: 90.w,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 5.w, top: 12.5.h, right: 5.w),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.h),
+                              child: TextWidget(
+                                "RA (Registro Acadêmico):",
+                                textColor: AppColors.blackColor,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 1.h),
+                              child: TextWidget(
+                                controller.raNumber,
+                                textColor: AppColors.blackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.h),
+                              child: TextWidget(
+                                "Número da Carteirinha:",
+                                textColor: AppColors.blackColor,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 0.h),
+                              child: TextButtonWidget(
+                                onTap: () {
+
+                                },
+                                componentPadding: EdgeInsets.zero,
+                                widgetCustom: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    TextWidget(
-                                      "RA:",
-                                      textColor: AppColors.whiteColor,
-                                      fontSize: 14.sp,
-                                      textAlign: TextAlign.start,
-                                      maxLines: 1,
+                                    SvgPicture.asset(
+                                      Paths.Icone_Copiar,
+                                      width: 2.h,
                                     ),
                                     TextWidget(
-                                      "48467",
-                                      textColor: AppColors.whiteColor,
-                                      fontSize: 15.sp,
-                                      textAlign: TextAlign.start,
+                                      " ${controller.cardNumber}",
                                       maxLines: 1,
+                                      textColor: AppColors.blueLinkColor,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold,
+                                      textAlign: TextAlign.center,
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 90.w,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 5.w, top: 17.h, right: 5.w),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        TextWidget(
-                                          "Nome:",
-                                          textColor: AppColors.whiteColor,
-                                          fontSize: 14.sp,
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                        ),
-                                        TextWidget(
-                                          "WILLIAM DOUGLAS",
-                                          textColor: AppColors.whiteColor,
-                                          fontSize: 15.sp,
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        TextWidget(
-                                          "Validade:",
-                                          textColor: AppColors.whiteColor,
-                                          fontSize: 14.sp,
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                        ),
-                                        TextWidget(
-                                          "12/2022",
-                                          textColor: AppColors.whiteColor,
-                                          fontSize: 15.sp,
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.h),
+                              child: TextWidget(
+                                "Validade:",
+                                textColor: AppColors.blackColor,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 1.h),
+                              child: TextWidget(
+                                controller.validateCard,
+                                textColor: AppColors.blackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.start,
                               ),
                             ),
                           ],

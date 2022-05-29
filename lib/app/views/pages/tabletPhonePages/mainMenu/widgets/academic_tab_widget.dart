@@ -111,7 +111,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                                         }
                                     ),
                                     itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                      return widget.controller.cardAcademicRecordList.elementAt(itemIndex);
+                                      return widget.controller.cardAcademicRecordList[itemIndex];
                                     },
                                   ),
                                 ),
