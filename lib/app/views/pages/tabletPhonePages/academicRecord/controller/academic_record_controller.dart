@@ -1,75 +1,36 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../shared/widgets/widgetsAcademicInformations/discipline_card_widget.dart';
 import '../../shared/widgets/widgetsAcademicInformations/discipline_screen_widget.dart';
 
-class GradesFaultsController extends GetxController {
-  late List<DisciplineScreenWidget> cardAcademicRecordList;
-  late CarouselController academicRecordCarouselController;
+class AcademicRecordController extends GetxController {
+  late String studentName;
+  late String studentBirthday;
+  late String studentRA;
+  late String studentClass;
+  late String studentCourse;
+  late String studentStatus;
+  late DisciplineScreenWidget cardAcademicRecord;
   late TextEditingController searchDisciplineController;
 
-  GradesFaultsController(){
+  AcademicRecordController(){
     _inicializeVariables();
-    _loadList();
   }
 
   _inicializeVariables(){
+    studentName = "WILLIAM DOUGLAS COSTA GOMES";
+    studentBirthday = "30/01/1998";
+    studentRA = "48467";
+    studentClass = "156-7A";
+    studentCourse = "Ciência da Computação";
+    studentStatus = "MATRICULADO";
     searchDisciplineController = TextEditingController();
-    academicRecordCarouselController = CarouselController();
-  }
-
-  _loadList(){
-    cardAcademicRecordList = [
-      DisciplineScreenWidget(
-        yearValueText: "2019",
-        semesterValueText: "1º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2019",
-        semesterValueText: "2º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2020",
-        semesterValueText: "3º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2020",
-        semesterValueText: "4º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2021",
-        semesterValueText: "5º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2021",
-        semesterValueText: "6º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2022",
-        semesterValueText: "7º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-      DisciplineScreenWidget(
-        yearValueText: "2022",
-        semesterValueText: "8º Semestre",
-        gradesFaultsController: this,
-        disciplineCardList: _getDisciplinesSemesterList(),
-      ),
-    ];
+    cardAcademicRecord = DisciplineScreenWidget(
+      yearValueText: "2019",
+      semesterValueText: "1º Semestre",
+      academicRecordController: this,
+      disciplineCardList: _getDisciplinesSemesterList(),
+    );
   }
 
   List<DisciplineCardWidget> _getDisciplinesSemesterList(){
@@ -132,15 +93,5 @@ class GradesFaultsController extends GetxController {
         approved: true,
       ),
     ];
-  }
-
-  previousAcademicRecordCard() async {
-    await Future.delayed(Duration(milliseconds: 100));
-    academicRecordCarouselController.previousPage();
-  }
-
-  nextAcademicRecordCard() async {
-    await Future.delayed(Duration(milliseconds: 100));
-    academicRecordCarouselController.nextPage();
   }
 }

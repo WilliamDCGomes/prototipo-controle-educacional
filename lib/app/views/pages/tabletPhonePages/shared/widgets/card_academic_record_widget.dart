@@ -11,14 +11,14 @@ import '../../../../stylePages/app_colors.dart';
 class CardAcademicRecordWidget extends StatelessWidget {
   final String yearValueText;
   final String semesterValueText;
-  final GradesFaultsController? gadesFaultsController;
+  final GradesFaultsController? gradesFaultsController;
   final MainMenuTabletPhoneController? mainMenuTabletPhoneController;
 
   const CardAcademicRecordWidget(
       { Key? key,
         required this.yearValueText,
         required this.semesterValueText,
-        this.gadesFaultsController,
+        this.gradesFaultsController,
         this.mainMenuTabletPhoneController,
       }) : super(key: key);
 
@@ -50,7 +50,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
                       TextButtonWidget(
                         onTap: () => mainMenuTabletPhoneController != null ?
                           mainMenuTabletPhoneController!.previousAcademicRecordCard() :
-                          gadesFaultsController!.previousAcademicRecordCard(),
+                          gradesFaultsController!.previousAcademicRecordCard(),
                         height: 4.h,
                         width: 4.h,
                         componentPadding: EdgeInsets.zero,
@@ -71,7 +71,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
                       TextButtonWidget(
                         onTap: () => mainMenuTabletPhoneController != null ?
                           mainMenuTabletPhoneController!.nextAcademicRecordCard() :
-                          gadesFaultsController!.nextAcademicRecordCard(),
+                          gradesFaultsController!.nextAcademicRecordCard(),
                         height: 4.h,
                         width: 4.h,
                         componentPadding: EdgeInsets.zero,

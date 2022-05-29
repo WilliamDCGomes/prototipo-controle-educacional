@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../shared/widgets/card_academic_record_widget.dart';
-import '../../../widgetsShared/text_field_widget.dart';
-import '../controller/grades_faults_controller.dart';
-import '../../mainMenu/controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/reorderer_lists.dart';
-import '../../../../stylePages/app_colors.dart';
+import '../../../../../../helpers/reorderer_lists.dart';
+import '../../../../../stylePages/app_colors.dart';
+import '../../../../widgetsShared/text_field_widget.dart';
+import '../../../academicRecord/controller/academic_record_controller.dart';
+import '../../../academicRecord/widget/card_academic_student_record_widget.dart';
+import '../../../gradesFault/controller/grades_faults_controller.dart';
+import '../../../mainMenu/controller/main_menu_tablet_phone_controller.dart';
+import '../card_academic_record_widget.dart';
 import 'discipline_card_widget.dart';
 
 class DisciplineScreenWidget extends StatefulWidget {
@@ -13,6 +15,7 @@ class DisciplineScreenWidget extends StatefulWidget {
   final String semesterValueText;
   final List<DisciplineCardWidget> disciplineCardList;
   final GradesFaultsController? gradesFaultsController;
+  final AcademicRecordController? academicRecordController;
   final MainMenuTabletPhoneController? mainMenuTabletPhoneController;
 
   const DisciplineScreenWidget(
@@ -21,6 +24,7 @@ class DisciplineScreenWidget extends StatefulWidget {
     required this.semesterValueText,
     required this.disciplineCardList,
     this.gradesFaultsController,
+    this.academicRecordController,
     this.mainMenuTabletPhoneController,
   }) : super(key: key);
 
@@ -41,11 +45,17 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CardAcademicRecordWidget(
-          yearValueText: widget.yearValueText,
-          semesterValueText: widget.semesterValueText,
-          gadesFaultsController: widget.gradesFaultsController,
-          mainMenuTabletPhoneController: widget.mainMenuTabletPhoneController,
+        Visibility(
+          visible: widget.academicRecordController != null,
+          replacement: CardAcademicRecordWidget(
+            yearValueText: widget.yearValueText,
+            semesterValueText: widget.semesterValueText,
+            gradesFaultsController: widget.gradesFaultsController,
+            mainMenuTabletPhoneController: widget.mainMenuTabletPhoneController,
+          ),
+          child: CardAcademicStudentRecordWidget(
+            academicRecordController: widget.academicRecordController,
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 2.h),
