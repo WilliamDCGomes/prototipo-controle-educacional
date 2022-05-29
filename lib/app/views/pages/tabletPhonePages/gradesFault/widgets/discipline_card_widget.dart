@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/format_numbers.dart';
 import '../../shared/popups/bottom_sheet_popup.dart';
-import '../../shared/widgets/text_button_widget.dart';
+import '../../../widgetsShared/text_button_widget.dart';
 import '../popup/discipline_information_popup_widget.dart';
 import 'discipline_body_card_widget.dart';
 import 'discipline_header_card_widget.dart';

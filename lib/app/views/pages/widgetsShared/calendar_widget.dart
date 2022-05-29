@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../../../../../base/models/meeting.dart';
-import '../../../../../../base/models/meeting_data_source.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
-import '../../../../stylePages/app_colors.dart';
-import 'card_calendar_information_widget.dart';
+import '../../../../base/models/meeting.dart';
+import '../../../../base/models/meeting_data_source.dart';
+import '../../../helpers/date_format_to_brazil.dart';
+import '../../stylePages/app_colors.dart';
+import '../tabletPhonePages/shared/widgets/card_calendar_information_widget.dart';
 
 class CalendarWidget extends StatefulWidget {
   final List<Meeting> dataSource;

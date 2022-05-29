@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/rich_text_two_different_widget.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/text_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/rich_text_two_different_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../stylePages/app_colors.dart';
+import '../../stylePages/app_colors.dart';
 
 class TextButtonWidget extends StatelessWidget {
   final String? hintText;

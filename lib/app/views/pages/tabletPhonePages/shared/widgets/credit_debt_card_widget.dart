@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/text_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';

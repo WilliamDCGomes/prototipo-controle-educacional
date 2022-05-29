@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../stylePages/app_colors.dart';
+import '../../stylePages/app_colors.dart';
 
 class RichTextTwoDifferentWidget extends StatelessWidget {
   final int? maxLines;

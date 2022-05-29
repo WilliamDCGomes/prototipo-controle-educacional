@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../stylePages/app_colors.dart';
-import '../../../shared/widgets/text_button_widget.dart';
-import '../../../shared/widgets/text_widget.dart';
+import '../../../../widgetsShared/text_button_widget.dart';
+import '../../../../widgetsShared/text_widget.dart';
 
 class CardTabListWidget extends StatelessWidget {
   final String firstValue;

@@ -4,7 +4,7 @@ import 'package:reorderables/reorderables.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/reorderer_lists.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../../shared/widgets/text_widget.dart';
+import '../../../widgetsShared/text_widget.dart';
 
 class GroupMenuHomeWidget extends StatelessWidget {
   final String titleGroupMenu;

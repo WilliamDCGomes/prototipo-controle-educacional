@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../stylePages/app_colors.dart';
+import '../../stylePages/app_colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String? hintText;

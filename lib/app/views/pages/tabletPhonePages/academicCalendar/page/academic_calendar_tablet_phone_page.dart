@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../shared/widgets/button_widget.dart';
-import '../../shared/widgets/text_button_widget.dart';
+import '../../../widgetsShared/button_widget.dart';
+import '../../../widgetsShared/text_button_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/academic_calendar_controller.dart';
 import '../../../../../helpers/paths.dart';
-import '../../shared/widgets/calendar_widget.dart';
+import '../../../widgetsShared/calendar_widget.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class AcademicCalendarTabletPhonePage extends StatefulWidget {

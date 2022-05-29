@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/text_button_widget.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/text_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../gradesFault/controller/grades_faults_controller.dart';
 import '../../mainMenu/controller/main_menu_tablet_phone_controller.dart';

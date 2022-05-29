@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../../shared/widgets/button_widget.dart';
-import '../../shared/widgets/text_button_widget.dart';
-import '../../shared/widgets/text_widget.dart';
+import '../../../widgetsShared/button_widget.dart';
+import '../../../widgetsShared/text_button_widget.dart';
+import '../../../widgetsShared/text_widget.dart';
 import '../controllers/register_user_controller.dart';
 
 class RegisterUserTabletPhone extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../stylePages/app_colors.dart';
+import '../../stylePages/app_colors.dart';
 import 'text_widget.dart';
 
 class ButtonWidget extends StatelessWidget {

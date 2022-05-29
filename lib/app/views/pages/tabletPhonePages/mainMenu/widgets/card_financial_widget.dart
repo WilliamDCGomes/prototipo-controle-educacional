@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../shared/widgets/text_button_widget.dart';
-import '../../shared/widgets/text_widget.dart';
+import '../../../widgetsShared/rich_text_two_different_widget.dart';
+import '../../../widgetsShared/text_button_widget.dart';
+import '../../../widgetsShared/text_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../../shared/widgets/rich_text_two_different_widget.dart';
 
 class CardFinancialWidget extends StatelessWidget {
   final String statusText;

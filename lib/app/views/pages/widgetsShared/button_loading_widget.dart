@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/text_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import '../../../../stylePages/app_colors.dart';
+import '../../stylePages/app_colors.dart';
 
 class ButtonLoadingWidget extends StatelessWidget {
   final String? hintText;

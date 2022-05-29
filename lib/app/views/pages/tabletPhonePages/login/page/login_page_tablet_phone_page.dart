@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../shared/widgets/button_widget.dart';
-import '../../shared/widgets/text_button_widget.dart';
-import '../../shared/widgets/text_field_widget.dart';
-import '../../shared/widgets/text_widget.dart';
-import '../controller/login_page_controller.dart';
 import '../../../../../helpers/paths.dart';
-import '../../shared/widgets/rich_text_two_different_widget.dart';
+import '../../../widgetsShared/button_widget.dart';
+import '../../../widgetsShared/rich_text_two_different_widget.dart';
+import '../../../widgetsShared/text_button_widget.dart';
+import '../../../widgetsShared/text_field_widget.dart';
+import '../../../widgetsShared/text_widget.dart';
+import '../controller/login_page_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class LoginPageTablePhone extends StatefulWidget {

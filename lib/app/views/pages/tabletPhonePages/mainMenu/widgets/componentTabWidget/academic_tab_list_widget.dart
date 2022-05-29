@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../shared/widgets/text_field_widget.dart';
+import '../../../../widgetsShared/text_field_widget.dart';
 import '../../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../../helpers/reorderer_lists.dart';
 import '../../../../../stylePages/app_colors.dart';

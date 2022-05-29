@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/helpers/platform_type.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/pin_put_widget.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/shared/widgets/text_field_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/pin_put_widget.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_field_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../registerUser/controllers/register_user_controller.dart';
-import 'dropdown_button_widget.dart';
+import '../../../widgetsShared/dropdown_button_widget.dart';
 
 class BodyRegisterStepperWidget extends StatefulWidget {
   late final RegisterUserController controller;
