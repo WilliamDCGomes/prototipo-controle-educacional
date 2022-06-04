@@ -32,6 +32,7 @@ class Paths{
   static final String Icone_Notas_e_Faltas = "${svgsPath}icone_notas_faltas.svg";
   static final String Icone_Noticias_e_Eventos = "${svgsPath}icone_noticias_eventos.svg";
   static final String Icone_Notificacao = "${svgsPath}icone_notificacao.svg";
+  static final String Icone_Noticias_Eventos = "${svgsPath}Icone_Noticias.svg";
   static final String Ilustracao_Home = "${svgsPath}ilustracao_home.svg";
   static final String Ilustracao_Topo = "${svgsPath}ilustracao_topo.svg";
   static final String Logo_Finalizacao = "${svgsPath}logo_finalizacao.svg";

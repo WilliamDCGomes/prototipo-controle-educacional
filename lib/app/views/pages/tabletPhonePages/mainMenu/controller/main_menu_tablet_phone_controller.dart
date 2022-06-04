@@ -7,6 +7,7 @@ import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
+import '../../newsAndEvents/page/news_and_events_tablet_phone_page.dart';
 import '../../shared/widgets/card_academic_record_widget.dart';
 import '../../shared/widgets/card_main_menu_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
@@ -464,6 +465,7 @@ class MainMenuTabletPhoneController extends GetxController {
       case quickActionsOptions.schoolStatement:
         break;
       case quickActionsOptions.newsEvents:
+        Get.to(NewsAndEventsTabletPhonePage());
         break;
     }
   }
