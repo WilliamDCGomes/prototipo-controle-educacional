@@ -6,6 +6,7 @@ import '../../stylePages/app_colors.dart';
 class TextFieldWidget extends StatelessWidget {
   final String? hintText;
   final int? maxLength;
+  final int? maxLines;
   final bool? ableField;
   final bool? justRead;
   final bool? isPassword;
@@ -34,6 +35,7 @@ class TextFieldWidget extends StatelessWidget {
       { Key? key,
         this.hintText,
         this.maxLength,
+        this.maxLines,
         this.ableField,
         this.justRead,
         this.isPassword,
@@ -67,6 +69,7 @@ class TextFieldWidget extends StatelessWidget {
       child: TextFormField(
         obscureText: isPassword ?? false,
         maxLength: maxLength,
+        maxLines: maxLines ?? 1,
         enableSuggestions: enableSuggestions ?? false,
         style: textStyle ?? standardTextStyle(),
         textAlign: textAlign ?? TextAlign.start,
@@ -94,16 +97,16 @@ class TextFieldWidget extends StatelessWidget {
     return InputDecoration(
       labelText: hintText,
       labelStyle: TextStyle(
-          fontSize: 16.sp,
-          color: hintTextColor ?? AppColors.purpleDefaultColor,
+        fontSize: 16.sp,
+        color: hintTextColor ?? AppColors.purpleDefaultColor,
       ),
       suffixIcon: iconTextField,
       enabledBorder: _getBorderLayout(),
       border: _getBorderLayout(),
       focusedBorder: _getBorderLayout(),
       contentPadding: EdgeInsets.only(
-          bottom: heightInput / 2,  // HE
-          left: 10// RE THE IMPORTANT PART
+        bottom: heightInput / 2,
+        left: 10,
       ),
     );
   }

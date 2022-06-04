@@ -23,3 +23,8 @@ enum creditDebtCardType {
   mastercard,
   visa
 }
+
+enum studentTypeRequest {
+  studentCard,
+  schoolStatement
+}

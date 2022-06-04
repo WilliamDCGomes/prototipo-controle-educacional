@@ -149,7 +149,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     }
                                   ),
                                   itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                    return widget.controller.cardMainMenuList.elementAt(itemIndex);
+                                    return widget.controller.cardMainMenuList[itemIndex];
                                   },
                                 ),
                               ),

@@ -65,8 +65,8 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                               TextButtonWidget(
                                 onTap: () => controller.backArrowButtonPressed(),
                                 widgetCustom: Icon(
-                                  Icons.arrow_back,
-                                  color: AppColors.arrowBlackColor,
+                                  Icons.arrow_back_ios,
+                                  color: AppColors.purpleDefaultColor,
                                   size: 3.h,
                                 ),
                                 componentAlignment: Alignment.centerLeft,
