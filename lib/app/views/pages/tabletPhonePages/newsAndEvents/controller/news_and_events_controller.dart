@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widget/news_and_events_card_widget.dart';
+import '../../../../../../base/viewmodels/newsAndEventsViewmodel.dart';
 
 class NewsAndEventsController extends GetxController {
   late TextEditingController searchNewsAndEventsController;
-  late List<NewsAndEventsCardWidget> newsAndEventsList;
+  late List<NewsAndEventsViewmodel> newsAndEventsList;
 
   NewsAndEventsController(){
     _inicializeVariables();
@@ -17,37 +17,37 @@ class NewsAndEventsController extends GetxController {
 
   _inicializeList(){
     newsAndEventsList =  [
-      NewsAndEventsCardWidget(
-        firstValue: "Visita Técnica",
-        secondValue: "Visita de integração dos conteúdos práticos que estão sendo abordados em Sistema Operacional",
-        thirdValue: "15/08/2022 às 14h",
-        onTap: () {
-
-        },
+      NewsAndEventsViewmodel(
+        "Visita Técnica",
+        "Visita de integração dos conteúdos práticos que estão sendo abordados em Sistema Operacional",
+        "Faculdades Integradas de Bauru",
+        "15/08/2022",
+        "14:00",
+        "18:00",
       ),
-      NewsAndEventsCardWidget(
-        firstValue: "Treinamento",
-        secondValue: "Os alunos vivenciaram os primeiros atendimentos às aulas práticas",
-        thirdValue: "26/08/2022 às 16h",
-        onTap: () {
-
-        },
+      NewsAndEventsViewmodel(
+        "Treinamento",
+        "Os alunos vivenciaram os primeiros atendimentos às aulas práticas",
+        "Faculdades Integradas de Bauru",
+        "26/08/2022",
+        "16:00",
+        "18:00",
       ),
-      NewsAndEventsCardWidget(
-        firstValue: "Novo Prédio",
-        secondValue: "Será inaugurado no próximo mês o novo prédio do campus",
-        thirdValue: "15/09/2022 às 10h",
-        onTap: () {
-
-        },
+      NewsAndEventsViewmodel(
+        "Novo Prédio",
+        "Será inaugurado no próximo mês o novo prédio do campus",
+        "Faculdades Integradas de Bauru",
+        "15/09/2022",
+        "10:00",
+        "16:00",
       ),
-      NewsAndEventsCardWidget(
-        firstValue: "Oficinas Gratuitas",
-        secondValue: "Candidatos podem aproveitar para usar a nota do Enem e conhecer os novos cursos",
-        thirdValue: "20/09/2022 às 08h",
-        onTap: () {
-
-        },
+      NewsAndEventsViewmodel(
+        "Oficinas Gratuitas",
+        "Candidatos podem aproveitar para usar a nota do Enem e conhecer os novos cursos",
+        "Faculdades Integradas de Bauru",
+        "20/09/2022",
+        "08:00",
+        "17:00",
       ),
     ];
   }

@@ -9,6 +9,7 @@ import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/news_and_events_controller.dart';
+import '../widget/news_and_events_card_widget.dart';
 
 class NewsAndEventsTabletPhonePage extends StatefulWidget {
   const NewsAndEventsTabletPhonePage({Key? key}) : super(key: key);
@@ -105,7 +106,9 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                     child: ListView.builder(
                                       itemCount: controller.newsAndEventsList.length,
                                       itemBuilder: (context, index){
-                                        return controller.newsAndEventsList[index];
+                                        return NewsAndEventsCardWidget(
+                                          newsAndEventsViewmodel: controller.newsAndEventsList[index],
+                                        );
                                       },
                                     ),
                                   ),
