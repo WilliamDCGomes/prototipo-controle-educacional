@@ -11,8 +11,10 @@ import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/popups/bottom_sheet_popup.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/student_request_controller.dart';
+import '../popup/payment_form_popup.dart';
 
 class StudentRequestTablePhonePage extends StatefulWidget {
   final studentTypeRequest studentRequest;
@@ -31,7 +33,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
 
   @override
   void initState() {
-    controller = Get.put(StudentRequestController(widget.studentRequest));
+    controller = Get.put(StudentRequestController(widget.studentRequest), tag: "student-request-controller");
     super.initState();
   }
 
@@ -202,7 +204,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 3.h),
+                                        padding: EdgeInsets.only(top: 3.h, bottom: 3.h),
                                         child: TextFieldWidget(
                                           controller: controller.observations,
                                           height: 18.h,
@@ -247,7 +249,12 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                           fontWeight: FontWeight.bold,
                                           widthButton: 75.w,
                                           onPressed: (){
-
+                                            BottomSheetPopup.showAlert(
+                                              context,
+                                              PaymentFormPopup().getWidgetList(
+                                                context,
+                                              ),
+                                            );
                                           },
                                         ),
                                       ),

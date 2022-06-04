@@ -1,6 +1,7 @@
 class Paths{
   static final String imagesPath = "lib/app/assets/images/";
   static final String svgsPath = "lib/app/assets/svgs/";
+  static final String jsonPath = "lib/app/assets/json/";
 
   static final String background = "${imagesPath}background.png";
   static final String Banner_Promocional = "${imagesPath}banner_promocional.png";
@@ -41,4 +42,6 @@ class Paths{
   static final String Logo_Pce_Home = "${svgsPath}logo_pce_home.svg";
   static final String Icone_Redefinir_Senha = "${svgsPath}icone_redefinir_senha.svg";
   static final String Icone_Sair = "${svgsPath}icone_sair.svg";
+
+  static final String Success_Animation = "${jsonPath}success_animation.json";
 }

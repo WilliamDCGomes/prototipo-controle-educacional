@@ -73,3 +73,4 @@ flutter:
   assets:
     - lib/app/assets/images/
     - lib/app/assets/svgs/
+    - lib/app/assets/json/
