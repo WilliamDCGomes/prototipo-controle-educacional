@@ -78,99 +78,97 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
           visible: widget.indexView == 1,
           child: SizedBox(
             height: PlatformType.isTablet(context) ? 50.h : 48.h,
-            child: Scrollbar(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: .5.h),
-                      child: TextFieldWidget(
-                        controller: widget.controller.cepTextController,
-                        hintText: "Cep",
-                        height: 6.h,
-                        width: 90.w,
-                        keyboardType: TextInputType.number,
-                        maskTextInputFormatter: MasksForTextFields.cepMask,
-                      ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: .5.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.cepTextController,
+                      hintText: "Cep",
+                      height: 6.h,
+                      width: 90.w,
+                      keyboardType: TextInputType.number,
+                      maskTextInputFormatter: MasksForTextFields.cepMask,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
-                      child: Obx(() => SizedBox(
-                        height: 5.6.h,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            DropdownButtonWidget(
-                              itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
-                              hintText: "Uf",
-                              height: 6.h,
-                              width: 23.w,
-                              rxListItems: widget.controller.ufsList,
-                              onChanged: (selectedState) {
-                                widget.controller.ufSelected.value = selectedState ?? "";
-                              },
-                            ),
-                            TextFieldWidget(
-                              controller: widget.controller.cityTextController,
-                              hintText: "Cidade",
-                              height: 6.h,
-                              width: 65.w,
-                              keyboardType: TextInputType.name,
-                              enableSuggestions: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: Obx(() => SizedBox(
+                      height: 5.6.h,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          TextFieldWidget(
-                            controller: widget.controller.streetTextController,
-                            hintText: "Logradouro",
+                          DropdownButtonWidget(
+                            itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
+                            hintText: "Uf",
                             height: 6.h,
-                            width: 68.w,
-                            keyboardType: TextInputType.streetAddress,
-                            enableSuggestions: true,
+                            width: 23.w,
+                            rxListItems: widget.controller.ufsList,
+                            onChanged: (selectedState) {
+                              widget.controller.ufSelected.value = selectedState ?? "";
+                            },
                           ),
                           TextFieldWidget(
-                            controller: widget.controller.houseNumberTextController,
-                            hintText: "Nº",
+                            controller: widget.controller.cityTextController,
+                            hintText: "Cidade",
                             height: 6.h,
-                            width: 20.w,
-                            keyboardType: TextInputType.number,
+                            width: 65.w,
+                            keyboardType: TextInputType.name,
+                            enableSuggestions: true,
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
-                      child: TextFieldWidget(
-                        controller: widget.controller.neighborhoodTextController,
-                        hintText: "Bairro",
-                        height: 6.h,
-                        width: 90.w,
-                        keyboardType: TextInputType.name,
-                        enableSuggestions: true,
-                      ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
-                      child: TextFieldWidget(
-                        controller: widget.controller.complementTextController,
-                        hintText: "Complemento",
-                        height: 6.h,
-                        width: 90.w,
-                        keyboardType: TextInputType.text,
-                        enableSuggestions: true,
-                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextFieldWidget(
+                          controller: widget.controller.streetTextController,
+                          hintText: "Logradouro",
+                          height: 6.h,
+                          width: 68.w,
+                          keyboardType: TextInputType.streetAddress,
+                          enableSuggestions: true,
+                        ),
+                        TextFieldWidget(
+                          controller: widget.controller.houseNumberTextController,
+                          hintText: "Nº",
+                          height: 6.h,
+                          width: 20.w,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.neighborhoodTextController,
+                      hintText: "Bairro",
+                      height: 6.h,
+                      width: 90.w,
+                      keyboardType: TextInputType.name,
+                      enableSuggestions: true,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.complementTextController,
+                      hintText: "Complemento",
+                      height: 6.h,
+                      width: 90.w,
+                      keyboardType: TextInputType.text,
+                      enableSuggestions: true,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -228,56 +226,53 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
           visible: widget.indexView == 3,
           child: SizedBox(
             height: 40.h,
-            child: Scrollbar(
-              thumbVisibility: true,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TextFieldWidget(
-                      controller: widget.controller.phoneTextController,
-                      hintText: "Telefone",
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  TextFieldWidget(
+                    controller: widget.controller.phoneTextController,
+                    hintText: "Telefone",
+                    height: 6.h,
+                    width: 90.w,
+                    keyboardType: TextInputType.phone,
+                    maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.cellPhoneTextController,
+                      hintText: "Celular",
                       height: 6.h,
                       width: 90.w,
                       keyboardType: TextInputType.phone,
-                      maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
-                      child: TextFieldWidget(
-                        controller: widget.controller.cellPhoneTextController,
-                        hintText: "Celular",
-                        height: 6.h,
-                        width: 90.w,
-                        keyboardType: TextInputType.phone,
-                        maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
+                      maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
 
-                        onChanged: (cellPhoneTyped) => widget.controller.phoneTextFieldEdited(cellPhoneTyped),
-                      ),
+                      onChanged: (cellPhoneTyped) => widget.controller.phoneTextFieldEdited(cellPhoneTyped),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
-                      child: TextFieldWidget(
-                        controller: widget.controller.emailTextController,
-                        hintText: "E-mail",
-                        height: 6.h,
-                        width: 90.w,
-                        keyboardType: TextInputType.emailAddress,
-                        enableSuggestions: true,
-                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.emailTextController,
+                      hintText: "E-mail",
+                      height: 6.h,
+                      width: 90.w,
+                      keyboardType: TextInputType.emailAddress,
+                      enableSuggestions: true,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5.h),
-                      child: TextFieldWidget(
-                        controller: widget.controller.confirmEmailTextController,
-                        hintText: "Confirme o E-mail",
-                        height: 6.h,
-                        width: 90.w,
-                        keyboardType: TextInputType.emailAddress,
-                        enableSuggestions: true,
-                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.confirmEmailTextController,
+                      hintText: "Confirme o E-mail",
+                      height: 6.h,
+                      width: 90.w,
+                      keyboardType: TextInputType.emailAddress,
+                      enableSuggestions: true,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
