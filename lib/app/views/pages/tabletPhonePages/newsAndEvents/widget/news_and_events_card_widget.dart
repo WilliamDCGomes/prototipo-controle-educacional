@@ -2,22 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projeto_tcc/app/helpers/paths.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/viewmodels/newsAndEventsViewmodel.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/popups/bottom_sheet_popup.dart';
+import '../popup/news_and_events_popup.dart';
 
 class NewsAndEventsCardWidget extends StatelessWidget {
-  final String firstValue;
-  final String secondValue;
-  final String thirdValue;
-  final Function()? onTap;
+  final NewsAndEventsViewmodel newsAndEventsViewmodel;
 
   const NewsAndEventsCardWidget(
       { Key? key,
-        required this.firstValue,
-        required this.secondValue,
-        required this.thirdValue,
-        this.onTap,
+        required this.newsAndEventsViewmodel,
       }) : super(key: key);
 
   @override
@@ -34,7 +31,15 @@ class NewsAndEventsCardWidget extends StatelessWidget {
           ),
           elevation: 3,
           child: TextButtonWidget(
-            onTap: onTap,
+            onTap: (){
+              BottomSheetPopup.showAlert(
+                context,
+                NewsAndEventsPopup.getWidgetList(
+                  context,
+                  newsAndEventsViewmodel,
+                ),
+              );
+            },
             borderRadius: 2.5.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(
@@ -54,7 +59,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                               height: .2.h,
                             ),
                             TextWidget(
-                              firstValue,
+                              newsAndEventsViewmodel.newEventName,
                               textColor: AppColors.purpleDefaultColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 19.sp,
@@ -64,7 +69,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                             Expanded(
                               child: Center(
                                 child: TextWidget(
-                                  secondValue,
+                                  newsAndEventsViewmodel.newEventDescription,
                                   maxLines: 2,
                                   fontSize: 17.sp,
                                   textColor: AppColors.blackColor,
@@ -82,7 +87,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 2.w),
                                   child: TextWidget(
-                                    thirdValue,
+                                    "${newsAndEventsViewmodel.newEventDate} às ${newsAndEventsViewmodel.newEventHourStart} horas",
                                     maxLines: 1,
                                     textColor: AppColors.blackColor,
                                     fontSize: 17.sp,
