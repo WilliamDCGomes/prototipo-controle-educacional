@@ -84,15 +84,17 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                                   color: AppColors.purpleDefaultColor,
                                   size: 2.5.h,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 2.w),
-                                  child: TextWidget(
-                                    "${newsAndEventsViewmodel.newEventDate} às ${newsAndEventsViewmodel.newEventHourStart} horas",
-                                    maxLines: 1,
-                                    textColor: AppColors.blackColor,
-                                    fontSize: 17.sp,
-                                    textAlign: TextAlign.start,
-                                    fontWeight: FontWeight.bold,
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 2.w),
+                                    child: TextWidget(
+                                      "${newsAndEventsViewmodel.newEventDate} às ${newsAndEventsViewmodel.newEventHourStart}",
+                                      maxLines: 1,
+                                      textColor: AppColors.blackColor,
+                                      fontSize: 17.sp,
+                                      textAlign: TextAlign.start,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ],
