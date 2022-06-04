@@ -6,6 +6,7 @@ import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
+import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -131,34 +132,41 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                               Expanded(
                                 child: SingleChildScrollView(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
-                                      TextWidget(
-                                        "Preencha os dados para solicitação",
-                                        textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        fontWeight: FontWeight.bold,
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: TextWidget(
+                                          "Preencha os dados para solicitação",
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 18.sp,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                                        child: TextWidget(
-                                          "Tipo de Solicitação",
-                                          textColor: AppColors.blackColor,
-                                          fontSize: 16.sp,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: TextWidget(
+                                            "Tipo de Solicitação",
+                                            textColor: AppColors.blackColor,
+                                            fontSize: 16.sp,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 1,
+                                          ),
                                         ),
                                       ),
-                                      Obx(() => DropdownButtonWidget(
-                                        itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
-                                        hintText: "Tipo de Solicitação",
-                                        height: 6.h,
-                                        width: 90.w,
-                                        rxListItems: controller.requestTypeList,
-                                        onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
-                                      ),
+                                      Obx(
+                                        () => DropdownButtonWidget(
+                                          itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
+                                          hintText: "Tipo de Solicitação",
+                                          height: 6.h,
+                                          width: 85.w,
+                                          rxListItems: controller.requestTypeList,
+                                          onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: 3.h),
@@ -166,7 +174,6 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                           controller: controller.studentName,
                                           hintText: "Nome",
                                           height: 6.h,
-                                          width: 90.w,
                                           keyboardType: TextInputType.name,
                                           enableSuggestions: true,
                                           justRead: true,
@@ -178,7 +185,6 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                           controller: controller.raNumber,
                                           hintText: "RA",
                                           height: 6.h,
-                                          width: 90.w,
                                           keyboardType: TextInputType.number,
                                           enableSuggestions: true,
                                           justRead: true,
@@ -190,18 +196,16 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                           controller: controller.dateRequest,
                                           hintText: "Data do Pedido",
                                           height: 6.h,
-                                          width: 90.w,
                                           keyboardType: TextInputType.number,
                                           maskTextInputFormatter: MasksForTextFields.birthDateMask,
                                           justRead: true,
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 3.h, bottom: 36.h),
+                                        padding: EdgeInsets.only(top: 3.h),
                                         child: TextFieldWidget(
                                           controller: controller.observations,
                                           height: 18.h,
-                                          width: 90.w,
                                           keyboardType: TextInputType.text,
                                           textAlignVertical: TextAlignVertical.top,
                                           maxLines: 6,
@@ -234,6 +238,17 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                             ),
                                             contentPadding: EdgeInsets.all(1.5.h),
                                           ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 32.h),
+                                        child: ButtonWidget(
+                                          hintText: "SOLICITAR",
+                                          fontWeight: FontWeight.bold,
+                                          widthButton: 75.w,
+                                          onPressed: (){
+
+                                          },
                                         ),
                                       ),
                                     ],

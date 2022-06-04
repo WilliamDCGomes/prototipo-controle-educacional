@@ -46,7 +46,7 @@ class DropdownButtonWidget extends StatelessWidget {
             onChanged: onChanged,
             hint: TextWidget(
               hintText ?? "",
-              fontSize: 2.h,
+              fontSize: 16.sp,
               textColor: AppColors.purpleDefaultColor,
             ),
             icon: RotationTransition(
