@@ -169,7 +169,7 @@ class RegisterUserController extends GetxController {
     if(activeStep.value < 6)
       activeStep.value ++;
     else
-      Get.offAll(RegistrationCompletedTabletPhone());
+      Get.offAll(() => RegistrationCompletedTabletPhone());
   }
 
   backButtonPressed() async {

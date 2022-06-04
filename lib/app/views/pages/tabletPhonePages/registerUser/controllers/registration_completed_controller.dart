@@ -19,7 +19,7 @@ class RegistrationCompletedController extends GetxController {
   }
 
   backToLoginPage(){
-    Get.offAll(LoginPageTablePhone());
+    Get.offAll(() => LoginPageTablePhone());
   }
 
   openWebSite() async {

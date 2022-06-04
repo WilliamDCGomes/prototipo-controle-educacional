@@ -449,23 +449,23 @@ class MainMenuTabletPhoneController extends GetxController {
     await Future.delayed(Duration(milliseconds: 200));
     switch(chosenOption){
       case quickActionsOptions.gradesFaults:
-        Get.to(GradesFaultsTabletPhonePage());
+        Get.to(() => GradesFaultsTabletPhonePage());
         break;
       case quickActionsOptions.studentCard:
         break;
       case quickActionsOptions.onlineStudentCard:
-        Get.to(StudentCardTabletPhonePage());
+        Get.to(() => StudentCardTabletPhonePage());
         break;
       case quickActionsOptions.academicCalendar:
-        Get.to(AcademicCalendarTabletPhonePage());
+        Get.to(() => AcademicCalendarTabletPhonePage());
         break;
       case quickActionsOptions.academicRecord:
-        Get.to(AcademicRecordTabletPhonePage());
+        Get.to(() => AcademicRecordTabletPhonePage());
         break;
       case quickActionsOptions.schoolStatement:
         break;
       case quickActionsOptions.newsEvents:
-        Get.to(NewsAndEventsTabletPhonePage());
+        Get.to(() => NewsAndEventsTabletPhonePage());
         break;
     }
   }

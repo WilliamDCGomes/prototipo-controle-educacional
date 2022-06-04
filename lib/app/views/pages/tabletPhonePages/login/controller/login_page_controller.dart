@@ -28,10 +28,10 @@ class LoginController extends GetxController {
 
   createAccount() async {
     await Future.delayed(Duration(milliseconds: 200));
-    await Get.to(RegisterUserTabletPhone());
+    await Get.to(() => RegisterUserTabletPhone());
   }
 
   loginPressed(){
-    Get.offAll(MainMenuTabletPhonePage());
+    Get.offAll(() => MainMenuTabletPhonePage());
   }
 }
