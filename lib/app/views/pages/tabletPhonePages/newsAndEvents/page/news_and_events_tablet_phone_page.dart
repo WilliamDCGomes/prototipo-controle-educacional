@@ -74,7 +74,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(
-                                  top: PlatformType.isTablet(context) ? 12.h : 8.h,
+                                  top: PlatformType.isTablet(context) ? 12.h : 9.h,
                                   bottom: 2.h,
                                 ),
                                 child: TextWidget(
