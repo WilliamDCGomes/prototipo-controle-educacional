@@ -11,6 +11,7 @@ class CreditDebtCardWidget extends StatelessWidget {
   final String? cardExpirationDate;
   final double? height;
   final double? width;
+  final double? paddingHeightName;
   final creditDebtCardType? creditDebtCardTypeEnum;
 
   const CreditDebtCardWidget(
@@ -20,6 +21,7 @@ class CreditDebtCardWidget extends StatelessWidget {
         this.cardExpirationDate,
         this.height,
         this.width,
+        this.paddingHeightName,
         this.creditDebtCardTypeEnum,
       }) : super(key: key);
 
@@ -60,7 +62,7 @@ class CreditDebtCardWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 4.w, top: 1.h, right: 4.w),
+                      padding: EdgeInsets.only(left: 4.w, top: paddingHeightName ?? 1.h, right: 4.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

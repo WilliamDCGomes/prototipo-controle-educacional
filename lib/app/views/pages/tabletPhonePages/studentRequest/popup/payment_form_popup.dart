@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
@@ -9,7 +10,7 @@ import '../widget/bottom_select_payment_form_widget.dart';
 
 class PaymentFormPopup {
   late RxBool cardSelected;
-  late RxBool ticketSelected;
+  late RxBool bankSlipSelected;
   late StudentRequestController studentRequestController;
 
   PaymentFormPopup(){
@@ -18,7 +19,7 @@ class PaymentFormPopup {
 
   _inicializeVariables(){
     cardSelected = true.obs;
-    ticketSelected = false.obs;
+    bankSlipSelected = false.obs;
     studentRequestController = Get.find(tag: "student-request-controller");
   }
 
@@ -52,7 +53,7 @@ class PaymentFormPopup {
             InkWell(
               onTap: (){
                 cardSelected.value = true;
-                ticketSelected.value = false;
+                bankSlipSelected.value = false;
               },
               child: BottomSelectPaymentFormWidget(
                 cardTitle: "Cartão de Crédito",
@@ -62,11 +63,11 @@ class PaymentFormPopup {
             InkWell(
               onTap: (){
                 cardSelected.value = false;
-                ticketSelected.value = true;
+                bankSlipSelected.value = true;
               },
               child: BottomSelectPaymentFormWidget(
                 cardTitle: "Boleto",
-                cardSelected: ticketSelected,
+                cardSelected: bankSlipSelected,
               ),
             ),
           ],
@@ -78,7 +79,11 @@ class PaymentFormPopup {
           hintText: "AVANÇAR",
           fontWeight: FontWeight.bold,
           widthButton: 75.w,
-          onPressed: () => Get.back(),
+          onPressed: () {
+            studentRequestController.selectPaymentForm(
+              cardSelected.value ? paymentMethod.creditCard : paymentMethod.bankSlip,
+            );
+          },
         ),
       ),
     ];

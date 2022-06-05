@@ -1,11 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/payment_card_select_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
@@ -127,100 +125,19 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 1.h),
-                          child: SizedBox(
-                            height: widget.controller.creditDebtCardWidgetHeight,
-                            child: CarouselSlider.builder(
-                              carouselController: widget.controller.carouselCreditDebtCardController,
-                              itemCount: widget.controller.creditDebtCardList.length,
-                              options: CarouselOptions(
-                                  viewportFraction: .85,
-                                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                  enlargeCenterPage: true,
-                                  enableInfiniteScroll: false,
-                                  onPageChanged: (itemIndex, reason){
-                                    setState(() {
-                                      widget.controller.creditDebtCardActiveStep = itemIndex;
-                                    });
-                                  }
-                              ),
-                              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                return widget.controller.creditDebtCardList.elementAt(itemIndex);
-                              },
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 2.h),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextButtonWidget(
-                                onTap: () {
+                        PaymentCardSelectWidget(
+                          titleCards: "Cartão de Crédito William Douglas",
+                          showTitleCard: true,
+                          creditDebtCardWidgetHeight: widget.controller.creditDebtCardWidgetHeight,
+                          creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,
+                          creditDebtCardList: widget.controller.creditDebtCardList,
+                          carouselCreditDebtCardController: widget.controller.carouselCreditDebtCardController,
+                          onTap: (){
 
-                                },
-                                componentPadding: EdgeInsets.zero,
-                                widgetCustom: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 2.w),
-                                      child: TextWidget(
-                                        "Cartão de Crédito William Douglas",
-                                        textColor: AppColors.blackColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17.sp,
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                    SvgPicture.asset(
-                                      Paths.Icone_Editar,
-                                      height: 2.h,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Visibility(
-                          visible: widget.controller.creditDebtCardList.length > 1,
-                          child: Center(
-                            child: DotStepper(
-                              dotCount: widget.controller.creditDebtCardList.length,
-                              dotRadius: 1.h,
-                              activeStep: widget.controller.creditDebtCardActiveStep,
-                              shape: Shape.stadium,
-                              spacing: 3.w,
-                              indicator: Indicator.magnify,
-                              fixedDotDecoration: FixedDotDecoration(
-                                color: AppColors.grayStepColor,
-                              ),
-                              indicatorDecoration: IndicatorDecoration(
-                                color: AppColors.purpleDefaultColor,
-                              ),
-                              onDotTapped: (tappedDotIndex) {
-                                setState(() {
-                                  widget.controller.creditDebtCardActiveStep = tappedDotIndex;
-                                  widget.controller.carouselCreditDebtCardController.jumpToPage(tappedDotIndex);
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20.w, 2.h, 20.w, 0),
-                          child: ButtonWidget(
-                            hintText: "Adicionar Cartão",
-                            fontWeight: FontWeight.bold,
-                            heightButton: 5.h,
-                            onPressed: () {
+                          },
+                          onTapEditCard: (){
 
-                            },
-                          ),
+                          },
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(2.w, 2.h, 2.w, 1.h),

@@ -4,11 +4,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class BottomSheetPopup {
-  static showAlert(BuildContext context, List<Widget> bottomSheetBody){
+  static showAlert(BuildContext context, List<Widget> bottomSheetBody, double initHeight){
     showFlexibleBottomSheet(
       bottomSheetColor: AppColors.whiteColor,
       minHeight: 0,
-      initHeight: 0.5,
+      initHeight: initHeight,
       maxHeight: 1,
       context: context,
       builder: (context, scrollControlle, bottomSheerOffser){

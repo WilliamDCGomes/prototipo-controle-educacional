@@ -38,6 +38,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                   context,
                   newsAndEventsViewmodel,
                 ),
+                .55,
               );
             },
             borderRadius: 2.5.h,

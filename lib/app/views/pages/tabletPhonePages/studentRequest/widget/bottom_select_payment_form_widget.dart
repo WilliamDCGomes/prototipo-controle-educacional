@@ -55,8 +55,8 @@ class _BottomSelectPaymentFormWidgetState extends State<BottomSelectPaymentFormW
                 height: 1.h,
                 width: 1.h,
                 decoration: BoxDecoration(
-                    color: widget.cardSelected.value ? AppColors.orangeColor : AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(.5.h)
+                  color: widget.cardSelected.value ? AppColors.orangeColor : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(.5.h),
                 ),
               ),
             ),

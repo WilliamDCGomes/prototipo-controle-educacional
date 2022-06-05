@@ -48,6 +48,7 @@ class DisciplineCardWidget extends StatelessWidget {
               secondNote,
               approved,
             ),
+            .65,
           );
         },
         componentPadding: EdgeInsets.zero,

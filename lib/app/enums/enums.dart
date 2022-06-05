@@ -28,3 +28,8 @@ enum studentTypeRequest {
   studentCard,
   schoolStatement
 }
+
+enum paymentMethod {
+  creditCard,
+  bankSlip
+}
