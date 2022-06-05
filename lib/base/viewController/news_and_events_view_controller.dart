@@ -1,4 +1,4 @@
-class NewsAndEventsViewmodel {
+class NewsAndEventsViewController {
   late String newEventName;
   late String newEventDescription;
   late String newEventPlace;
@@ -6,7 +6,7 @@ class NewsAndEventsViewmodel {
   late String newEventHourStart;
   late String newEventHourEnd;
 
-  NewsAndEventsViewmodel(
+  NewsAndEventsViewController(
     this.newEventName,
     this.newEventDescription,
     this.newEventPlace,

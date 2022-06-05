@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../../../../../base/models/meeting.dart';
+import '../../../../../../base/viewcontroller/meeting_view_controller.dart';
 
 class AcademicCalendarController extends GetxController {
   late CalendarController calendarController;

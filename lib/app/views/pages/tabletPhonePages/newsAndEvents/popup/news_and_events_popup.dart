@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewmodels/newsAndEventsViewmodel.dart';
+import '../../../../../../base/viewController/news_and_events_view_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
@@ -10,7 +10,7 @@ import '../../../widgetsShared/text_widget.dart';
 class NewsAndEventsPopup {
   static List<Widget> getWidgetList(
       context,
-      final NewsAndEventsViewmodel newsAndEventsViewmodel,
+      final NewsAndEventsViewController newsAndEventsViewController,
       ){
     return [
       Center(
@@ -31,7 +31,7 @@ class NewsAndEventsPopup {
           padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
           child: Center(
             child: TextWidget(
-              newsAndEventsViewmodel.newEventName,
+              newsAndEventsViewController.newEventName,
               textColor: AppColors.whiteColor,
               fontSize: 16.sp,
               textAlign: TextAlign.center,
@@ -48,7 +48,7 @@ class NewsAndEventsPopup {
           firstTextColor: AppColors.blackColor,
           firstTextFontWeight: FontWeight.normal,
           firstTextSize: 16.sp,
-          secondText: newsAndEventsViewmodel.newEventDescription,
+          secondText: newsAndEventsViewController.newEventDescription,
           secondTextColor: AppColors.blackColor,
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
@@ -62,7 +62,7 @@ class NewsAndEventsPopup {
           firstTextColor: AppColors.blackColor,
           firstTextFontWeight: FontWeight.normal,
           firstTextSize: 16.sp,
-          secondText: newsAndEventsViewmodel.newEventPlace,
+          secondText: newsAndEventsViewController.newEventPlace,
           secondTextColor: AppColors.blackColor,
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
@@ -85,7 +85,7 @@ class NewsAndEventsPopup {
         padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
         child: Center(
           child: TextWidget(
-            newsAndEventsViewmodel.newEventDate,
+            newsAndEventsViewController.newEventDate,
             textColor: AppColors.orangeColor,
             fontSize: 16.sp,
             fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class NewsAndEventsPopup {
                   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
                   child: Center(
                     child: TextWidget(
-                      newsAndEventsViewmodel.newEventHourStart,
+                      newsAndEventsViewController.newEventHourStart,
                       textColor: AppColors.purpleDefaultColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16.sp,
@@ -148,7 +148,7 @@ class NewsAndEventsPopup {
                   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
                   child: Center(
                     child: TextWidget(
-                      newsAndEventsViewmodel.newEventHourEnd,
+                      newsAndEventsViewController.newEventHourEnd,
                       textColor: AppColors.purpleDefaultColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16.sp,

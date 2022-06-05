@@ -107,7 +107,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                       itemCount: controller.newsAndEventsList.length,
                                       itemBuilder: (context, index){
                                         return NewsAndEventsCardWidget(
-                                          newsAndEventsViewmodel: controller.newsAndEventsList[index],
+                                          newsAndEventsViewController: controller.newsAndEventsList[index],
                                         );
                                       },
                                     ),

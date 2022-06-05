@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../base/viewmodels/newsAndEventsViewmodel.dart';
+import 'package:projeto_tcc/base/viewController/news_and_events_view_controller.dart';
 
 class NewsAndEventsController extends GetxController {
   late TextEditingController searchNewsAndEventsController;
-  late List<NewsAndEventsViewmodel> newsAndEventsList;
+  late List<NewsAndEventsViewController> newsAndEventsList;
 
   NewsAndEventsController(){
     _inicializeVariables();
@@ -17,7 +17,7 @@ class NewsAndEventsController extends GetxController {
 
   _inicializeList(){
     newsAndEventsList =  [
-      NewsAndEventsViewmodel(
+      NewsAndEventsViewController(
         "Visita Técnica",
         "Visita de integração dos conteúdos práticos que estão sendo abordados em Sistema Operacional",
         "Faculdades Integradas de Bauru",
@@ -25,7 +25,7 @@ class NewsAndEventsController extends GetxController {
         "14:00",
         "18:00",
       ),
-      NewsAndEventsViewmodel(
+      NewsAndEventsViewController(
         "Treinamento",
         "Os alunos vivenciaram os primeiros atendimentos às aulas práticas",
         "Faculdades Integradas de Bauru",
@@ -33,7 +33,7 @@ class NewsAndEventsController extends GetxController {
         "16:00",
         "18:00",
       ),
-      NewsAndEventsViewmodel(
+      NewsAndEventsViewController(
         "Novo Prédio",
         "Será inaugurado no próximo mês o novo prédio do campus",
         "Faculdades Integradas de Bauru",
@@ -41,7 +41,7 @@ class NewsAndEventsController extends GetxController {
         "10:00",
         "16:00",
       ),
-      NewsAndEventsViewmodel(
+      NewsAndEventsViewController(
         "Oficinas Gratuitas",
         "Candidatos podem aproveitar para usar a nota do Enem e conhecer os novos cursos",
         "Faculdades Integradas de Bauru",

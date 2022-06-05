@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projeto_tcc/app/helpers/paths.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewmodels/newsAndEventsViewmodel.dart';
+import '../../../../../../base/viewController/news_and_events_view_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -10,11 +10,11 @@ import '../../shared/popups/bottom_sheet_popup.dart';
 import '../popup/news_and_events_popup.dart';
 
 class NewsAndEventsCardWidget extends StatelessWidget {
-  final NewsAndEventsViewmodel newsAndEventsViewmodel;
+  final NewsAndEventsViewController newsAndEventsViewController;
 
   const NewsAndEventsCardWidget(
       { Key? key,
-        required this.newsAndEventsViewmodel,
+        required this.newsAndEventsViewController,
       }) : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                 context,
                 NewsAndEventsPopup.getWidgetList(
                   context,
-                  newsAndEventsViewmodel,
+                  newsAndEventsViewController,
                 ),
                 .55,
               );
@@ -60,7 +60,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                               height: .2.h,
                             ),
                             TextWidget(
-                              newsAndEventsViewmodel.newEventName,
+                              newsAndEventsViewController.newEventName,
                               textColor: AppColors.purpleDefaultColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 19.sp,
@@ -70,7 +70,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                             Expanded(
                               child: Center(
                                 child: TextWidget(
-                                  newsAndEventsViewmodel.newEventDescription,
+                                  newsAndEventsViewController.newEventDescription,
                                   maxLines: 2,
                                   fontSize: 17.sp,
                                   textColor: AppColors.blackColor,
@@ -89,7 +89,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 2.w),
                                     child: TextWidget(
-                                      "${newsAndEventsViewmodel.newEventDate} às ${newsAndEventsViewmodel.newEventHourStart}",
+                                      "${newsAndEventsViewController.newEventDate} às ${newsAndEventsViewController.newEventHourStart}",
                                       maxLines: 1,
                                       textColor: AppColors.blackColor,
                                       fontSize: 17.sp,

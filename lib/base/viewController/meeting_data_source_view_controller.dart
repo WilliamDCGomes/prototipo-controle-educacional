@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'meeting.dart';
+import 'meeting_view_controller.dart';
 
-class MeetingDataSource extends CalendarDataSource {
-  MeetingDataSource(List<Meeting> source){
+class MeetingDataSourceViewController extends CalendarDataSource {
+  MeetingDataSource(List<MeetingViewController> source){
     appointments = source;
   }
 
