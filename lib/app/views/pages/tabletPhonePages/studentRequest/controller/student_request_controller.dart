@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../shared/widgets/animation_success_widget.dart';
@@ -72,16 +71,12 @@ class StudentRequestController extends GetxController {
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
         creditDebtCardTypeEnum: creditDebtCardType.mastercard,
-        height: 25.h,
-        width: 45.h,
       ),
       CreditDebtCardWidget(
         numericEnd: "5967",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "10/27",
         creditDebtCardTypeEnum: creditDebtCardType.visa,
-        height: 25.h,
-        width: 45.h,
       ),
     ];
   }
