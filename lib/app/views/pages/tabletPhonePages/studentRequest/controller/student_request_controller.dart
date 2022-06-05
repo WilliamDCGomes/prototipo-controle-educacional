@@ -1,12 +1,15 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/mainMenu/page/main_menu_tablet_phone_page.dart';
+import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
+import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
-import '../widget/select_card_payment_widget.dart';
+import '../pages/payment_finished_page.dart';
+import '../pages/pending_payment_page.dart';
+import '../pages/select_card_payment_page.dart';
 
 class StudentRequestController extends GetxController {
   late int creditDebtCardActiveStep;
@@ -19,9 +22,9 @@ class StudentRequestController extends GetxController {
   late TextEditingController dateRequest;
   late TextEditingController observations;
   late studentTypeRequest studentRequest;
+  late AnimationSuccessWidget animationSuccessWidget;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
-  late AnimationController animationController;
 
   StudentRequestController(this.studentRequest){
     _inicializeList();
@@ -51,6 +54,10 @@ class StudentRequestController extends GetxController {
     raNumber.text = "48467";
     dateRequest.text = DateFormatToBrazil.formatDate(DateTime.now());
     carouselCreditDebtCardController = CarouselController();
+
+    animationSuccessWidget = AnimationSuccessWidget(
+      animationSuccess: animationSuccess,
+    );
   }
 
   _inicializeList(){
@@ -67,7 +74,6 @@ class StudentRequestController extends GetxController {
         creditDebtCardTypeEnum: creditDebtCardType.mastercard,
         height: 25.h,
         width: 45.h,
-        paddingHeightName: 3.h,
       ),
       CreditDebtCardWidget(
         numericEnd: "5967",
@@ -76,7 +82,6 @@ class StudentRequestController extends GetxController {
         creditDebtCardTypeEnum: creditDebtCardType.visa,
         height: 25.h,
         width: 45.h,
-        paddingHeightName: 3.h,
       ),
     ];
   }
@@ -92,17 +97,36 @@ class StudentRequestController extends GetxController {
     Get.back();
     switch(payment){
       case paymentMethod.creditCard:
-        Get.to(() => SelectCardPaymentWidget());
+        Get.to(() => SelectCardPaymentPage());
         break;
       case paymentMethod.bankSlip:
+        var payment = PaymentFinishedViewController(
+          studentName.text,
+          requestTitle.value,
+          "BANCO ITAÚ UNIBANCO S/A",
+          "60.701.190/0001-04",
+          dateRequest.text,
+        );
+        Get.to(() => PendingPaymentPage(
+          paymentFinishedViewController: payment,
+        ));
         break;
     }
   }
   
   payRequest() async {
+    var payment = PaymentFinishedViewController(
+      studentName.text,
+      requestTitle.value,
+      "BANCO ITAÚ UNIBANCO S/A",
+      "60.701.190/0001-04",
+      dateRequest.text,
+    );
     animationSuccess.value = true;
-    animationController.forward();
-    await Future.delayed(Duration(seconds: 2));
-    Get.offAll(() => MainMenuTabletPhonePage());
+    animationSuccessWidget.iniciaAnimacao(
+      PaymentFinished(
+        paymentFinishedViewController: payment,
+      ),
+    );
   }
 }

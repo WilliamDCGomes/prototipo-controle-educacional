@@ -10,6 +10,7 @@ class ButtonWidget extends StatelessWidget {
   final double? radioButton;
   final FontWeight? fontWeight;
   final Color? backgroundColor;
+  final Color? borderColor;
   final Color? textColor;
   final Function()? onPressed;
 
@@ -21,6 +22,7 @@ class ButtonWidget extends StatelessWidget {
         this.radioButton,
         this.fontWeight,
         this.backgroundColor,
+        this.borderColor,
         this.textColor,
         this.onPressed,
       }) : super(key: key);
@@ -32,14 +34,15 @@ class ButtonWidget extends StatelessWidget {
       width: widthButton ?? 25.w,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(
-            backgroundColor ?? AppColors.backgroundButtonColor,
+        style: ElevatedButton.styleFrom(
+          elevation: 2,
+          primary: backgroundColor ?? AppColors.backgroundButtonColor,
+          side: BorderSide(
+            width: .25.h,
+            color: borderColor ?? AppColors.backgroundButtonColor,
           ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radioButton ?? 1.h),
-            ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radioButton ?? 1.h),
           ),
         ),
         child: TextWidget(

@@ -56,7 +56,7 @@ class PaymentFormPopup {
                 bankSlipSelected.value = false;
               },
               child: BottomSelectPaymentFormWidget(
-                cardTitle: "Cartão de Crédito",
+                cardTitle: "Cartão",
                 cardSelected: cardSelected,
               ),
             ),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:projeto_tcc/base/viewController/meeting_data_source_view_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../../../base/viewcontroller/meeting_view_controller.dart';
-import '../../../../base/viewcontroller/meeting_data_source_view_controller.dart';
+import '../../../../base/viewController/meeting_view_controller.dart';
 import '../../../helpers/date_format_to_brazil.dart';
 import '../../stylePages/app_colors.dart';
 import '../tabletPhonePages/shared/widgets/card_calendar_information_widget.dart';
 
 class CalendarWidget extends StatefulWidget {
-  final List<Meeting> dataSource;
+  final List<MeetingViewController> dataSource;
 
   const CalendarWidget({
     Key? key,
@@ -34,7 +34,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         GlobalWidgetsLocalizations.delegate,
       ],
       home: SfCalendar(
-        dataSource: MeetingDataSource(widget.dataSource),
+        dataSource: MeetingDataSourceViewController(widget.dataSource),
         initialSelectedDate: DateTime.now(),
         view: CalendarView.month,
         showNavigationArrow: true,

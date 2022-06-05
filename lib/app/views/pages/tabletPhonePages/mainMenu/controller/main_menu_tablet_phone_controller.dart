@@ -11,7 +11,7 @@ import '../../newsAndEvents/page/news_and_events_tablet_phone_page.dart';
 import '../../shared/widgets/card_academic_record_widget.dart';
 import '../../shared/widgets/card_main_menu_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
-import '../../studentRequest/page/student_request_tablet_phone_page.dart';
+import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
 import '../widgets/componentTabWidget/card_tab_list_widget.dart';
 import '../widgets/group_menu_home_widgets.dart';
 import '../widgets/academic_tab_widget.dart';

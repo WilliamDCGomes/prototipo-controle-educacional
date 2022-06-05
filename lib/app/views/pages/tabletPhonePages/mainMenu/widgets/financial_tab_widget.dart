@@ -126,7 +126,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                           ),
                         ),
                         PaymentCardSelectWidget(
-                          titleCards: "Cartão de Crédito William Douglas",
+                          titleCards: "Cartão Cadastrado William Douglas",
                           showTitleCard: true,
                           creditDebtCardWidgetHeight: widget.controller.creditDebtCardWidgetHeight,
                           creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,
