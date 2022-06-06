@@ -21,4 +21,13 @@ class DateFormatToBrazil {
     }
     return "";
   }
+
+  static String mounth(DateTime? date) {
+    if(date != null) {
+      initializeDateFormatting('pt_BR', null);
+      Intl.defaultLocale = 'pt_BR';
+      return DateFormat('MMMM').format(date).replaceAll('-', ' ');
+    }
+    return "";
+  }
 }

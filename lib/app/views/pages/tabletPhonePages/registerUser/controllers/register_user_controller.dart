@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../../../helpers/brazil_address_informations.dart';
+import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/body_register_stepper_widget.dart';
 import '../../shared/widgets/header_register_stepper_widget.dart';
 import '../pages/registration_completed_tablet_phone_page.dart';
@@ -12,6 +13,7 @@ class RegisterUserController extends GetxController {
   late List<String> periodList;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
+  late RxBool animationSuccess;
   late RxBool confirmPasswordFieldEnabled;
   late RxString ufSelected;
   late RxString periodSelected;
@@ -43,6 +45,7 @@ class RegisterUserController extends GetxController {
   late TextEditingController confirmPasswordTextController;
   late List<HeaderRegisterStepperWidget> headerRegisterStepperList;
   late List<BodyRegisterStepperWidget> bodyRegisterStepperList;
+  late AnimationSuccessWidget animationSuccessWidget;
 
   RegisterUserController(){
     _initializeVariables();
@@ -54,6 +57,7 @@ class RegisterUserController extends GetxController {
     activeStep = 0.obs;
     ufSelected = "".obs;
     periodSelected = "".obs;
+    animationSuccess = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
     ufsList = [""].obs;
@@ -88,6 +92,9 @@ class RegisterUserController extends GetxController {
     emailVerification5TextController = TextEditingController();
     passwordTextController = TextEditingController();
     confirmPasswordTextController = TextEditingController();
+    animationSuccessWidget = AnimationSuccessWidget(
+      animationSuccess: animationSuccess,
+    );
     headerRegisterStepperList = [
       HeaderRegisterStepperWidget(
         firstText: "PASSO 1 DE 7",
@@ -168,8 +175,10 @@ class RegisterUserController extends GetxController {
   nextButtonPressed(){
     if(activeStep.value < 6)
       activeStep.value ++;
-    else
-      Get.offAll(() => RegistrationCompletedTabletPhone());
+    else{
+      animationSuccess.value = true;
+      animationSuccessWidget.iniciaAnimacao(RegistrationCompletedTabletPhone());
+    }
   }
 
   backButtonPressed() async {

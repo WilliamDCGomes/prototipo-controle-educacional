@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/helpers/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -72,17 +73,24 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: PlatformType.isTablet(context) ? 12.h : 9.h,
-                                  bottom: 2.h,
+                              Container(
+                                width: 95.w,
+                                margin: EdgeInsets.only(
+                                  top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                                  bottom: 3.h,
+                                ),
+                                padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(2.5.h),
+                                  color: AppColors.purpleDefaultColor,
                                 ),
                                 child: TextWidget(
-                                  "Notícias",
-                                  textColor: AppColors.blackColor,
-                                  fontWeight: FontWeight.bold,
+                                  "Últimas Notícias e Eventos do mês de ${DateFormatToBrazil.mounth(DateTime.now())}",
+                                  textColor: AppColors.whiteColor,
                                   fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               TextFieldWidget(

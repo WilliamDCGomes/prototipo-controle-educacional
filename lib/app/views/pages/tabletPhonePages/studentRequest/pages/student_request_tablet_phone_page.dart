@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/button_widget.dart';
@@ -84,7 +85,10 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                             children: [
                               Container(
                                 width: 95.w,
-                                margin: EdgeInsets.only(top: 8.h, bottom: 5.h),
+                                margin: EdgeInsets.only(
+                                  top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                                  bottom: 5.h,
+                                ),
                                 padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2.5.h),

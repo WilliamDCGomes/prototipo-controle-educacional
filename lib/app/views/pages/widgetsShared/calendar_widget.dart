@@ -4,7 +4,6 @@ import 'package:projeto_tcc/base/viewController/meeting_data_source_view_control
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../../../../base/viewController/meeting_view_controller.dart';
-import '../../../helpers/date_format_to_brazil.dart';
 import '../../stylePages/app_colors.dart';
 import '../tabletPhonePages/shared/widgets/card_calendar_information_widget.dart';
 
@@ -25,7 +24,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      locale: Locale("pt-BR"),
       supportedLocales: [
         Locale('pt-BR'),
       ],
@@ -89,10 +87,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         ),
         appointmentBuilder: (context, calendarAppointmentDetails){
           return CardCalendarInformationWidget(
-            firstValue: calendarAppointmentDetails.appointments.first.eventName,
-            secondValue: DateFormatToBrazil.formatDateFull(calendarAppointmentDetails.date),
-            thirdValue: "${calendarAppointmentDetails.appointments.first.from.hour}:${calendarAppointmentDetails.appointments.first.from.minute}",
-            cardColor: AppColors.orangeColor,
+            meetingViewController: calendarAppointmentDetails.appointments.first,
           );
         },
       ),

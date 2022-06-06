@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
 import '../../gradesFault/controller/grades_faults_controller.dart';
 import '../../mainMenu/controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
@@ -95,9 +97,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
                   Column(
                     children: [
                       TextButtonWidget(
-                        onTap: () {
-
-                        },
+                        onTap: () => Get.to(() => AcademicRecordTabletPhonePage()),
                         widgetCustom: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,

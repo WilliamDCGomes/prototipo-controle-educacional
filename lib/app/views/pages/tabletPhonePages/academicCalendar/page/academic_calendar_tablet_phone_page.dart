@@ -22,7 +22,7 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
 
   @override
   void initState() {
-    controller = Get.put(AcademicCalendarController());
+    controller = Get.put(AcademicCalendarController(), tag: "academic-calendar-controller");
     super.initState();
   }
 
@@ -100,6 +100,7 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                           fontWeight: FontWeight.bold,
                           widthButton: 100.w,
                           backgroundColor: AppColors.orangeColor,
+                          borderColor: AppColors.orangeColor,
                           textColor: AppColors.whiteColor,
                           onPressed: () {
 
