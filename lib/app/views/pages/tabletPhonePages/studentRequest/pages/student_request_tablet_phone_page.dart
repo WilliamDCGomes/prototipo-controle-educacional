@@ -91,7 +91,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                 ),
                                 padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2.5.h),
+                                  borderRadius: BorderRadius.circular(1.h),
                                   color: AppColors.purpleDefaultColor,
                                 ),
                                 child: Column(

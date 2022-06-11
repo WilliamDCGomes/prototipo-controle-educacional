@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
@@ -12,7 +13,6 @@ import '../../shared/widgets/card_academic_record_widget.dart';
 import '../../shared/widgets/card_main_menu_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
 import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
-import '../widgets/componentTabWidget/card_tab_list_widget.dart';
 import '../widgets/group_menu_home_widgets.dart';
 import '../widgets/academic_tab_widget.dart';
 import '../widgets/componentTabWidget/academic_tab_list_widget.dart';
@@ -41,8 +41,8 @@ class MainMenuTabletPhoneController extends GetxController {
   late List<CreditDebtCardWidget> creditDebtCardList;
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
   late List<CardPaymentListWidget> cardPaymentList;
-  late List<Widget> curriculumTabList;
-  late List<Widget> deliveryTabList;
+  late List<CurriculumDeliveryViewController> curriculumTabList;
+  late List<CurriculumDeliveryViewController> deliveryTabList;
   late List<Widget> tabMainMenuList;
   late List<Widget> tabAcademicRecordList;
   late TabController tabController;
@@ -137,6 +137,7 @@ class MainMenuTabletPhoneController extends GetxController {
         ],
       ),
     ];
+
     tabAcademicRecordList = [
       AcademicTabListWidget(
         controller: this,
@@ -147,94 +148,85 @@ class MainMenuTabletPhoneController extends GetxController {
         academicTabType: academicTabs.deliveries,
       ),
     ];
+
     curriculumTabList = [
-      CardTabListWidget(
-        firstValue: "Projeto I",
-        secondValue: "Segunda-Feira, 19:00 - 20:40",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(0),
+      CurriculumDeliveryViewController(
+        "Projeto I",
+        "Segunda-Feira, 19:00 - 20:40",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Qualidade e Testes de Software",
-        secondValue: "Segunda-Feira, 21:00 - 22:30",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(1),
+      CurriculumDeliveryViewController(
+        "Qualidade e Testes de Software",
+        "Segunda-Feira, 21:00 - 22:30",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Tópicos em Computação",
-        secondValue: "Terça-Feira, 19:00 - 22:30",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(2),
+      CurriculumDeliveryViewController(
+        "Tópicos em Computação",
+        "Terça-Feira, 19:00 - 22:30",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Projeto I",
-        secondValue: "Quarta-Feira, 19:00 - 20:40",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(3),
+      CurriculumDeliveryViewController(
+        "Projeto I",
+        "Quarta-Feira, 19:00 - 20:40",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Segurança em Sistemas de Informação",
-        secondValue: "Quarta-Feira, 21:00 - 22:30",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(4),
+      CurriculumDeliveryViewController(
+        "Segurança em Sistemas de Informação",
+        "Quarta-Feira, 21:00 - 22:30",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Ciência de Dados I",
-        secondValue: "Quinta-Feira, 19:00 - 22:30",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await await curriculumTabSelected(5),
+      CurriculumDeliveryViewController(
+        "Ciência de Dados I",
+        "Quinta-Feira, 19:00 - 22:30",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Modelagem Computacional em Grafos",
-        secondValue: "Sexta-Feira, 19:00 - 20:40",
-        thirdValue: "Laboratório A18",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(6),
+      CurriculumDeliveryViewController(
+        "Modelagem Computacional em Grafos",
+        "Sexta-Feira, 19:00 - 20:40",
+        "Laboratório A18",
+        AppColors.purpleDefaultColor,
       ),
-      CardTabListWidget(
-        firstValue: "Pesquisa Operacional",
-        secondValue: "Sexta-Feira, 19:00 - 20:40",
-        thirdValue: "Sala D14",
-        cardColor: AppColors.purpleDefaultColor,
-        onTap: () async => await curriculumTabSelected(7),
+      CurriculumDeliveryViewController(
+        "Pesquisa Operacional",
+        "Sexta-Feira, 21:00 - 22:30",
+        "Sala D14",
+        AppColors.purpleDefaultColor,
       ),
     ];
+
     deliveryTabList = [
-      CardTabListWidget(
-        firstValue: "Lista de Exercícios I",
-        secondValue: "Segunda-Feira, 12/04 às 20:40",
-        thirdValue: "Banco de Dados",
-        cardColor: AppColors.orangeColor,
-        onTap: () async => await cardProfileSelected(0),
+      CurriculumDeliveryViewController(
+        "Lista de Exercícios I",
+        "Segunda-Feira, 12/04 às 20:40",
+        "Banco de Dados",
+        AppColors.orangeColor,
       ),
-      CardTabListWidget(
-        firstValue: "Lista de Exercícios II",
-        secondValue: "Quinta-Feira, 15/04 às 21:00",
-        thirdValue: "Projeto I",
-        cardColor: AppColors.orangeColor,
-        onTap: () async => await cardProfileSelected(1),
+      CurriculumDeliveryViewController(
+        "Lista de Exercícios II",
+        "Quinta-Feira, 15/04 às 21:00",
+        "Projeto I",
+        AppColors.orangeColor,
       ),
-      CardTabListWidget(
-        firstValue: "Trabalho de Segurança",
-        secondValue: "Quarta-Feira, 14/04 às 19:00",
-        thirdValue: "Segurança de Sistema",
-        cardColor: AppColors.orangeColor,
-        onTap: () async => await cardProfileSelected(2),
+      CurriculumDeliveryViewController(
+        "Trabalho de Segurança",
+        "Quarta-Feira, 14/04 às 19:00",
+        "Segurança de Sistema",
+        AppColors.orangeColor,
       ),
-      CardTabListWidget(
-        firstValue: "Lista de Matemática",
-        secondValue: "Sexta-Feira, 16/04 às 21:30",
-        thirdValue: "Matemática",
-        cardColor: AppColors.orangeColor,
-        onTap: () async => await cardProfileSelected(3),
+      CurriculumDeliveryViewController(
+        "Lista de Matemática",
+        "Sexta-Feira, 16/04 às 21:30",
+        "Matemática",
+        AppColors.orangeColor,
       ),
     ];
+
     cardPaymentList = [
       CardPaymentListWidget(
         firstValue: "Futura",

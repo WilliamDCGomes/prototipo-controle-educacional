@@ -104,7 +104,7 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
                                 }
                             ),
                             itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                              return controller.pageIntroduction.elementAt(itemIndex);
+                              return controller.pageIntroduction[itemIndex];
                             },
                           ),
                           DotStepper(

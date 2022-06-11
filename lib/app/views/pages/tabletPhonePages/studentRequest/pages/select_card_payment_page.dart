@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
@@ -75,18 +76,21 @@ class _SelectCardPaymentPageState extends State<SelectCardPaymentPage> {
                           children: [
                             Container(
                               width: 95.w,
-                              margin: EdgeInsets.only(top: 8.h, bottom: 5.h),
+                              margin: EdgeInsets.only(
+                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                                bottom: 5.h,
+                              ),
                               padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(2.5.h),
+                                borderRadius: BorderRadius.circular(1.h),
                                 color: AppColors.purpleDefaultColor,
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Obx(
-                                        () => TextWidget(
+                                    () => TextWidget(
                                       studentRequestController.requestTitle.value.toUpperCase(),
                                       textColor: AppColors.whiteColor,
                                       fontSize: 18.sp,
@@ -96,7 +100,7 @@ class _SelectCardPaymentPageState extends State<SelectCardPaymentPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                    padding: EdgeInsets.only(top: 1.5.h),
                                     child: RichTextTwoDifferentWidget(
                                       firstText: "Valor: ",
                                       firstTextColor: AppColors.whiteColor,

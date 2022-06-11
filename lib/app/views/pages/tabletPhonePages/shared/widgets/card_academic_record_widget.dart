@@ -32,7 +32,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
         height: 18.h,
         width: 95.w,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2.5.h),
+          borderRadius: BorderRadius.circular(1.h),
           color: AppColors.whiteColor,
         ),
         child: Stack(

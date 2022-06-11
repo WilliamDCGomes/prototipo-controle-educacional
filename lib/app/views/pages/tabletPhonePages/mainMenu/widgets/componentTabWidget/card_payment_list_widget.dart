@@ -34,7 +34,7 @@ class CardPaymentListWidget extends StatelessWidget {
         child: Card(
           color: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2.5.h),
+            borderRadius: BorderRadius.circular(1.h),
           ),
           elevation: 3,
           child: TextButtonWidget(

@@ -5,6 +5,7 @@ import '../../../../widgetsShared/text_field_widget.dart';
 import '../../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../../helpers/reorderer_lists.dart';
 import '../../../../../stylePages/app_colors.dart';
+import 'card_tab_list_widget.dart';
 
 class AcademicTabListWidget extends StatefulWidget {
   late final MainMenuTabletPhoneController controller;
@@ -49,9 +50,9 @@ class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
                   widget.controller.curriculumTabList.length :
                   widget.controller.deliveryTabList.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    key: Key("$index"),
-                    child: widget.academicTabType == academicTabs.curriculum ?
+                  return CardTabListWidget(
+                    key: Key("${widget.academicTabType == academicTabs.curriculum}$index"),
+                    curriculumDeliveryViewController: widget.academicTabType == academicTabs.curriculum ?
                       widget.controller.curriculumTabList[index] :
                       widget.controller.deliveryTabList[index],
                   );

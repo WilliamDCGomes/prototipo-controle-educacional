@@ -87,9 +87,8 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                                 ],
                               ),
                             ),
-                            Obx(() => controller.headerRegisterStepperList.elementAt(
-                                controller.activeStep.value
-                            ),
+                            Obx(
+                              () => controller.headerRegisterStepperList[controller.activeStep.value],
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 2.h, 0, 4.h),
@@ -110,9 +109,8 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                               ),
                               ),
                             ),
-                            Obx(() => controller.bodyRegisterStepperList.elementAt(
-                                controller.activeStep.value
-                              ),
+                            Obx(
+                              () => controller.bodyRegisterStepperList[controller.activeStep.value],
                             ),
                             Expanded(
                               child: Align(

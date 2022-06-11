@@ -2,29 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
+import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/news_and_events_controller.dart';
-import '../widget/news_and_events_card_widget.dart';
+import '../controller/academic_details_controller.dart';
 
-class NewsAndEventsTabletPhonePage extends StatefulWidget {
-  const NewsAndEventsTabletPhonePage({Key? key}) : super(key: key);
+class AcademicDetailsTabletPhonePage extends StatefulWidget {
+  late final CurriculumDeliveryViewController curriculumDeliveryViewController;
+
+  AcademicDetailsTabletPhonePage({
+    Key? key,
+    required this.curriculumDeliveryViewController,
+  }) : super(key: key);
 
   @override
-  State<NewsAndEventsTabletPhonePage> createState() => _NewsAndEventsTabletPhonePageState();
+  State<AcademicDetailsTabletPhonePage> createState() => _AcademicDetailsTabletPhonePageState();
 }
 
-class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhonePage> {
-  late NewsAndEventsController controller;
+class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPhonePage> {
+  late AcademicDetailsController controller;
 
   @override
   void initState() {
-    controller = Get.put(NewsAndEventsController());
+    controller = Get.put(AcademicDetailsController(widget.curriculumDeliveryViewController));
     super.initState();
   }
 
@@ -63,7 +66,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 2.w),
                           child: TitleWithBackButtonWidget(
-                            title: "Notícias e Eventos",
+                            title: "Aulas",
                           ),
                         ),
                       ),
@@ -77,48 +80,37 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                 width: 95.w,
                                 margin: EdgeInsets.only(
                                   top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                  bottom: 3.h,
+                                  bottom: 5.h,
                                 ),
                                 padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1.h),
+                                  borderRadius: BorderRadius.circular(2.5.h),
                                   color: AppColors.purpleDefaultColor,
                                 ),
-                                child: TextWidget(
-                                  "Últimas Notícias e Eventos do mês de ${DateFormatToBrazil.mounth(DateTime.now())}",
-                                  textColor: AppColors.whiteColor,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  fontWeight: FontWeight.bold,
+                                child: Center(
+                                  child: TextWidget(
+                                    controller.curriculumDeliveryViewController.title,
+                                    textColor: AppColors.whiteColor,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 3,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              TextFieldWidget(
-                                controller: controller.searchNewsAndEventsController,
-                                hintText: "Pesquisar Notícias e Eventos",
-                                height: 6.h,
-                                width: 90.w,
-                                iconTextField: Icon(
-                                  Icons.search,
-                                  color: AppColors.purpleDefaultColor,
-                                  size: 3.h,
-                                ),
-                                keyboardType: TextInputType.name,
                               ),
                               Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 1.h,
-                                  ),
-                                  child: Center(
-                                    child: ListView.builder(
-                                      itemCount: controller.newsAndEventsList.length,
-                                      itemBuilder: (context, index){
-                                        return NewsAndEventsCardWidget(
-                                          newsAndEventsViewController: controller.newsAndEventsList[index],
-                                        );
-                                      },
-                                    ),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      Card(
+                                        color: AppColors.whiteColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(1.h),
+                                        ),
+                                        elevation: 3,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
