@@ -154,12 +154,15 @@ class MainMenuTabletPhoneController extends GetxController {
     curriculumTabList = [
       CurriculumDeliveryViewController(
         title: "Projeto I",
-        date: "Segunda-Feira, 19:00 - 20:40",
+        date: DateTime.now(),
+        hourStart: "19:00",
+        hourEnd: "20:40",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -171,6 +174,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 02",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -184,12 +188,15 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
       CurriculumDeliveryViewController(
         title: "Qualidade e Testes de Software",
-        date: "Segunda-Feira, 21:00 - 22:30",
+        date: DateTime.now(),
+        hourStart: "21:00",
+        hourEnd: "22:30",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -203,12 +210,15 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
       CurriculumDeliveryViewController(
         title: "Tópicos em Computação",
-        date: "Terça-Feira, 19:00 - 22:30",
+        date: DateTime.now().add(Duration(days: 1)),
+        hourStart: "19:00",
+        hourEnd: "22:30",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -220,6 +230,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 02",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -231,6 +242,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 03",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -244,19 +256,24 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
       CurriculumDeliveryViewController(
         title: "Projeto I",
-        date: "Quarta-Feira, 19:00 - 20:40",
+        date: DateTime.now().add(Duration(days: 2)),
+        hourStart: "19:00",
+        hourEnd: "20:40",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [],
       ),
       CurriculumDeliveryViewController(
         title: "Segurança em Sistemas de Informação",
-        date: "Quarta-Feira, 21:00 - 22:30",
+        date: DateTime.now().add(Duration(days: 2)),
+        hourStart: "21:00",
+        hourEnd: "22:30",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -268,6 +285,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 02",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -281,12 +299,15 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
       CurriculumDeliveryViewController(
         title: "Ciência de Dados I",
-        date: "Quinta-Feira, 19:00 - 22:30",
+        date: DateTime.now().add(Duration(days: 3)),
+        hourStart: "19:00",
+        hourEnd: "22:30",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -298,6 +319,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 02",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -311,12 +333,15 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
       CurriculumDeliveryViewController(
         title: "Modelagem Computacional em Grafos",
-        date: "Sexta-Feira, 19:00 - 20:40",
+        date: DateTime.now().add(Duration(days: 4)),
+        hourStart: "19:00",
+        hourEnd: "20:40",
         description: "Laboratório A18",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -328,6 +353,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 02",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -339,6 +365,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 03",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -350,6 +377,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 04",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -363,12 +391,15 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
       CurriculumDeliveryViewController(
         title: "Pesquisa Operacional",
-        date: "Sexta-Feira, 21:00 - 22:30",
+        date: DateTime.now().add(Duration(days: 4)),
+        hourStart: "21:00",
+        hourEnd: "22:30",
         description: "Sala D14",
         color: AppColors.purpleDefaultColor,
         classes: [
           Classes.fromJson({
             "className": "Aula 01",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -380,6 +411,7 @@ class MainMenuTabletPhoneController extends GetxController {
           }),
           Classes.fromJson({
             "className": "Aula 02",
+            "classSubject": "Raspagem de Dados",
             "disciplineName": "Projeto I",
             "classDescription": "Aula de projeto para concluir o TCC",
             "professorName": "Torres",
@@ -396,25 +428,25 @@ class MainMenuTabletPhoneController extends GetxController {
     deliveryTabList = [
       CurriculumDeliveryViewController(
         title: "Lista de Exercícios I",
-        date: "Segunda-Feira, 12/04 às 20:40",
+        date: DateTime.now().add(Duration(days: 1)).add(Duration(hours: 5)),
         description: "Banco de Dados",
         color: AppColors.orangeColor,
       ),
       CurriculumDeliveryViewController(
         title: "Lista de Exercícios II",
-        date: "Quinta-Feira, 15/04 às 21:00",
+        date: DateTime.now().add(Duration(days: 2)).add(Duration(hours: 2)),
         description: "Projeto I",
         color: AppColors.orangeColor,
       ),
       CurriculumDeliveryViewController(
         title: "Trabalho de Segurança",
-        date: "Quarta-Feira, 14/04 às 19:00",
+        date: DateTime.now().add(Duration(days: 4)).add(Duration(hours: 3)),
         description: "Segurança de Sistema",
         color: AppColors.orangeColor,
       ),
       CurriculumDeliveryViewController(
         title: "Lista de Matemática",
-        date: "Sexta-Feira, 16/04 às 21:30",
+        date: DateTime.now().add(Duration(days: 4)).add(Duration(hours: 5)),
         description: "Matemática",
         color: AppColors.orangeColor,
       ),

@@ -28,7 +28,7 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
 
   @override
   void initState() {
-    controller = Get.put(AcademicDetailsController(widget.curriculumDeliveryViewController));
+    controller = Get.put(AcademicDetailsController(widget.curriculumDeliveryViewController), tag: "academic-details-controller");
     super.initState();
   }
 
@@ -116,7 +116,6 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
                                     itemCount: controller.curriculumDeliveryViewController.classes!.length,
                                     itemBuilder: (context, index){
                                       return ClassesCardWidget(
-                                        curriculumDeliveryViewController: controller.curriculumDeliveryViewController,
                                         classes: controller.curriculumDeliveryViewController.classes![index],
                                       );
                                     },

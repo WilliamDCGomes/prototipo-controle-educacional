@@ -5,7 +5,7 @@ import '../../../../../../../base/viewController/curriculum_delivery_view_contro
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
-import '../../../academicDetails/page/academic_details_tablet_phone_page.dart';
+import '../../../academicDetails/pages/academic_details_tablet_phone_page.dart';
 
 class CardTabListWidget extends StatelessWidget {
   final CurriculumDeliveryViewController curriculumDeliveryViewController;
@@ -78,7 +78,7 @@ class CardTabListWidget extends StatelessWidget {
                             SizedBox(
                               width: 66.w,
                               child: TextWidget(
-                                curriculumDeliveryViewController.date,
+                                curriculumDeliveryViewController.getFormattedDay,
                                 maxLines: 1,
                                 fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,

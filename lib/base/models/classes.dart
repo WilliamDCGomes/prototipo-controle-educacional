@@ -3,6 +3,7 @@ import 'base/coreEntity.dart';
 class Classes extends CoreEntity{
   //#region Atributos
   late String? className;
+  late String? classSubject;
   late String? disciplineName;
   late String? classDescription;
   late String? professorName;
@@ -12,6 +13,7 @@ class Classes extends CoreEntity{
   //#region Construtor
   Classes() : super(){
     className = null;
+    classSubject = null;
     disciplineName = null;
     classDescription = null;
     professorName = null;
@@ -22,6 +24,7 @@ class Classes extends CoreEntity{
   //#region Conversões
   Classes.fromJson(Map<String, dynamic> json) {
     className = json["className"];
+    classSubject = json["classSubject"];
     disciplineName = json["disciplineName"];
     classDescription = json["classDescription"];
     professorName = json["professorName"];
@@ -35,6 +38,7 @@ class Classes extends CoreEntity{
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data["className"] = this.className;
+    data["classSubject"] = this.classSubject;
     data["disciplineName"] = this.disciplineName;
     data["classDescription"] = this.classDescription;
     data["professorName"] = this.professorName;
