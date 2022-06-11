@@ -9,6 +9,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/academic_details_controller.dart';
+import '../widget/classesCardWidget.dart';
 
 class AcademicDetailsTabletPhonePage extends StatefulWidget {
   late final CurriculumDeliveryViewController curriculumDeliveryViewController;
@@ -84,7 +85,7 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
                                 ),
                                 padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2.5.h),
+                                  borderRadius: BorderRadius.circular(1.h),
                                   color: AppColors.purpleDefaultColor,
                                 ),
                                 child: Center(
@@ -98,22 +99,31 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
                                   ),
                                 ),
                               ),
+                              controller.curriculumDeliveryViewController.classes != null ?
                               Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                                    children: [
-                                      Card(
-                                        color: AppColors.whiteColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(1.h),
-                                        ),
-                                        elevation: 3,
-                                      ),
-                                    ],
+                                child: Visibility(
+                                  visible: controller.curriculumDeliveryViewController.classes!.isNotEmpty,
+                                  replacement: Center(
+                                    child: TextWidget(
+                                      "Nenhuma aula registrada",
+                                      textColor: AppColors.blackColor91Percent,
+                                      fontSize: 18.sp,
+                                      textAlign: TextAlign.center,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  child: ListView.builder(
+                                    itemCount: controller.curriculumDeliveryViewController.classes!.length,
+                                    itemBuilder: (context, index){
+                                      return ClassesCardWidget(
+                                        curriculumDeliveryViewController: controller.curriculumDeliveryViewController,
+                                        classes: controller.curriculumDeliveryViewController.classes![index],
+                                      );
+                                    },
                                   ),
                                 ),
-                              ),
+                              ) :
+                              Container(),
                             ],
                           ),
                         ),
