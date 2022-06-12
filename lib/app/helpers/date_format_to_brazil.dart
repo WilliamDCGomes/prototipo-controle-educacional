@@ -44,7 +44,7 @@ class DateFormatToBrazil {
   static String weekDay(DateTime? date) {
     if(date != null) {
       switch(date.weekday){
-        case 0:
+        case 7:
           return "Domingo";
         case 1:
           return "Segunda";

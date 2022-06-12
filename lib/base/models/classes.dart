@@ -1,4 +1,5 @@
 import 'base/coreEntity.dart';
+import 'files.dart';
 
 class Classes extends CoreEntity{
   //#region Atributos
@@ -8,6 +9,7 @@ class Classes extends CoreEntity{
   late String? classDescription;
   late String? professorName;
   late DateTime? classDate;
+  late List<Files> files;
   //#endregion
 
   //#region Construtor
@@ -18,6 +20,7 @@ class Classes extends CoreEntity{
     classDescription = null;
     professorName = null;
     classDate = null;
+    files = [];
   }
   //#endregion
 
@@ -29,7 +32,7 @@ class Classes extends CoreEntity{
     classDescription = json["classDescription"];
     professorName = json["professorName"];
     classDate = json["classDate"];
-    id = json["id"];
+    files = json["files"];
     lastChange = json["lastChange"];
     includeDate = json["includeDate"];
     active = json["active"];
@@ -43,6 +46,7 @@ class Classes extends CoreEntity{
     data["classDescription"] = this.classDescription;
     data["professorName"] = this.professorName;
     data["classDate"] = this.classDate;
+    data["files"] = this.files;
     data["id"] = this.id;
     data["lastChange"] = this.lastChange;
     data["includeDate"] = this.includeDate;

@@ -9,6 +9,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/academic_details_controller.dart';
+import '../widgets/class_content_card_widget.dart';
 
 class ClassContentTabletPhonePage extends StatefulWidget {
   final Classes classes;
@@ -150,7 +151,14 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                                       ),
                                     ),
                                     Expanded(
-                                      child: Construir card,
+                                      child: ListView.builder(
+                                        itemCount: widget.classes.files.length,
+                                        itemBuilder: (context, index){
+                                          return ClassContentCardWidget(
+                                            files: widget.classes.files[index],
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),

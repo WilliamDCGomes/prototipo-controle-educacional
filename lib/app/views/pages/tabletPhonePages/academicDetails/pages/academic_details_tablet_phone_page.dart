@@ -9,7 +9,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/academic_details_controller.dart';
-import '../widget/classesCardWidget.dart';
+import '../widgets/classes_card_widget.dart';
 
 class AcademicDetailsTabletPhonePage extends StatefulWidget {
   late final CurriculumDeliveryViewController curriculumDeliveryViewController;
