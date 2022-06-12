@@ -9,8 +9,11 @@ class DateFormatToBrazil {
   }
 
   static String formatDateFull(DateTime? date) {
-    if(date != null)
-      return DateFormat.yMMMMd('pt_BR').format(date).replaceAll('-', '/');
+    if(date != null) {
+      initializeDateFormatting('pt_BR', null);
+      Intl.defaultLocale = 'pt_BR';
+      return DateFormat('yMMMd').format(date);
+    }
     return "";
   }
 

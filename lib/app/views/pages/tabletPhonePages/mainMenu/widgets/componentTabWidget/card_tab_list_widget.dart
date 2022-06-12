@@ -6,6 +6,7 @@ import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
 import '../../../academicDetails/pages/academic_details_tablet_phone_page.dart';
+import '../../../academicDetails/pages/work_delivery_tablet_phone_page.dart';
 
 class CardTabListWidget extends StatelessWidget {
   final CurriculumDeliveryViewController curriculumDeliveryViewController;
@@ -29,9 +30,14 @@ class CardTabListWidget extends StatelessWidget {
           ),
           elevation: 3,
           child: TextButtonWidget(
-            onTap: () => Get.to(() => AcademicDetailsTabletPhonePage(
-              curriculumDeliveryViewController: curriculumDeliveryViewController,
-            )),
+            onTap: () => Get.to(() => curriculumDeliveryViewController.workDelivety ?
+              WorkDeliveryTabletPhonePage(
+                curriculumDeliveryViewController: curriculumDeliveryViewController,
+              ) :
+              AcademicDetailsTabletPhonePage(
+                curriculumDeliveryViewController: curriculumDeliveryViewController,
+              ),
+            ),
             borderRadius: 2.5.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(

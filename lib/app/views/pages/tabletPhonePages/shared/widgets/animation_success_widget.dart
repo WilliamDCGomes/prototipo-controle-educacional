@@ -17,11 +17,20 @@ class AnimationSuccessWidget extends StatefulWidget {
   @override
   State<AnimationSuccessWidget> createState() => _AnimationSuccessWidgetState();
 
-  iniciaAnimacao(Widget destinationPage) async {
+  Future iniciaAnimacao({Widget? destinationPage, bool? backPage}) async {
     animationSuccess.value = true;
     animationController.forward();
     await Future.delayed(Duration(seconds: 2));
-    Get.offAll(() => destinationPage);
+    animationController.reset();
+    if(destinationPage != null) {
+      Get.offAll(() => destinationPage);
+    }
+    else if(backPage != null && backPage){
+      Get.back();
+    }
+    else{
+      animationSuccess.value = false;
+    }
   }
 }
 

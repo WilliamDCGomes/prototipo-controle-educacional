@@ -177,7 +177,7 @@ class RegisterUserController extends GetxController {
       activeStep.value ++;
     else{
       animationSuccess.value = true;
-      animationSuccessWidget.iniciaAnimacao(RegistrationCompletedTabletPhone());
+      animationSuccessWidget.iniciaAnimacao(destinationPage: RegistrationCompletedTabletPhone());
     }
   }
 

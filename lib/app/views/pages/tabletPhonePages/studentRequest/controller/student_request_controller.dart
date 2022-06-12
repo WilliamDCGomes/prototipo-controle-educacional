@@ -119,7 +119,7 @@ class StudentRequestController extends GetxController {
     );
     animationSuccess.value = true;
     animationSuccessWidget.iniciaAnimacao(
-      PaymentFinished(
+      destinationPage: PaymentFinished(
         paymentFinishedViewController: payment,
       ),
     );

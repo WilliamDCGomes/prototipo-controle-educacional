@@ -1,45 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/models/files.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
+import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 
-class ClassContentCardWidget extends StatelessWidget {
-  final Files files;
+class CardUploadFilesWidget extends StatelessWidget {
+  final Color? cardColor;
+  final EdgeInsets? cardMargin;
 
-  const ClassContentCardWidget(
-  {
-    Key? key,
-    required this.files,
-  }) : super(key: key);
+  const CardUploadFilesWidget(
+      { Key? key,
+        this.cardColor,
+        this.cardMargin,
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.whiteColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(1.h),
+    return Container(
+      margin: cardMargin,
+      decoration: BoxDecoration(
+        color: AppColors.whiteColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(1.h),
+        ),
       ),
-      elevation: 3,
       child: TextButtonWidget(
-        onTap: () => {
+        onTap: (){
 
         },
-        componentPadding: EdgeInsets.all(1.h),
+        borderRadius: 1.h,
+        componentPadding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 5.w),
         widgetCustom: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(
-              Paths.Icone_Pdf,
+              Paths.Icon_Upload,
               height: 6.h,
+              color: cardColor,
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                padding: EdgeInsets.only(left: 3.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,29 +50,22 @@ class ClassContentCardWidget extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 1.h),
                       child: TextWidget(
-                        "${files.name}.${files.type}",
+                        "ADICIONAR ARQUIVOS",
                         textColor: AppColors.purpleDefaultColor,
-                        fontSize: 16.sp,
+                        fontSize: 17.sp,
                         textAlign: TextAlign.start,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextWidget(
-                      DateFormatToBrazil.formatDate(files.lastChange),
+                      "Tipo de arquivos aceitos: .jpg, .doc, .png, .pdf",
                       textColor: AppColors.blackColor,
-                      fontSize: 16.sp,
+                      fontSize: 15.sp,
                       textAlign: TextAlign.start,
+                      maxLines: 2,
                     ),
                   ],
                 ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Icon(
-                Icons.arrow_forward_ios,
-                color: AppColors.purpleDefaultColor,
-                size: 3.h,
               ),
             ),
           ],

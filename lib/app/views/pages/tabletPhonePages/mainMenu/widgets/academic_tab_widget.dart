@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -27,6 +28,9 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
       length: 2,
       vsync: this,
     );
+    widget.controller.tabAcademicController.addListener(() {
+      widget.controller.deliveryTabSelected.value = widget.controller.tabAcademicController.previousIndex == 0;
+    });
     super.initState();
   }
 
@@ -132,12 +136,53 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                                 unselectedLabelColor: AppColors.grayTabColor,
                                 tabs: [
                                   Tab(
-                                    text: "Grade Curricular",
                                     height: 3.h,
+                                    child: Obx(
+                                      () => TextWidget(
+                                        "Grade Curricular",
+                                        textColor: !widget.controller.deliveryTabSelected.value ? AppColors.purpleDefaultColor : AppColors.blackColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17.sp,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
                                   ),
                                   Tab(
-                                    text: "Entregas",
                                     height: 3.h,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Obx(
+                                          () => TextWidget(
+                                            "Entregas",
+                                            textColor: widget.controller.deliveryTabSelected.value ? AppColors.purpleDefaultColor : AppColors.blackColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17.sp,
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: .5.h,
+                                            horizontal: 3.w,
+                                          ),
+                                          margin: EdgeInsets.only(left: 2.w),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.orangeColor,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(1.5.h),
+                                            ),
+                                          ),
+                                          child: TextWidget(
+                                            widget.controller.deliveryTabList.length.toString(),
+                                            textColor: AppColors.whiteColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13.sp,
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),

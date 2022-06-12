@@ -132,7 +132,7 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                                       fontWeight: FontWeight.bold,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 2.h),
+                                      padding: EdgeInsets.only(top: .5.h, bottom: 3.h),
                                       child: Visibility(
                                         visible: widget.classes.classDescription != null,
                                         replacement: TextWidget(
@@ -150,14 +150,37 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                                         ),
                                       ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: .5.h),
+                                      child: TextWidget(
+                                        "Material da Aula:",
+                                        textColor: AppColors.blackColor,
+                                        fontSize: 18.sp,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                     Expanded(
-                                      child: ListView.builder(
-                                        itemCount: widget.classes.files.length,
-                                        itemBuilder: (context, index){
-                                          return ClassContentCardWidget(
-                                            files: widget.classes.files[index],
-                                          );
-                                        },
+                                      child: Visibility(
+                                        visible: widget.classes.files.isNotEmpty,
+                                        replacement: Center(
+                                          child: TextWidget(
+                                            "Nenhum material encontrado",
+                                            textColor: AppColors.blackColor91Percent,
+                                            fontSize: 18.sp,
+                                            textAlign: TextAlign.center,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        child: ListView.builder(
+                                          itemCount: widget.classes.files.length,
+                                          itemBuilder: (context, index){
+                                            return ClassContentCardWidget(
+                                              files: widget.classes.files[index],
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ],
