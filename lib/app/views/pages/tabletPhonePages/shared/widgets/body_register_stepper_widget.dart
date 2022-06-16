@@ -26,6 +26,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.transparentColor,
       body: ListView(
         shrinkWrap: true,
         padding: EdgeInsets.only(bottom: 5.h),

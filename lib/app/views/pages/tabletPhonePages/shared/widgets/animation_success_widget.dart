@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -49,18 +50,21 @@ class _AnimationSuccessWidgetState extends State<AnimationSuccessWidget> with Ti
     return Obx(
       () => Visibility(
         visible: widget.animationSuccess.value,
-        child: Container(
-          height: 100.h,
-          width: 100.w,
-          color: AppColors.blackTransparentColor,
-          child: Center(
-            child: Lottie.asset(
-              Paths.Success_Animation,
-              repeat: false,
-              height: 20.h,
-              width: 20.h,
-              fit: BoxFit.fill,
-              controller: widget.animationController
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            height: 100.h,
+            width: 100.w,
+            color: AppColors.blackTransparentColor,
+            child: Center(
+              child: Lottie.asset(
+                Paths.Success_Animation,
+                repeat: false,
+                height: 20.h,
+                width: 20.h,
+                fit: BoxFit.fill,
+                controller: widget.animationController
+              ),
             ),
           ),
         ),

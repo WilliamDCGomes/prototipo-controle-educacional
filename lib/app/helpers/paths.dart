@@ -46,4 +46,6 @@ class Paths{
   static final String Icone_Sair = "${svgsPath}icone_sair.svg";
 
   static final String Success_Animation = "${jsonPath}success_animation.json";
+  static final String Loading = "${jsonPath}loading.json";
+  static final String Loading2 = "${jsonPath}loading2.json";
 }

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../login/page/login_page_tablet_phone_page.dart';
+import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
 
 class RegistrationCompletedController extends GetxController {
   late String firstText;
@@ -19,7 +19,7 @@ class RegistrationCompletedController extends GetxController {
   }
 
   backToLoginPage(){
-    Get.offAll(() => LoginPageTablePhone());
+    Get.offAll(() => LoginPageTabletPhone());
   }
 
   openWebSite() async {

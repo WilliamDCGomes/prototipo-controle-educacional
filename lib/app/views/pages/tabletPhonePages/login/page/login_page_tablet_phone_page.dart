@@ -11,20 +11,24 @@ import '../../../widgetsShared/text_widget.dart';
 import '../controller/login_page_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 
-class LoginPageTablePhone extends StatefulWidget {
-  const LoginPageTablePhone({Key? key}) : super(key: key);
+class LoginPageTabletPhone extends StatefulWidget {
+  const LoginPageTabletPhone({Key? key}) : super(key: key);
 
   @override
-  State<LoginPageTablePhone> createState() => _LoginPageTablePhoneState();
+  State<LoginPageTabletPhone> createState() => _LoginPageTabletPhoneState();
 }
 
-class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
+class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
   late LoginController controller;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     controller = Get.put(LoginController());
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
@@ -156,6 +160,7 @@ class _LoginPageTablePhoneState extends State<LoginPageTablePhone> {
                 ),
               ),
             ),
+            controller.loadingWidget,
           ],
         ),
       ),
