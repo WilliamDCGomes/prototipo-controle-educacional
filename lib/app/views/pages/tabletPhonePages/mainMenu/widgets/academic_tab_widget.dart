@@ -31,6 +31,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
     widget.controller.tabAcademicController.addListener(() {
       widget.controller.deliveryTabSelected.value = widget.controller.tabAcademicController.previousIndex == 0;
     });
+    widget.controller.deliveryTabSelected.value = false;
     super.initState();
   }
 

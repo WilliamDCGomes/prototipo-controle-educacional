@@ -20,6 +20,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
 
   @override
   void initState() {
+    controller = Get.put(RegisterUserController());
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
@@ -30,7 +31,6 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(RegisterUserController());
 
     return WillPopScope(
       onWillPop: () async {
@@ -54,95 +54,96 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(5.w, 2.h, 5.w, 0),
-                    child: SingleChildScrollView(
-                      child: SizedBox(
-                        height: 92.h,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 2.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  TextButtonWidget(
-                                    onTap: () => controller.backArrowButtonPressed(),
-                                    widgetCustom: Icon(
-                                      Icons.arrow_back_ios,
-                                      color: AppColors.purpleDefaultColor,
-                                      size: 3.h,
-                                    ),
-                                    componentAlignment: Alignment.centerLeft,
-                                    componentPadding: EdgeInsets.zero,
-                                    width: 3.h,
+                    child: Scaffold(
+                      backgroundColor: AppColors.transparentColor,
+                      body: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 2.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButtonWidget(
+                                  onTap: () => controller.backArrowButtonPressed(),
+                                  widgetCustom: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: AppColors.purpleDefaultColor,
+                                    size: 3.h,
                                   ),
-                                  TextWidget(
-                                    "Cadastro",
-                                    textColor: AppColors.purpleDefaultColor,
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  SizedBox(
-                                    width: 2.h,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Obx(
-                              () => controller.headerRegisterStepperList[controller.activeStep.value],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 2.h, 0, 4.h),
-                              child: Obx(() => DotStepper(
-                                dotCount: 7,
-                                dotRadius: 1.h,
-                                activeStep: controller.activeStep.value,
-                                shape: Shape.circle,
-                                spacing: 3.w,
-                                indicator: Indicator.magnify,
-                                fixedDotDecoration: FixedDotDecoration(
-                                  color: AppColors.grayStepColor,
+                                  componentAlignment: Alignment.centerLeft,
+                                  componentPadding: EdgeInsets.zero,
+                                  width: 3.h,
                                 ),
-                                indicatorDecoration: IndicatorDecoration(
-                                  color: AppColors.orangeColor,
+                                TextWidget(
+                                  "Cadastro",
+                                  textColor: AppColors.purpleDefaultColor,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                tappingEnabled: false,
-                              ),
-                              ),
+                                SizedBox(
+                                  width: 2.h,
+                                ),
+                              ],
                             ),
-                            Obx(
+                          ),
+                          Obx(
+                            () => controller.headerRegisterStepperList[controller.activeStep.value],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 2.h, 0, 3.h),
+                            child: Obx(() => DotStepper(
+                              dotCount: 7,
+                              dotRadius: 1.h,
+                              activeStep: controller.activeStep.value,
+                              shape: Shape.circle,
+                              spacing: 3.w,
+                              indicator: Indicator.magnify,
+                              fixedDotDecoration: FixedDotDecoration(
+                                color: AppColors.grayStepColor,
+                              ),
+                              indicatorDecoration: IndicatorDecoration(
+                                color: AppColors.orangeColor,
+                              ),
+                              tappingEnabled: false,
+                            ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Obx(
                               () => controller.bodyRegisterStepperList[controller.activeStep.value],
                             ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: ButtonWidget(
-                                  hintText: "AVANÇAR",
-                                  fontWeight: FontWeight.bold,
-                                  widthButton: 90.w,
-                                  onPressed: () => controller.nextButtonPressed(),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: ButtonWidget(
+                              hintText: "AVANÇAR",
+                              fontWeight: FontWeight.bold,
+                              widthButton: 90.w,
+                              onPressed: () {
+                                FocusScope.of(context).requestFocus(FocusNode());
+                                controller.nextButtonPressed();
+                              },
+                            ),
+                          ),
+                          Obx(() => controller.activeStep.value == 0 ?
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                width: 75.w,
+                                child: TextWidget(
+                                  controller.lgpdPhrase,
+                                  textColor: AppColors.blackColor,
+                                  fontSize: 15.sp,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 3,
                                 ),
                               ),
                             ),
-                            Obx(() => controller.activeStep.value == 0 ?
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: 75.w,
-                                  child: TextWidget(
-                                    controller.lgpdPhrase,
-                                    textColor: AppColors.blackColor,
-                                    fontSize: 15.sp,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 3,
-                                  ),
-                                ),
-                              ),
-                            ) : SizedBox(height: 2.h),
-                            ),
-                          ],
-                        ),
+                          ) : SizedBox(height: 2.h),
+                          ),
+                        ],
                       ),
                     ),
                   ),

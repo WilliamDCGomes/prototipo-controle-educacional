@@ -21,7 +21,7 @@ class HeaderRegisterStepperWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 5.h),
       child: SizedBox(
-        height: PlatformType.isTablet(context) ? 15.h : 13.5.h,
+        height: PlatformType.isTablet(context) ? 15.h : 14.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
