@@ -36,13 +36,17 @@ class AnimationSuccessWidget extends StatefulWidget {
 }
 
 class _AnimationSuccessWidgetState extends State<AnimationSuccessWidget> with TickerProviderStateMixin {
-
-
   @override
   void initState() {
     widget.animationController = AnimationController(vsync: this);
     widget.animationController.duration = Duration(seconds: 2);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.animationController.dispose();
+    super.dispose();
   }
 
   @override

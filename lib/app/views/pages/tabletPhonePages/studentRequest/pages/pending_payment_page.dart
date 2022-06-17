@@ -7,6 +7,7 @@ import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import 'package:flutter/services.dart';
 import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 
@@ -143,7 +144,7 @@ class PendingPaymentPage extends StatelessWidget {
                 ),
                 TextButtonWidget(
                   onTap: (){
-
+                    Clipboard.setData(ClipboardData(text: "34191.09008 10799.489181 11334.800007 1 90220000157816"));
                   },
                   componentPadding: EdgeInsets.zero,
                   widgetCustom: TextWidget(

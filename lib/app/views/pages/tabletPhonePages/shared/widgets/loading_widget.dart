@@ -22,6 +22,7 @@ class LoadingWidget extends StatefulWidget {
     loadingAnimetion.value = true;
     animationController.repeat();
     await Future.delayed(Duration(seconds: 5));
+    animationController.dispose();
     if(destinationPage != null) {
       Get.offAll(() => destinationPage);
     }
@@ -36,13 +37,17 @@ class LoadingWidget extends StatefulWidget {
 }
 
 class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateMixin {
-
-
   @override
   void initState() {
     widget.animationController = AnimationController(vsync: this);
     widget.animationController.duration = Duration(seconds: 3);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -57,7 +62,15 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
             width: 100.w,
             color: AppColors.blackTransparentColor,
             child: Center(
-              child: Container(
+              child: true ? SizedBox(
+                height: 15.h,
+                width: 15.h,
+                child: CircularProgressIndicator(
+                  color: AppColors.purpleDefaultColor,
+                  backgroundColor: AppColors.grayColor,
+                  strokeWidth: .5.h,
+                ),
+              ) : Container(
                 decoration: BoxDecoration(
                   color: AppColors.purpleDefaultColor,
                   borderRadius: BorderRadius.all(
