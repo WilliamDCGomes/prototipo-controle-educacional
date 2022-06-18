@@ -44,7 +44,7 @@ class CardProfileTabListWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 6.h,
+                        width: 5.h,
                         child: Center(
                           child: iconCard,
                         ),
@@ -55,19 +55,16 @@ class CardProfileTabListWidget extends StatelessWidget {
                           child: TextWidget(
                             titleIconPath,
                             textColor: AppColors.blackColor,
-                            fontSize: 18.sp,
+                            fontSize: 16.sp,
                             textAlign: TextAlign.start,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 7.w,
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: AppColors.purpleDefaultColor,
-                          size: 4.h,
-                        ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColors.purpleDefaultColor,
+                        size: 3.h,
                       ),
                     ],
                   ),

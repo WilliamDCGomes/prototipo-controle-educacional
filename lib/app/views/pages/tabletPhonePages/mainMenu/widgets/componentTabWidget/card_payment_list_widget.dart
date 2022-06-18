@@ -29,7 +29,7 @@ class CardPaymentListWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(2.w, 0.5.h, 2.w, 1.h),
       child: SizedBox(
-        height: 13.h,
+        height: 10.h,
         width: 90.w,
         child: Card(
           color: AppColors.whiteColor,
@@ -44,77 +44,61 @@ class CardPaymentListWidget extends StatelessWidget {
             widgetCustom: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1.h, vertical: 1.h),
+                  padding: EdgeInsets.all(1.h),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: .2.h,
-                          ),
-                          SizedBox(
-                            width: 75.w,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 3.h,
-                                      width: .8.h,
-                                      color: cardColor,
-                                    ),
-                                    SizedBox(
-                                      width: 30.w,
-                                      child: TextWidget(
-                                        " " + firstValue,
-                                        textColor: AppColors.blackColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19.sp,
-                                        textAlign: TextAlign.start,
-                                        maxLines: 1,
-                                      ),
-                                    ),
-                                  ],
+                                Container(
+                                  height: 2.2.h,
+                                  width: .5.h,
+                                  color: cardColor,
                                 ),
-                                SizedBox(
-                                  width: 40.w,
+                                Expanded(
                                   child: TextWidget(
-                                    thirdValue,
-                                    maxLines: 1,
-                                    textColor: AppColors.greenColor,
-                                    fontSize: 19.sp,
-                                    textAlign: TextAlign.end,
+                                    " " + firstValue,
+                                    textColor: AppColors.blackColor,
                                     fontWeight: FontWeight.bold,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.start,
+                                    maxLines: 1,
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            width: 75.w,
-                            child: RichTextTwoDifferentWidget(
-                              firstText: "Vencimento:",
-                              secondText: secondValue,
-                              firstTextSize: 16.sp,
-                              secondTextSize: 16.sp,
-                              firstTextFontWeight: FontWeight.normal,
-                              secondTextFontWeight: FontWeight.bold,
-                              firstTextColor: AppColors.blackColor,
-                              secondTextColor: AppColors.blackColor,
-                              secondTextDecoration: TextDecoration.none,
+                            Padding(
+                              padding: EdgeInsets.only(top: 1.h),
+                              child: RichTextTwoDifferentWidget(
+                                firstText: "Vencimento:",
+                                secondText: secondValue,
+                                firstTextSize: 16.sp,
+                                secondTextSize: 16.sp,
+                                firstTextFontWeight: FontWeight.normal,
+                                secondTextFontWeight: FontWeight.bold,
+                                firstTextColor: AppColors.blackColor,
+                                secondTextColor: AppColors.blackColor,
+                                secondTextDecoration: TextDecoration.none,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: .2.h,
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                      TextWidget(
+                        thirdValue,
+                        maxLines: 1,
+                        textColor: AppColors.greenColor,
+                        fontSize: 18.sp,
+                        textAlign: TextAlign.end,
+                        fontWeight: FontWeight.bold,
                       ),
                     ],
                   ),

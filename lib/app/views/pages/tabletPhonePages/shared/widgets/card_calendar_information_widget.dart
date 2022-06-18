@@ -33,7 +33,7 @@ class CardCalendarInformationWidget extends StatelessWidget {
           componentPadding: EdgeInsets.zero,
           borderRadius: 2.5.h,
           widgetCustom: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 1.h, vertical: 1.h),
+            padding: EdgeInsets.all(1.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,13 +112,10 @@ class CardCalendarInformationWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 6.w,
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: meetingViewController.background,
-                    size: 3.h,
-                  ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: meetingViewController.background,
+                  size: 3.h,
                 ),
               ],
             ),

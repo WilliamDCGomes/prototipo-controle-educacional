@@ -1196,6 +1196,8 @@ class MainMenuTabletPhoneController extends GetxController {
         id: 0,
         iconCard: SvgPicture.asset(
           Paths.Icone_Noticias_e_Eventos,
+          height: 4.5.h,
+          width: 4.5.h,
         ),
         titleIconPath: "Notícias e Eventos",
         mainMenuTabletPhoneController: this,
@@ -1214,6 +1216,8 @@ class MainMenuTabletPhoneController extends GetxController {
         id: 2,
         iconCard: SvgPicture.asset(
           Paths.Icone_Redefinir_Senha,
+          height: 4.5.h,
+          width: 4.5.h,
         ),
         titleIconPath: "Redefinir Senha",
         mainMenuTabletPhoneController: this,
@@ -1232,6 +1236,8 @@ class MainMenuTabletPhoneController extends GetxController {
         id: 4,
         iconCard: SvgPicture.asset(
           Paths.Icone_Sair,
+          height: 4.5.h,
+          width: 4.5.h,
         ),
         titleIconPath: "Sair",
         mainMenuTabletPhoneController: this,

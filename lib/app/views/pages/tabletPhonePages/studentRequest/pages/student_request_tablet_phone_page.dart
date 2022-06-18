@@ -216,11 +216,12 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                         textAlignVertical: TextAlignVertical.top,
                                         maxLines: 6,
                                         decoration: InputDecoration(
-                                          labelText: "Observação",
-                                          labelStyle: TextStyle(
+                                          label: TextWidget(
+                                            "Observação",
                                             fontSize: 16.sp,
-                                            color: AppColors.purpleDefaultColor,
+                                            textColor: AppColors.purpleDefaultColor,
                                           ),
+                                          alignLabelWithHint: true,
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(10),
                                             borderSide: BorderSide(
