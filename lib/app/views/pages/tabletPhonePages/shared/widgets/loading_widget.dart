@@ -22,7 +22,6 @@ class LoadingWidget extends StatefulWidget {
     loadingAnimetion.value = true;
     animationController.repeat();
     await Future.delayed(Duration(seconds: 5));
-    animationController.dispose();
     if(destinationPage != null) {
       Get.offAll(() => destinationPage);
     }
@@ -62,7 +61,7 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
             width: 100.w,
             color: AppColors.blackTransparentColor,
             child: Center(
-              child: true ? SizedBox(
+              child: false ? SizedBox(
                 height: 15.h,
                 width: 15.h,
                 child: CircularProgressIndicator(

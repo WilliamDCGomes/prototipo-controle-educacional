@@ -43,9 +43,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         scheduleViewSettings: ScheduleViewSettings(
           appointmentItemHeight: 2.h,
         ),
-        resourceViewSettings: ResourceViewSettings(
-
-        ),
         todayTextStyle: TextStyle(
           fontSize: 14.sp,
           color: AppColors.whiteColor,
@@ -63,7 +60,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         monthViewSettings: MonthViewSettings(
           appointmentDisplayCount: 5,
           showAgenda: true,
-          agendaItemHeight: 15.h,
+          agendaItemHeight: 10.h,
           agendaStyle: AgendaStyle(
             appointmentTextStyle: TextStyle(
               fontSize: 14.sp,
