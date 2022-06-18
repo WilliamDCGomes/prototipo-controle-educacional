@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -10,21 +11,25 @@ import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/student_request_controller.dart';
+import '../controller/select_card_payment_controller.dart';
 
-class SelectCardPaymentPage extends StatefulWidget {
-  const SelectCardPaymentPage({Key? key}) : super(key: key);
+class SelectCardPaymentTabletPhonePage extends StatefulWidget {
+  late SelectCardPaymentViewController selectCardPaymentViewController;
+  SelectCardPaymentTabletPhonePage({
+    Key? key,
+    required this.selectCardPaymentViewController,
+  }) : super(key: key);
 
   @override
-  State<SelectCardPaymentPage> createState() => _SelectCardPaymentPageState();
+  State<SelectCardPaymentTabletPhonePage> createState() => _SelectCardPaymentTabletPhonePageState();
 }
 
-class _SelectCardPaymentPageState extends State<SelectCardPaymentPage> {
-  late StudentRequestController studentRequestController;
+class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabletPhonePage> {
+  late SelectCardPaymentController studentRequestController;
 
   @override
   void initState() {
-    studentRequestController = Get.find(tag: "student-request-controller");
+    studentRequestController = Get.put(SelectCardPaymentController(widget.selectCardPaymentViewController));
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
@@ -89,15 +94,13 @@ class _SelectCardPaymentPageState extends State<SelectCardPaymentPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Obx(
-                                    () => TextWidget(
-                                      studentRequestController.requestTitle.value.toUpperCase(),
-                                      textColor: AppColors.whiteColor,
-                                      fontSize: 18.sp,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  TextWidget(
+                                    studentRequestController.selectCardPaymentViewController.getTitleName,
+                                    textColor: AppColors.whiteColor,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 1.5.h),
@@ -106,7 +109,7 @@ class _SelectCardPaymentPageState extends State<SelectCardPaymentPage> {
                                       firstTextColor: AppColors.whiteColor,
                                       firstTextFontWeight: FontWeight.normal,
                                       firstTextSize: 16.sp,
-                                      secondText: "R\$ 20,00",
+                                      secondText: studentRequestController.selectCardPaymentViewController.getPaymentValue,
                                       secondTextColor: AppColors.whiteColor,
                                       secondTextFontWeight: FontWeight.bold,
                                       secondTextSize: 16.sp,

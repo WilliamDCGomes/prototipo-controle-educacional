@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:projeto_tcc/app/views/pages/tabletPhonePages/selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -103,9 +106,15 @@ class CardFinancialWidget extends StatelessWidget {
                       Visibility(
                         visible: hasCardRegistered ?? false,
                         child: TextButtonWidget(
-                          onTap: () {
-
-                          },
+                          onTap: () => Get.to(() => SelectCardPaymentTabletPhonePage(
+                            selectCardPaymentViewController: SelectCardPaymentViewController(
+                              "William Douglas Costa Gomes",
+                              "Pagamento de Mensalidade",
+                              "48467",
+                              743.99,
+                              DateTime.now(),
+                            ),
+                          )),
                           height: 4.h,
                           componentPadding: EdgeInsets.zero,
                           widgetCustom: Row(

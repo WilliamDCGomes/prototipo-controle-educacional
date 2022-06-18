@@ -2,13 +2,14 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
+import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
 import '../pages/payment_finished_page.dart';
 import '../pages/pending_payment_page.dart';
-import '../pages/select_card_payment_page.dart';
+import '../../selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
 
 class StudentRequestController extends GetxController {
   late int creditDebtCardActiveStep;
@@ -92,7 +93,16 @@ class StudentRequestController extends GetxController {
     Get.back();
     switch(payment){
       case paymentMethod.creditCard:
-        Get.to(() => SelectCardPaymentPage());
+        var paymentCard = SelectCardPaymentViewController(
+          studentName.text,
+          requestTitle.value,
+          raNumber.text,
+          20,
+          DateTime.now(),
+        );
+        Get.to(() => SelectCardPaymentTabletPhonePage(
+          selectCardPaymentViewController: paymentCard,
+        ));
         break;
       case paymentMethod.bankSlip:
         var payment = PaymentFinishedViewController(
@@ -108,7 +118,7 @@ class StudentRequestController extends GetxController {
         break;
     }
   }
-  
+
   payRequest() async {
     var payment = PaymentFinishedViewController(
       studentName.text,
