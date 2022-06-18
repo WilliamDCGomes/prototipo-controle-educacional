@@ -2,38 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
-import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/select_card_payment_controller.dart';
+import '../controller/card_payment_controller.dart';
 
-class SelectCardPaymentTabletPhonePage extends StatefulWidget {
-  late SelectCardPaymentViewController selectCardPaymentViewController;
-  SelectCardPaymentTabletPhonePage({
-    Key? key,
-    required this.selectCardPaymentViewController,
-  }) : super(key: key);
+class CardPaymentTabletPhonePage extends StatefulWidget {
+  CardPaymentTabletPhonePage({Key? key,}) : super(key: key);
 
   @override
-  State<SelectCardPaymentTabletPhonePage> createState() => _SelectCardPaymentTabletPhonePageState();
+  State<CardPaymentTabletPhonePage> createState() => _CardPaymentTabletPhonePageState();
 }
 
-class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabletPhonePage> {
-  late SelectCardPaymentController studentRequestController;
+class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage> {
+  late CardPaymentController controller;
 
   @override
   void initState() {
-    studentRequestController = Get.put(SelectCardPaymentController(widget.selectCardPaymentViewController));
+    controller = Get.put(CardPaymentController());
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
-        studentRequestController.creditDebtCardActiveStep = 0;
+        controller.creditDebtCardActiveStep = 0;
       });
     });
   }
@@ -69,7 +63,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 2.w),
                         child: TitleWithBackButtonWidget(
-                          title: "Forma de Pagamento",
+                          title: "Cartões",
                         ),
                       ),
                     ),
@@ -90,61 +84,37 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                 borderRadius: BorderRadius.circular(1.h),
                                 color: AppColors.purpleDefaultColor,
                               ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  TextWidget(
-                                    studentRequestController.selectCardPaymentViewController.getTitleName,
-                                    textColor: AppColors.whiteColor,
-                                    fontSize: 18.sp,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 1.5.h),
-                                    child: RichTextTwoDifferentWidget(
-                                      firstText: "Valor: ",
-                                      firstTextColor: AppColors.whiteColor,
-                                      firstTextFontWeight: FontWeight.normal,
-                                      firstTextSize: 16.sp,
-                                      secondText: studentRequestController.selectCardPaymentViewController.getPaymentValue,
-                                      secondTextColor: AppColors.whiteColor,
-                                      secondTextFontWeight: FontWeight.bold,
-                                      secondTextSize: 16.sp,
-                                      secondTextDecoration: TextDecoration.none,
-                                    ),
-                                  ),
-                                ],
+                              child: Center(
+                                child: TextWidget(
+                                  "Cartões cadastrados na plataforma para pagamentos",
+                                  textColor: AppColors.whiteColor,
+                                  fontSize: 18.sp,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: TextWidget(
-                                      "Selecione o cartão para o pagamento",
-                                      textColor: AppColors.blackColor,
-                                      fontSize: 18.sp,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(vertical: 2.h),
                                       child: PaymentCardSelectWidget(
                                         titleCards: "",
                                         showTitleCard: false,
+                                        showRemoveBottom: true,
+                                        showEditBottom: true,
                                         creditDebtCardWidgetHeight: 25.h,
-                                        creditDebtCardActiveStep: studentRequestController.creditDebtCardActiveStep,
-                                        creditDebtCardList: studentRequestController.creditDebtCardList,
-                                        carouselCreditDebtCardController: studentRequestController.carouselCreditDebtCardController,
+                                        creditDebtCardActiveStep: controller.creditDebtCardActiveStep,
+                                        creditDebtCardList: controller.creditDebtCardList,
+                                        carouselCreditDebtCardController: controller.carouselCreditDebtCardController,
                                         onClicked: (){
+
+                                        },
+                                        onRemoveClicked: (){
 
                                         },
                                       ),
@@ -153,10 +123,10 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 5.h),
                                     child: ButtonWidget(
-                                      hintText: "PAGAR",
+                                      hintText: "ADICIONAR",
                                       fontWeight: FontWeight.bold,
                                       widthButton: 75.w,
-                                      onPressed: () => studentRequestController.payRequest(),
+                                      onPressed: () => controller.addCard(),
                                     ),
                                   ),
                                 ],
@@ -169,7 +139,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                   ],
                 ),
               ),
-              studentRequestController.animationSuccessWidget,
+              controller.animationSuccessWidget,
             ],
           ),
         ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../cardPayment/page/card_payment_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
@@ -115,9 +117,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                                 textAlign: TextAlign.start,
                               ),
                               TextButtonWidget(
-                                onTap: () {
-
-                                },
+                                onTap: () => Get.to(() => CardPaymentTabletPhonePage()),
                                 hintText: "Ver Todos",
                                 fontWeight: FontWeight.normal,
                                 textDecoration: TextDecoration.underline,
@@ -132,10 +132,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                           creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,
                           creditDebtCardList: widget.controller.creditDebtCardList,
                           carouselCreditDebtCardController: widget.controller.carouselCreditDebtCardController,
-                          onTap: (){
-
-                          },
-                          onTapEditCard: (){
+                          onClicked: () {
 
                           },
                         ),

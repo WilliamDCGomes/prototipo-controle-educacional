@@ -1,21 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
-import '../../../widgetsShared/text_button_widget.dart';
 import 'credit_debt_card_widget.dart';
 
 class PaymentCardSelectWidget extends StatefulWidget {
   late int creditDebtCardActiveStep;
   late bool showTitleCard;
+  late bool showRemoveBottom;
+  late bool showEditBottom;
   late final String titleCards;
-  late final Function() onTap;
-  late final Function() onTapEditCard;
+  late final Function() onClicked;
+  late final Function()? onRemoveClicked;
   late final double creditDebtCardWidgetHeight;
   late final List<CreditDebtCardWidget> creditDebtCardList;
   late final CarouselController carouselCreditDebtCardController;
@@ -23,13 +22,15 @@ class PaymentCardSelectWidget extends StatefulWidget {
   PaymentCardSelectWidget(
       { Key? key,
         required this.titleCards,
-        required this.onTap,
-        required this.onTapEditCard,
+        required this.onClicked,
         required this.showTitleCard,
         required this.creditDebtCardWidgetHeight,
         required this.creditDebtCardActiveStep,
         required this.creditDebtCardList,
         required this.carouselCreditDebtCardController,
+        this.showRemoveBottom = false,
+        this.showEditBottom = false,
+        this.onRemoveClicked,
       }) : super(key: key);
 
   @override
@@ -71,35 +72,15 @@ class _PaymentCardSelectWidgetState extends State<PaymentCardSelectWidget> {
           visible: widget.showTitleCard,
           child: Padding(
             padding: EdgeInsets.only(bottom: 2.h),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButtonWidget(
-                  onTap: widget.onTapEditCard,
-                  componentPadding: EdgeInsets.zero,
-                  widgetCustom: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2.w),
-                        child: TextWidget(
-                          widget.titleCards,
-                          textColor: AppColors.blackColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17.sp,
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                      SvgPicture.asset(
-                        Paths.Icone_Editar,
-                        height: 2.h,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
+              child: TextWidget(
+                widget.titleCards,
+                textColor: AppColors.blackColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 17.sp,
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),
@@ -128,13 +109,27 @@ class _PaymentCardSelectWidgetState extends State<PaymentCardSelectWidget> {
             ),
           ),
         ),
+        Visibility(
+          visible: widget.showRemoveBottom,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.w, 2.h, 20.w, 0),
+            child: ButtonWidget(
+              hintText: "Remover Cartão",
+              fontWeight: FontWeight.bold,
+              heightButton: 5.h,
+              borderColor: AppColors.orangeColor,
+              backgroundColor: AppColors.orangeColor,
+              onPressed: widget.onRemoveClicked,
+            ),
+          ),
+        ),
         Padding(
           padding: EdgeInsets.fromLTRB(20.w, 2.h, 20.w, 0),
           child: ButtonWidget(
-            hintText: "Adicionar Cartão",
+            hintText: widget.showEditBottom ? "Editar Cartão" : "Adicionar Cartão",
             fontWeight: FontWeight.bold,
             heightButton: 5.h,
-            onPressed: widget.onTap,
+            onPressed: widget.onClicked,
           ),
         ),
       ],
