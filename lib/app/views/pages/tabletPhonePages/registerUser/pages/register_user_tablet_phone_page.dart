@@ -148,7 +148,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                     ),
                   ),
                 ),
-                controller.animationSuccessWidget,
+                controller.loadingWithSuccessOrErrorWidget,
               ],
             ),
           ),

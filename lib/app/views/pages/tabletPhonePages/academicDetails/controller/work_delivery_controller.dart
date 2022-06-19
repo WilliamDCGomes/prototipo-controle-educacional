@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/stylePages/app_colors.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
-import '../../shared/widgets/animation_success_widget.dart';
+import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 
 class WorkDeliveryController extends GetxController {
-  late RxBool animationSuccess;
+  late RxBool loadingAnimetion;
   late RxBool workDelivered;
   late RxString buttonText;
-  late AnimationSuccessWidget animationSuccessWidget;
+  late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
   late CurriculumDeliveryViewController curriculumDeliveryViewController;
 
   WorkDeliveryController(this.curriculumDeliveryViewController){
@@ -16,12 +16,12 @@ class WorkDeliveryController extends GetxController {
   }
 
   _initializeVariables(){
-    animationSuccess = false.obs;
+    loadingAnimetion = false.obs;
     workDelivered = false.obs;
     buttonText = "REALIZAR ENTREGA".obs;
 
-    animationSuccessWidget = AnimationSuccessWidget(
-      animationSuccess: animationSuccess,
+    loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
+      loadingAnimetion: loadingAnimetion,
     );
   }
 
@@ -32,8 +32,8 @@ class WorkDeliveryController extends GetxController {
   deliveryWork() async {
     switch(buttonText.value){
       case "REALIZAR ENTREGA":
-        animationSuccess.value = true;
-        await animationSuccessWidget.iniciaAnimacao();
+        loadingAnimetion.value = true;
+        await loadingWithSuccessOrErrorWidget.startAnimation();
         buttonText.value = "DESFAZER ENTREGA";
         workDelivered.value = true;
         break;

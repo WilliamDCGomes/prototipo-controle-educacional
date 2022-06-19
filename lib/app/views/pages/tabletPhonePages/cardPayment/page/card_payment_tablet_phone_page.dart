@@ -139,7 +139,7 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
                   ],
                 ),
               ),
-              controller.animationSuccessWidget,
+              controller.loadingWithSuccessOrErrorWidget,
             ],
           ),
         ),

@@ -25,15 +25,15 @@ class SelectCardPaymentTabletPhonePage extends StatefulWidget {
 }
 
 class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabletPhonePage> {
-  late SelectCardPaymentController studentRequestController;
+  late SelectCardPaymentController controller;
 
   @override
   void initState() {
-    studentRequestController = Get.put(SelectCardPaymentController(widget.selectCardPaymentViewController));
+    controller = Get.put(SelectCardPaymentController(widget.selectCardPaymentViewController));
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
-        studentRequestController.creditDebtCardActiveStep = 0;
+        controller.creditDebtCardActiveStep = 0;
       });
     });
   }
@@ -95,7 +95,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   TextWidget(
-                                    studentRequestController.selectCardPaymentViewController.getTitleName,
+                                    controller.selectCardPaymentViewController.getTitleName,
                                     textColor: AppColors.whiteColor,
                                     fontSize: 18.sp,
                                     textAlign: TextAlign.center,
@@ -109,7 +109,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                       firstTextColor: AppColors.whiteColor,
                                       firstTextFontWeight: FontWeight.normal,
                                       firstTextSize: 16.sp,
-                                      secondText: studentRequestController.selectCardPaymentViewController.getPaymentValue,
+                                      secondText: controller.selectCardPaymentViewController.getPaymentValue,
                                       secondTextColor: AppColors.whiteColor,
                                       secondTextFontWeight: FontWeight.bold,
                                       secondTextSize: 16.sp,
@@ -141,9 +141,9 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                         titleCards: "",
                                         showTitleCard: false,
                                         creditDebtCardWidgetHeight: 25.h,
-                                        creditDebtCardActiveStep: studentRequestController.creditDebtCardActiveStep,
-                                        creditDebtCardList: studentRequestController.creditDebtCardList,
-                                        carouselCreditDebtCardController: studentRequestController.carouselCreditDebtCardController,
+                                        creditDebtCardActiveStep: controller.creditDebtCardActiveStep,
+                                        creditDebtCardList: controller.creditDebtCardList,
+                                        carouselCreditDebtCardController: controller.carouselCreditDebtCardController,
                                         onClicked: (){
 
                                         },
@@ -156,7 +156,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                       hintText: "PAGAR",
                                       fontWeight: FontWeight.bold,
                                       widthButton: 75.w,
-                                      onPressed: () => studentRequestController.payRequest(),
+                                      onPressed: () => controller.payRequest(),
                                     ),
                                   ),
                                 ],
@@ -169,7 +169,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                   ],
                 ),
               ),
-              studentRequestController.animationSuccessWidget,
+              controller.loadingWithSuccessOrErrorWidget,
             ],
           ),
         ),

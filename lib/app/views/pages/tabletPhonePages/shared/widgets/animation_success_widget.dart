@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
+import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class AnimationSuccessWidget extends StatefulWidget {
   late RxBool animationSuccess;
@@ -18,7 +18,7 @@ class AnimationSuccessWidget extends StatefulWidget {
   @override
   State<AnimationSuccessWidget> createState() => _AnimationSuccessWidgetState();
 
-  Future iniciaAnimacao({Widget? destinationPage, bool? backPage}) async {
+  Future startAnimation({Widget? destinationPage, bool? backPage}) async {
     animationSuccess.value = true;
     animationController.forward();
     await Future.delayed(Duration(seconds: 2));
@@ -61,13 +61,10 @@ class _AnimationSuccessWidgetState extends State<AnimationSuccessWidget> with Ti
             width: 100.w,
             color: AppColors.blackTransparentColor,
             child: Center(
-              child: Lottie.asset(
-                Paths.Success_Animation,
+              child: LottieAssetWidget(
+                animationPath: Paths.Success_Animation,
                 repeat: false,
-                height: 20.h,
-                width: 20.h,
-                fit: BoxFit.fill,
-                controller: widget.animationController
+                animationController: widget.animationController
               ),
             ),
           ),

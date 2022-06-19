@@ -128,7 +128,7 @@ class StudentRequestController extends GetxController {
       dateRequest.text,
     );
     animationSuccess.value = true;
-    animationSuccessWidget.iniciaAnimacao(
+    animationSuccessWidget.startAnimation(
       destinationPage: PaymentFinished(
         paymentFinishedViewController: payment,
       ),

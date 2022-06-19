@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../../../helpers/brazil_address_informations.dart';
-import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/body_register_stepper_widget.dart';
 import '../../shared/widgets/header_register_stepper_widget.dart';
+import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 import '../pages/registration_completed_tablet_phone_page.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 
@@ -13,7 +13,7 @@ class RegisterUserController extends GetxController {
   late List<String> periodList;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
-  late RxBool animationSuccess;
+  late RxBool loadingAnimetion;
   late RxBool confirmPasswordFieldEnabled;
   late RxString ufSelected;
   late RxString periodSelected;
@@ -45,7 +45,7 @@ class RegisterUserController extends GetxController {
   late TextEditingController confirmPasswordTextController;
   late List<HeaderRegisterStepperWidget> headerRegisterStepperList;
   late List<BodyRegisterStepperWidget> bodyRegisterStepperList;
-  late AnimationSuccessWidget animationSuccessWidget;
+  late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
 
   RegisterUserController(){
     _initializeVariables();
@@ -57,7 +57,7 @@ class RegisterUserController extends GetxController {
     activeStep = 0.obs;
     ufSelected = "".obs;
     periodSelected = "".obs;
-    animationSuccess = false.obs;
+    loadingAnimetion = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
     ufsList = [""].obs;
@@ -92,8 +92,8 @@ class RegisterUserController extends GetxController {
     emailVerification5TextController = TextEditingController();
     passwordTextController = TextEditingController();
     confirmPasswordTextController = TextEditingController();
-    animationSuccessWidget = AnimationSuccessWidget(
-      animationSuccess: animationSuccess,
+    loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
+      loadingAnimetion: loadingAnimetion,
     );
     headerRegisterStepperList = [
       HeaderRegisterStepperWidget(
@@ -176,8 +176,8 @@ class RegisterUserController extends GetxController {
     if(activeStep.value < 6)
       activeStep.value ++;
     else{
-      animationSuccess.value = true;
-      animationSuccessWidget.iniciaAnimacao(destinationPage: RegistrationCompletedTabletPhone());
+      loadingAnimetion.value = true;
+      loadingWithSuccessOrErrorWidget.startAnimation(destinationPage: RegistrationCompletedTabletPhone());
     }
   }
 

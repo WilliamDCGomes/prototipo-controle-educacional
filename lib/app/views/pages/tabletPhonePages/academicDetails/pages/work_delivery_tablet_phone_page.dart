@@ -232,7 +232,7 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                     ],
                   ),
                 ),
-                controller.animationSuccessWidget,
+                controller.loadingWithSuccessOrErrorWidget,
               ],
             ),
           ),

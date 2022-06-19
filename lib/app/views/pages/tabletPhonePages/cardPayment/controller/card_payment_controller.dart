@@ -1,14 +1,13 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/mainMenu/page/main_menu_tablet_phone_page.dart';
 import '../../../../../enums/enums.dart';
-import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
+import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 
 class CardPaymentController extends GetxController {
   late int creditDebtCardActiveStep;
-  late RxBool animationSuccess;
-  late AnimationSuccessWidget animationSuccessWidget;
+  late RxBool loadingAnimetion;
+  late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
 
@@ -19,11 +18,11 @@ class CardPaymentController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0;
-    animationSuccess = false.obs;
+    loadingAnimetion = false.obs;
     carouselCreditDebtCardController = CarouselController();
 
-    animationSuccessWidget = AnimationSuccessWidget(
-      animationSuccess: animationSuccess,
+    loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
+      loadingAnimetion: loadingAnimetion,
     );
   }
 
@@ -48,9 +47,7 @@ class CardPaymentController extends GetxController {
   }
 
   addCard() async {
-    animationSuccess.value = true;
-    animationSuccessWidget.iniciaAnimacao(
-      destinationPage: MainMenuTabletPhonePage(),
-    );
+    loadingAnimetion.value = true;
+    loadingWithSuccessOrErrorWidget.startAnimation();
   }
 }

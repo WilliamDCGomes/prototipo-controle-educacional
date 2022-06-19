@@ -54,7 +54,9 @@ class Paths{
   static final String Icone_Calendario_Academico = "${svgsPath}icone_calendario_academico.svg";
   static final String Icone_Carterinha_Estudante = "${svgsPath}icone_carterinha_estudante.svg";
 
+  static final String Error = "${jsonPath}error.json";
   static final String Loading = "${jsonPath}loading.json";
   static final String Loading2 = "${jsonPath}loading2.json";
+  static final String Loading3 = "${jsonPath}loading3.json";
   static final String Success_Animation = "${jsonPath}success_animation.json";
 }

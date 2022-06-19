@@ -38,6 +38,6 @@ class LoginController extends GetxController {
 
   loginPressed(){
     loadingAnimation.value = true;
-    loadingWidget.iniciaAnimacao(destinationPage: MainMenuTabletPhonePage());
+    loadingWidget.startAnimation(destinationPage: MainMenuTabletPhonePage());
   }
 }

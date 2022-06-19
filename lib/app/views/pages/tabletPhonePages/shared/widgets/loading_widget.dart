@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
+import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class LoadingWidget extends StatefulWidget {
   late RxBool loadingAnimetion;
@@ -18,7 +18,7 @@ class LoadingWidget extends StatefulWidget {
   @override
   State<LoadingWidget> createState() => _LoadingWidgetState();
 
-  Future iniciaAnimacao({Widget? destinationPage, bool? backPage}) async {
+  Future startAnimation({Widget? destinationPage, bool? backPage}) async {
     loadingAnimetion.value = true;
     animationController.repeat();
     await Future.delayed(Duration(seconds: 5));
@@ -77,12 +77,9 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
                   ),
                 ),
                 padding: EdgeInsets.all(1.h),
-                child: Lottie.asset(
-                  Paths.Loading,
-                  height: 20.h,
-                  width: 20.h,
-                  fit: BoxFit.fill,
-                  controller: widget.animationController,
+                child: LottieAssetWidget(
+                  animationPath: Paths.Loading,
+                  animationController: widget.animationController,
                 ),
               ),
             ),

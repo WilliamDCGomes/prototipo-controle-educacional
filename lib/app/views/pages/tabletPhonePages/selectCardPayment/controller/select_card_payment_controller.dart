@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
-import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
+import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 import '../../studentRequest/pages/payment_finished_page.dart';
 
 class SelectCardPaymentController extends GetxController {
   late int creditDebtCardActiveStep;
-  late RxBool animationSuccess;
+  late RxBool loadingAnimetion;
   late SelectCardPaymentViewController selectCardPaymentViewController;
-  late AnimationSuccessWidget animationSuccessWidget;
+  late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
 
@@ -22,11 +22,11 @@ class SelectCardPaymentController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0;
-    animationSuccess = false.obs;
+    loadingAnimetion = false.obs;
     carouselCreditDebtCardController = CarouselController();
 
-    animationSuccessWidget = AnimationSuccessWidget(
-      animationSuccess: animationSuccess,
+    loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
+      loadingAnimetion: loadingAnimetion,
     );
   }
 
@@ -57,8 +57,8 @@ class SelectCardPaymentController extends GetxController {
       "60.701.190/0001-04",
       selectCardPaymentViewController.getDateRequest,
     );
-    animationSuccess.value = true;
-    animationSuccessWidget.iniciaAnimacao(
+    loadingAnimetion.value = true;
+    loadingWithSuccessOrErrorWidget.startAnimation(
       destinationPage: PaymentFinished(
         paymentFinishedViewController: payment,
       ),
