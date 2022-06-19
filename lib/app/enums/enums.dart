@@ -20,8 +20,8 @@ enum academicTabs {
 }
 
 enum creditDebtCardType {
-  mastercard,
-  visa
+  debit,
+  credit,
 }
 
 enum studentTypeRequest {
@@ -32,4 +32,13 @@ enum studentTypeRequest {
 enum paymentMethod {
   creditCard,
   bankSlip
+}
+
+enum flagCards {
+  eloFlag,
+  visaFlag,
+  hiperFlag,
+  hipercardFlag,
+  mastercardFlag,
+  americanExpressFlag,
 }

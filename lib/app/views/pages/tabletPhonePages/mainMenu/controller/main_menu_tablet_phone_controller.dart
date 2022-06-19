@@ -33,7 +33,6 @@ class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
   late int creditDebtCardActiveStep;
   late String nameInitials;
-  late double creditDebtCardWidgetHeight;
   late RxBool hasPicture;
   late RxBool deliveryTabSelected;
   late RxString courseName;
@@ -68,7 +67,6 @@ class MainMenuTabletPhoneController extends GetxController {
   _initializeVariables(){
     deliveryTabSelected = false.obs;
     activeStep = 0;
-    creditDebtCardWidgetHeight = 20.h;
     creditDebtCardActiveStep = 0;
     carouselController = CarouselController();
     carouselCreditDebtCardController = CarouselController();
@@ -1339,15 +1337,15 @@ class MainMenuTabletPhoneController extends GetxController {
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        creditDebtCardTypeEnum: creditDebtCardType.mastercard,
-        height: creditDebtCardWidgetHeight,
+        flagCard: flagCards.mastercardFlag,
+        creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardWidget(
-        numericEnd: "5967",
+        numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
-        cardExpirationDate: "10/27",
-        creditDebtCardTypeEnum: creditDebtCardType.visa,
-        height: creditDebtCardWidgetHeight,
+        cardExpirationDate: "02/29",
+        flagCard: flagCards.eloFlag,
+        creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
   }

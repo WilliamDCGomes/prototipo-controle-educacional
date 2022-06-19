@@ -71,13 +71,13 @@ class StudentRequestController extends GetxController {
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        creditDebtCardTypeEnum: creditDebtCardType.mastercard,
+        creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardWidget(
         numericEnd: "5967",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "10/27",
-        creditDebtCardTypeEnum: creditDebtCardType.visa,
+        creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
   }

@@ -36,13 +36,15 @@ class SelectCardPaymentController extends GetxController {
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        creditDebtCardTypeEnum: creditDebtCardType.mastercard,
+        flagCard: flagCards.mastercardFlag,
+        creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardWidget(
-        numericEnd: "5967",
+        numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
-        cardExpirationDate: "10/27",
-        creditDebtCardTypeEnum: creditDebtCardType.visa,
+        cardExpirationDate: "02/29",
+        flagCard: flagCards.eloFlag,
+        creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
   }

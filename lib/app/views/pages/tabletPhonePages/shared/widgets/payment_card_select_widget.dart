@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../enums/enums.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import 'credit_debt_card_widget.dart';
@@ -12,10 +13,11 @@ class PaymentCardSelectWidget extends StatefulWidget {
   late bool showTitleCard;
   late bool showRemoveBottom;
   late bool showEditBottom;
+  final flagCards? flagCard;
   late final String titleCards;
   late final Function() onClicked;
   late final Function()? onRemoveClicked;
-  late final double creditDebtCardWidgetHeight;
+  late final double? creditDebtCardWidgetHeight;
   late final List<CreditDebtCardWidget> creditDebtCardList;
   late final CarouselController carouselCreditDebtCardController;
 
@@ -24,13 +26,14 @@ class PaymentCardSelectWidget extends StatefulWidget {
         required this.titleCards,
         required this.onClicked,
         required this.showTitleCard,
-        required this.creditDebtCardWidgetHeight,
         required this.creditDebtCardActiveStep,
         required this.creditDebtCardList,
         required this.carouselCreditDebtCardController,
         this.showRemoveBottom = false,
         this.showEditBottom = false,
+        this.creditDebtCardWidgetHeight,
         this.onRemoveClicked,
+        this.flagCard,
       }) : super(key: key);
 
   @override
@@ -47,20 +50,20 @@ class _PaymentCardSelectWidgetState extends State<PaymentCardSelectWidget> {
         Padding(
           padding: EdgeInsets.only(bottom: 1.h),
           child: SizedBox(
-            height: widget.creditDebtCardWidgetHeight,
+            height: widget.creditDebtCardWidgetHeight ?? 20.h,
             child: CarouselSlider.builder(
               carouselController: widget.carouselCreditDebtCardController,
               itemCount: widget.creditDebtCardList.length,
               options: CarouselOptions(
-                  viewportFraction: .85,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  enlargeCenterPage: true,
-                  enableInfiniteScroll: false,
-                  onPageChanged: (itemIndex, reason){
-                    setState(() {
-                      widget.creditDebtCardActiveStep = itemIndex;
-                    });
-                  }
+                viewportFraction: .85,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                enlargeCenterPage: true,
+                enableInfiniteScroll: false,
+                onPageChanged: (itemIndex, reason){
+                  setState(() {
+                    widget.creditDebtCardActiveStep = itemIndex;
+                  });
+                }
               ),
               itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
                 return widget.creditDebtCardList[itemIndex];
