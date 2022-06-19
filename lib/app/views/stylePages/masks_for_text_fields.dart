@@ -31,4 +31,19 @@ class MasksForTextFields {
       filter: { "#": RegExp(r'[0-9]') },
       type: MaskAutoCompletionType.lazy
   );
+  static final MaskTextInputFormatter shirtDateMask = MaskTextInputFormatter(
+      mask: '##/##',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
+  static final MaskTextInputFormatter cardNumberMask = MaskTextInputFormatter(
+      mask: '#### #### #### ####',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
+  static final MaskTextInputFormatter cvcCodeMask = MaskTextInputFormatter(
+      mask: '###',
+      filter: { "#": RegExp(r'[0-9]') },
+      type: MaskAutoCompletionType.lazy
+  );
 }

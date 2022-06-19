@@ -2,12 +2,9 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:get/get.dart';
 import '../../../../../enums/enums.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
-import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 
 class CardPaymentController extends GetxController {
   late int creditDebtCardActiveStep;
-  late RxBool loadingAnimetion;
-  late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
 
@@ -18,12 +15,7 @@ class CardPaymentController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0;
-    loadingAnimetion = false.obs;
     carouselCreditDebtCardController = CarouselController();
-
-    loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
-      loadingAnimetion: loadingAnimetion,
-    );
   }
 
   _inicializeList(){
@@ -44,10 +36,5 @@ class CardPaymentController extends GetxController {
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
-  }
-
-  addCard() async {
-    loadingAnimetion.value = true;
-    loadingWithSuccessOrErrorWidget.startAnimation();
   }
 }

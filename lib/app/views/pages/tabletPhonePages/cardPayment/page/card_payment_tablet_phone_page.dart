@@ -7,6 +7,7 @@ import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/card_payment_controller.dart';
@@ -126,7 +127,7 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
                                       hintText: "ADICIONAR",
                                       fontWeight: FontWeight.bold,
                                       widthButton: 75.w,
-                                      onPressed: () => controller.addCard(),
+                                      onPressed: () => Get.to(() => CardRegistrationTabletPhonePage()),
                                     ),
                                   ),
                                 ],
@@ -139,7 +140,6 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
                   ],
                 ),
               ),
-              controller.loadingWithSuccessOrErrorWidget,
             ],
           ),
         ),

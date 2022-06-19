@@ -23,7 +23,7 @@ class Paths{
   static final String mastercard_flag = "${imagesPath}mastercard_flag_card.png";
   static final String Banner_Promocional = "${imagesPath}banner_promocional.png";
   static final String Debit_Card_Back = "${imagesPath}cartao_roxo_verso_pce.png";
-  static final String Cartao_Nao_Cadastrado = "${imagesPath}Cartao_Sem_Cadastro.png";
+  static final String Card_Not_Registered = "${imagesPath}Cartao_Sem_Cadastro.png";
   static final String Credit_Card_Back = "${imagesPath}cartao_laranja_verso_pce.png";
   static final String Ilustracao_Finalizacao = "${imagesPath}ilustracao_finalizacao.png";
   static final String american_express_flag = "${imagesPath}american_express_flag_card.png";

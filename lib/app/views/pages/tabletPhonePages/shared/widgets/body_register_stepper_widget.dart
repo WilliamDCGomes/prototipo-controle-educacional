@@ -29,7 +29,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
       backgroundColor: AppColors.transparentColor,
       body: ListView(
         shrinkWrap: true,
-        padding: EdgeInsets.only(bottom: 5.h),
+        padding: EdgeInsets.only(top: 2.h, bottom: 5.h),
         children: [
           // Entrys da primeira stepper
           Visibility(
