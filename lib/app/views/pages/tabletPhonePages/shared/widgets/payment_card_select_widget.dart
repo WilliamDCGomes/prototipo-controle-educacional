@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../enums/enums.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import 'credit_debt_card_widget.dart';
@@ -13,7 +13,7 @@ class PaymentCardSelectWidget extends StatefulWidget {
   late bool showTitleCard;
   late bool showRemoveBottom;
   late bool showEditBottom;
-  final flagCards? flagCard;
+  final CreditCardType? flagCard;
   late final String titleCards;
   late final Function() onClicked;
   late final Function()? onRemoveClicked;

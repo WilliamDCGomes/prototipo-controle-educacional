@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
@@ -36,14 +37,14 @@ class SelectCardPaymentController extends GetxController {
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        flagCard: flagCards.mastercardFlag,
+        flagCard: CreditCardType.mastercard,
         creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardWidget(
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        flagCard: flagCards.eloFlag,
+        flagCard: CreditCardType.elo,
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];

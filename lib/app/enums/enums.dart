@@ -33,12 +33,3 @@ enum paymentMethod {
   creditCard,
   bankSlip
 }
-
-enum flagCards {
-  eloFlag,
-  visaFlag,
-  hiperFlag,
-  hipercardFlag,
-  mastercardFlag,
-  americanExpressFlag,
-}

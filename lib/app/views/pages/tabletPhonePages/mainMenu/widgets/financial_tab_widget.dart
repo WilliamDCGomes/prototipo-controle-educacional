@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../cardPayment/page/card_payment_tablet_phone_page.dart';
+import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
@@ -132,9 +133,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                           creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,
                           creditDebtCardList: widget.controller.creditDebtCardList,
                           carouselCreditDebtCardController: widget.controller.carouselCreditDebtCardController,
-                          onClicked: () {
-
-                          },
+                          onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(2.w, 2.h, 2.w, 1.h),

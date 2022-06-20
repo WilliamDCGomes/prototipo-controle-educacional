@@ -1,3 +1,4 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,11 @@ import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/card_registration_controller.dart';
 
 class CardRegistrationTabletPhonePage extends StatefulWidget {
-  const CardRegistrationTabletPhonePage({Key? key,}) : super(key: key);
+  late final bool editCard;
+  CardRegistrationTabletPhonePage({
+    Key? key,
+    this.editCard = false,
+  }) : super(key: key);
 
   @override
   State<CardRegistrationTabletPhonePage> createState() => _CardRegistrationTabletPhonePageState();
@@ -26,6 +31,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
   @override
   void initState() {
     controller = Get.put(CardRegistrationController());
+
     super.initState();
   }
 
@@ -65,7 +71,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 2.w),
                           child: TitleWithBackButtonWidget(
-                            title: "Cadastro de Cartão",
+                            title: widget.editCard ? "Editar Cartão": "Cadastrar Cartão",
                           ),
                         ),
                       ),
@@ -81,56 +87,118 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                 ),
                                 child: Center(
                                   child: SizedBox(
+                                    height: PlatformType.isTablet(context) ? 27.h : 23.h,
                                     width: 80.w,
                                     child: Obx(
-                                      () => Stack(
-                                        children: [
-                                          Image.asset(
-                                            controller.cardImagePath.value,
-                                            fit: BoxFit.fill,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 5.w, top: 15.h, right: 5.w),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                TextWidget(
-                                                  controller.numberCardTyped.value,
-                                                  textColor: AppColors.whiteColor,
-                                                  fontSize: 18.sp,
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 1,
-                                                  fontWeight: FontWeight.bold,
+                                      () => FlipCard(
+                                        flipOnTouch: false,
+                                        direction: FlipDirection.HORIZONTAL,
+                                        speed: 250,
+                                        controller: controller.flipCardController,
+                                        front: Stack(
+                                          children: [
+                                            Image.asset(
+                                              controller.cardImagePath.value,
+                                              height: PlatformType.isTablet(context) ? 27.h : 23.h,
+                                              width: 80.w,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            controller.flagCard.value != "" ? Align(
+                                              alignment: Alignment.topRight,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(top: 1.h, right: 2.w),
+                                                child: Image.asset(
+                                                  controller.flagCard.value,
+                                                  width: 15.w,
+                                                  fit: BoxFit.contain,
+                                                  alignment: Alignment.topRight,
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 2.h),
-                                                  child: Row(
-                                                    children: [
-                                                      Expanded(
-                                                        child: TextWidget(
-                                                          controller.nameCardTyped.value,
+                                              ),
+                                            ) : Container(),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                left: 5.w,
+                                                top: PlatformType.isTablet(context) ? 15.h : 12.h,
+                                                right: 5.w,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  TextWidget(
+                                                    controller.numberCardTyped.value,
+                                                    textColor: AppColors.whiteColor,
+                                                    fontSize: 18.sp,
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(top: 3.h),
+                                                    child: Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: TextWidget(
+                                                            controller.nameCardTyped.value,
+                                                            textColor: AppColors.whiteColor,
+                                                            fontSize: 16.sp,
+                                                            textAlign: TextAlign.start,
+                                                            maxLines: 2,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        TextWidget(
+                                                          controller.dueDateCardTyped.value,
                                                           textColor: AppColors.whiteColor,
                                                           fontSize: 16.sp,
-                                                          textAlign: TextAlign.start,
-                                                          maxLines: 2,
+                                                          textAlign: TextAlign.end,
+                                                          maxLines: 1,
                                                           fontWeight: FontWeight.bold,
                                                         ),
-                                                      ),
-                                                      TextWidget(
-                                                        controller.dueDateCardTyped.value,
-                                                        textColor: AppColors.whiteColor,
-                                                        fontSize: 16.sp,
-                                                        textAlign: TextAlign.end,
-                                                        maxLines: 1,
-                                                        fontWeight: FontWeight.bold,
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
+                                        back: Stack(
+                                          children: [
+                                            Image.asset(
+                                              controller.cardImageBackPath.value,
+                                              height: PlatformType.isTablet(context) ? 27.h : 23.h,
+                                              width: 80.w,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            controller.flagCard.value != "" ? Align(
+                                              alignment: Alignment.topRight,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(top: 1.h, right: 2.w),
+                                                child: Image.asset(
+                                                  controller.flagCard.value,
+                                                  width: 15.w,
+                                                  fit: BoxFit.contain,
+                                                  alignment: Alignment.topRight,
+                                                ),
+                                              ),
+                                            ) : Container(),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                left: 6.w,
+                                                top: PlatformType.isTablet(context) ? 12.5.h : 10.5.h,
+                                                right: 5.w,
+                                              ),
+                                              child: TextWidget(
+                                                controller.cvcCodeCardTyped.value,
+                                                textColor: AppColors.blackColor91Percent,
+                                                fontSize: 13.sp,
+                                                textAlign: TextAlign.start,
+                                                maxLines: 1,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -167,6 +235,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                         padding: EdgeInsets.only(top: 3.h),
                                         child: TextFieldWidget(
                                           controller: controller.cardNumber,
+                                          focusNode: controller.numberCardFocus,
                                           hintText: "Número do Cartão",
                                           height: 6.h,
                                           keyboardType: TextInputType.number,
@@ -179,6 +248,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                         padding: EdgeInsets.only(top: 3.h),
                                         child: TextFieldWidget(
                                           controller: controller.nameInCard,
+                                          focusNode: controller.nameCardFocus,
                                           hintText: "Nome no Cartão",
                                           height: 6.h,
                                           keyboardType: TextInputType.name,
@@ -194,6 +264,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                             Expanded(
                                               child: TextFieldWidget(
                                                 controller: controller.dueDate,
+                                                focusNode: controller.dueDateFocus,
                                                 hintText: "Data de Vencimento",
                                                 height: 6.h,
                                                 keyboardType: TextInputType.number,
@@ -208,7 +279,8 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                             Expanded(
                                               child: TextFieldWidget(
                                                 controller: controller.cvcCode,
-                                                hintText: "Código de Segurança",
+                                                focusNode: controller.cvcCodeFocus,
+                                                hintText: "CVC",
                                                 height: 6.h,
                                                 keyboardType: TextInputType.number,
                                                 enableSuggestions: true,
@@ -237,12 +309,13 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                             itemSelected: controller.cardSelectedType.value == "" ? null : controller.cardSelectedType.value,
                                             hintText: "Tipo do Cartão",
                                             height: 5.6.h,
-                                            width: 90.w,
                                             listItems: [
                                               "Débito",
                                               "Crédito"
                                             ],
-                                            onChanged: (newType) => controller.cardTypeChanged(newType),
+                                            onChanged: (newType) => controller.cardTypeChanged(
+                                              newType:  newType,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -256,8 +329,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                   hintText: "SALVAR",
                                   fontWeight: FontWeight.bold,
                                   widthButton: 100.w,
-                                  onPressed: (){
-                                  },
+                                  onPressed: () => controller.saveButtonPressed(),
                                 ),
                               ),
                             ],

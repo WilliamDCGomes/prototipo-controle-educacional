@@ -112,9 +112,7 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
                                         creditDebtCardActiveStep: controller.creditDebtCardActiveStep,
                                         creditDebtCardList: controller.creditDebtCardList,
                                         carouselCreditDebtCardController: controller.carouselCreditDebtCardController,
-                                        onClicked: (){
-
-                                        },
+                                        onClicked: () => Get.to(() => CardRegistrationTabletPhonePage(editCard: true,)),
                                         onRemoveClicked: (){
 
                                         },

@@ -1,3 +1,4 @@
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
@@ -13,7 +14,7 @@ class CreditDebtCardWidget extends StatelessWidget {
   final double? width;
   final double? height;
   final double? paddingHeightName;
-  final flagCards? flagCard;
+  final CreditCardType? flagCard;
   final creditDebtCardType? creditDebtCardTypeEnum;
 
   const CreditDebtCardWidget(

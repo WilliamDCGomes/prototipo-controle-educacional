@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -1337,14 +1338,14 @@ class MainMenuTabletPhoneController extends GetxController {
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        flagCard: flagCards.mastercardFlag,
+        flagCard: CreditCardType.mastercard,
         creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardWidget(
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
-        flagCard: flagCards.eloFlag,
+        flagCard: CreditCardType.elo,
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];

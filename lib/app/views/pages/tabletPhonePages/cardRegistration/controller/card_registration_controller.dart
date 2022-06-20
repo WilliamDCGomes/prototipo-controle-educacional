@@ -1,5 +1,8 @@
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../../../../../helpers/flag_card_type.dart';
 import '../../../../../helpers/paths.dart';
 import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 
@@ -7,31 +10,41 @@ class CardRegistrationController extends GetxController {
   late RxBool grayCard;
   late RxBool loadingAnimetion;
   late RxString cardImagePath;
+  late RxString cardImageBackPath;
   late RxString nameCardTyped;
   late RxString numberCardTyped;
   late RxString dueDateCardTyped;
   late RxString cvcCodeCardTyped;
   late RxString cardSelectedType;
+  late RxString flagCard;
+  late FocusNode nameCardFocus;
+  late FocusNode dueDateFocus;
+  late FocusNode cvcCodeFocus;
+  late FocusNode numberCardFocus;
   late TextEditingController cardNickname;
   late TextEditingController nameInCard;
   late TextEditingController cardNumber;
   late TextEditingController dueDate;
   late TextEditingController cvcCode;
   late TextEditingController cardOwnersCpf;
+  late FlipCardController flipCardController;
   late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
 
   CardRegistrationController(){
     _inicializeVariables();
+    _addListeners();
   }
 
   _inicializeVariables(){
     grayCard = true.obs;
     loadingAnimetion = false.obs;
     cardImagePath = Paths.Card_Not_Registered.obs;
+    cardImageBackPath = Paths.Card_Not_Registered_Back.obs;
     numberCardTyped = "NÚMERO DO CARTÃO".obs;
     nameCardTyped = "NOME COMPLETO".obs;
     dueDateCardTyped = "DATA VENCIMENTO".obs;
     cvcCodeCardTyped = "CÓDIGO DE SEGURANÇA".obs;
+    flagCard = "".obs;
     cardSelectedType = "".obs;
     cardNickname = TextEditingController();
     nameInCard = TextEditingController();
@@ -39,15 +52,47 @@ class CardRegistrationController extends GetxController {
     dueDate = TextEditingController();
     cvcCode = TextEditingController();
     cardOwnersCpf = TextEditingController();
+    flipCardController = FlipCardController();
+    nameCardFocus = FocusNode();
+    dueDateFocus = FocusNode();
+    cvcCodeFocus = FocusNode();
+    numberCardFocus = FocusNode();
 
     loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
       loadingAnimetion: loadingAnimetion,
     );
   }
 
+  _addListeners(){
+    nameCardFocus.addListener(() {
+      if(nameCardFocus.hasFocus){
+        cardTypeChanged();
+      }
+    });
+    dueDateFocus.addListener(() {
+      if(dueDateFocus.hasFocus){
+        cardTypeChanged();
+      }
+    });
+    cvcCodeFocus.addListener(() {
+      if(cvcCodeFocus.hasFocus){
+        reverseCard();
+      }
+    });
+    numberCardFocus.addListener(() {
+      if(numberCardFocus.hasFocus){
+        cardTypeChanged();
+      }
+    });
+  }
+
   saveButtonPressed(){
     loadingAnimetion.value = true;
-    loadingWithSuccessOrErrorWidget.startAnimation();
+    loadingWithSuccessOrErrorWidget.startAnimation(backPage: true);
+  }
+
+  _refreshFlagCard(){
+    flagCard.value = FlagCardType.getFlagCard(detectCCType(numberCardTyped.value));
   }
 
   numberCardEditing(String valueTyped){
@@ -57,6 +102,7 @@ class CardRegistrationController extends GetxController {
     else {
       numberCardTyped.value = valueTyped;
     }
+    _refreshFlagCard();
   }
 
   nameCardEditing(String valueTyped){
@@ -86,37 +132,43 @@ class CardRegistrationController extends GetxController {
     }
   }
 
-  cardTypeChanged(String? newType){
+  cardTypeChanged({String? newType}){
+    if(flipCardController.state != null && !flipCardController.state!.isFront) {
+      flipCardController.toggleCard();
+    }
     if(newType != null) {
       cardSelectedType.value = newType;
-      switch(cardSelectedType.value){
-        case "Débito":
-          cardImagePath.value = Paths.Debit_Card;
-          break;
-        case "Crédito":
-          cardImagePath.value = Paths.Credit_Card;
-          break;
-      }
     }
-    else{
-      cardImagePath.value = Paths.Card_Not_Registered;
+    switch(cardSelectedType.value){
+      case "Débito":
+        cardImagePath.value = Paths.Debit_Card;
+        break;
+      case "Crédito":
+        cardImagePath.value = Paths.Credit_Card;
+        break;
+      default:
+        cardImagePath.value = Paths.Card_Not_Registered;
+        break;
     }
   }
 
-  reverseCard(String? newType){
+  reverseCard({String? newType}){
+    if(flipCardController.state != null && flipCardController.state!.isFront) {
+      flipCardController.toggleCard();
+    }
     if(newType != null) {
       cardSelectedType.value = newType;
-      switch(cardSelectedType.value){
-        case "Débito":
-          cardImagePath.value = Paths.Debit_Card_Back;
-          break;
-        case "Crédito":
-          cardImagePath.value = Paths.Credit_Card_Back;
-          break;
-      }
     }
-    else{
-      cardImagePath.value = Paths.Card_Not_Registered;
+    switch(cardSelectedType.value){
+      case "Débito":
+        cardImageBackPath.value = Paths.Debit_Card_Back;
+        break;
+      case "Crédito":
+        cardImageBackPath.value = Paths.Credit_Card_Back;
+        break;
+      default:
+        cardImageBackPath.value = Paths.Card_Not_Registered_Back;
+        break;
     }
   }
 }

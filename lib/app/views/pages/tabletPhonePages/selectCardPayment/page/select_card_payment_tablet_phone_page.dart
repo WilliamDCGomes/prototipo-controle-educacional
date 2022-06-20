@@ -9,6 +9,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/select_card_payment_controller.dart';
@@ -144,9 +145,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                         creditDebtCardActiveStep: controller.creditDebtCardActiveStep,
                                         creditDebtCardList: controller.creditDebtCardList,
                                         carouselCreditDebtCardController: controller.carouselCreditDebtCardController,
-                                        onClicked: (){
-
-                                        },
+                                        onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
                                       ),
                                     ),
                                   ),

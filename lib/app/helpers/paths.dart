@@ -27,6 +27,7 @@ class Paths{
   static final String Credit_Card_Back = "${imagesPath}cartao_laranja_verso_pce.png";
   static final String Ilustracao_Finalizacao = "${imagesPath}ilustracao_finalizacao.png";
   static final String american_express_flag = "${imagesPath}american_express_flag_card.png";
+  static final String Card_Not_Registered_Back = "${imagesPath}Cartao_Sem_Cadastro_Verso.png";
 
   static final String Logo_Pce = "${svgsPath}logo_pce.svg";
   static final String Icone_Pdf = "${svgsPath}Icone_PDF.svg";
