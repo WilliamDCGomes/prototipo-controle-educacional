@@ -3,7 +3,7 @@ class Paths{
   static final String svgsPath = "lib/app/assets/svgs/";
   static final String jsonPath = "lib/app/assets/json/";
 
-  static final String logo_pce = "${imagesPath}logo_pce.png";
+  static final String logo_pce = "${imagesPath}second_logo_pce.png";
   static final String background = "${imagesPath}background.png";
   static final String Icone_Home = "${imagesPath}icone_home.png";
   static final String elo_flag = "${imagesPath}elo_flag_card.png";

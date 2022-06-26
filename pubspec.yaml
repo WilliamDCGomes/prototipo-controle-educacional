@@ -39,6 +39,33 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^2.2.0
+  flutter_launcher_icons: ^0.9.3
+
+# Rodar sempre que quiser atualizar a splashscreen
+# flutter clean
+# flutter pub get
+# flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  background_image: lib/app/assets/images/icons/background.png
+  background_image_dark: lib/app/assets/images/icons/background.png
+  image: lib/app/assets/images/icons/logo_pce.png
+  image_dark: lib/app/assets/images/icons/logo_pce.png
+
+  android_12:
+    background_image: lib/app/assets/images/icons/background.png
+    background_image_dark: lib/app/assets/images/icons/background.png
+    image: lib/app/assets/images/icons/logo_pce.png
+    image_dark: lib/app/assets/images/icons/logo_pce.png
+
+  web: false
+
+#flutter_icons:
+#  android: "launcher_icon"
+#  ios: false
+#  image_path: "lib/app/assets/images/icons/second_logo_pce.png"
+#  adaptive_icon_background: "#62407E"
+#  adaptive_icon_foreground: "lib/app/assets/images/icons/second_logo_pce.png"
 
 flavorizr:
   app:

@@ -5,7 +5,7 @@ import 'package:projeto_tcc/app/views/pages/widgetsShared/text_field_widget.dart
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
-import '../../registerUser/controllers/register_user_controller.dart';
+import '../controllers/register_user_controller.dart';
 import '../../../widgetsShared/dropdown_button_widget.dart';
 
 class BodyRegisterStepperWidget extends StatefulWidget {
@@ -25,11 +25,9 @@ class BodyRegisterStepperWidget extends StatefulWidget {
 class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.transparentColor,
-      body: ListView(
-        shrinkWrap: true,
-        padding: EdgeInsets.only(top: 2.h, bottom: 5.h),
+    return Padding(
+      padding: EdgeInsets.only(top: 2.h, bottom: 5.h),
+      child: Column(
         children: [
           // Entrys da primeira stepper
           Visibility(
@@ -193,15 +191,15 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                 Padding(
                   padding: EdgeInsets.only(top: 5.h),
                   child: Obx(() => DropdownButtonWidget(
-                      itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
-                      hintText: "Período",
-                      height: 5.6.h,
-                      width: 90.w,
-                      listItems: widget.controller.periodList,
-                      onChanged: (selectedPeriod) {
-                        widget.controller.periodSelected.value = selectedPeriod ?? "";
-                      },
-                    ),
+                    itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
+                    hintText: "Período",
+                    height: 5.6.h,
+                    width: 90.w,
+                    listItems: widget.controller.periodList,
+                    onChanged: (selectedPeriod) {
+                      widget.controller.periodSelected.value = selectedPeriod ?? "";
+                    },
+                  ),
                   ),
                 ),
               ],

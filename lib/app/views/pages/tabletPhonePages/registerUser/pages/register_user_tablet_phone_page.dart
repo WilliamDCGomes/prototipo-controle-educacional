@@ -86,31 +86,42 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                               ],
                             ),
                           ),
-                          Obx(
-                            () => controller.headerRegisterStepperList[controller.activeStep.value],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 2.h, 0, 3.h),
-                            child: Obx(() => DotStepper(
-                              dotCount: 7,
-                              dotRadius: 1.h,
-                              activeStep: controller.activeStep.value,
-                              shape: Shape.circle,
-                              spacing: 3.w,
-                              indicator: Indicator.magnify,
-                              fixedDotDecoration: FixedDotDecoration(
-                                color: AppColors.grayStepColor,
-                              ),
-                              indicatorDecoration: IndicatorDecoration(
-                                color: AppColors.orangeColor,
-                              ),
-                              tappingEnabled: false,
-                            ),
-                            ),
-                          ),
                           Expanded(
-                            child: Obx(
-                              () => controller.bodyRegisterStepperList[controller.activeStep.value],
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 5.h),
+                              child: ListView(
+                                shrinkWrap: true,
+                                children: [
+                                  Obx(
+                                    () => controller.headerRegisterStepperList[controller.activeStep.value],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 2.h, 0, 3.h),
+                                    child: Obx(
+                                      () => Center(
+                                        child: DotStepper(
+                                          dotCount: 7,
+                                          dotRadius: 1.h,
+                                          activeStep: controller.activeStep.value,
+                                          shape: Shape.circle,
+                                          spacing: 3.w,
+                                          indicator: Indicator.magnify,
+                                          fixedDotDecoration: FixedDotDecoration(
+                                            color: AppColors.grayStepColor,
+                                          ),
+                                          indicatorDecoration: IndicatorDecoration(
+                                            color: AppColors.orangeColor,
+                                          ),
+                                          tappingEnabled: false,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Obx(
+                                    () => controller.bodyRegisterStepperList[controller.activeStep.value],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Align(
