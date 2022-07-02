@@ -24,6 +24,7 @@ class AppColors {
   static final Color orangeTextColor = const Color(0XFFEF8C4D);
   static final Color purpleTabColor = const Color(0XFF5C3876);
   static final Color purpleDefaultColor = const Color(0XFF62407E);
+  static final Color purpleDefaultColorWithOpacity = const Color(0XFF62407E).withOpacity(.65);
   static final Color transparentPurpleDefaultColor = const Color(0XFF62407E).withOpacity(.4);
   static final Color backgroundColor = const Color(0XFFF2F1F1);
   static final Color transparentBackgroundColor = const Color(0XFFF2F1F1).withOpacity(.5);

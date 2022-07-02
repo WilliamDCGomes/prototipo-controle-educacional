@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/app_close_controller.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../controller/welcome_page_controller.dart';
@@ -36,12 +37,14 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
     return WillPopScope(
       onWillPop: () async {
         bool returnFuction = await controller.backStepper();
-        if(!returnFuction)
+        if(!returnFuction) {
           setState(() {
             controller.activeStep--;
             controller.carouselController.jumpToPage(controller.activeStep);
           });
-        return returnFuction;
+          return returnFuction;
+        }
+        return AppCloseController.verifyCloseScreen();
       },
       child: SafeArea(
         child: Material(
