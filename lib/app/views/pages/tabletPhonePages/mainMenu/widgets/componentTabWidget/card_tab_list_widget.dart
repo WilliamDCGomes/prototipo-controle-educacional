@@ -38,7 +38,7 @@ class CardTabListWidget extends StatelessWidget {
                 curriculumDeliveryViewController: curriculumDeliveryViewController,
               ),
             ),
-            borderRadius: 2.5.h,
+            borderRadius: 1.h,
             componentPadding: EdgeInsets.zero,
             widgetCustom: Stack(
               children: [

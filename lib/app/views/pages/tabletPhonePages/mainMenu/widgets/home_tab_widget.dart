@@ -59,7 +59,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                     children: [
                       TextButtonWidget(
                         onTap: () => widget.controller.openProfile(),
-                        borderRadius: 2.h,
+                        borderRadius: 1.h,
                         componentPadding: EdgeInsets.symmetric(horizontal: 2.w),
                         widgetCustom: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,

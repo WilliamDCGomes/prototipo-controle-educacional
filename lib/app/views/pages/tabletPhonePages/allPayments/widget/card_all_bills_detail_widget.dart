@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../../base/viewController/card_payment_view_controller.dart';
-import '../../../../widgetsShared/rich_text_two_different_widget.dart';
-import '../../../../widgetsShared/text_widget.dart';
-import '../../../../../stylePages/app_colors.dart';
-import '../../../../widgetsShared/text_button_widget.dart';
-import '../../../paymentDetails/page/payment_detail_tablet_phone_page.dart';
+import '../../../../stylePages/app_colors.dart';
+import '../../../widgetsShared/rich_text_two_different_widget.dart';
+import '../../../widgetsShared/text_button_widget.dart';
+import '../../../widgetsShared/text_widget.dart';
+import '../../paymentDetails/page/payment_detail_tablet_phone_page.dart';
 
-class CardPaymentListWidget extends StatelessWidget {
+class CardAllBillsDetailWidget extends StatelessWidget {
   final CardPaymentViewController cardPaymentViewController;
 
-  const CardPaymentListWidget(
+  const CardAllBillsDetailWidget(
       { Key? key,
         required this.cardPaymentViewController,
       }) : super(key: key);

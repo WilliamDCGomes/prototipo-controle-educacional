@@ -31,7 +31,7 @@ class CardCalendarInformationWidget extends StatelessWidget {
         child: TextButtonWidget(
           onTap: () => academicCalendarController.openAcademicCalendarPopup(meetingViewController),
           componentPadding: EdgeInsets.zero,
-          borderRadius: 2.5.h,
+          borderRadius: 1.h,
           widgetCustom: Padding(
             padding: EdgeInsets.all(1.h),
             child: Row(

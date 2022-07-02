@@ -20,10 +20,10 @@ class NewsAndEventsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(2.w, 0.h, 2.w, 1.h),
+      padding: EdgeInsets.only(bottom: 1.h),
       child: SizedBox(
         height: 17.h,
-        width: 90.w,
+        width: 95.w,
         child: Card(
           color: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
@@ -41,7 +41,7 @@ class NewsAndEventsCardWidget extends StatelessWidget {
                 .55,
               );
             },
-            borderRadius: 2.5.h,
+            borderRadius: 1.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(
               children: [

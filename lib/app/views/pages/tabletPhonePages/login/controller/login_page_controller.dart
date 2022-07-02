@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
 import '../../registerUser/pages/register_user_tablet_phone_page.dart';

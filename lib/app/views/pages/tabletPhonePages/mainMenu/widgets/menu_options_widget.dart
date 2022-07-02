@@ -47,7 +47,7 @@ class MenuOptionsWidget extends StatelessWidget {
       ),
       child: TextButtonWidget(
         onTap: onTap,
-        borderRadius: 2.h,
+        borderRadius: 2.5.h,
         componentPadding: EdgeInsets.symmetric(horizontal: 1.h),
         widgetCustom: SizedBox(
           height: 13.h,

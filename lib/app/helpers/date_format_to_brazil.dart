@@ -44,6 +44,16 @@ class DateFormatToBrazil {
     return "";
   }
 
+  static String semesterInformation(DateTime? date) {
+    if(date != null) {
+      initializeDateFormatting('pt_BR', null);
+      Intl.defaultLocale = 'pt_BR';
+      String semester = date.month < 7 ? "1º Semestre" : "2º Semestre";
+      return "$semester de ${DateFormat('yyyy').format(date).replaceAll('-', ' ')}";
+    }
+    return "";
+  }
+
   static String weekDay(DateTime? date) {
     if(date != null) {
       switch(date.weekday){

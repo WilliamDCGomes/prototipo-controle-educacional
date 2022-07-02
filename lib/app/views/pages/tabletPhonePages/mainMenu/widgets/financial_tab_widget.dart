@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../allPayments/page/all_payments_tablet_phone_page.dart';
 import '../../cardPayment/page/card_payment_tablet_phone_page.dart';
 import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_widget.dart';
@@ -142,16 +143,14 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextWidget(
-                                "Últimos Pagamentos",
+                                "Últimos Boletos/Lançamentos",
                                 textColor: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17.sp,
                                 textAlign: TextAlign.start,
                               ),
                               TextButtonWidget(
-                                onTap: () {
-
-                                },
+                                onTap: () => Get.to(() => AllPaymentsTabletPhonePage()),
                                 hintText: "Ver Todos",
                                 fontWeight: FontWeight.normal,
                                 textDecoration: TextDecoration.underline,

@@ -31,12 +31,14 @@ class TitleWithBackButtonWidget extends StatelessWidget {
               size: 3.h,
             ),
           ),
-          TextWidget(
-            title,
-            textColor: titleColor ?? AppColors.blackColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 18.sp,
-            textAlign: TextAlign.start,
+          Expanded(
+            child: TextWidget(
+              title,
+              textColor: titleColor ?? AppColors.blackColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 18.sp,
+              textAlign: TextAlign.start,
+            ),
           ),
         ],
       ),

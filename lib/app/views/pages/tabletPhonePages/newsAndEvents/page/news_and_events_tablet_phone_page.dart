@@ -112,6 +112,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                   ),
                                   child: Center(
                                     child: ListView.builder(
+                                      shrinkWrap: true,
                                       itemCount: controller.newsAndEventsList.length,
                                       itemBuilder: (context, index){
                                         return NewsAndEventsCardWidget(

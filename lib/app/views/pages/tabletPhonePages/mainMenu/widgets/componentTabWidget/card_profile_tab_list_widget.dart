@@ -34,7 +34,7 @@ class CardProfileTabListWidget extends StatelessWidget {
           elevation: 3,
           child: TextButtonWidget(
             onTap: () => mainMenuTabletPhoneController.cardProfileSelected(id),
-            borderRadius: 2.5.h,
+            borderRadius: 1.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(
               children: [
