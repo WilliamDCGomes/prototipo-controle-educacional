@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/base/models/classes.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/models/files.dart';
+import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
@@ -19,7 +20,6 @@ import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
 import '../widgets/group_menu_home_widgets.dart';
 import '../widgets/academic_tab_widget.dart';
 import '../widgets/componentTabWidget/academic_tab_list_widget.dart';
-import '../widgets/componentTabWidget/card_payment_list_widget.dart';
 import '../widgets/componentTabWidget/card_profile_tab_list_widget.dart';
 import '../widgets/financial_tab_widget.dart';
 import '../widgets/home_tab_widget.dart';
@@ -32,7 +32,7 @@ import '../../../../stylePages/app_colors.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
-  late int creditDebtCardActiveStep;
+  late RxInt creditDebtCardActiveStep;
   late String nameInitials;
   late RxBool hasPicture;
   late RxBool deliveryTabSelected;
@@ -43,7 +43,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late List<CardProfileTabListWidget> cardProfileTabList;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late List<CardAcademicRecordWidget> cardAcademicRecordList;
-  late List<CardPaymentListWidget> cardPaymentList;
+  late List<CardPaymentViewController> cardPaymentList;
   late List<CurriculumDeliveryViewController> curriculumTabList;
   late List<CurriculumDeliveryViewController> deliveryTabList;
   late List<Widget> tabMainMenuList;
@@ -68,7 +68,7 @@ class MainMenuTabletPhoneController extends GetxController {
   _initializeVariables(){
     deliveryTabSelected = false.obs;
     activeStep = 0;
-    creditDebtCardActiveStep = 0;
+    creditDebtCardActiveStep = 0.obs;
     carouselController = CarouselController();
     carouselCreditDebtCardController = CarouselController();
     academicRecordCarouselController = CarouselController();
@@ -1165,31 +1165,48 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
 
     cardPaymentList = [
-      CardPaymentListWidget(
-        firstValue: "Futura",
-        secondValue: "05/07/2022",
-        thirdValue: "R\$ 743,99",
-        cardColor: AppColors.greenColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 0,
+      CardPaymentViewController(
+        "William Douglas Costa Gomes",
+        "Mensalidade",
+        "BANCO ITAÚ UNIBANCO S/A",
+        "60.701.190/0001-01",
+        "04/07/2022",
+        "05/07/2022",
+        "R\$ 743,99",
+        paymentStatus.finished,
       ),
-      CardPaymentListWidget(
-        firstValue: "Futura",
-        secondValue: "05/08/2022",
-        thirdValue: "R\$ 743,99",
-        cardColor: AppColors.greenColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 0,
+      CardPaymentViewController(
+        "William Douglas Costa Gomes",
+        "Mensalidade",
+        "BANCO ITAÚ UNIBANCO S/A",
+        "60.701.190/0001-01",
+        "",
+        "05/08/2022",
+        "R\$ 743,99",
+        paymentStatus.late,
       ),
-      CardPaymentListWidget(
-        firstValue: "Futura",
-        secondValue: "05/09/2022",
-        thirdValue: "R\$ 743,99",
-        cardColor: AppColors.greenColor,
-        mainMenuTabletPhoneController: this,
-        itemIndex: 0,
+      CardPaymentViewController(
+        "William Douglas Costa Gomes",
+        "Mensalidade",
+        "BANCO ITAÚ UNIBANCO S/A",
+        "60.701.190/0001-01",
+        "",
+        "05/09/2022",
+        "R\$ 743,99",
+        paymentStatus.next,
+      ),
+      CardPaymentViewController(
+        "William Douglas Costa Gomes",
+        "Mensalidade",
+        "BANCO ITAÚ UNIBANCO S/A",
+        "60.701.190/0001-01",
+        "",
+        "05/10/2022",
+        "R\$ 743,99",
+        paymentStatus.future,
       ),
     ];
+
     cardProfileTabList = [
       CardProfileTabListWidget(
         id: 0,
@@ -1410,11 +1427,6 @@ class MainMenuTabletPhoneController extends GetxController {
         Get.to(() => NewsAndEventsTabletPhonePage());
         break;
     }
-  }
-
-  curriculumTabSelected(int curriculumIndexOfItem) async {
-    await Future.delayed(Duration(milliseconds: 200));
-    print("index: " + curriculumIndexOfItem.toString());
   }
 
   cardProfileSelected(int indexCardSelected) async {

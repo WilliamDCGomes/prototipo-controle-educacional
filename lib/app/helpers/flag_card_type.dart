@@ -18,25 +18,18 @@ class FlagCardType {
         case CreditCardType.amex:
           return Paths.american_express_flag;
         case CreditCardType.discover:
-          // TODO: Handle this case.
           break;
         case CreditCardType.dinersclub:
-          // TODO: Handle this case.
           break;
         case CreditCardType.jcb:
-          // TODO: Handle this case.
           break;
         case CreditCardType.unionpay:
-          // TODO: Handle this case.
           break;
         case CreditCardType.maestro:
-          // TODO: Handle this case.
           break;
         case CreditCardType.mir:
-          // TODO: Handle this case.
           break;
         case CreditCardType.unknown:
-          // TODO: Handle this case.
           break;
       }
     }

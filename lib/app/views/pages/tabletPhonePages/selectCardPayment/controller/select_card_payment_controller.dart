@@ -9,7 +9,7 @@ import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 import '../../studentRequest/pages/payment_finished_page.dart';
 
 class SelectCardPaymentController extends GetxController {
-  late int creditDebtCardActiveStep;
+  late RxInt creditDebtCardActiveStep;
   late RxBool loadingAnimetion;
   late SelectCardPaymentViewController selectCardPaymentViewController;
   late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
@@ -22,7 +22,7 @@ class SelectCardPaymentController extends GetxController {
   }
 
   _inicializeVariables(){
-    creditDebtCardActiveStep = 0;
+    creditDebtCardActiveStep = 0.obs;
     loadingAnimetion = false.obs;
     carouselCreditDebtCardController = CarouselController();
 

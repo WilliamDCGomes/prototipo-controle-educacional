@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
-import '../../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
+import '../../../paymentDetails/page/payment_detail_tablet_phone_page.dart';
 
 class CardPaymentListWidget extends StatelessWidget {
-  final int itemIndex;
-  final String firstValue;
-  final String secondValue;
-  final String thirdValue;
-  final Color cardColor;
-  final MainMenuTabletPhoneController mainMenuTabletPhoneController;
+  final CardPaymentViewController cardPaymentViewController;
 
   const CardPaymentListWidget(
       { Key? key,
-        required this.itemIndex,
-        required this.firstValue,
-        required this.secondValue,
-        required this.thirdValue,
-        required this.cardColor,
-        required this.mainMenuTabletPhoneController,
+        required this.cardPaymentViewController,
       }) : super(key: key);
 
   @override
@@ -38,7 +30,10 @@ class CardPaymentListWidget extends StatelessWidget {
           ),
           elevation: 3,
           child: TextButtonWidget(
-            onTap: () => mainMenuTabletPhoneController.curriculumTabSelected(itemIndex),
+            onTap: () => Get.to(() => PaymentDetailTabletPhonePage(
+              pageTitle: "Detalhe da Fatura",
+              cardPaymentViewController: cardPaymentViewController,
+            )),
             borderRadius: 2.5.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(
@@ -61,11 +56,11 @@ class CardPaymentListWidget extends StatelessWidget {
                                 Container(
                                   height: 2.2.h,
                                   width: .5.h,
-                                  color: cardColor,
+                                  color: cardPaymentViewController.getCardColor,
                                 ),
                                 Expanded(
                                   child: TextWidget(
-                                    " " + firstValue,
+                                    " ${cardPaymentViewController.getStatusName}",
                                     textColor: AppColors.blackColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18.sp,
@@ -79,7 +74,7 @@ class CardPaymentListWidget extends StatelessWidget {
                               padding: EdgeInsets.only(top: 1.h),
                               child: RichTextTwoDifferentWidget(
                                 firstText: "Vencimento:",
-                                secondText: secondValue,
+                                secondText: cardPaymentViewController.dueDate,
                                 firstTextSize: 16.sp,
                                 secondTextSize: 16.sp,
                                 firstTextFontWeight: FontWeight.normal,
@@ -93,9 +88,9 @@ class CardPaymentListWidget extends StatelessWidget {
                         ),
                       ),
                       TextWidget(
-                        thirdValue,
+                        cardPaymentViewController.billValue,
                         maxLines: 1,
-                        textColor: AppColors.greenColor,
+                        textColor: cardPaymentViewController.getCardColor,
                         fontSize: 18.sp,
                         textAlign: TextAlign.end,
                         fontWeight: FontWeight.bold,

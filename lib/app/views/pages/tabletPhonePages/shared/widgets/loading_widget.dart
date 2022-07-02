@@ -7,7 +7,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class LoadingWidget extends StatefulWidget {
-  late RxBool loadingAnimetion;
+  late final RxBool loadingAnimetion;
   late final AnimationController animationController;
 
   LoadingWidget(
@@ -61,15 +61,7 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
             width: 100.w,
             color: AppColors.blackTransparentColor,
             child: Center(
-              child: false ? SizedBox(
-                height: 15.h,
-                width: 15.h,
-                child: CircularProgressIndicator(
-                  color: AppColors.purpleDefaultColor,
-                  backgroundColor: AppColors.grayColor,
-                  strokeWidth: .5.h,
-                ),
-              ) : Container(
+              child: Container(
                 decoration: BoxDecoration(
                   color: AppColors.purpleDefaultColor,
                   borderRadius: BorderRadius.all(

@@ -33,3 +33,10 @@ enum paymentMethod {
   creditCard,
   bankSlip
 }
+
+enum paymentStatus {
+  future,
+  next,
+  late,
+  finished
+}

@@ -5,8 +5,8 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 
 class BottomSelectPaymentFormWidget extends StatefulWidget {
-  late String cardTitle;
-  late RxBool cardSelected;
+  late final String cardTitle;
+  late final RxBool cardSelected;
 
   BottomSelectPaymentFormWidget({
     Key? key,

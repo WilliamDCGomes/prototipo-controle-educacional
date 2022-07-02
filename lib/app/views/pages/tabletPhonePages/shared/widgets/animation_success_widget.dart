@@ -7,7 +7,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class AnimationSuccessWidget extends StatefulWidget {
-  late RxBool animationSuccess;
+  late final RxBool animationSuccess;
   late final AnimationController animationController;
 
   AnimationSuccessWidget(

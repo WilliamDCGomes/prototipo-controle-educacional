@@ -12,6 +12,7 @@ import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import 'card_financial_widget.dart';
+import 'componentTabWidget/card_payment_list_widget.dart';
 
 class FinancialTabWidget extends StatefulWidget {
   late final MainMenuTabletPhoneController controller;
@@ -35,7 +36,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
 
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
-        widget.controller.creditDebtCardActiveStep = 0;
+        widget.controller.creditDebtCardActiveStep.value = 0;
       });
     });
   }
@@ -158,9 +159,15 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                             ],
                           ),
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: widget.controller.cardPaymentList,
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: widget.controller.cardPaymentList.length,
+                          itemBuilder: (context, index){
+                            return CardPaymentListWidget(
+                              cardPaymentViewController: widget.controller.cardPaymentList[index],
+                            );
+                          },
                         ),
                       ],
                     ),

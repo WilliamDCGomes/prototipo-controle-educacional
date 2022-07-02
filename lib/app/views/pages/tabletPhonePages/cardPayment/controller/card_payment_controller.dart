@@ -5,7 +5,7 @@ import '../../../../../enums/enums.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
 
 class CardPaymentController extends GetxController {
-  late int creditDebtCardActiveStep;
+  late RxInt creditDebtCardActiveStep;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
 
@@ -15,7 +15,7 @@ class CardPaymentController extends GetxController {
   }
 
   _inicializeVariables(){
-    creditDebtCardActiveStep = 0;
+    creditDebtCardActiveStep = 0.obs;
     carouselCreditDebtCardController = CarouselController();
   }
 

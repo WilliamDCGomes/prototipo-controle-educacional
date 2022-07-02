@@ -28,7 +28,7 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
-        controller.creditDebtCardActiveStep = 0;
+        controller.creditDebtCardActiveStep.value = 0;
       });
     });
   }

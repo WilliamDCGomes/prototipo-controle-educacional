@@ -84,62 +84,62 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 95.w,
-                                margin: EdgeInsets.only(
-                                  top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                  bottom: 5.h,
-                                ),
-                                padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1.h),
-                                  color: AppColors.purpleDefaultColor,
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Obx(() => TextWidget(
-                                        controller.requestTitle.value.toUpperCase(),
-                                        textColor: AppColors.whiteColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                                      child: RichTextTwoDifferentWidget(
-                                        firstText: "Valor: ",
-                                        firstTextColor: AppColors.whiteColor,
-                                        firstTextFontWeight: FontWeight.normal,
-                                        firstTextSize: 16.sp,
-                                        secondText: "R\$ 20,00",
-                                        secondTextColor: AppColors.whiteColor,
-                                        secondTextFontWeight: FontWeight.bold,
-                                        secondTextSize: 16.sp,
-                                        secondTextDecoration: TextDecoration.none,
-                                      ),
-                                    ),
-                                    RichTextTwoDifferentWidget(
-                                      firstText: "Data de Previsão de Entrega: ",
-                                      firstTextColor: AppColors.whiteColor,
-                                      firstTextFontWeight: FontWeight.normal,
-                                      firstTextSize: 16.sp,
-                                      secondText: "07/06/2022",
-                                      secondTextColor: AppColors.whiteColor,
-                                      secondTextFontWeight: FontWeight.bold,
-                                      secondTextSize: 16.sp,
-                                      secondTextDecoration: TextDecoration.none,
-                                    ),
-                                  ],
-                                ),
-                              ),
                               Expanded(
                                 child: ListView(
                                   shrinkWrap: true,
+                                  padding: EdgeInsets.only(top: PlatformType.isTablet(context) ? 9.h : 7.h,),
                                   children: [
+                                    Container(
+                                      width: 95.w,
+                                      margin: EdgeInsets.only(
+                                        bottom: 5.h,
+                                      ),
+                                      padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(1.h),
+                                        color: AppColors.purpleDefaultColor,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Obx(() => TextWidget(
+                                            controller.requestTitle.value.toUpperCase(),
+                                            textColor: AppColors.whiteColor,
+                                            fontSize: 18.sp,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 1,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                            child: RichTextTwoDifferentWidget(
+                                              firstText: "Valor: ",
+                                              firstTextColor: AppColors.whiteColor,
+                                              firstTextFontWeight: FontWeight.normal,
+                                              firstTextSize: 16.sp,
+                                              secondText: "R\$ 20,00",
+                                              secondTextColor: AppColors.whiteColor,
+                                              secondTextFontWeight: FontWeight.bold,
+                                              secondTextSize: 16.sp,
+                                              secondTextDecoration: TextDecoration.none,
+                                            ),
+                                          ),
+                                          RichTextTwoDifferentWidget(
+                                            firstText: "Data de Previsão de Entrega: ",
+                                            firstTextColor: AppColors.whiteColor,
+                                            firstTextFontWeight: FontWeight.normal,
+                                            firstTextSize: 16.sp,
+                                            secondText: "07/06/2022",
+                                            secondTextColor: AppColors.whiteColor,
+                                            secondTextFontWeight: FontWeight.bold,
+                                            secondTextSize: 16.sp,
+                                            secondTextDecoration: TextDecoration.none,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: TextWidget(

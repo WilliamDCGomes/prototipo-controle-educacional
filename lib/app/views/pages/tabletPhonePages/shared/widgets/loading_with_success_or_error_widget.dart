@@ -7,9 +7,9 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class LoadingWithSuccessOrErrorWidget extends StatefulWidget {
-  late RxBool loadingAnimetion;
-  late RxBool isLoading;
-  late RxBool success;
+  late final RxBool loadingAnimetion;
+  late final RxBool isLoading;
+  late final RxBool success;
   late final AnimationController animationController;
 
   LoadingWithSuccessOrErrorWidget(

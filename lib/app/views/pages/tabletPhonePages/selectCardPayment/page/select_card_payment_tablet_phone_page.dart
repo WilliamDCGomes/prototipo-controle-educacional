@@ -15,7 +15,7 @@ import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/select_card_payment_controller.dart';
 
 class SelectCardPaymentTabletPhonePage extends StatefulWidget {
-  late SelectCardPaymentViewController selectCardPaymentViewController;
+  late final SelectCardPaymentViewController selectCardPaymentViewController;
   SelectCardPaymentTabletPhonePage({
     Key? key,
     required this.selectCardPaymentViewController,
@@ -34,7 +34,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
-        controller.creditDebtCardActiveStep = 0;
+        controller.creditDebtCardActiveStep.value = 0;
       });
     });
   }
