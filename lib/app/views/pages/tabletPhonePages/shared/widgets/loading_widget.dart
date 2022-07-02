@@ -51,27 +51,32 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Visibility(
-        visible: widget.loadingAnimetion.value,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            height: 100.h,
-            width: 100.w,
-            color: AppColors.blackTransparentColor,
-            child: Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.purpleDefaultColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.h),
+    return  WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Obx(
+        () => Visibility(
+          visible: widget.loadingAnimetion.value,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              height: 100.h,
+              width: 100.w,
+              color: AppColors.blackTransparentColor,
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.purpleDefaultColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12.h),
+                    ),
                   ),
-                ),
-                padding: EdgeInsets.all(1.h),
-                child: LottieAssetWidget(
-                  animationPath: Paths.Loading,
-                  animationController: widget.animationController,
+                  padding: EdgeInsets.all(1.h),
+                  child: LottieAssetWidget(
+                    animationPath: Paths.Loading,
+                    animationController: widget.animationController,
+                  ),
                 ),
               ),
             ),

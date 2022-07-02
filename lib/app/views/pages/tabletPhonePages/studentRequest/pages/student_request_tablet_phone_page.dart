@@ -100,45 +100,46 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                         borderRadius: BorderRadius.circular(1.h),
                                         color: AppColors.purpleDefaultColor,
                                       ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Obx(() => TextWidget(
-                                            controller.requestTitle.value.toUpperCase(),
-                                            textColor: AppColors.whiteColor,
-                                            fontSize: 18.sp,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 1,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                                            child: RichTextTwoDifferentWidget(
-                                              firstText: "Valor: ",
+                                      child: Obx(
+                                        () => Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            TextWidget(
+                                              controller.requestTitle.value.toUpperCase(),
+                                              textColor: AppColors.whiteColor,
+                                              fontSize: 18.sp,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                              child: RichTextTwoDifferentWidget(
+                                                firstText: "Valor: ",
+                                                firstTextColor: AppColors.whiteColor,
+                                                firstTextFontWeight: FontWeight.normal,
+                                                firstTextSize: 16.sp,
+                                                secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
+                                                secondTextColor: AppColors.whiteColor,
+                                                secondTextFontWeight: FontWeight.bold,
+                                                secondTextSize: 16.sp,
+                                                secondTextDecoration: TextDecoration.none,
+                                              ),
+                                            ),
+                                            RichTextTwoDifferentWidget(
+                                              firstText: "Data de Previsão de Entrega: ",
                                               firstTextColor: AppColors.whiteColor,
                                               firstTextFontWeight: FontWeight.normal,
                                               firstTextSize: 16.sp,
-                                              secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
+                                              secondText: controller.deliveryDate.value,
                                               secondTextColor: AppColors.whiteColor,
                                               secondTextFontWeight: FontWeight.bold,
                                               secondTextSize: 16.sp,
                                               secondTextDecoration: TextDecoration.none,
                                             ),
-                                          ),
-                                          RichTextTwoDifferentWidget(
-                                            firstText: "Data de Previsão de Entrega: ",
-                                            firstTextColor: AppColors.whiteColor,
-                                            firstTextFontWeight: FontWeight.normal,
-                                            firstTextSize: 16.sp,
-                                            secondText: "07/06/2022",
-                                            secondTextColor: AppColors.whiteColor,
-                                            secondTextFontWeight: FontWeight.bold,
-                                            secondTextSize: 16.sp,
-                                            secondTextDecoration: TextDecoration.none,
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     Align(

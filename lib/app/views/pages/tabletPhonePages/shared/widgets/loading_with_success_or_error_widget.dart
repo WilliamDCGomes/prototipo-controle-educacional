@@ -71,35 +71,40 @@ class _LoadingWithSuccessOrErrorWidgetState extends State<LoadingWithSuccessOrEr
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-          () => Visibility(
-        visible: widget.loadingAnimetion.value,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            height: 100.h,
-            width: 100.w,
-            color: AppColors.blackTransparentColor,
-            child: Center(
-              child: Obx(
-                () => Visibility(
-                  visible: widget.isLoading.value,
-                  replacement: widget.success.value ?
-                    LottieAssetWidget(
-                      animationPath: Paths.Success_Animation,
-                      repeat: false,
-                    ) :
-                    LottieAssetWidget(
-                      animationPath: Paths.Error,
-                      repeat: false,
-                    ) ,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 5.h),
-                    child: LottieAssetWidget(
-                      height: 40.h,
-                      width: 40.h,
-                      animationPath: Paths.Loading3,
-                      animationController: widget.animationController,
+    return  WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Obx(
+        () => Visibility(
+          visible: widget.loadingAnimetion.value,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              height: 100.h,
+              width: 100.w,
+              color: AppColors.blackTransparentColor,
+              child: Center(
+                child: Obx(
+                  () => Visibility(
+                    visible: widget.isLoading.value,
+                    replacement: widget.success.value ?
+                      LottieAssetWidget(
+                        animationPath: Paths.Success_Animation,
+                        repeat: false,
+                      ) :
+                      LottieAssetWidget(
+                        animationPath: Paths.Error,
+                        repeat: false,
+                      ) ,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 5.h),
+                      child: LottieAssetWidget(
+                        height: 40.h,
+                        width: 40.h,
+                        animationPath: Paths.Loading3,
+                        animationController: widget.animationController,
+                      ),
                     ),
                   ),
                 ),

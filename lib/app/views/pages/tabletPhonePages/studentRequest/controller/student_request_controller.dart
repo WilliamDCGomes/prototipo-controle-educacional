@@ -6,17 +6,18 @@ import '../../../../../../base/viewController/select_card_payment_view_controlle
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/format_numbers.dart';
-import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
+import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 import '../pages/payment_finished_page.dart';
 import '../pages/pending_payment_page.dart';
 import '../../selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
 
 class StudentRequestController extends GetxController {
   late int creditDebtCardActiveStep;
-  late RxBool animationSuccess;
+  late RxBool loadingAnimetion;
   late RxString requestTitle;
   late RxString requestSelected;
+  late RxString deliveryDate;
   late RxDouble requestValue;
   late RxList<String> requestTypeList;
   late TextEditingController studentName;
@@ -24,7 +25,7 @@ class StudentRequestController extends GetxController {
   late TextEditingController dateRequest;
   late TextEditingController observations;
   late studentTypeRequest studentRequest;
-  late AnimationSuccessWidget animationSuccessWidget;
+  late LoadingWithSuccessOrErrorWidget loadingWithSuccessOrErrorWidget;
   late List<CreditDebtCardWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
 
@@ -35,18 +36,20 @@ class StudentRequestController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0;
-    animationSuccess = false.obs;
+    loadingAnimetion = false.obs;
 
     switch(studentRequest){
       case studentTypeRequest.studentCard:
         requestSelected = requestTypeList[0].obs;
         requestTitle = requestTypeList[0].obs;
         requestValue = 35.0.obs;
+        deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5))).obs;
         break;
       case studentTypeRequest.schoolStatement:
         requestSelected = requestTypeList[1].obs;
         requestTitle = requestTypeList[1].obs;
         requestValue = 20.0.obs;
+        deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 3))).obs;
         break;
       default:
         requestValue = 0.0.obs;
@@ -62,8 +65,8 @@ class StudentRequestController extends GetxController {
     dateRequest.text = DateFormatToBrazil.formatDate(DateTime.now());
     carouselCreditDebtCardController = CarouselController();
 
-    animationSuccessWidget = AnimationSuccessWidget(
-      animationSuccess: animationSuccess,
+    loadingWithSuccessOrErrorWidget = LoadingWithSuccessOrErrorWidget(
+      loadingAnimetion: loadingAnimetion,
     );
   }
 
@@ -96,12 +99,15 @@ class StudentRequestController extends GetxController {
       switch(requestTitle.value){
         case "Carteirinha de Estudante":
           requestValue.value = 35.0;
+          deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5)));
           break;
         case "Declaração Escolar":
           requestValue.value = 20.0;
+          deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 3)));
           break;
         default:
           requestValue.value = 0.0;
+          deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now());
           break;
       }
     }
@@ -147,8 +153,8 @@ class StudentRequestController extends GetxController {
       FormatNumbers.numbersToString(requestValue.value),
       dateRequest.text,
     );
-    animationSuccess.value = true;
-    animationSuccessWidget.startAnimation(
+    loadingAnimetion.value = true;
+    loadingWithSuccessOrErrorWidget.startAnimation(
       destinationPage: PaymentFinished(
         paymentFinishedViewController: payment,
       ),
