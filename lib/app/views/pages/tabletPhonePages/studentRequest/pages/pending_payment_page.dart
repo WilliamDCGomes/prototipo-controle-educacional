@@ -60,129 +60,149 @@ class PendingPaymentPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                  child: TextWidget(
-                    "Nome",
-                    textColor: AppColors.blackColor,
-                    fontSize: 15.sp,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                  ),
-                ),
-                TextWidget(
-                  paymentFinishedViewController.userName,
-                  textColor: AppColors.blackColor,
-                  fontSize: 16.sp,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  fontWeight: FontWeight.bold,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                  child: TextWidget(
-                    "Pagamento",
-                    textColor: AppColors.blackColor,
-                    fontSize: 15.sp,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                  ),
-                ),
-                TextWidget(
-                  "Boleto",
-                  textColor: AppColors.blackColor,
-                  fontSize: 16.sp,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  fontWeight: FontWeight.bold,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                  child: TextWidget(
-                    "Instituição Bancária Destinada",
-                    textColor: AppColors.blackColor,
-                    fontSize: 15.sp,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                  ),
-                ),
-                TextWidget(
-                  paymentFinishedViewController.bankingInstitutionDestined,
-                  textColor: AppColors.blackColor,
-                  fontSize: 16.sp,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  fontWeight: FontWeight.bold,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                  child: TextWidget(
-                    "CNPJ",
-                    textColor: AppColors.blackColor,
-                    fontSize: 15.sp,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                  ),
-                ),
-                TextWidget(
-                  paymentFinishedViewController.bankingCnpj,
-                  textColor: AppColors.blackColor,
-                  fontSize: 16.sp,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  fontWeight: FontWeight.bold,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                  child: TextWidget(
-                    "Código do Boleto",
-                    textColor: AppColors.blackColor,
-                    fontSize: 15.sp,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                  ),
-                ),
-                TextButtonWidget(
-                  onTap: (){
-                    Clipboard.setData(ClipboardData(text: "34191.09008 10799.489181 11334.800007 1 90220000157816"));
-                  },
-                  componentPadding: EdgeInsets.zero,
-                  widgetCustom: TextWidget(
-                    "34191.09008 10799.489181 11334.800007 1 90220000157816",
-                    textColor: AppColors.blueLinkColor,
-                    fontSize: 16.sp,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    fontWeight: FontWeight.bold,
-                    textDecoration: TextDecoration.underline,
-                  ),
-                ),
                 Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ButtonWidget(
-                      hintText: "BAIXAR BOLETO",
-                      fontWeight: FontWeight.bold,
-                      widthButton: 90.w,
-                      textColor: AppColors.orangeColor,
-                      borderColor: AppColors.orangeColor,
-                      backgroundColor: AppColors.whiteColor,
-                      onPressed: () {
-
-                      },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 2.h),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: .5.h),
+                          child: TextWidget(
+                            "Nome",
+                            textColor: AppColors.blackColor,
+                            fontSize: 15.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                        ),
+                        TextWidget(
+                          paymentFinishedViewController.userName,
+                          textColor: AppColors.blackColor,
+                          fontSize: 16.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                          child: TextWidget(
+                            "Pagamento",
+                            textColor: AppColors.blackColor,
+                            fontSize: 15.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                        ),
+                        TextWidget(
+                          "Boleto",
+                          textColor: AppColors.blackColor,
+                          fontSize: 16.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                          child: TextWidget(
+                            "Instituição Bancária Destinada",
+                            textColor: AppColors.blackColor,
+                            fontSize: 15.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                        ),
+                        TextWidget(
+                          paymentFinishedViewController.bankingInstitutionDestined,
+                          textColor: AppColors.blackColor,
+                          fontSize: 16.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                          child: TextWidget(
+                            "CNPJ",
+                            textColor: AppColors.blackColor,
+                            fontSize: 15.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                        ),
+                        TextWidget(
+                          paymentFinishedViewController.bankingCnpj,
+                          textColor: AppColors.blackColor,
+                          fontSize: 16.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                          child: TextWidget(
+                            "Valor",
+                            textColor: AppColors.blackColor,
+                            fontSize: 15.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                        ),
+                        TextWidget(
+                          "R\$ ${paymentFinishedViewController.paymentValue}",
+                          textColor: AppColors.blackColor,
+                          fontSize: 16.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                          child: TextWidget(
+                            "Código do Boleto",
+                            textColor: AppColors.blackColor,
+                            fontSize: 15.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                        ),
+                        TextButtonWidget(
+                          onTap: (){
+                            Clipboard.setData(ClipboardData(text: "34191.09008 10799.489181 11334.800007 1 90220000157816"));
+                          },
+                          componentPadding: EdgeInsets.zero,
+                          widgetCustom: TextWidget(
+                            "34191.09008 10799.489181 11334.800007 1 90220000157816",
+                            textColor: AppColors.blueLinkColor,
+                            fontSize: 16.sp,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            fontWeight: FontWeight.bold,
+                            textDecoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
+                ButtonWidget(
+                  hintText: "BAIXAR BOLETO",
+                  fontWeight: FontWeight.bold,
+                  widthButton: 90.w,
+                  textColor: AppColors.orangeColor,
+                  borderColor: AppColors.orangeColor,
+                  backgroundColor: AppColors.whiteColor,
+                  onPressed: () {
+
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 1.h, bottom: 2.h),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ButtonWidget(
-                      hintText: "VOLTAR PARA O MENU",
-                      fontWeight: FontWeight.bold,
-                      widthButton: 90.w,
-                      onPressed: () => Get.offAll(() => MainMenuTabletPhonePage()),
-                    ),
+                  child: ButtonWidget(
+                    hintText: "VOLTAR PARA O MENU",
+                    fontWeight: FontWeight.bold,
+                    widthButton: 90.w,
+                    onPressed: () => Get.offAll(() => MainMenuTabletPhonePage()),
                   ),
                 ),
               ],

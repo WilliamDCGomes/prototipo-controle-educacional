@@ -43,6 +43,7 @@ class PaymentDetailController extends GetxController {
         cardPaymentViewController.paymentType,
         cardPaymentViewController.bankingInstitution,
         cardPaymentViewController.bankCnpj,
+        cardPaymentViewController.billValue,
         DateFormatToBrazil.formatDate(DateTime.now()),
       );
       loadingAnimetion.value = true;

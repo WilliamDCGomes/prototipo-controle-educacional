@@ -21,7 +21,7 @@ class CardAllBillsDetailWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(2.w, 0.5.h, 2.w, 1.h),
       child: SizedBox(
-        height: 10.h,
+        height: 14.h,
         width: 90.w,
         child: Card(
           color: AppColors.whiteColor,
@@ -47,21 +47,21 @@ class CardAllBillsDetailWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 2.2.h,
+                                  height: 2.3.h,
                                   width: .5.h,
                                   color: cardPaymentViewController.getCardColor,
                                 ),
                                 Expanded(
                                   child: TextWidget(
                                     " ${cardPaymentViewController.getStatusName}",
-                                    textColor: AppColors.blackColor,
+                                    textColor: cardPaymentViewController.getCardColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18.sp,
                                     textAlign: TextAlign.start,
@@ -70,30 +70,53 @@ class CardAllBillsDetailWidget extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: RichTextTwoDifferentWidget(
-                                firstText: "Vencimento:",
-                                secondText: cardPaymentViewController.dueDate,
-                                firstTextSize: 16.sp,
-                                secondTextSize: 16.sp,
-                                firstTextFontWeight: FontWeight.normal,
-                                secondTextFontWeight: FontWeight.bold,
-                                firstTextColor: AppColors.blackColor,
-                                secondTextColor: AppColors.blackColor,
-                                secondTextDecoration: TextDecoration.none,
-                              ),
+                            TextWidget(
+                              cardPaymentViewController.paymentType,
+                              textColor: AppColors.blackColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
+                              maxLines: 1,
+                            ),
+                            RichTextTwoDifferentWidget(
+                              firstText: "Vencimento: ",
+                              secondText: cardPaymentViewController.dueDate,
+                              firstTextSize: 16.sp,
+                              secondTextSize: 16.sp,
+                              firstTextFontWeight: FontWeight.normal,
+                              secondTextFontWeight: FontWeight.bold,
+                              firstTextColor: AppColors.blackColor,
+                              secondTextColor: AppColors.blackColor,
+                              secondTextDecoration: TextDecoration.none,
                             ),
                           ],
                         ),
                       ),
-                      TextWidget(
-                        cardPaymentViewController.billValue,
-                        maxLines: 1,
-                        textColor: cardPaymentViewController.getCardColor,
-                        fontSize: 18.sp,
-                        textAlign: TextAlign.end,
-                        fontWeight: FontWeight.bold,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(height: 1.h,),
+                          TextWidget(
+                            cardPaymentViewController.billValue,
+                            maxLines: 1,
+                            textColor: cardPaymentViewController.getCardColor,
+                            fontSize: 18.sp,
+                            textAlign: TextAlign.end,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          RichTextTwoDifferentWidget(
+                            firstText: "Pagamento: ",
+                            secondText: cardPaymentViewController.getPaymentDate,
+                            firstTextSize: 16.sp,
+                            secondTextSize: 16.sp,
+                            firstTextFontWeight: FontWeight.normal,
+                            secondTextFontWeight: FontWeight.bold,
+                            firstTextColor: AppColors.blackColor,
+                            secondTextColor: AppColors.blackColor,
+                            secondTextDecoration: TextDecoration.none,
+                          ),
+                        ],
                       ),
                     ],
                   ),

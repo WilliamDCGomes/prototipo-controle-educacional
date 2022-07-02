@@ -5,6 +5,7 @@ import 'package:projeto_tcc/base/viewController/payment_finished_view_controller
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
+import '../../../../../helpers/format_numbers.dart';
 import '../../shared/widgets/animation_success_widget.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
 import '../pages/payment_finished_page.dart';
@@ -16,6 +17,7 @@ class StudentRequestController extends GetxController {
   late RxBool animationSuccess;
   late RxString requestTitle;
   late RxString requestSelected;
+  late RxDouble requestValue;
   late RxList<String> requestTypeList;
   late TextEditingController studentName;
   late TextEditingController raNumber;
@@ -39,10 +41,15 @@ class StudentRequestController extends GetxController {
       case studentTypeRequest.studentCard:
         requestSelected = requestTypeList[0].obs;
         requestTitle = requestTypeList[0].obs;
+        requestValue = 35.0.obs;
         break;
       case studentTypeRequest.schoolStatement:
         requestSelected = requestTypeList[1].obs;
         requestTitle = requestTypeList[1].obs;
+        requestValue = 20.0.obs;
+        break;
+      default:
+        requestValue = 0.0.obs;
         break;
     }
     studentName = TextEditingController();
@@ -86,6 +93,17 @@ class StudentRequestController extends GetxController {
     requestSelected.value = selectedState ?? "";
     if(selectedState != null){
       requestTitle.value = selectedState;
+      switch(requestTitle.value){
+        case "Carteirinha de Estudante":
+          requestValue.value = 35.0;
+          break;
+        case "Declaração Escolar":
+          requestValue.value = 20.0;
+          break;
+        default:
+          requestValue.value = 0.0;
+          break;
+      }
     }
   }
 
@@ -97,7 +115,7 @@ class StudentRequestController extends GetxController {
           studentName.text,
           requestTitle.value,
           raNumber.text,
-          20,
+          requestValue.value,
           DateTime.now(),
         );
         Get.to(() => SelectCardPaymentTabletPhonePage(
@@ -110,6 +128,7 @@ class StudentRequestController extends GetxController {
           requestTitle.value,
           "BANCO ITAÚ UNIBANCO S/A",
           "60.701.190/0001-04",
+          FormatNumbers.numbersToString(requestValue.value),
           dateRequest.text,
         );
         Get.to(() => PendingPaymentPage(
@@ -125,6 +144,7 @@ class StudentRequestController extends GetxController {
       requestTitle.value,
       "BANCO ITAÚ UNIBANCO S/A",
       "60.701.190/0001-04",
+      FormatNumbers.numbersToString(requestValue.value),
       dateRequest.text,
     );
     animationSuccess.value = true;

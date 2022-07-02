@@ -50,4 +50,8 @@ class CardPaymentViewController {
   get getFullStatus {
     return "$paymentType $getStatusName";
   }
+
+  get getPaymentDate {
+    return paymentDate != "" ? paymentDate : "N/I";
+  }
 }

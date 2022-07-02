@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
+import '../../../../../helpers/format_numbers.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_widget.dart';
 import '../../studentRequest/pages/payment_finished_page.dart';
@@ -56,6 +57,7 @@ class SelectCardPaymentController extends GetxController {
       selectCardPaymentViewController.requestTitle,
       "BANCO ITAÚ UNIBANCO S/A",
       "60.701.190/0001-04",
+      FormatNumbers.numbersToString(selectCardPaymentViewController.paymentValue),
       selectCardPaymentViewController.getDateRequest,
     );
     loadingAnimetion.value = true;

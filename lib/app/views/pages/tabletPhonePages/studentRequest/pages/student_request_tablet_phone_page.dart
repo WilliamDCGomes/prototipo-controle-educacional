@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
+import '../../../../../helpers/format_numbers.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -119,7 +120,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                               firstTextColor: AppColors.whiteColor,
                                               firstTextFontWeight: FontWeight.normal,
                                               firstTextSize: 16.sp,
-                                              secondText: "R\$ 20,00",
+                                              secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
                                               secondTextColor: AppColors.whiteColor,
                                               secondTextFontWeight: FontWeight.bold,
                                               secondTextSize: 16.sp,

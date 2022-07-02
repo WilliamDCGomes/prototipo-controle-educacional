@@ -73,7 +73,7 @@ class CardPaymentListWidget extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 1.h),
                               child: RichTextTwoDifferentWidget(
-                                firstText: "Vencimento:",
+                                firstText: "Vencimento: ",
                                 secondText: cardPaymentViewController.dueDate,
                                 firstTextSize: 16.sp,
                                 secondTextSize: 16.sp,
