@@ -9,4 +9,16 @@ class FormatNumbers {
     }
     return "";
   }
+
+  static double stringToNumber(String? value) {
+    if(value != null) {
+      try{
+        return double.tryParse(value.replaceAll('R\$', '').replaceAll(',', '.').trim()) ?? 0;
+      }
+      catch(_){
+        return 0;
+      }
+    }
+    return 0;
+  }
 }

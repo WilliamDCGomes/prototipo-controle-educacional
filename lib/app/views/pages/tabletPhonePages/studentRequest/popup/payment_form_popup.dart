@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/viewController/payment_finished_view_controller.dart';
+import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
+import '../../../../../helpers/format_numbers.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../controller/student_request_controller.dart';
+import '../../selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
+import '../pages/pending_payment_page.dart';
 import '../widget/bottom_select_payment_form_widget.dart';
 
 class PaymentFormPopup {
   late RxBool cardSelected;
   late RxBool bankSlipSelected;
-  late StudentRequestController studentRequestController;
+  late PaymentFinishedViewController paymentFinishedViewController;
 
-  PaymentFormPopup(){
+  PaymentFormPopup(this.paymentFinishedViewController){
     _inicializeVariables();
   }
 
   _inicializeVariables(){
     cardSelected = true.obs;
     bankSlipSelected = false.obs;
-    studentRequestController = Get.find(tag: "student-request-controller");
   }
 
   List<Widget> getWidgetList(context){
@@ -80,9 +82,24 @@ class PaymentFormPopup {
           fontWeight: FontWeight.bold,
           widthButton: 75.w,
           onPressed: () {
-            studentRequestController.selectPaymentForm(
-              cardSelected.value ? paymentMethod.creditCard : paymentMethod.bankSlip,
-            );
+            Get.back();
+            if(cardSelected.value){
+              var paymentCard = SelectCardPaymentViewController(
+                paymentFinishedViewController.userName,
+                paymentFinishedViewController.paymentTitle,
+                paymentFinishedViewController.raNumber,
+                FormatNumbers.stringToNumber(paymentFinishedViewController.paymentValue),
+                DateTime.now(),
+              );
+              Get.to(() => SelectCardPaymentTabletPhonePage(
+                selectCardPaymentViewController: paymentCard,
+              ));
+            }
+            else{
+              Get.to(() => PendingPaymentPage(
+                paymentFinishedViewController: paymentFinishedViewController,
+              ));
+            }
           },
         ),
       ),

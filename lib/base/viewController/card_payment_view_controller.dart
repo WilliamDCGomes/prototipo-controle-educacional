@@ -3,6 +3,7 @@ import '../../app/enums/enums.dart';
 
 class CardPaymentViewController {
   late String userName;
+  late String raNumber;
   late String paymentType;
   late String bankingInstitution;
   late String bankCnpj;
@@ -13,6 +14,7 @@ class CardPaymentViewController {
 
   CardPaymentViewController(
       this.userName,
+      this.raNumber,
       this.paymentType,
       this.bankingInstitution,
       this.bankCnpj,

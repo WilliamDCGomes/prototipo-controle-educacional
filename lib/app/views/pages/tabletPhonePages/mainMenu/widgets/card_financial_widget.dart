@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
+import '../../../../../../base/viewController/payment_finished_view_controller.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../shared/popups/bottom_sheet_popup.dart';
+import '../../studentRequest/popup/payment_form_popup.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class CardFinancialWidget extends StatelessWidget {
-  final String statusText;
-  final String paymentDay;
-  final String plotValue;
-  final bool? hasCardRegistered;
-  final MainMenuTabletPhoneController mainMenuTabletPhoneController;
+  final PaymentFinishedViewController paymentFinishedViewController;
 
   const CardFinancialWidget(
       { Key? key,
-        required this.statusText,
-        required this.paymentDay,
-        required this.plotValue,
-        this.hasCardRegistered,
-        required this.mainMenuTabletPhoneController,
+        required this.paymentFinishedViewController,
       }) : super(key: key);
 
   @override
@@ -32,7 +22,7 @@ class CardFinancialWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 0),
       child: Container(
-        height: 18.5.h,
+        height: 15.h,
         width: 95.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(1.h),
@@ -62,7 +52,7 @@ class CardFinancialWidget extends StatelessWidget {
                         SizedBox(
                           width: 65.w,
                           child: TextWidget(
-                            " ${statusText}",
+                            " ${paymentFinishedViewController.statusText}",
                             textColor: AppColors.blackColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 19.sp,
@@ -80,7 +70,7 @@ class CardFinancialWidget extends StatelessWidget {
                       children: [
                         RichTextTwoDifferentWidget(
                           firstText: "Vencimento:",
-                          secondText: paymentDay,
+                          secondText: paymentFinishedViewController.dueDate,
                           firstTextSize: 16.sp,
                           secondTextSize: 16.sp,
                           firstTextFontWeight: FontWeight.normal,
@@ -90,7 +80,7 @@ class CardFinancialWidget extends StatelessWidget {
                           secondTextDecoration: TextDecoration.none,
                         ),
                         TextWidget(
-                          plotValue,
+                          paymentFinishedViewController.paymentValue,
                           textColor: AppColors.blueMoneyFinancialCardColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 19.sp,
@@ -104,17 +94,26 @@ class CardFinancialWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Visibility(
-                        visible: hasCardRegistered ?? false,
+                        visible: paymentFinishedViewController.hasCardRegistered ?? false,
                         child: TextButtonWidget(
-                          onTap: () => Get.to(() => SelectCardPaymentTabletPhonePage(
-                            selectCardPaymentViewController: SelectCardPaymentViewController(
-                              "William Douglas Costa Gomes",
-                              "Pagamento de Mensalidade",
-                              "48467",
-                              743.99,
-                              DateTime.now(),
-                            ),
-                          )),
+                          onTap: () {
+                            var payment = PaymentFinishedViewController(
+                              paymentFinishedViewController.userName,
+                              paymentFinishedViewController.raNumber,
+                              paymentFinishedViewController.paymentTitle,
+                              paymentFinishedViewController.bankingInstitutionDestined,
+                              paymentFinishedViewController.bankingCnpj,
+                              paymentFinishedViewController.paymentValue,
+                              paymentFinishedViewController.paymentDate,
+                            );
+                            BottomSheetPopup.showAlert(
+                              Get.context!,
+                              PaymentFormPopup(payment).getWidgetList(
+                                Get.context!,
+                              ),
+                              .3,
+                            );
+                          },
                           height: 4.h,
                           componentPadding: EdgeInsets.zero,
                           widgetCustom: Row(
@@ -127,7 +126,7 @@ class CardFinancialWidget extends StatelessWidget {
                                 color: AppColors.blueLinkColor,
                               ),
                               TextWidget(
-                                " Pagar com cartão cadastrado",
+                                " Pagar próxima fatura",
                                 maxLines: 1,
                                 textColor: AppColors.blueLinkColor,
                                 fontSize: 17.sp,
@@ -135,30 +134,6 @@ class CardFinancialWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      TextButtonWidget(
-                        onTap: () {
-
-                        },
-                        height: 4.h,
-                        componentPadding: EdgeInsets.zero,
-                        widgetCustom: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Paths.Icone_Copiar,
-                              width: 2.h,
-                            ),
-                            TextWidget(
-                              " Copiar código de barras",
-                              maxLines: 1,
-                              textColor: AppColors.blueLinkColor,
-                              fontSize: 17.sp,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
                         ),
                       ),
                     ],

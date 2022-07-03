@@ -13,10 +13,8 @@ import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/popups/bottom_sheet_popup.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/student_request_controller.dart';
-import '../popup/payment_form_popup.dart';
 
 class StudentRequestTablePhonePage extends StatefulWidget {
   final studentTypeRequest studentRequest;
@@ -258,15 +256,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                   hintText: "SOLICITAR",
                                   fontWeight: FontWeight.bold,
                                   widthButton: 100.w,
-                                  onPressed: (){
-                                    BottomSheetPopup.showAlert(
-                                      context,
-                                      PaymentFormPopup().getWidgetList(
-                                        context,
-                                      ),
-                                      .3,
-                                    );
-                                  },
+                                  onPressed: () => controller.payRequest(),
                                 ),
                               ),
                             ],

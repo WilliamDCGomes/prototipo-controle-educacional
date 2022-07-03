@@ -3,11 +3,13 @@ import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/helpers/date_format_to_brazil.dart';
 import 'package:projeto_tcc/base/models/classes.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/models/files.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
+import '../../../../../../base/viewController/payment_finished_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
@@ -38,6 +40,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxBool deliveryTabSelected;
   late RxString courseName;
   late RxString welcomePhrase;
+  late PaymentFinishedViewController nextBillToPay;
   late List<CardMainMenuWidget> cardMainMenuList;
   late List<GroupMenuHomeWidget> groupMenuHomeList;
   late List<CardProfileTabListWidget> cardProfileTabList;
@@ -74,6 +77,18 @@ class MainMenuTabletPhoneController extends GetxController {
     academicRecordCarouselController = CarouselController();
     curriculumSearchController = TextEditingController();
     deliveriesSearchController = TextEditingController();
+    nextBillToPay = PaymentFinishedViewController(
+      "William Douglas Costa Gomes",
+      "48467",
+      "Mensalidade",
+      "BANCO ITAÚ UNIBANCO S/A",
+      "60.701.190/0001-04",
+      "743,99",
+      DateFormatToBrazil.formatDate(DateTime.now()),
+      dueDate: "05/08/2022",
+      statusText: "Aberta",
+      hasCardRegistered: true,
+    );
   }
 
   _initializeLists(){
@@ -1167,42 +1182,46 @@ class MainMenuTabletPhoneController extends GetxController {
     cardPaymentList = [
       CardPaymentViewController(
         "William Douglas Costa Gomes",
+        "48467",
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
         "04/07/2022",
         "05/07/2022",
-        "R\$ 743,99",
+        "743,99",
         paymentStatus.finished,
       ),
       CardPaymentViewController(
         "William Douglas Costa Gomes",
+        "48467",
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
         "",
         "05/08/2022",
-        "R\$ 743,99",
+        "743,99",
         paymentStatus.late,
       ),
       CardPaymentViewController(
         "William Douglas Costa Gomes",
+        "48467",
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
         "",
         "05/09/2022",
-        "R\$ 743,99",
+        "743,99",
         paymentStatus.next,
       ),
       CardPaymentViewController(
         "William Douglas Costa Gomes",
+        "48467",
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
         "",
         "05/10/2022",
-        "R\$ 743,99",
+        "743,99",
         paymentStatus.future,
       ),
     ];

@@ -63,8 +63,10 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TitleWithBackButtonWidget(
-                                title: "Calendário Acadêmico",
+                              Expanded(
+                                child: TitleWithBackButtonWidget(
+                                  title: "Calendário Acadêmico",
+                                ),
                               ),
                               TextButtonWidget(
                                 onTap: () {

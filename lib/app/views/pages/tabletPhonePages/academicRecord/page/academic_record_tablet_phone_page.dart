@@ -62,8 +62,10 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TitleWithBackButtonWidget(
-                                title: "Histórico Acadêmico",
+                              Expanded(
+                                child: TitleWithBackButtonWidget(
+                                  title: "Histórico Acadêmico",
+                                ),
                               ),
                               TextButtonWidget(
                                 onTap: () {

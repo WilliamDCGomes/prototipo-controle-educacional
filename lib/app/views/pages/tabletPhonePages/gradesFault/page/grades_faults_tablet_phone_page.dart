@@ -63,8 +63,10 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TitleWithBackButtonWidget(
-                                title: "Notas e Faltas",
+                              Expanded(
+                                child: TitleWithBackButtonWidget(
+                                  title: "Notas e Faltas",
+                                ),
                               ),
                               TextButtonWidget(
                                 onTap: () {

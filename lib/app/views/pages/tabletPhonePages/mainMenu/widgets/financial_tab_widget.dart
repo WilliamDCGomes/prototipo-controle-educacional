@@ -90,11 +90,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 1.h),
                       child: CardFinancialWidget(
-                        statusText: "Aberta",
-                        paymentDay: "05/06/2022",
-                        plotValue: "R\$ 743,99",
-                        hasCardRegistered: true,
-                        mainMenuTabletPhoneController: widget.controller,
+                        paymentFinishedViewController: widget.controller.nextBillToPay,
                       )
                     ),
                   ),

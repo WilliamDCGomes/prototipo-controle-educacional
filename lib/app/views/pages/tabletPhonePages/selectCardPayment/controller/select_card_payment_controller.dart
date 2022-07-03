@@ -54,6 +54,7 @@ class SelectCardPaymentController extends GetxController {
   payRequest() async {
     var payment = PaymentFinishedViewController(
       selectCardPaymentViewController.studentName,
+      selectCardPaymentViewController.raNumber,
       selectCardPaymentViewController.requestTitle,
       "BANCO ITAÚ UNIBANCO S/A",
       "60.701.190/0001-04",

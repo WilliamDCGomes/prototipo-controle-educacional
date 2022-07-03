@@ -95,7 +95,7 @@ class PendingPaymentPage extends StatelessWidget {
                           ),
                         ),
                         TextWidget(
-                          "Boleto",
+                          "${paymentFinishedViewController.paymentTitle} | Boleto",
                           textColor: AppColors.blackColor,
                           fontSize: 16.sp,
                           textAlign: TextAlign.start,

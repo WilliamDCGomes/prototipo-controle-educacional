@@ -103,7 +103,7 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                                 Padding(
                                   padding: EdgeInsets.only(top: 1.h),
                                   child: TextWidget(
-                                    controller.cardPaymentViewController.billValue,
+                                    "R\$ ${controller.cardPaymentViewController.billValue}",
                                     textColor: controller.cardPaymentViewController.getCardColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.sp,
@@ -251,7 +251,6 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                     ],
                   ),
                 ),
-                controller.loadingWithSuccessOrErrorWidget,
               ],
             ),
           ),

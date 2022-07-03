@@ -53,7 +53,7 @@ class _LoadingWidgetState extends State<LoadingWidget> with TickerProviderStateM
   Widget build(BuildContext context) {
     return  WillPopScope(
       onWillPop: () async {
-        return false;
+        return !widget.loadingAnimetion.value;
       },
       child: Obx(
         () => Visibility(

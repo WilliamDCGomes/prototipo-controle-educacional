@@ -2,15 +2,13 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
-import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/format_numbers.dart';
+import '../../shared/popups/bottom_sheet_popup.dart';
 import '../../shared/widgets/credit_debt_card_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_widget.dart';
-import '../pages/payment_finished_page.dart';
-import '../pages/pending_payment_page.dart';
-import '../../selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
+import '../popup/payment_form_popup.dart';
 
 class StudentRequestController extends GetxController {
   late int creditDebtCardActiveStep;
@@ -113,51 +111,22 @@ class StudentRequestController extends GetxController {
     }
   }
 
-  selectPaymentForm(paymentMethod payment){
-    Get.back();
-    switch(payment){
-      case paymentMethod.creditCard:
-        var paymentCard = SelectCardPaymentViewController(
-          studentName.text,
-          requestTitle.value,
-          raNumber.text,
-          requestValue.value,
-          DateTime.now(),
-        );
-        Get.to(() => SelectCardPaymentTabletPhonePage(
-          selectCardPaymentViewController: paymentCard,
-        ));
-        break;
-      case paymentMethod.bankSlip:
-        var payment = PaymentFinishedViewController(
-          studentName.text,
-          requestTitle.value,
-          "BANCO ITAÚ UNIBANCO S/A",
-          "60.701.190/0001-04",
-          FormatNumbers.numbersToString(requestValue.value),
-          dateRequest.text,
-        );
-        Get.to(() => PendingPaymentPage(
-          paymentFinishedViewController: payment,
-        ));
-        break;
-    }
-  }
-
   payRequest() async {
     var payment = PaymentFinishedViewController(
       studentName.text,
+      raNumber.text,
       requestTitle.value,
       "BANCO ITAÚ UNIBANCO S/A",
       "60.701.190/0001-04",
       FormatNumbers.numbersToString(requestValue.value),
       dateRequest.text,
     );
-    loadingAnimetion.value = true;
-    loadingWithSuccessOrErrorWidget.startAnimation(
-      destinationPage: PaymentFinished(
-        paymentFinishedViewController: payment,
+    BottomSheetPopup.showAlert(
+      Get.context!,
+      PaymentFormPopup(payment).getWidgetList(
+        Get.context!,
       ),
+      .3,
     );
   }
 }

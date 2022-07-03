@@ -73,7 +73,7 @@ class _LoadingWithSuccessOrErrorWidgetState extends State<LoadingWithSuccessOrEr
   Widget build(BuildContext context) {
     return  WillPopScope(
       onWillPop: () async {
-        return false;
+        return !widget.loadingAnimetion.value;
       },
       child: Obx(
         () => Visibility(
