@@ -38,7 +38,7 @@ class PaymentFormPopup {
         padding: EdgeInsets.symmetric(vertical: 2.h),
         child: Center(
           child: TextWidget(
-            "Como deseja fazer o pagamento da solicitação",
+            "Como deseja fazer o pagamento",
             textColor: AppColors.blackColor,
             fontSize: 16.sp,
             textAlign: TextAlign.center,

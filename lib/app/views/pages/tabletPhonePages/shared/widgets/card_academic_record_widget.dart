@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
@@ -7,7 +6,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
 import '../../gradesFault/controller/grades_faults_controller.dart';
 import '../../mainMenu/controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class CardAcademicRecordWidget extends StatelessWidget {
@@ -102,9 +100,10 @@ class CardAcademicRecordWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                             Paths.Icone_Copiar,
-                              width: 2.h,
+                            Icon(
+                              Icons.access_time_filled,
+                              size: 2.h,
+                              color: AppColors.blueLinkColor,
                             ),
                             TextWidget(
                               " Ver Histórico Acadêmico",

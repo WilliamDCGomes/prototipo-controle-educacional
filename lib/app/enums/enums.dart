@@ -40,3 +40,11 @@ enum paymentStatus {
   late,
   finished
 }
+
+enum destinationsPages {
+  newsAndEvents,
+  settings,
+  resetPassword,
+  connectToSmartWatch,
+  logout,
+}

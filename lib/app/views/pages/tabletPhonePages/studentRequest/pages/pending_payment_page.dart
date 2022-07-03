@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/payment_finished_view_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import 'package:flutter/services.dart';
 import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
+import '../../shared/widgets/copy_bar_code_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 
 class PendingPaymentPage extends StatelessWidget {
@@ -166,11 +165,9 @@ class PendingPaymentPage extends StatelessWidget {
                             maxLines: 1,
                           ),
                         ),
-                        TextButtonWidget(
-                          onTap: (){
-                            Clipboard.setData(ClipboardData(text: "34191.09008 10799.489181 11334.800007 1 90220000157816"));
-                          },
-                          componentPadding: EdgeInsets.zero,
+                        CopyBarCodeWidget(
+                          successText: "Código de barras copiado com sucesso!",
+                          valueCopy: "34191.09008 10799.489181 11334.800007 1 90220000157816",
                           widgetCustom: TextWidget(
                             "34191.09008 10799.489181 11334.800007 1 90220000157816",
                             textColor: AppColors.blueLinkColor,

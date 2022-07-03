@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:projeto_tcc/app/enums/enums.dart';
+import 'package:projeto_tcc/app/views/pages/tabletPhonePages/newsAndEvents/page/news_and_events_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
-import '../../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../stylePages/app_colors.dart';
 
 class CardProfileTabListWidget extends StatelessWidget {
-  final int id;
   final Widget iconCard;
   final String titleIconPath;
-  final MainMenuTabletPhoneController mainMenuTabletPhoneController;
+  final destinationsPages page;
 
   const CardProfileTabListWidget(
       { Key? key,
-        required this.id,
         required this.iconCard,
         required this.titleIconPath,
-        required this.mainMenuTabletPhoneController,
+        required this.page,
       }) : super(key: key);
 
   @override
@@ -33,7 +33,25 @@ class CardProfileTabListWidget extends StatelessWidget {
           ),
           elevation: 3,
           child: TextButtonWidget(
-            onTap: () => mainMenuTabletPhoneController.cardProfileSelected(id),
+            onTap: (){
+              switch(page){
+                case destinationsPages.newsAndEvents:
+                  Get.to(() => NewsAndEventsTabletPhonePage());
+                  break;
+                case destinationsPages.settings:
+
+                  break;
+                case destinationsPages.resetPassword:
+
+                  break;
+                case destinationsPages.connectToSmartWatch:
+
+                  break;
+                case destinationsPages.logout:
+
+                  break;
+              }
+            },
             borderRadius: 1.h,
             componentPadding: EdgeInsets.all(.5.w),
             widgetCustom: Stack(

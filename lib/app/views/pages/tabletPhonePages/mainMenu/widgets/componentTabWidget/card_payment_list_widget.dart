@@ -88,7 +88,7 @@ class CardPaymentListWidget extends StatelessWidget {
                         ),
                       ),
                       TextWidget(
-                        cardPaymentViewController.billValue,
+                        "R\$ ${cardPaymentViewController.billValue}",
                         maxLines: 1,
                         textColor: cardPaymentViewController.getCardColor,
                         fontSize: 18.sp,

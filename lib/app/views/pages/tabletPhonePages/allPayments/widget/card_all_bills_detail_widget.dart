@@ -98,7 +98,7 @@ class CardAllBillsDetailWidget extends StatelessWidget {
                         children: [
                           SizedBox(height: 1.h,),
                           TextWidget(
-                            cardPaymentViewController.billValue,
+                            "R\$ ${cardPaymentViewController.billValue}",
                             maxLines: 1,
                             textColor: cardPaymentViewController.getCardColor,
                             fontSize: 18.sp,

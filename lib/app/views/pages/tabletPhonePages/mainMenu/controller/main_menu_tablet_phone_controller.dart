@@ -1228,54 +1228,49 @@ class MainMenuTabletPhoneController extends GetxController {
 
     cardProfileTabList = [
       CardProfileTabListWidget(
-        id: 0,
         iconCard: SvgPicture.asset(
           Paths.Icone_Noticias_e_Eventos,
           height: 4.5.h,
           width: 4.5.h,
         ),
         titleIconPath: "Notícias e Eventos",
-        mainMenuTabletPhoneController: this,
+        page: destinationsPages.newsAndEvents,
       ),
       CardProfileTabListWidget(
-        id: 1,
         iconCard: Icon(
           Icons.settings,
           color: AppColors.purpleDefaultColor,
           size: 5.h,
         ),
         titleIconPath: "Configurações",
-        mainMenuTabletPhoneController: this,
+        page: destinationsPages.settings,
       ),
       CardProfileTabListWidget(
-        id: 2,
         iconCard: SvgPicture.asset(
           Paths.Icone_Redefinir_Senha,
           height: 4.5.h,
           width: 4.5.h,
         ),
         titleIconPath: "Redefinir Senha",
-        mainMenuTabletPhoneController: this,
+        page: destinationsPages.resetPassword,
       ),
       CardProfileTabListWidget(
-        id: 3,
         iconCard: Icon(
           Icons.qr_code_scanner,
           color: AppColors.purpleDefaultColor,
           size: 5.h,
         ),
         titleIconPath: "Vincular SmartWatch",
-        mainMenuTabletPhoneController: this,
+        page: destinationsPages.connectToSmartWatch,
       ),
       CardProfileTabListWidget(
-        id: 4,
         iconCard: SvgPicture.asset(
           Paths.Icone_Sair,
           height: 4.5.h,
           width: 4.5.h,
         ),
         titleIconPath: "Sair",
-        mainMenuTabletPhoneController: this,
+        page: destinationsPages.logout,
       ),
     ];
   }
@@ -1446,10 +1441,5 @@ class MainMenuTabletPhoneController extends GetxController {
         Get.to(() => NewsAndEventsTabletPhonePage());
         break;
     }
-  }
-
-  cardProfileSelected(int indexCardSelected) async {
-    await Future.delayed(Duration(milliseconds: 200));
-    print("index perfil: " + indexCardSelected.toString());
   }
 }

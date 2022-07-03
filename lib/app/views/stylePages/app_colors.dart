@@ -21,6 +21,7 @@ class AppColors {
   static final Color grayTabColor = const Color(0XFFCECECE);
   static final Color grayAcademicCardColor = const Color(0XFFDEDADA);
   static final Color orangeColor = const Color(0XFFEA6F55);
+  static final Color orangeColorWithOpacity = const Color(0XFFEA6F55).withOpacity(.65);
   static final Color orangeTextColor = const Color(0XFFEF8C4D);
   static final Color purpleTabColor = const Color(0XFF5C3876);
   static final Color purpleDefaultColor = const Color(0XFF62407E);

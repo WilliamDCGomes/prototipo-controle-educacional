@@ -69,7 +69,7 @@ class CardFinancialWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RichTextTwoDifferentWidget(
-                          firstText: "Vencimento:",
+                          firstText: "Vencimento: ",
                           secondText: paymentFinishedViewController.dueDate,
                           firstTextSize: 16.sp,
                           secondTextSize: 16.sp,
@@ -80,7 +80,7 @@ class CardFinancialWidget extends StatelessWidget {
                           secondTextDecoration: TextDecoration.none,
                         ),
                         TextWidget(
-                          paymentFinishedViewController.paymentValue,
+                          "R\$ ${paymentFinishedViewController.paymentValue}",
                           textColor: AppColors.blueMoneyFinancialCardColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 19.sp,

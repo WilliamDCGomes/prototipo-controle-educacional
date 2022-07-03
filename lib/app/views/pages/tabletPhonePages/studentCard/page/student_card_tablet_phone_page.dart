@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/copy_bar_code_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/student_card_controller.dart';
 import '../../../../../helpers/paths.dart';
@@ -121,11 +121,9 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 0.h),
-                              child: TextButtonWidget(
-                                onTap: () {
-
-                                },
-                                componentPadding: EdgeInsets.zero,
+                              child: CopyBarCodeWidget(
+                                successText: "Número da Carteirinha copiado com sucesso!",
+                                valueCopy: controller.cardNumber,
                                 widgetCustom: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,

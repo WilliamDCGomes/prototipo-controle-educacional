@@ -5,9 +5,13 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 
 class SnackbarWidget {
+  final String warningText;
   final String informationText;
+  final Color backgrondColor;
   SnackbarWidget({
+    required this.warningText,
     required this.informationText,
+    required this.backgrondColor,
   }) {
     mostraSnackBar(informationText);
   }
@@ -16,7 +20,7 @@ class SnackbarWidget {
     '',
     '',
     titleText: TextWidget(
-      "Aviso",
+      warningText,
       textColor: AppColors.whiteColor,
       fontSize: 14.sp,
       textAlign: TextAlign.center,
@@ -33,7 +37,7 @@ class SnackbarWidget {
     ),
     duration: const Duration(seconds: 2),
     snackPosition: SnackPosition.BOTTOM,
-    backgroundColor: AppColors.purpleDefaultColorWithOpacity,
+    backgroundColor: backgrondColor,
     margin: EdgeInsets.symmetric(vertical: 1.h, horizontal: 5.w),
   );
 }
