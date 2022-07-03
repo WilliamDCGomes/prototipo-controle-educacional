@@ -7,12 +7,15 @@ class AppColors {
   static final Color transparentColor = Colors.transparent;
   static final Color standardColor = Color(0XFF62407E);
   static final Color appBarColor = Color(0XFF492260);
+  static final Color grayCardBillFilter = Color(0XFFEEEEEE);
   static final Color bottomBarColor = Color(0XFF664583);
   static final Color blueLinkColor = Color(0XFF5797AF);
   static final Color lightOrangeColor = Color(0XFFFEBB94);
   static final Color blueMoneyFinancialCardColor = Color(0XFF5A93C4);
+  static final Color greenTagFilterColor = Color(0XFF5C9445);
   static final Color greenColor = const Color(0XFF008001);
   static final Color redColor = const Color(0XFFC81B1B);
+  static final Color lightRedColor = const Color(0XFFCC4E4E);
   static final Color yellowDarkColor = const Color(0XFFE2CE1C);
   static final Color arrowBlackColor = const Color(0XFF4F4C4D);
   static final Color blackColor91Percent = const Color(0XFF919191);

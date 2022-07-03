@@ -48,3 +48,9 @@ enum destinationsPages {
   connectToSmartWatch,
   logout,
 }
+
+enum billStatus {
+  open,
+  close,
+  late,
+}

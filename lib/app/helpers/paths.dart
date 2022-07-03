@@ -46,11 +46,15 @@ class Paths{
   static final String Icone_Notificacao = "${svgsPath}icone_notificacao.svg";
   static final String Icone_Noticias_Eventos = "${svgsPath}Icone_Noticias.svg";
   static final String Icone_Notas_e_Faltas = "${svgsPath}icone_notas_faltas.svg";
+  static final String Icone_Pagas_Apagado = "${svgsPath}Icone_Pagas_Apagado.svg";
+  static final String Icone_Abertas_Apagada = "${svgsPath}Icone_Abertas_Apagada.svg";
   static final String Icone_Horario_Das_Aulas = "${svgsPath}icone_horario_aulas.svg";
   static final String Icone_Redefinir_Senha = "${svgsPath}icone_redefinir_senha.svg";
   static final String Icone_Carterinho_Online = "${svgsPath}icone_carterinho_online.svg";
   static final String Icone_Noticias_e_Eventos = "${svgsPath}icone_noticias_eventos.svg";
+  static final String Icone_Pagas_Selecionado = "${svgsPath}Icone_Pagas_Selecionado.svg";
   static final String Icone_Declaracao_Escolar = "${svgsPath}icone_declaracao_escolar.svg";
+  static final String Icone_Abertas_Selecionado = "${svgsPath}Icone_Abertas_Selecionado.svg";
   static final String Icone_Historico_Academico = "${svgsPath}icone_historico_academico.svg";
   static final String Icone_Calendario_Academico = "${svgsPath}icone_calendario_academico.svg";
   static final String Icone_Carterinha_Estudante = "${svgsPath}icone_carterinha_estudante.svg";

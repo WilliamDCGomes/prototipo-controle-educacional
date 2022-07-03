@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 
 class AllPaymentsController extends GetxController {
-  late TextEditingController billSearchController;
+  late RxBool statusOpen;
+  late RxBool statusClose;
+  late RxBool statusLate;
   late List<CardPaymentViewController> cardPaymentList;
 
   AllPaymentsController(){
@@ -13,7 +14,9 @@ class AllPaymentsController extends GetxController {
   }
 
   _initializeVariables(){
-    billSearchController = TextEditingController();
+    statusOpen = true.obs;
+    statusClose = true.obs;
+    statusLate = true.obs;
   }
 
   _initializeLists(){
@@ -107,5 +110,19 @@ class AllPaymentsController extends GetxController {
         paymentStatus.future,
       ),
     ];
+  }
+
+  setTagFilter(billStatus status){
+    switch(status){
+      case billStatus.open:
+        statusOpen.value = !statusOpen.value;
+        break;
+      case billStatus.close:
+        statusClose.value = !statusClose.value;
+        break;
+      case billStatus.late:
+        statusLate.value = !statusLate.value;
+        break;
+    }
   }
 }
