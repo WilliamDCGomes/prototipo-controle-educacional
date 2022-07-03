@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
 import '../../../../../stylePages/app_colors.dart';
+import '../../../shared/popups/logout_popup.dart';
 
 class CardProfileTabListWidget extends StatelessWidget {
   final Widget iconCard;
@@ -48,7 +49,12 @@ class CardProfileTabListWidget extends StatelessWidget {
 
                   break;
                 case destinationsPages.logout:
-
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return LogoutPopup();
+                    },
+                  );
                   break;
               }
             },
