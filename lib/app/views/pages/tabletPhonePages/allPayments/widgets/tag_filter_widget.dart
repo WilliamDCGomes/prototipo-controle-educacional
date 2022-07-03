@@ -27,7 +27,7 @@ class TagFilterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        height: 8.h,
+        height: 8.5.h,
         width: 28.w,
         child: Card(
           elevation: 3,
@@ -44,6 +44,7 @@ class TagFilterWidget extends StatelessWidget {
               padding: EdgeInsets.all(1.h),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Row(

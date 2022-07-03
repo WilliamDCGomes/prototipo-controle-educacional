@@ -35,39 +35,41 @@ class _InitialPageState extends State<InitialPage> {
       onWillPop: () async {
         return AppCloseController.verifyCloseScreen();
       },
-      child: SafeArea(
-        child: Stack(
-          children: [
-            Image.asset(
-              Paths.background,
-              fit: BoxFit.fitHeight,
-              height: 100.h,
-              width: 100.w,
-              cacheHeight: 700,
-              cacheWidth: 700,
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 7.h),
-                    child: Image.asset(
-                      Paths.logo_pce,
-                      height: PlatformType.isPhone(context) ? 18.h : 12.h,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6.h,
-                    width: 6.h,
-                    child: CircularProgressIndicator(
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
-                ],
+      child: Material(
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Image.asset(
+                Paths.background,
+                fit: BoxFit.fitHeight,
+                height: 100.h,
+                width: 100.w,
+                cacheHeight: 700,
+                cacheWidth: 700,
               ),
-            ),
-          ],
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 7.h),
+                      child: Image.asset(
+                        Paths.logo_pce,
+                        height: PlatformType.isPhone(context) ? 18.h : 12.h,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 6.h,
+                      width: 6.h,
+                      child: CircularProgressIndicator(
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
@@ -29,7 +28,7 @@ class LogoutPopup extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 75.w,
+                width: 90.w,
                 padding: EdgeInsets.all(1.h),
                 decoration: BoxDecoration(
                   color: AppColors.purpleDefaultColor,
