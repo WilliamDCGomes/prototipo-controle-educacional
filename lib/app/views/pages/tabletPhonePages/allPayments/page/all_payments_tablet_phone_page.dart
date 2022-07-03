@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/paths.dart';
@@ -11,7 +10,7 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
 import '../controller/all_payments_controller.dart';
-import '../widget/card_all_bills_detail_widget.dart';
+import '../widgets/card_all_bills_detail_widget.dart';
 
 class AllPaymentsTabletPhonePage extends StatefulWidget {
   const AllPaymentsTabletPhonePage({Key? key}) : super(key: key);
@@ -114,156 +113,11 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Obx(
-                              () => Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 28.w,
-                                    child: Card(
-                                      elevation: 3,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(1.h),
-                                      ),
-                                      color: controller.statusOpen.value ? AppColors.whiteColor : AppColors.grayCardBillFilter,
-                                      child: InkWell(
-                                        onTap: () => controller.setTagFilter(billStatus.open),
-                                        borderRadius: BorderRadius.circular(1.h),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(1.h),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    height: 2.3.h,
-                                                    width: .5.h,
-                                                    color: AppColors.blueMoneyFinancialCardColor,
-                                                  ),
-                                                  TextWidget(
-                                                    " Abertas",
-                                                    textColor: AppColors.arrowBlackColor,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16.sp,
-                                                    textAlign: TextAlign.start,
-                                                    maxLines: 1,
-                                                  ),
-                                                ],
-                                              ),
-                                              SvgPicture.asset(
-                                                controller.statusOpen.value ? Paths.Icone_Abertas_Selecionado : Paths.Icone_Abertas_Apagada,
-                                                height: 2.h,
-                                                alignment: Alignment.bottomRight,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 28.w,
-                                    child: Card(
-                                      elevation: 3,
-                                      color: controller.statusLate.value ? AppColors.whiteColor : AppColors.grayCardBillFilter,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(1.h),
-                                      ),
-                                      child: InkWell(
-                                        onTap: () => controller.setTagFilter(billStatus.late),
-                                        borderRadius: BorderRadius.circular(1.h),
-                                        child: Padding(
-                                          padding:  EdgeInsets.all(1.h),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    height: 2.3.h,
-                                                    width: .5.h,
-                                                    color: AppColors.redColor,
-                                                  ),
-                                                  TextWidget(
-                                                    " Atrasadas",
-                                                    textColor: AppColors.arrowBlackColor,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16.sp,
-                                                    textAlign: TextAlign.start,
-                                                    maxLines: 1,
-                                                  ),
-                                                ],
-                                              ),
-                                              Align(
-                                                alignment: Alignment.bottomRight,
-                                                child: Icon(
-                                                  Icons.calendar_month,
-                                                  size: 2.5.h,
-                                                  color: controller.statusLate.value ? AppColors.redColor : AppColors.lightRedColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 28.w,
-                                    child: Card(
-                                      elevation: 3,
-                                      color: controller.statusClose.value ? AppColors.whiteColor : AppColors.grayCardBillFilter,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(1.h),
-                                      ),
-                                      child: InkWell(
-                                        onTap: () => controller.setTagFilter(billStatus.close),
-                                        borderRadius: BorderRadius.circular(1.h),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(1.h),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    height: 2.3.h,
-                                                    width: .5.h,
-                                                    color: AppColors.greenTagFilterColor,
-                                                  ),
-                                                  TextWidget(
-                                                    " Pagas",
-                                                    textColor: AppColors.arrowBlackColor,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16.sp,
-                                                    textAlign: TextAlign.start,
-                                                    maxLines: 1,
-                                                  ),
-                                                ],
-                                              ),
-                                              SvgPicture.asset(
-                                                controller.statusClose.value ? Paths.Icone_Pagas_Selecionado : Paths.Icone_Pagas_Apagado,
-                                                height: 2.h,
-                                                alignment: Alignment.bottomRight,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                            SizedBox(
+                              width: 95.w,
+                              child: Wrap(
+                                alignment: WrapAlignment.spaceBetween,
+                                children: controller.tagsFilterList,
                               ),
                             ),
                             Expanded(

@@ -1,11 +1,17 @@
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
+import '../../../../../helpers/paths.dart';
+import '../../../../stylePages/app_colors.dart';
+import '../widgets/tag_filter_widget.dart';
+import 'package:flutter/material.dart';
 
 class AllPaymentsController extends GetxController {
   late RxBool statusOpen;
   late RxBool statusClose;
   late RxBool statusLate;
+  late List<TagFilterWidget> tagsFilterList;
   late List<CardPaymentViewController> cardPaymentList;
 
   AllPaymentsController(){
@@ -17,10 +23,56 @@ class AllPaymentsController extends GetxController {
     statusOpen = true.obs;
     statusClose = true.obs;
     statusLate = true.obs;
+
+    _addListeners();
+  }
+
+  _addListeners(){
+    statusOpen.listen((value){
+      //TODO Filtrar com a tag de aberta
+    });
+
+    statusClose.listen((value){
+      //TODO Filtrar com a tag de Pagas
+    });
+
+    statusLate.listen((value){
+      //TODO Filtrar com a tag de Atrasadas
+    });
   }
 
   _initializeLists(){
-    cardPaymentList = [
+    tagsFilterList = <TagFilterWidget> [
+      TagFilterWidget(
+        cardColor: AppColors.blueMoneyFinancialCardColor,
+        cardStatus: "Abertas",
+        selected: statusOpen,
+        selectedSvgPath: Paths.Icone_Abertas_Selecionado,
+        unselectedSvgPath: Paths.Icone_Abertas_Apagada,
+      ),
+      TagFilterWidget(
+        cardColor: AppColors.redColor,
+        cardStatus: "Atrasadas",
+        selected: statusLate,
+        icon: Align(
+          alignment: Alignment.bottomRight,
+          child: Icon(
+            Icons.calendar_month,
+            size: 2.5.h,
+            color: statusLate.value ? AppColors.redColor : AppColors.lightRedColor,
+          ),
+        ),
+      ),
+      TagFilterWidget(
+        cardColor: AppColors.greenTagFilterColor,
+        cardStatus: "Pagas",
+        selected: statusClose,
+        selectedSvgPath: Paths.Icone_Pagas_Selecionado,
+        unselectedSvgPath: Paths.Icone_Pagas_Apagado,
+      ),
+    ];
+
+    cardPaymentList = <CardPaymentViewController> [
       CardPaymentViewController(
         "William Douglas Costa Gomes",
         "48467",
@@ -110,19 +162,5 @@ class AllPaymentsController extends GetxController {
         paymentStatus.future,
       ),
     ];
-  }
-
-  setTagFilter(billStatus status){
-    switch(status){
-      case billStatus.open:
-        statusOpen.value = !statusOpen.value;
-        break;
-      case billStatus.close:
-        statusClose.value = !statusClose.value;
-        break;
-      case billStatus.late:
-        statusLate.value = !statusLate.value;
-        break;
-    }
   }
 }

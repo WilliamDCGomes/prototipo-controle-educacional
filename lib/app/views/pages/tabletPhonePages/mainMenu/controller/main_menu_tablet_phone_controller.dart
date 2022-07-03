@@ -1236,15 +1236,15 @@ class MainMenuTabletPhoneController extends GetxController {
         titleIconPath: "Notícias e Eventos",
         page: destinationsPages.newsAndEvents,
       ),
-      CardProfileTabListWidget(
-        iconCard: Icon(
-          Icons.settings,
-          color: AppColors.purpleDefaultColor,
-          size: 5.h,
-        ),
-        titleIconPath: "Configurações",
-        page: destinationsPages.settings,
-      ),
+      // CardProfileTabListWidget(
+      //   iconCard: Icon(
+      //     Icons.settings,
+      //     color: AppColors.purpleDefaultColor,
+      //     size: 5.h,
+      //   ),
+      //   titleIconPath: "Configurações",
+      //   page: destinationsPages.settings,
+      // ),
       CardProfileTabListWidget(
         iconCard: SvgPicture.asset(
           Paths.Icone_Redefinir_Senha,
