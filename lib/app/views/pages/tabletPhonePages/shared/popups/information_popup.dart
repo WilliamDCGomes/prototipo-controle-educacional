@@ -1,14 +1,17 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 
-class LogoutPopup extends StatelessWidget {
-  const LogoutPopup({Key? key}) : super(key: key);
+class InformationPopup extends StatelessWidget {
+  final String warningMessage;
+  const InformationPopup({
+    Key? key,
+    required this.warningMessage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class LogoutPopup extends StatelessWidget {
                   ),
                 ),
                 child: TextWidget(
-                  "SAIR",
+                  "AVISO",
                   textColor: AppColors.whiteColor,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
@@ -52,34 +55,21 @@ class LogoutPopup extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     TextWidget(
-                      "Deseja mesmo sair do aplicativo?",
+                      warningMessage,
                       textColor: AppColors.blackColor,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 2.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ButtonWidget(
-                            hintText: "NÃO",
-                            heightButton: 5.h,
-                            widthButton: 32.w,
-                            fontWeight: FontWeight.bold,
-                            backgroundColor: AppColors.whiteColor,
-                            borderColor: AppColors.orangeColor,
-                            textColor: AppColors.orangeColor,
-                            onPressed: () => Get.back(),
-                          ),
-                          ButtonWidget(
-                            hintText: "SIM",
-                            heightButton: 5.h,
-                            widthButton: 32.w,
-                            fontWeight: FontWeight.bold,
-                            onPressed: () => Get.offAll(() => LoginPageTabletPhone()),
-                          ),
-                        ],
+                      child: Center(
+                        child: ButtonWidget(
+                          hintText: "OK",
+                          heightButton: 5.h,
+                          widthButton: 32.w,
+                          fontWeight: FontWeight.bold,
+                          onPressed: () => Get.back(),
+                        ),
                       ),
                     ),
                   ],

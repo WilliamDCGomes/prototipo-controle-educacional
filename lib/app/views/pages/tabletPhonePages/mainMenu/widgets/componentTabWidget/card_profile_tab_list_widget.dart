@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
 import '../../../../../stylePages/app_colors.dart';
+import '../../../resetPassword/page/reset_password_tablet_phone_page.dart';
 import '../../../shared/popups/logout_popup.dart';
 
 class CardProfileTabListWidget extends StatelessWidget {
@@ -43,7 +44,7 @@ class CardProfileTabListWidget extends StatelessWidget {
 
                   break;
                 case destinationsPages.resetPassword:
-
+                  Get.to(() => ResetPasswordTabletPhonePage());
                   break;
                 case destinationsPages.connectToSmartWatch:
 
