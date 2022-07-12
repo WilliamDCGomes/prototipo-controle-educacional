@@ -65,104 +65,95 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(
-                      height: 8.h,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2.w),
-                        child: TitleWithBackButtonWidget(
-                          title: "Forma de Pagamento",
-                        ),
-                      ),
+                    TitleWithBackButtonWidget(
+                      title: "Forma de Pagamento",
                     ),
                     Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 1.h,),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 95.w,
-                              margin: EdgeInsets.only(
-                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                bottom: 5.h,
-                              ),
-                              padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1.h),
-                                color: AppColors.purpleDefaultColor,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  TextWidget(
-                                    controller.selectCardPaymentViewController.getTitleName,
-                                    textColor: AppColors.whiteColor,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(
+                              top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                              bottom: 5.h,
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(1.h),
+                              color: AppColors.purpleDefaultColor,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                TextWidget(
+                                  controller.selectCardPaymentViewController.getTitleName,
+                                  textColor: AppColors.whiteColor,
+                                  fontSize: 18.sp,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 1.5.h),
+                                  child: RichTextTwoDifferentWidget(
+                                    firstText: "Valor: ",
+                                    firstTextColor: AppColors.whiteColor,
+                                    firstTextFontWeight: FontWeight.normal,
+                                    firstTextSize: 16.sp,
+                                    secondText: controller.selectCardPaymentViewController.getPaymentValue,
+                                    secondTextColor: AppColors.whiteColor,
+                                    secondTextFontWeight: FontWeight.bold,
+                                    secondTextSize: 16.sp,
+                                    secondTextDecoration: TextDecoration.none,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: TextWidget(
+                                    "Selecione o cartão para o pagamento",
+                                    textColor: AppColors.blackColor,
                                     fontSize: 18.sp,
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 1.5.h),
-                                    child: RichTextTwoDifferentWidget(
-                                      firstText: "Valor: ",
-                                      firstTextColor: AppColors.whiteColor,
-                                      firstTextFontWeight: FontWeight.normal,
-                                      firstTextSize: 16.sp,
-                                      secondText: controller.selectCardPaymentViewController.getPaymentValue,
-                                      secondTextColor: AppColors.whiteColor,
-                                      secondTextFontWeight: FontWeight.bold,
-                                      secondTextSize: 16.sp,
-                                      secondTextDecoration: TextDecoration.none,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2.h),
+                                    child: PaymentCardSelectWidget(
+                                      titleCards: "",
+                                      showTitleCard: false,
+                                      creditDebtCardWidgetHeight: 25.h,
+                                      creditDebtCardActiveStep: controller.creditDebtCardActiveStep,
+                                      creditDebtCardList: controller.creditDebtCardList,
+                                      carouselCreditDebtCardController: controller.carouselCreditDebtCardController,
+                                      onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 5.h),
+                                  child: ButtonWidget(
+                                    hintText: "PAGAR",
+                                    fontWeight: FontWeight.bold,
+                                    widthButton: 75.w,
+                                    onPressed: () => controller.payRequest(),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: TextWidget(
-                                      "Selecione o cartão para o pagamento",
-                                      textColor: AppColors.blackColor,
-                                      fontSize: 18.sp,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 2.h),
-                                      child: PaymentCardSelectWidget(
-                                        titleCards: "",
-                                        showTitleCard: false,
-                                        creditDebtCardWidgetHeight: 25.h,
-                                        creditDebtCardActiveStep: controller.creditDebtCardActiveStep,
-                                        creditDebtCardList: controller.creditDebtCardList,
-                                        carouselCreditDebtCardController: controller.carouselCreditDebtCardController,
-                                        onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(bottom: 5.h),
-                                    child: ButtonWidget(
-                                      hintText: "PAGAR",
-                                      fontWeight: FontWeight.bold,
-                                      widthButton: 75.w,
-                                      onPressed: () => controller.payRequest(),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

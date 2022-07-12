@@ -22,16 +22,16 @@ class InformationStudentCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: PlatformType.isPhone(context) ? 22.h : 25.h,
-        width: 80.w,
+        height: PlatformType.isPhone(context) ? 24.h : 27.h,
+        width: 90.w,
         padding: EdgeInsets.all(PlatformType.isPhone(context) ? 1.h : 0),
         child: Stack(
           children: [
             Padding(
               padding: EdgeInsets.only(
-                left: 5.w,
+                left: 2.w,
                 top: PlatformType.isPhone(context) ? 4.h : 6.h,
-                right: 5.w,
+                right: 2.w,
               ),
               child: TextWidget(
                 cardNumber,
@@ -43,9 +43,9 @@ class InformationStudentCardWidget extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                left: 5.w,
-                top: PlatformType.isPhone(context) ? 10.5.h : 13.h,
-                right: 5.w,
+                left: 2.w,
+                top: PlatformType.isPhone(context) ? 11.5.h : 14.h,
+                right: 2.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,9 +69,9 @@ class InformationStudentCardWidget extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                left: 5.w,
-                top: PlatformType.isPhone(context) ? 15.5.h : 18.5.h,
-                right: 5.w,
+                left: 2.w,
+                top: PlatformType.isPhone(context) ? 17.h : 20.h,
+                right: 2.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -60,7 +60,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                       TextButtonWidget(
                         onTap: () => widget.controller.openProfile(),
                         borderRadius: 1.h,
-                        componentPadding: EdgeInsets.symmetric(horizontal: 2.w),
+                        componentPadding: EdgeInsets.zero,
                         widgetCustom: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -125,8 +125,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                          top: PlatformType.isTablet(context) ?
-                          9.h : 7.h,
+                          top: PlatformType.isTablet(context) ? 9.h : 7.h,
                         ),
                         child: Center(
                           child: Column(

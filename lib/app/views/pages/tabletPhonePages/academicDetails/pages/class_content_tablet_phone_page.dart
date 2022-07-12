@@ -61,133 +61,124 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                        height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: TitleWithBackButtonWidget(
-                            title: "Detalhes da aula",
-                          ),
-                        ),
+                      TitleWithBackButtonWidget(
+                        title: "Detalhes da aula",
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 1.h,),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 95.w,
-                                margin: EdgeInsets.only(
-                                  top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                  bottom: 5.h,
-                                ),
-                                padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1.h),
-                                  color: AppColors.purpleDefaultColor,
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Center(
-                                      child: TextWidget(
-                                        "${widget.classes.className} - ${widget.classes.classSubject}",
-                                        textColor: AppColors.whiteColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.only(
+                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                                bottom: 5.h,
+                              ),
+                              padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1.h),
+                                color: AppColors.purpleDefaultColor,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: TextWidget(
+                                      "${widget.classes.className} - ${widget.classes.classSubject}",
+                                      textColor: AppColors.whiteColor,
+                                      fontSize: 18.sp,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                                      child: TextWidget(
-                                        controller.curriculumDeliveryViewController.getFullDate,
-                                        textColor: AppColors.whiteColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
-                                    TextWidget(
-                                      controller.curriculumDeliveryViewController.title,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                    child: TextWidget(
+                                      controller.curriculumDeliveryViewController.getFullDate,
                                       textColor: AppColors.whiteColor,
                                       fontSize: 18.sp,
                                       textAlign: TextAlign.start,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  TextWidget(
+                                    controller.curriculumDeliveryViewController.title,
+                                    textColor: AppColors.whiteColor,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextWidget(
-                                      "Descrição da Aula:",
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    "Descrição da Aula:",
+                                    textColor: AppColors.blackColor,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: .5.h, bottom: 3.h),
+                                    child: Visibility(
+                                      visible: widget.classes.classDescription != null,
+                                      replacement: TextWidget(
+                                        "Sem descrição",
+                                        textColor: AppColors.blackColor,
+                                        fontSize: 18.sp,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                      child: TextWidget(
+                                        widget.classes.classDescription ?? "",
+                                        textColor: AppColors.blackColor,
+                                        fontSize: 18.sp,
+                                        textAlign: TextAlign.start,
+                                        maxLines: 5,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: .5.h),
+                                    child: TextWidget(
+                                      "Material da Aula:",
                                       textColor: AppColors.blackColor,
                                       fontSize: 18.sp,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: .5.h, bottom: 3.h),
-                                      child: Visibility(
-                                        visible: widget.classes.classDescription != null,
-                                        replacement: TextWidget(
-                                          "Sem descrição",
-                                          textColor: AppColors.blackColor,
-                                          fontSize: 18.sp,
-                                          textAlign: TextAlign.start,
-                                        ),
+                                  ),
+                                  Expanded(
+                                    child: Visibility(
+                                      visible: widget.classes.files.isNotEmpty,
+                                      replacement: Center(
                                         child: TextWidget(
-                                          widget.classes.classDescription ?? "",
-                                          textColor: AppColors.blackColor,
+                                          "Nenhum material encontrado",
+                                          textColor: AppColors.blackColor91Percent,
                                           fontSize: 18.sp,
-                                          textAlign: TextAlign.start,
-                                          maxLines: 5,
+                                          textAlign: TextAlign.center,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: .5.h),
-                                      child: TextWidget(
-                                        "Material da Aula:",
-                                        textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        fontWeight: FontWeight.bold,
+                                      child: ListView.builder(
+                                        itemCount: widget.classes.files.length,
+                                        itemBuilder: (context, index){
+                                          return ClassContentCardWidget(
+                                            files: widget.classes.files[index],
+                                          );
+                                        },
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Visibility(
-                                        visible: widget.classes.files.isNotEmpty,
-                                        replacement: Center(
-                                          child: TextWidget(
-                                            "Nenhum material encontrado",
-                                            textColor: AppColors.blackColor91Percent,
-                                            fontSize: 18.sp,
-                                            textAlign: TextAlign.center,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        child: ListView.builder(
-                                          itemCount: widget.classes.files.length,
-                                          itemBuilder: (context, index){
-                                            return ClassContentCardWidget(
-                                              files: widget.classes.files[index],
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

@@ -58,33 +58,30 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                     children: [
                       SizedBox(
                         height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: TitleWithBackButtonWidget(
-                                  title: "Notas e Faltas",
-                                ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: TitleWithBackButtonWidget(
+                                title: "Notas e Faltas",
                               ),
-                              TextButtonWidget(
-                                onTap: () {
+                            ),
+                            TextButtonWidget(
+                              onTap: () {
 
-                                },
-                                height: 6.5.w,
-                                width: 7.w,
-                                componentPadding: EdgeInsets.all(.5.w),
-                                widgetCustom: Center(
-                                  child: Icon(
-                                    Icons.download_rounded,
-                                    size: 6.w,
-                                    color: AppColors.purpleDefaultColor,
-                                  ),
+                              },
+                              height: 6.5.w,
+                              width: 7.w,
+                              componentPadding: EdgeInsets.all(.5.w),
+                              widgetCustom: Center(
+                                child: Icon(
+                                  Icons.download_rounded,
+                                  size: 6.w,
+                                  color: AppColors.purpleDefaultColor,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
@@ -98,7 +95,7 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                               itemCount: controller.cardAcademicRecordList.length,
                               options: CarouselOptions(
                                 viewportFraction: 1,
-                                height: 100.h,
+                                height: double.infinity,
                                 enlargeStrategy: CenterPageEnlargeStrategy.height,
                                 enlargeCenterPage: true,
                                 enableInfiniteScroll: false,

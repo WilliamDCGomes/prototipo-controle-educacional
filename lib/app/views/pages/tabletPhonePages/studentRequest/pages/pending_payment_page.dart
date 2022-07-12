@@ -35,14 +35,8 @@ class PendingPaymentPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
-                  height: 8.h,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2.w),
-                    child: TitleWithBackButtonWidget(
-                      title: "Pagamento Boleto",
-                    ),
-                  ),
+                TitleWithBackButtonWidget(
+                  title: "Pagamento Boleto",
                 ),
                 Image.asset(
                   Paths.Ilustracao_03,

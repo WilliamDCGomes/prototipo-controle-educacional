@@ -63,17 +63,8 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: TitleWithBackButtonWidget(
-                              title: widget.pageTitle,
-                            ),
-                          ),
-                        ),
+                      TitleWithBackButtonWidget(
+                        title: widget.pageTitle,
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -82,7 +73,7 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                         ),
                         child: Center(
                           child: Container(
-                            width: 90.w,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                               color: AppColors.whiteColor,
                               borderRadius: BorderRadius.circular(1.h),
@@ -138,7 +129,6 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                           padding: EdgeInsets.only(top: 3.h),
                           child: ListView(
                             shrinkWrap: true,
-                            padding: EdgeInsets.symmetric(horizontal: 2.w),
                             children: [
                               TextWidget(
                                 "Nome:",

@@ -56,33 +56,30 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                 children: [
                   SizedBox(
                     height: 8.h,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            "Acadêmico",
-                            textColor: AppColors.blackColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.sp,
-                            textAlign: TextAlign.start,
-                          ),
-                          TextButtonWidget(
-                            onTap: () => widget.controller.openConfiguration(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextWidget(
+                          "Acadêmico",
+                          textColor: AppColors.blackColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp,
+                          textAlign: TextAlign.start,
+                        ),
+                        TextButtonWidget(
+                          onTap: () => widget.controller.openConfiguration(),
+                          height: 6.5.w,
+                          width: 7.w,
+                          componentPadding: EdgeInsets.all(.5.w),
+                          widgetCustom: SvgPicture.asset(
+                            Paths.Icone_Filtro,
                             height: 6.5.w,
-                            width: 7.w,
-                            componentPadding: EdgeInsets.all(.5.w),
-                            widgetCustom: SvgPicture.asset(
-                              Paths.Icone_Filtro,
-                              height: 6.5.w,
-                              width: 6.5.w,
-                              color: AppColors.purpleDefaultColor,
-                              alignment: Alignment.centerRight,
-                            ),
+                            width: 6.5.w,
+                            color: AppColors.purpleDefaultColor,
+                            alignment: Alignment.centerRight,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
@@ -91,8 +88,7 @@ class _AcademicTabWidgetState extends State<AcademicTabWidget> with SingleTicker
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                            top: PlatformType.isTablet(context) ?
-                            9.h : 7.h,
+                            top: PlatformType.isTablet(context) ? 9.h : 7.h,
                           ),
                           child: Center(
                             child: Padding(

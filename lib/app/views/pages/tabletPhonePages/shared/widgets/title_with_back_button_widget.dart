@@ -17,30 +17,33 @@ class TitleWithBackButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButtonWidget(
-      onTap: () => Get.back(),
-      componentPadding: EdgeInsets.all(.5.w),
-      widgetCustom: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(right: 2.w),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.purpleDefaultColor,
-              size: 3.h,
+    return SizedBox(
+      height: 8.h,
+      child: TextButtonWidget(
+        onTap: () => Get.back(),
+        componentPadding: EdgeInsets.symmetric(vertical: .5.w),
+        widgetCustom: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(right: 2.w),
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.purpleDefaultColor,
+                size: 3.h,
+              ),
             ),
-          ),
-          Expanded(
-            child: TextWidget(
-              title,
-              textColor: titleColor ?? AppColors.blackColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-              textAlign: TextAlign.start,
+            Expanded(
+              child: TextWidget(
+                title,
+                textColor: titleColor ?? AppColors.blackColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+                textAlign: TextAlign.start,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

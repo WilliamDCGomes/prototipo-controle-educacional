@@ -19,10 +19,10 @@ class CardPaymentListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(2.w, 0.5.h, 2.w, 1.h),
+      padding: EdgeInsets.only(top: 0.5.h, bottom: 1.h),
       child: SizedBox(
         height: 10.h,
-        width: 90.w,
+        width: double.infinity,
         child: Card(
           color: AppColors.whiteColor,
           shape: RoundedRectangleBorder(

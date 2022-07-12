@@ -53,7 +53,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5.w, 2.h, 5.w, 0),
+                    padding: EdgeInsets.fromLTRB(4.w, 2.h, 4.w, 0),
                     child: Scaffold(
                       backgroundColor: AppColors.transparentColor,
                       body: Column(

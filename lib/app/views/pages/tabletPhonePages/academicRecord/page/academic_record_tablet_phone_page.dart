@@ -57,33 +57,30 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                     children: [
                       SizedBox(
                         height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: TitleWithBackButtonWidget(
-                                  title: "Histórico Acadêmico",
-                                ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: TitleWithBackButtonWidget(
+                                title: "Histórico Acadêmico",
                               ),
-                              TextButtonWidget(
-                                onTap: () {
+                            ),
+                            TextButtonWidget(
+                              onTap: () {
 
-                                },
-                                height: 6.5.w,
-                                width: 7.w,
-                                componentPadding: EdgeInsets.all(.5.w),
-                                widgetCustom: Center(
-                                  child: Icon(
-                                    Icons.download_rounded,
-                                    size: 6.w,
-                                    color: AppColors.purpleDefaultColor,
-                                  ),
+                              },
+                              height: 6.5.w,
+                              width: 7.w,
+                              componentPadding: EdgeInsets.all(.5.w),
+                              widgetCustom: Center(
+                                child: Icon(
+                                  Icons.download_rounded,
+                                  size: 6.w,
+                                  color: AppColors.purpleDefaultColor,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(

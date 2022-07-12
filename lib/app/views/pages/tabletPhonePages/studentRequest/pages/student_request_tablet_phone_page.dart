@@ -68,199 +68,190 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                        height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: TitleWithBackButtonWidget(
-                            title: "Solicitações",
-                          ),
-                        ),
+                      TitleWithBackButtonWidget(
+                        title: "Solicitações",
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 1.h,),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.only(top: PlatformType.isTablet(context) ? 9.h : 7.h,),
-                                  children: [
-                                    Container(
-                                      width: 95.w,
-                                      margin: EdgeInsets.only(
-                                        bottom: 5.h,
-                                      ),
-                                      padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(1.h),
-                                        color: AppColors.purpleDefaultColor,
-                                      ),
-                                      child: Obx(
-                                        () => Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            TextWidget(
-                                              controller.requestTitle.value.toUpperCase(),
-                                              textColor: AppColors.whiteColor,
-                                              fontSize: 18.sp,
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                                              child: RichTextTwoDifferentWidget(
-                                                firstText: "Valor: ",
-                                                firstTextColor: AppColors.whiteColor,
-                                                firstTextFontWeight: FontWeight.normal,
-                                                firstTextSize: 16.sp,
-                                                secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
-                                                secondTextColor: AppColors.whiteColor,
-                                                secondTextFontWeight: FontWeight.bold,
-                                                secondTextSize: 16.sp,
-                                                secondTextDecoration: TextDecoration.none,
-                                              ),
-                                            ),
-                                            RichTextTwoDifferentWidget(
-                                              firstText: "Data de Previsão de Entrega: ",
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.only(top: PlatformType.isTablet(context) ? 9.h : 7.h,),
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    margin: EdgeInsets.only(
+                                      bottom: 5.h,
+                                    ),
+                                    padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(1.h),
+                                      color: AppColors.purpleDefaultColor,
+                                    ),
+                                    child: Obx(
+                                      () => Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          TextWidget(
+                                            controller.requestTitle.value.toUpperCase(),
+                                            textColor: AppColors.whiteColor,
+                                            fontSize: 18.sp,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 1,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                            child: RichTextTwoDifferentWidget(
+                                              firstText: "Valor: ",
                                               firstTextColor: AppColors.whiteColor,
                                               firstTextFontWeight: FontWeight.normal,
                                               firstTextSize: 16.sp,
-                                              secondText: controller.deliveryDate.value,
+                                              secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
                                               secondTextColor: AppColors.whiteColor,
                                               secondTextFontWeight: FontWeight.bold,
                                               secondTextSize: 16.sp,
                                               secondTextDecoration: TextDecoration.none,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                          RichTextTwoDifferentWidget(
+                                            firstText: "Data de Previsão de Entrega: ",
+                                            firstTextColor: AppColors.whiteColor,
+                                            firstTextFontWeight: FontWeight.normal,
+                                            firstTextSize: 16.sp,
+                                            secondText: controller.deliveryDate.value,
+                                            secondTextColor: AppColors.whiteColor,
+                                            secondTextFontWeight: FontWeight.bold,
+                                            secondTextSize: 16.sp,
+                                            secondTextDecoration: TextDecoration.none,
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Align(
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TextWidget(
+                                      "Preencha os dados para solicitação",
+                                      textColor: AppColors.blackColor,
+                                      fontSize: 18.sp,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                                    child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: TextWidget(
-                                        "Preencha os dados para solicitação",
+                                        "Tipo de Solicitação",
                                         textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
+                                        fontSize: 16.sp,
                                         textAlign: TextAlign.center,
                                         maxLines: 1,
-                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: TextWidget(
-                                          "Tipo de Solicitação",
-                                          textColor: AppColors.blackColor,
+                                  ),
+                                  Obx(
+                                    () => DropdownButtonWidget(
+                                      itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
+                                      hintText: "Tipo de Solicitação",
+                                      height: 6.h,
+                                      width: 85.w,
+                                      rxListItems: controller.requestTypeList,
+                                      onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h),
+                                    child: TextFieldWidget(
+                                      controller: controller.studentName,
+                                      hintText: "Nome",
+                                      height: 6.h,
+                                      keyboardType: TextInputType.name,
+                                      enableSuggestions: true,
+                                      justRead: true,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h),
+                                    child: TextFieldWidget(
+                                      controller: controller.raNumber,
+                                      hintText: "RA",
+                                      height: 6.h,
+                                      keyboardType: TextInputType.number,
+                                      enableSuggestions: true,
+                                      justRead: true,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h),
+                                    child: TextFieldWidget(
+                                      controller: controller.dateRequest,
+                                      hintText: "Data do Pedido",
+                                      height: 6.h,
+                                      keyboardType: TextInputType.number,
+                                      maskTextInputFormatter: MasksForTextFields.birthDateMask,
+                                      justRead: true,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h, bottom: 3.h),
+                                    child: TextFieldWidget(
+                                      controller: controller.observations,
+                                      height: 18.h,
+                                      keyboardType: TextInputType.text,
+                                      textAlignVertical: TextAlignVertical.top,
+                                      maxLines: 6,
+                                      decoration: InputDecoration(
+                                        label: TextWidget(
+                                          "Observação",
                                           fontSize: 16.sp,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 1,
+                                          textColor: AppColors.purpleDefaultColor,
                                         ),
-                                      ),
-                                    ),
-                                    Obx(
-                                      () => DropdownButtonWidget(
-                                        itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
-                                        hintText: "Tipo de Solicitação",
-                                        height: 6.h,
-                                        width: 85.w,
-                                        rxListItems: controller.requestTypeList,
-                                        onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
-                                      child: TextFieldWidget(
-                                        controller: controller.studentName,
-                                        hintText: "Nome",
-                                        height: 6.h,
-                                        keyboardType: TextInputType.name,
-                                        enableSuggestions: true,
-                                        justRead: true,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
-                                      child: TextFieldWidget(
-                                        controller: controller.raNumber,
-                                        hintText: "RA",
-                                        height: 6.h,
-                                        keyboardType: TextInputType.number,
-                                        enableSuggestions: true,
-                                        justRead: true,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
-                                      child: TextFieldWidget(
-                                        controller: controller.dateRequest,
-                                        hintText: "Data do Pedido",
-                                        height: 6.h,
-                                        keyboardType: TextInputType.number,
-                                        maskTextInputFormatter: MasksForTextFields.birthDateMask,
-                                        justRead: true,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 3.h, bottom: 3.h),
-                                      child: TextFieldWidget(
-                                        controller: controller.observations,
-                                        height: 18.h,
-                                        keyboardType: TextInputType.text,
-                                        textAlignVertical: TextAlignVertical.top,
-                                        maxLines: 6,
-                                        decoration: InputDecoration(
-                                          label: TextWidget(
-                                            "Observação",
-                                            fontSize: 16.sp,
-                                            textColor: AppColors.purpleDefaultColor,
+                                        alignLabelWithHint: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: AppColors.purpleDefaultColor,
+                                            width: .25.h,
                                           ),
-                                          alignLabelWithHint: true,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                              color: AppColors.purpleDefaultColor,
-                                              width: .25.h,
-                                            ),
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                              color: AppColors.purpleDefaultColor,
-                                              width: .25.h,
-                                            ),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                              color: AppColors.purpleDefaultColor,
-                                              width: .25.h,
-                                            ),
-                                          ),
-                                          contentPadding: EdgeInsets.all(1.5.h),
                                         ),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: AppColors.purpleDefaultColor,
+                                            width: .25.h,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: AppColors.purpleDefaultColor,
+                                            width: .25.h,
+                                          ),
+                                        ),
+                                        contentPadding: EdgeInsets.all(1.5.h),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 2.h),
-                                child: ButtonWidget(
-                                  hintText: "SOLICITAR",
-                                  fontWeight: FontWeight.bold,
-                                  widthButton: 100.w,
-                                  onPressed: () => controller.payRequest(),
-                                ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 2.h),
+                              child: ButtonWidget(
+                                hintText: "SOLICITAR",
+                                fontWeight: FontWeight.bold,
+                                widthButton: 100.w,
+                                onPressed: () => controller.payRequest(),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

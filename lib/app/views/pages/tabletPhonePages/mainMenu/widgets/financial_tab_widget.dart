@@ -61,24 +61,21 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
               children: [
                 SizedBox(
                   height: 8.h,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextWidget(
-                          "Financeiro",
-                          textColor: AppColors.blackColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
-                          textAlign: TextAlign.start,
-                        ),
-                        SvgPicture.asset(
-                          Paths.Logo_Pce_Home,
-                          width: 15.w,
-                        ),
-                      ],
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextWidget(
+                        "Financeiro",
+                        textColor: AppColors.blackColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.sp,
+                        textAlign: TextAlign.start,
+                      ),
+                      SvgPicture.asset(
+                        Paths.Logo_Pce_Home,
+                        width: 15.w,
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -101,10 +98,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 2.w,
-                            vertical: 1.h,
-                          ),
+                          padding: EdgeInsets.symmetric(vertical: 1.h,),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -134,7 +128,7 @@ class _FinancialTabWidgetState extends State<FinancialTabWidget> with SingleTick
                           onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(2.w, 2.h, 2.w, 1.h),
+                          padding: EdgeInsets.only(top: 2.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

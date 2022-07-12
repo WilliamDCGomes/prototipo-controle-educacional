@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/copy_bar_code_widget.dart';
 import '../../shared/widgets/title_with_back_button_widget.dart';
@@ -45,20 +46,11 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: TitleWithBackButtonWidget(
-                              title: "Carteirinha Online",
-                            ),
-                          ),
-                        ),
+                      TitleWithBackButtonWidget(
+                        title: "Carteirinha Online",
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 8.h),
+                        padding: EdgeInsets.only(top: PlatformType.isTablet(context) ? 9.h : 7.h,),
                         child: StudentCardWidget(
                           imageBasePath: controller.imageBasePath,
                           cardNumber: controller.cardNumber,
@@ -67,104 +59,101 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                           validateCard: controller.validateCard,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6.5.w),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 5.h),
-                              child: TextWidget(
-                                "Nome:",
-                                textColor: AppColors.blackColor,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.h),
+                            child: TextWidget(
+                              "Nome:",
+                              textColor: AppColors.blackColor,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.h),
+                            child: TextWidget(
+                              controller.studentName,
+                              textColor: AppColors.blackColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 2.h),
+                            child: TextWidget(
+                              "RA (Registro Acadêmico):",
+                              textColor: AppColors.blackColor,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.h),
+                            child: TextWidget(
+                              controller.raNumber,
+                              textColor: AppColors.blackColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 2.h),
+                            child: TextWidget(
+                              "Número da Carteirinha:",
+                              textColor: AppColors.blackColor,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 0.h),
+                            child: CopyBarCodeWidget(
+                              successText: "Número da Carteirinha copiado com sucesso!",
+                              valueCopy: controller.cardNumber,
+                              widgetCustom: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    Paths.Icone_Copiar,
+                                    width: 2.h,
+                                  ),
+                                  TextWidget(
+                                    " ${controller.cardNumber}",
+                                    maxLines: 1,
+                                    textColor: AppColors.blueLinkColor,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: TextWidget(
-                                controller.studentName,
-                                textColor: AppColors.blackColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
-                              ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 2.h),
+                            child: TextWidget(
+                              "Validade:",
+                              textColor: AppColors.blackColor,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 2.h),
-                              child: TextWidget(
-                                "RA (Registro Acadêmico):",
-                                textColor: AppColors.blackColor,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
-                              ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.h),
+                            child: TextWidget(
+                              controller.validateCard,
+                              textColor: AppColors.blackColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp,
+                              textAlign: TextAlign.start,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: TextWidget(
-                                controller.raNumber,
-                                textColor: AppColors.blackColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 2.h),
-                              child: TextWidget(
-                                "Número da Carteirinha:",
-                                textColor: AppColors.blackColor,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 0.h),
-                              child: CopyBarCodeWidget(
-                                successText: "Número da Carteirinha copiado com sucesso!",
-                                valueCopy: controller.cardNumber,
-                                widgetCustom: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SvgPicture.asset(
-                                      Paths.Icone_Copiar,
-                                      width: 2.h,
-                                    ),
-                                    TextWidget(
-                                      " ${controller.cardNumber}",
-                                      maxLines: 1,
-                                      textColor: AppColors.blueLinkColor,
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 2.h),
-                              child: TextWidget(
-                                "Validade:",
-                                textColor: AppColors.blackColor,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 1.h),
-                              child: TextWidget(
-                                controller.validateCard,
-                                textColor: AppColors.blackColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

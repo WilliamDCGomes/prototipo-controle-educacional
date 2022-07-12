@@ -19,10 +19,10 @@ class CardTabListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(2.w, 0.5.h, 2.w, 1.h),
+      padding: EdgeInsets.fromLTRB(0, 0.5.h, 0, 1.h),
       child: SizedBox(
         height: 10.h,
-        width: 90.w,
+        width: double.infinity,
         child: Card(
           color: AppColors.whiteColor,
           shape: RoundedRectangleBorder(

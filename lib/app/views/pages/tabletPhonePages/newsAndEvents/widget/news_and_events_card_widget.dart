@@ -19,105 +19,103 @@ class NewsAndEventsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      height: 17.h,
+      width: double.infinity,
       padding: EdgeInsets.only(bottom: 1.h),
-      child: SizedBox(
-        height: 17.h,
-        width: 95.w,
-        child: Card(
-          color: AppColors.whiteColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(1.h),
-          ),
-          elevation: 3,
-          child: TextButtonWidget(
-            onTap: (){
-              BottomSheetPopup.showAlert(
+      child: Card(
+        color: AppColors.whiteColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(1.h),
+        ),
+        elevation: 3,
+        child: TextButtonWidget(
+          onTap: (){
+            BottomSheetPopup.showAlert(
+              context,
+              NewsAndEventsPopup.getWidgetList(
                 context,
-                NewsAndEventsPopup.getWidgetList(
-                  context,
-                  newsAndEventsViewController,
-                ),
-                .55,
-              );
-            },
-            borderRadius: 1.h,
-            componentPadding: EdgeInsets.all(.5.w),
-            widgetCustom: Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1.h, vertical: 1.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SizedBox(
-                              height: .2.h,
-                            ),
-                            TextWidget(
-                              newsAndEventsViewController.newEventName,
-                              textColor: AppColors.purpleDefaultColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 19.sp,
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                            ),
-                            Expanded(
-                              child: Center(
-                                child: TextWidget(
-                                  newsAndEventsViewController.newEventDescription,
-                                  maxLines: 2,
-                                  fontSize: 17.sp,
-                                  textColor: AppColors.blackColor,
-                                  textAlign: TextAlign.start,
-                                ),
+                newsAndEventsViewController,
+              ),
+              .55,
+            );
+          },
+          borderRadius: 1.h,
+          componentPadding: EdgeInsets.all(.5.w),
+          widgetCustom: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 1.h, vertical: 1.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SizedBox(
+                            height: .2.h,
+                          ),
+                          TextWidget(
+                            newsAndEventsViewController.newEventName,
+                            textColor: AppColors.purpleDefaultColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19.sp,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: TextWidget(
+                                newsAndEventsViewController.newEventDescription,
+                                maxLines: 2,
+                                fontSize: 17.sp,
+                                textColor: AppColors.blackColor,
+                                textAlign: TextAlign.start,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.access_time,
-                                  color: AppColors.purpleDefaultColor,
-                                  size: 2.5.h,
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 2.w),
-                                    child: TextWidget(
-                                      "${newsAndEventsViewController.newEventDate} às ${newsAndEventsViewController.newEventHourStart}",
-                                      maxLines: 1,
-                                      textColor: AppColors.blackColor,
-                                      fontSize: 17.sp,
-                                      textAlign: TextAlign.start,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.access_time,
+                                color: AppColors.purpleDefaultColor,
+                                size: 2.5.h,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 2.w),
+                                  child: TextWidget(
+                                    "${newsAndEventsViewController.newEventDate} às ${newsAndEventsViewController.newEventHourStart}",
+                                    maxLines: 1,
+                                    textColor: AppColors.blackColor,
+                                    fontSize: 17.sp,
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: .2.h,
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: .2.h,
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 2.w),
-                        child: SvgPicture.asset(
-                          Paths.Icone_Noticias_Eventos,
-                          height: 8.h,
-                        ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 2.w),
+                      child: SvgPicture.asset(
+                        Paths.Icone_Noticias_Eventos,
+                        height: 8.h,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

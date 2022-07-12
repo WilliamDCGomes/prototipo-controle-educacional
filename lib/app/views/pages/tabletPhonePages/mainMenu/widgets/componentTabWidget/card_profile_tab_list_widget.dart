@@ -27,7 +27,7 @@ class CardProfileTabListWidget extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 1.h),
       child: SizedBox(
         height: 10.h,
-        width: 90.w,
+        width: double.infinity,
         child: Card(
           color: AppColors.whiteColor,
           shape: RoundedRectangleBorder(

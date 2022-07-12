@@ -23,20 +23,20 @@ class AcademicTabListWidget extends StatefulWidget {
 class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 90.w,
-      child: Padding(
-        padding: EdgeInsets.only(top: .5.h),
-        child: Column(
-          children: [
-            TextFieldWidget(
+    return Padding(
+      padding: EdgeInsets.only(top: .5.h),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: .5.w),
+            child: TextFieldWidget(
               controller: widget.academicTabType == academicTabs.curriculum ?
                 widget.controller.curriculumSearchController :
                 widget.controller.deliveriesSearchController,
               hintText: widget.academicTabType == academicTabs.curriculum ?
                 "Pesquisar Matéria" : "Pesquisar Trabalho",
               height: 6.h,
-              width: 90.w,
+              width: double.infinity,
               iconTextField: Icon(
                 Icons.search,
                 color: AppColors.purpleDefaultColor,
@@ -44,33 +44,33 @@ class _AcademicTabListWidgetState extends State<AcademicTabListWidget> {
               ),
               keyboardType: TextInputType.name,
             ),
-            Expanded(
-              child: ReorderableListView.builder(
-                itemCount: widget.academicTabType == academicTabs.curriculum ?
-                  widget.controller.curriculumTabList.length :
-                  widget.controller.deliveryTabList.length,
-                itemBuilder: (context, index) {
-                  return CardTabListWidget(
-                    key: Key("${widget.academicTabType == academicTabs.curriculum}$index"),
-                    curriculumDeliveryViewController: widget.academicTabType == academicTabs.curriculum ?
-                      widget.controller.curriculumTabList[index] :
-                      widget.controller.deliveryTabList[index],
-                  );
-                },
-                onReorder: (oldIndex, newIndex) {
-                  var newList = ReorderListHelper.reorderList(
-                    oldIndex,
-                    newIndex,
-                    widget.academicTabType == academicTabs.curriculum ?
-                      widget.controller.curriculumTabList :
-                      widget.controller.deliveryTabList,
-                  );
-                  //TODO Fazer um método para salvar a nova lista
-                }
-              ),
+          ),
+          Expanded(
+            child: ReorderableListView.builder(
+              itemCount: widget.academicTabType == academicTabs.curriculum ?
+                widget.controller.curriculumTabList.length :
+                widget.controller.deliveryTabList.length,
+              itemBuilder: (context, index) {
+                return CardTabListWidget(
+                  key: Key("${widget.academicTabType == academicTabs.curriculum}$index"),
+                  curriculumDeliveryViewController: widget.academicTabType == academicTabs.curriculum ?
+                    widget.controller.curriculumTabList[index] :
+                    widget.controller.deliveryTabList[index],
+                );
+              },
+              onReorder: (oldIndex, newIndex) {
+                var newList = ReorderListHelper.reorderList(
+                  oldIndex,
+                  newIndex,
+                  widget.academicTabType == academicTabs.curriculum ?
+                    widget.controller.curriculumTabList :
+                    widget.controller.deliveryTabList,
+                );
+                //TODO Fazer um método para salvar a nova lista
+              }
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

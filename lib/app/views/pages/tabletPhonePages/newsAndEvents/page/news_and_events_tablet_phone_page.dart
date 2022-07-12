@@ -58,73 +58,66 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                        height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: TitleWithBackButtonWidget(
-                            title: "Notícias e Eventos",
-                          ),
-                        ),
+                      TitleWithBackButtonWidget(
+                        title: "Notícias e Eventos",
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 1.h,),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 95.w,
-                                margin: EdgeInsets.only(
-                                  top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                  bottom: 3.h,
-                                ),
-                                padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1.h),
-                                  color: AppColors.purpleDefaultColor,
-                                ),
-                                child: TextWidget(
-                                  "Últimas Notícias e Eventos do mês de ${DateFormatToBrazil.mounth(DateTime.now())}",
-                                  textColor: AppColors.whiteColor,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.only(
+                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
+                                bottom: 3.h,
                               ),
-                              TextFieldWidget(
-                                controller: controller.searchNewsAndEventsController,
-                                hintText: "Pesquisar Notícias e Eventos",
-                                height: 6.h,
-                                width: 90.w,
-                                iconTextField: Icon(
-                                  Icons.search,
-                                  color: AppColors.purpleDefaultColor,
-                                  size: 3.h,
-                                ),
-                                keyboardType: TextInputType.name,
+                              padding: EdgeInsets.symmetric(vertical: 3.h),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1.h),
+                                color: AppColors.purpleDefaultColor,
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 1.h,
+                              child: TextWidget(
+                                "Últimas Notícias e Eventos do mês de ${DateFormatToBrazil.mounth(DateTime.now())}",
+                                textColor: AppColors.whiteColor,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextFieldWidget(
+                              controller: controller.searchNewsAndEventsController,
+                              hintText: "Pesquisar Notícias e Eventos",
+                              height: 6.h,
+                              width: double.infinity,
+                              iconTextField: Icon(
+                                Icons.search,
+                                color: AppColors.purpleDefaultColor,
+                                size: 3.h,
+                              ),
+                              keyboardType: TextInputType.name,
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: 1.h,
+                                ),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    itemCount: controller.newsAndEventsList.length,
+                                    itemBuilder: (context, index){
+                                      return NewsAndEventsCardWidget(
+                                        newsAndEventsViewController: controller.newsAndEventsList[index],
+                                      );
+                                    },
                                   ),
-                                  child: Center(
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: controller.newsAndEventsList.length,
-                                      itemBuilder: (context, index){
-                                        return NewsAndEventsCardWidget(
-                                          newsAndEventsViewController: controller.newsAndEventsList[index],
-                                        );
-                                      },
-                                    ),
-                                  ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

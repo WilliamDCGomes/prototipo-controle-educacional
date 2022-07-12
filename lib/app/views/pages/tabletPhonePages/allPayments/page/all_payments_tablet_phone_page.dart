@@ -60,41 +60,37 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                     children: [
                       SizedBox(
                         height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child:
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: TitleWithBackButtonWidget(
-                                  title: "Todos os Boletos/Lançamentos",
-                                ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: TitleWithBackButtonWidget(
+                                title: "Todos os Boletos/Lançamentos",
                               ),
-                              TextButtonWidget(
-                                onTap: (){
+                            ),
+                            TextButtonWidget(
+                              onTap: (){
 
-                                },
+                              },
+                              height: 6.5.w,
+                              width: 7.w,
+                              componentPadding: EdgeInsets.all(.5.w),
+                              widgetCustom: SvgPicture.asset(
+                                Paths.Icone_Filtro,
                                 height: 6.5.w,
-                                width: 7.w,
-                                componentPadding: EdgeInsets.all(.5.w),
-                                widgetCustom: SvgPicture.asset(
-                                  Paths.Icone_Filtro,
-                                  height: 6.5.w,
-                                  width: 6.5.w,
-                                  color: AppColors.purpleDefaultColor,
-                                  alignment: Alignment.centerRight,
-                                ),
+                                width: 6.5.w,
+                                color: AppColors.purpleDefaultColor,
+                                alignment: Alignment.centerRight,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
                         child: Column(
                           children: [
                             Container(
-                              width: 95.w,
+                              width: double.infinity,
                               margin: EdgeInsets.only(
                                 top: PlatformType.isTablet(context) ? 9.h : 7.h,
                                 bottom: 3.h,

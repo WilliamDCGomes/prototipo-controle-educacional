@@ -26,8 +26,8 @@ class StudentCardWidget extends StatelessWidget {
         Center(
           child: Image.asset(
             imageBasePath,
-            height: PlatformType.isPhone(context) ? 22.h : 25.h,
-            width: 80.w,
+            height: PlatformType.isPhone(context) ? 24.h : 27.h,
+            width: double.infinity,
             fit: BoxFit.fill,
           ),
         ),

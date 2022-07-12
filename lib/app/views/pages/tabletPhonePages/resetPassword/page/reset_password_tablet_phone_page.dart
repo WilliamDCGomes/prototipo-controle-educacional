@@ -58,137 +58,125 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                        height: 8.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
-                          child: TitleWithBackButtonWidget(
-                            title: "Redefinir Senha",
-                          ),
-                        ),
+                      TitleWithBackButtonWidget(
+                        title: "Redefinir Senha",
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 1.h,
-                            right: 1.h,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 3.h,),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  Paths.Icone_Redefinir_Senha,
-                                  height: 18.h,
+                          padding: EdgeInsets.only(top: 3.h,),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                Paths.Icone_Redefinir_Senha,
+                                height: 18.h,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 1.h),
+                                child: TextWidget(
+                                  "Informe sua senha atual e sua nova senha para prosseguir!",
+                                  textColor: AppColors.purpleDefaultColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.sp,
+                                  maxLines: 2,
+                                  textAlign: TextAlign.center,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 1.h),
-                                  child: TextWidget(
-                                    "Informe sua senha atual e sua nova senha para prosseguir!",
-                                    textColor: AppColors.purpleDefaultColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18.sp,
-                                    maxLines: 2,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ListView(
-                                    shrinkWrap: true,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 3.h),
-                                        child: Obx(
-                                          () => TextFieldWidget(
-                                            controller: controller.oldPasswordInput,
-                                            hintText: "Senha Atual",
-                                            height: 6.h,
-                                            width: 75.w,
-                                            isPassword: controller.oldPasswordVisible.value,
-                                            iconTextField: GestureDetector(
-                                              onTap: () {
-                                                controller.oldPasswordVisible.value =
-                                                !controller.oldPasswordVisible.value;
-                                              },
-                                              child: Icon(
-                                                controller.oldPasswordVisible.value
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
-                                                color: AppColors.purpleDefaultColor,
-                                                size: 2.5.h,
-                                              ),
+                              ),
+                              Expanded(
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 3.h),
+                                      child: Obx(
+                                        () => TextFieldWidget(
+                                          controller: controller.oldPasswordInput,
+                                          hintText: "Senha Atual",
+                                          height: 6.h,
+                                          width: double.infinity,
+                                          isPassword: controller.oldPasswordVisible.value,
+                                          iconTextField: GestureDetector(
+                                            onTap: () {
+                                              controller.oldPasswordVisible.value =
+                                              !controller.oldPasswordVisible.value;
+                                            },
+                                            child: Icon(
+                                              controller.oldPasswordVisible.value
+                                                  ? Icons.visibility_off
+                                                  : Icons.visibility,
+                                              color: AppColors.purpleDefaultColor,
+                                              size: 2.5.h,
                                             ),
-                                            keyboardType: TextInputType.visiblePassword,
                                           ),
+                                          keyboardType: TextInputType.visiblePassword,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 3.h),
-                                        child: Obx(
-                                          () => TextFieldWidget(
-                                            controller: controller.newPasswordInput,
-                                            hintText: "Nova Senha",
-                                            height: 6.h,
-                                            width: 75.w,
-                                            isPassword: controller.newPasswordVisible.value,
-                                            iconTextField: GestureDetector(
-                                              onTap: () {
-                                                controller.newPasswordVisible.value =
-                                                !controller.newPasswordVisible.value;
-                                              },
-                                              child: Icon(
-                                                controller.newPasswordVisible.value
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
-                                                color: AppColors.purpleDefaultColor,
-                                                size: 2.5.h,
-                                              ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 3.h),
+                                      child: Obx(
+                                        () => TextFieldWidget(
+                                          controller: controller.newPasswordInput,
+                                          hintText: "Nova Senha",
+                                          height: 6.h,
+                                          width: double.infinity,
+                                          isPassword: controller.newPasswordVisible.value,
+                                          iconTextField: GestureDetector(
+                                            onTap: () {
+                                              controller.newPasswordVisible.value =
+                                              !controller.newPasswordVisible.value;
+                                            },
+                                            child: Icon(
+                                              controller.newPasswordVisible.value
+                                                  ? Icons.visibility_off
+                                                  : Icons.visibility,
+                                              color: AppColors.purpleDefaultColor,
+                                              size: 2.5.h,
                                             ),
-                                            keyboardType: TextInputType.visiblePassword,
                                           ),
+                                          keyboardType: TextInputType.visiblePassword,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 3.h),
-                                        child: Obx(
-                                          () => TextFieldWidget(
-                                            controller: controller.confirmNewPasswordInput,
-                                            hintText: "Confirmar Nova Senha",
-                                            height: 6.h,
-                                            width: 75.w,
-                                            isPassword: controller.confirmNewPasswordVisible.value,
-                                            iconTextField: GestureDetector(
-                                              onTap: () {
-                                                controller.confirmNewPasswordVisible.value =
-                                                !controller.confirmNewPasswordVisible.value;
-                                              },
-                                              child: Icon(
-                                                controller.confirmNewPasswordVisible.value
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
-                                                color: AppColors.purpleDefaultColor,
-                                                size: 2.5.h,
-                                              ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 3.h),
+                                      child: Obx(
+                                        () => TextFieldWidget(
+                                          controller: controller.confirmNewPasswordInput,
+                                          hintText: "Confirmar Nova Senha",
+                                          height: 6.h,
+                                          width: double.infinity,
+                                          isPassword: controller.confirmNewPasswordVisible.value,
+                                          iconTextField: GestureDetector(
+                                            onTap: () {
+                                              controller.confirmNewPasswordVisible.value =
+                                              !controller.confirmNewPasswordVisible.value;
+                                            },
+                                            child: Icon(
+                                              controller.confirmNewPasswordVisible.value
+                                                  ? Icons.visibility_off
+                                                  : Icons.visibility,
+                                              color: AppColors.purpleDefaultColor,
+                                              size: 2.5.h,
                                             ),
-                                            keyboardType: TextInputType.visiblePassword,
                                           ),
+                                          keyboardType: TextInputType.visiblePassword,
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2.h),
-                                  child: ButtonWidget(
-                                    hintText: "REDEFINIR SENHA",
-                                    fontWeight: FontWeight.bold,
-                                    widthButton: 100.w,
-                                    onPressed: () => controller.resetPasswordButtonPressed(),
-                                  ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 2.h),
+                                child: ButtonWidget(
+                                  hintText: "REDEFINIR SENHA",
+                                  fontWeight: FontWeight.bold,
+                                  widthButton: double.infinity,
+                                  onPressed: () => controller.resetPasswordButtonPressed(),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

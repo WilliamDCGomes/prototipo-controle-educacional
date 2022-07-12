@@ -43,61 +43,64 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Visibility(
-          visible: widget.academicRecordController != null,
-          replacement: CardAcademicRecordWidget(
-            yearValueText: widget.yearValueText,
-            semesterValueText: widget.semesterValueText,
-            gradesFaultsController: widget.gradesFaultsController,
-            mainMenuTabletPhoneController: widget.mainMenuTabletPhoneController,
-          ),
-          child: CardAcademicStudentRecordWidget(
-            academicRecordController: widget.academicRecordController,
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 2.h),
-          child: TextFieldWidget(
-            controller: searchDisciplineController,
-            hintText: "Pesquise a Disciplina",
-            height: 6.h,
-            width: 90.w,
-            iconTextField: Icon(
-              Icons.search,
-              color: AppColors.purpleDefaultColor,
-              size: 3.h,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: .5.w),
+      child: Column(
+        children: [
+          Visibility(
+            visible: widget.academicRecordController != null,
+            replacement: CardAcademicRecordWidget(
+              yearValueText: widget.yearValueText,
+              semesterValueText: widget.semesterValueText,
+              gradesFaultsController: widget.gradesFaultsController,
+              mainMenuTabletPhoneController: widget.mainMenuTabletPhoneController,
             ),
-            keyboardType: TextInputType.name,
+            child: CardAcademicStudentRecordWidget(
+              academicRecordController: widget.academicRecordController,
+            ),
           ),
-        ),
-        Expanded(
-          child: Padding(
+          Padding(
             padding: EdgeInsets.only(top: 2.h),
-            child: SizedBox(
-              width: 90.w,
-              child: ReorderableListView.builder(
-                itemCount: widget.disciplineCardList.length,
-                itemBuilder: (context, index){
-                  return Container(
-                    key: Key("$index"),
-                    child: widget.disciplineCardList[index],
-                  );
-                },
-                onReorder: (oldIndex, newIndex) {
-                  var newList = ReorderListHelper.reorderList(
-                    oldIndex,
-                    newIndex,
-                    widget.disciplineCardList,
-                  );
-                  //TODO Fazer um método para salvar a nova lista
-                }
+            child: TextFieldWidget(
+              controller: searchDisciplineController,
+              hintText: "Pesquise a Disciplina",
+              height: 6.h,
+              width: double.infinity,
+              iconTextField: Icon(
+                Icons.search,
+                color: AppColors.purpleDefaultColor,
+                size: 3.h,
+              ),
+              keyboardType: TextInputType.name,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(top: 2.h),
+              child: SizedBox(
+                width: double.infinity,
+                child: ReorderableListView.builder(
+                  itemCount: widget.disciplineCardList.length,
+                  itemBuilder: (context, index){
+                    return Container(
+                      key: Key("$index"),
+                      child: widget.disciplineCardList[index],
+                    );
+                  },
+                  onReorder: (oldIndex, newIndex) {
+                    var newList = ReorderListHelper.reorderList(
+                      oldIndex,
+                      newIndex,
+                      widget.disciplineCardList,
+                    );
+                    //TODO Fazer um método para salvar a nova lista
+                  }
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

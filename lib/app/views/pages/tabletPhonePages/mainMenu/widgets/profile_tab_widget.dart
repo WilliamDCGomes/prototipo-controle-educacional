@@ -51,24 +51,21 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
               children: [
                 SizedBox(
                   height: 8.h,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextWidget(
-                          "Perfil",
-                          textColor: AppColors.blackColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp,
-                          textAlign: TextAlign.start,
-                        ),
-                        SvgPicture.asset(
-                          Paths.Logo_Pce_Home,
-                          width: 15.w,
-                        ),
-                      ],
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextWidget(
+                        "Perfil",
+                        textColor: AppColors.blackColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.sp,
+                        textAlign: TextAlign.start,
+                      ),
+                      SvgPicture.asset(
+                        Paths.Logo_Pce_Home,
+                        width: 15.w,
+                      ),
+                    ],
                   ),
                 ),
                 Container(

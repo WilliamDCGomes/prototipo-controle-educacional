@@ -38,7 +38,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                   controller: widget.controller.nameTextController,
                   hintText: "Nome",
                   height: 6.h,
-                  width: 90.w,
+                  width: double.infinity,
                   keyboardType: TextInputType.name,
                   enableSuggestions: true,
                 ),
@@ -48,7 +48,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.birthDateTextController,
                     hintText: "Data de Nascimento",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.number,
                     maskTextInputFormatter: MasksForTextFields.birthDateMask,
                   ),
@@ -59,7 +59,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.cpfTextController,
                     hintText: "CPF",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.number,
                     maskTextInputFormatter: MasksForTextFields.cpfMask,
                   ),
@@ -79,7 +79,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.cepTextController,
                     hintText: "Cep",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.number,
                     maskTextInputFormatter: MasksForTextFields.cepMask,
                   ),
@@ -92,23 +92,28 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        DropdownButtonWidget(
-                          itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
-                          hintText: "Uf",
-                          height: 6.h,
-                          width: 23.w,
-                          rxListItems: widget.controller.ufsList,
-                          onChanged: (selectedState) {
-                            widget.controller.ufSelected.value = selectedState ?? "";
-                          },
+                        Padding(
+                          padding: EdgeInsets.only(right: 2.w
+                          ),
+                          child: DropdownButtonWidget(
+                            itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
+                            hintText: "Uf",
+                            height: 6.h,
+                            width: 23.w,
+                            rxListItems: widget.controller.ufsList,
+                            onChanged: (selectedState) {
+                              widget.controller.ufSelected.value = selectedState ?? "";
+                            },
+                          ),
                         ),
-                        TextFieldWidget(
-                          controller: widget.controller.cityTextController,
-                          hintText: "Cidade",
-                          height: 6.h,
-                          width: 65.w,
-                          keyboardType: TextInputType.name,
-                          enableSuggestions: true,
+                        Expanded(
+                          child: TextFieldWidget(
+                            controller: widget.controller.cityTextController,
+                            hintText: "Cidade",
+                            height: 6.h,
+                            keyboardType: TextInputType.name,
+                            enableSuggestions: true,
+                          ),
                         ),
                       ],
                     ),
@@ -120,20 +125,24 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextFieldWidget(
-                        controller: widget.controller.streetTextController,
-                        hintText: "Logradouro",
-                        height: 6.h,
-                        width: 68.w,
-                        keyboardType: TextInputType.streetAddress,
-                        enableSuggestions: true,
+                      Expanded(
+                        child: TextFieldWidget(
+                          controller: widget.controller.streetTextController,
+                          hintText: "Logradouro",
+                          height: 6.h,
+                          keyboardType: TextInputType.streetAddress,
+                          enableSuggestions: true,
+                        ),
                       ),
-                      TextFieldWidget(
-                        controller: widget.controller.houseNumberTextController,
-                        hintText: "Nº",
-                        height: 6.h,
-                        width: 20.w,
-                        keyboardType: TextInputType.number,
+                      Padding(
+                        padding: EdgeInsets.only(left: 2.w),
+                        child: TextFieldWidget(
+                          controller: widget.controller.houseNumberTextController,
+                          hintText: "Nº",
+                          height: 6.h,
+                          width: 20.w,
+                          keyboardType: TextInputType.number,
+                        ),
                       ),
                     ],
                   ),
@@ -144,7 +153,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.neighborhoodTextController,
                     hintText: "Bairro",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.name,
                     enableSuggestions: true,
                   ),
@@ -155,7 +164,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.complementTextController,
                     hintText: "Complemento",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.text,
                     enableSuggestions: true,
                   ),
@@ -173,7 +182,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                   controller: widget.controller.institutionTextController,
                   hintText: "Instituição",
                   height: 6.h,
-                  width: 90.w,
+                  width: double.infinity,
                   keyboardType: TextInputType.name,
                   enableSuggestions: true,
                 ),
@@ -183,23 +192,29 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.courseTextController,
                     hintText: "Curso",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.name,
                     enableSuggestions: true,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5.h),
-                  child: Obx(() => DropdownButtonWidget(
-                    itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
-                    hintText: "Período",
-                    height: 5.6.h,
-                    width: 90.w,
-                    listItems: widget.controller.periodList,
-                    onChanged: (selectedPeriod) {
-                      widget.controller.periodSelected.value = selectedPeriod ?? "";
-                    },
-                  ),
+                  child: Obx(
+                    () => Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonWidget(
+                            itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
+                            hintText: "Período",
+                            height: 5.6.h,
+                            listItems: widget.controller.periodList,
+                            onChanged: (selectedPeriod) {
+                              widget.controller.periodSelected.value = selectedPeriod ?? "";
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -215,7 +230,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                   controller: widget.controller.phoneTextController,
                   hintText: "Telefone",
                   height: 6.h,
-                  width: 90.w,
+                  width: double.infinity,
                   keyboardType: TextInputType.phone,
                   maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
                 ),
@@ -225,7 +240,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.cellPhoneTextController,
                     hintText: "Celular",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.phone,
                     maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
 
@@ -238,7 +253,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.emailTextController,
                     hintText: "E-mail",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.emailAddress,
                     enableSuggestions: true,
                   ),
@@ -249,7 +264,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.confirmEmailTextController,
                     hintText: "Confirme o E-mail",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     keyboardType: TextInputType.emailAddress,
                     enableSuggestions: true,
                   ),
@@ -295,7 +310,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                   controller: widget.controller.passwordTextController,
                   hintText: "Senha",
                   height: 6.h,
-                  width: 90.w,
+                  width: double.infinity,
                   isPassword: widget.controller.passwordFieldEnabled.value,
                   iconTextField: GestureDetector(
                     onTap: () {
@@ -318,7 +333,7 @@ class _BodyRegisterStepperWidgetState extends State<BodyRegisterStepperWidget> {
                     controller: widget.controller.confirmPasswordTextController,
                     hintText: "Confirme a Senha",
                     height: 6.h,
-                    width: 90.w,
+                    width: double.infinity,
                     isPassword: widget.controller.confirmPasswordFieldEnabled.value,
                     iconTextField: GestureDetector(
                       onTap: () {
