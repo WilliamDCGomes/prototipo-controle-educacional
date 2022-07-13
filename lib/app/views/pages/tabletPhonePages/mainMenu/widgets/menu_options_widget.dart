@@ -40,6 +40,7 @@ class MenuOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 1.h),
       width: widthOption ?? (PlatformType.isAndroid() ? 13.h : 14.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2.5.h),

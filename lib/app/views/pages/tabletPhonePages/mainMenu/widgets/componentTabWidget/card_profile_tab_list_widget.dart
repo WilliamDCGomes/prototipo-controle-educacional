@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/newsAndEvents/page/news_and_events_tablet_phone_page.dart';
+import 'package:projeto_tcc/app/views/pages/tabletPhonePages/qrCodeScanner/page/qr_code_scanner_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
@@ -47,7 +48,7 @@ class CardProfileTabListWidget extends StatelessWidget {
                   Get.to(() => ResetPasswordTabletPhonePage());
                   break;
                 case destinationsPages.connectToSmartWatch:
-
+                  Get.to(() => QrCodeScannerTabletPhonePage());
                   break;
                 case destinationsPages.logout:
                   showDialog(

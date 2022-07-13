@@ -26,6 +26,7 @@ class CardAcademicRecordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 18.h,
+      margin: EdgeInsets.symmetric(horizontal: .5.w),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1.h),
