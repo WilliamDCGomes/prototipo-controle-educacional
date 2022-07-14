@@ -6,7 +6,7 @@ import 'package:projeto_tcc/app/views/stylePages/app_colors.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../controller/qr_code_scanner_controller.dart';
+import '../controller/qr_code_scanner_tablet_phone_controller.dart';
 
 class QrCodeScannerTabletPhonePage extends StatefulWidget {
   const QrCodeScannerTabletPhonePage({Key? key}) : super(key: key);
@@ -16,11 +16,11 @@ class QrCodeScannerTabletPhonePage extends StatefulWidget {
 }
 
 class _QrCodeScannerTabletPhonePageState extends State<QrCodeScannerTabletPhonePage> {
-  late QrCodeScannerController controller;
+  late QrCodeScannerTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(QrCodeScannerController());
+    controller = Get.put(QrCodeScannerTabletPhoneController());
     super.initState();
   }
 
@@ -69,7 +69,7 @@ class _QrCodeScannerTabletPhonePageState extends State<QrCodeScannerTabletPhoneP
               margin: EdgeInsets.only(left: 15.w, top: 15.h, right: 15.w),
               padding: EdgeInsets.all(1.h),
               decoration: BoxDecoration(
-                color: AppColors.blackColor,
+                color: AppColors.purpleDefaultColorWithOpacity,
                 borderRadius: BorderRadius.circular(1.h),
               ),
               child: TextWidget(
@@ -84,29 +84,36 @@ class _QrCodeScannerTabletPhonePageState extends State<QrCodeScannerTabletPhoneP
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(bottom: 18.h),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextWidget(
-                      "LEIA O CÓDIGO QR",
-                      textColor: AppColors.purpleDefaultColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.sp,
-                      maxLines: 1,
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 1.h),
-                      child: TextWidget(
-                        "Para acessar sua Conta",
-                        textColor: AppColors.orangeColor,
-                        fontSize: 22.sp,
+                padding: EdgeInsets.only(bottom: 16.h),
+                child: Container(
+                  padding: EdgeInsets.all(1.h),
+                  decoration: BoxDecoration(
+                    color: AppColors.purpleDefaultColorWithOpacity,
+                    borderRadius: BorderRadius.circular(1.h),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextWidget(
+                        "LEIA O CÓDIGO QR",
+                        textColor: AppColors.whiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
                         maxLines: 1,
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(top: 1.h),
+                        child: TextWidget(
+                          "Para acessar sua Conta",
+                          textColor: AppColors.whiteColor,
+                          fontSize: 18.sp,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

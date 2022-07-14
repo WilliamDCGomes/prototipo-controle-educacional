@@ -9,7 +9,7 @@ import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../controller/login_page_controller.dart';
+import '../controller/login_page_tablet_phone_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class LoginPageTabletPhone extends StatefulWidget {
@@ -20,11 +20,11 @@ class LoginPageTabletPhone extends StatefulWidget {
 }
 
 class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
-  late LoginController controller;
+  late LoginTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(LoginController());
+    controller = Get.put(LoginTabletPhoneController());
     super.initState();
   }
 
@@ -166,7 +166,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                     ),
                   ),
                 ),
-                controller.loadingWidget,
+                controller.loadingTabletPhoneWidget,
               ],
             ),
           ),

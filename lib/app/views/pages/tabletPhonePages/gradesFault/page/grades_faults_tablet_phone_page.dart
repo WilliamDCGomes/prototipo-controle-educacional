@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/grades_faults_controller.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/grades_faults_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -18,11 +18,11 @@ class GradesFaultsTabletPhonePage extends StatefulWidget {
 }
 
 class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePage> {
-  late GradesFaultsController controller;
+  late GradesFaultsTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(GradesFaultsController());
+    controller = Get.put(GradesFaultsTabletPhoneController());
     super.initState();
   }
 
@@ -62,7 +62,7 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: TitleWithBackButtonWidget(
+                              child: TitleWithBackButtonTabletPhoneWidget(
                                 title: "Notas e Faltas",
                               ),
                             ),

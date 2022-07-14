@@ -8,8 +8,8 @@ import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/payment_detail_controller.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/payment_detail_tablet_phone_controller.dart';
 
 class PaymentDetailTabletPhonePage extends StatefulWidget {
   final String pageTitle;
@@ -25,11 +25,11 @@ class PaymentDetailTabletPhonePage extends StatefulWidget {
 }
 
 class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhonePage> {
-  late PaymentDetailController controller;
+  late PaymentDetailTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(PaymentDetailController(widget.cardPaymentViewController));
+    controller = Get.put(PaymentDetailTabletPhoneController(widget.cardPaymentViewController));
     super.initState();
   }
 
@@ -63,7 +63,7 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: widget.pageTitle,
                       ),
                       Padding(

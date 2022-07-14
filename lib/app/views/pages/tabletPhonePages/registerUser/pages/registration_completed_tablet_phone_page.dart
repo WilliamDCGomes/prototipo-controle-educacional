@@ -7,17 +7,17 @@ import '../../../../../helpers/app_close_controller.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../controllers/registration_completed_controller.dart';
+import '../controllers/registration_completed_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class RegistrationCompletedTabletPhone extends StatelessWidget {
-  late final RegistrationCompletedController controller;
+  late final RegistrationCompletedTabletPhoneController controller;
   RegistrationCompletedTabletPhone({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(RegistrationCompletedController());
+    controller = Get.put(RegistrationCompletedTabletPhoneController());
 
     return WillPopScope(
       onWillPop: () async {

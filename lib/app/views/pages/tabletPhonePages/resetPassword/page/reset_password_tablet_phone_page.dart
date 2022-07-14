@@ -7,8 +7,8 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/reset_password_controller.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/reset_password_tablet_phone_controller.dart';
 
 class ResetPasswordTabletPhonePage extends StatefulWidget {
   const ResetPasswordTabletPhonePage({Key? key}) : super(key: key);
@@ -18,11 +18,11 @@ class ResetPasswordTabletPhonePage extends StatefulWidget {
 }
 
 class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhonePage> {
-  late ResetPasswordController controller;
+  late ResetPasswordTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(ResetPasswordController());
+    controller = Get.put(ResetPasswordTabletPhoneController());
 
     super.initState();
   }
@@ -58,7 +58,7 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: "Redefinir Senha",
                       ),
                       Expanded(
@@ -183,7 +183,7 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                     ],
                   ),
                 ),
-                controller.loadingWithSuccessOrErrorWidget,
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

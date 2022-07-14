@@ -13,8 +13,8 @@ import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/student_request_controller.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/student_request_tablet_phone_controller.dart';
 
 class StudentRequestTablePhonePage extends StatefulWidget {
   final studentTypeRequest studentRequest;
@@ -29,11 +29,11 @@ class StudentRequestTablePhonePage extends StatefulWidget {
 }
 
 class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhonePage> {
-  late StudentRequestController controller;
+  late StudentRequestTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(StudentRequestController(widget.studentRequest), tag: "student-request-controller");
+    controller = Get.put(StudentRequestTabletPhoneController(widget.studentRequest), tag: "student-request-tablet-phone-controller");
     super.initState();
   }
 
@@ -68,7 +68,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: "Solicitações",
                       ),
                       Expanded(

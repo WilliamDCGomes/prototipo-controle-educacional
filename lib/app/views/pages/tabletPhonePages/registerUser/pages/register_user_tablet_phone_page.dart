@@ -6,21 +6,21 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../controllers/register_user_controller.dart';
+import '../controllers/register_user_tablet_phone_controller.dart';
 
-class RegisterUserTabletPhone extends StatefulWidget {
-  const RegisterUserTabletPhone({Key? key}) : super(key: key);
+class RegisterUserTabletPhonePage extends StatefulWidget {
+  const RegisterUserTabletPhonePage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterUserTabletPhone> createState() => _RegisterUserTabletPhoneState();
+  State<RegisterUserTabletPhonePage> createState() => _RegisterUserTabletPhonePageState();
 }
 
-class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
-  late RegisterUserController controller;
+class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePage> {
+  late RegisterUserTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(RegisterUserController());
+    controller = Get.put(RegisterUserTabletPhoneController());
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
@@ -159,7 +159,7 @@ class _RegisterUserTabletPhoneState extends State<RegisterUserTabletPhone> {
                     ),
                   ),
                 ),
-                controller.loadingWithSuccessOrErrorWidget,
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

@@ -8,9 +8,9 @@ import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/all_payments_controller.dart';
-import '../widgets/card_all_bills_detail_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/all_payments_tablet_phone_controller.dart';
+import '../widgets/card_all_bills_detail_tablet_phone_widget.dart';
 
 class AllPaymentsTabletPhonePage extends StatefulWidget {
   const AllPaymentsTabletPhonePage({Key? key}) : super(key: key);
@@ -20,11 +20,11 @@ class AllPaymentsTabletPhonePage extends StatefulWidget {
 }
 
 class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage> {
-  late AllPaymentsController controller;
+  late AllPaymentsTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(AllPaymentsController());
+    controller = Get.put(AllPaymentsTabletPhoneController());
     super.initState();
   }
 
@@ -64,7 +64,7 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: TitleWithBackButtonWidget(
+                              child: TitleWithBackButtonTabletPhoneWidget(
                                 title: "Todos os Boletos/Lançamentos",
                               ),
                             ),
@@ -123,8 +123,8 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                                   shrinkWrap: true,
                                   itemCount: controller.cardPaymentList.length,
                                   itemBuilder: (context, index){
-                                    return CardAllBillsDetailWidget(
-                                      cardPaymentViewController: controller.cardPaymentList[index],
+                                    return CardAllBillsDetailTabletPhoneWidget(
+                                      cardPaymentViewTabletPhoneController: controller.cardPaymentList[index],
                                     );
                                   },
                                 ),

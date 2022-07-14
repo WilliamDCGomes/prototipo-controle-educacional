@@ -6,7 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/app_close_controller.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
-import '../controller/welcome_page_controller.dart';
+import '../controller/welcome_page_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
@@ -18,7 +18,7 @@ class WelcomePageTabletPhonePage extends StatefulWidget {
 }
 
 class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage> {
-  late WelcomePageController controller;
+  late WelcomePageTabletPhoneController controller;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _WelcomePageTabletPhonePageState extends State<WelcomePageTabletPhonePage>
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(WelcomePageController());
+    controller = Get.put(WelcomePageTabletPhoneController());
 
     return WillPopScope(
       onWillPop: () async {

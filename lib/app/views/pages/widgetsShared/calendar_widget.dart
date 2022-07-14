@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../../../../base/viewController/meeting_view_controller.dart';
 import '../../stylePages/app_colors.dart';
-import '../tabletPhonePages/shared/widgets/card_calendar_information_widget.dart';
+import '../tabletPhonePages/shared/widgets/card_calendar_information_tablet_phone_widget.dart';
 
 class CalendarWidget extends StatefulWidget {
   final List<MeetingViewController> dataSource;
@@ -83,7 +83,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           ),
         ),
         appointmentBuilder: (context, calendarAppointmentDetails){
-          return CardCalendarInformationWidget(
+          return CardCalendarInformationTabletPhoneWidget(
             meetingViewController: calendarAppointmentDetails.appointments.first,
           );
         },

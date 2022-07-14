@@ -7,9 +7,9 @@ import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/academic_details_controller.dart';
-import '../widgets/classes_card_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/academic_details_tablet_phone_controller.dart';
+import '../widgets/classes_card_tablet_phone_widget.dart';
 
 class AcademicDetailsTabletPhonePage extends StatefulWidget {
   late final CurriculumDeliveryViewController curriculumDeliveryViewController;
@@ -24,11 +24,11 @@ class AcademicDetailsTabletPhonePage extends StatefulWidget {
 }
 
 class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPhonePage> {
-  late AcademicDetailsController controller;
+  late AcademicDetailsTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(AcademicDetailsController(widget.curriculumDeliveryViewController), tag: "academic-details-controller");
+    controller = Get.put(AcademicDetailsTabletPhoneController(widget.curriculumDeliveryViewController), tag: "academic-details-tablet-phone-controller");
     super.initState();
   }
 
@@ -58,7 +58,7 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TitleWithBackButtonWidget(
+                    TitleWithBackButtonTabletPhoneWidget(
                       title: "Aulas",
                     ),
                     Expanded(
@@ -103,7 +103,7 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
                               child: ListView.builder(
                                 itemCount: controller.curriculumDeliveryViewController.classes!.length,
                                 itemBuilder: (context, index){
-                                  return ClassesCardWidget(
+                                  return ClassesCardTabletPhoneWidget(
                                     classes: controller.curriculumDeliveryViewController.classes![index],
                                   );
                                 },

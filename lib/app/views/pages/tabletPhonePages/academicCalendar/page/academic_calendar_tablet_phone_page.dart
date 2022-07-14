@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/academic_calendar_controller.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/academic_calendar_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../widgetsShared/calendar_widget.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -18,11 +18,11 @@ class AcademicCalendarTabletPhonePage extends StatefulWidget {
 }
 
 class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTabletPhonePage> {
-  late AcademicCalendarController controller;
+  late AcademicCalendarTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(AcademicCalendarController(), tag: "academic-calendar-controller");
+    controller = Get.put(AcademicCalendarTabletPhoneController(), tag: "academic-calendar-tablet-phone-controller");
     super.initState();
   }
 
@@ -62,7 +62,7 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: TitleWithBackButtonWidget(
+                              child: TitleWithBackButtonTabletPhoneWidget(
                                 title: "Calendário Acadêmico",
                               ),
                             ),

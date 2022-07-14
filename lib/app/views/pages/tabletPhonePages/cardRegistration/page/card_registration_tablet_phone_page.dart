@@ -11,8 +11,8 @@ import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/card_registration_controller.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/card_registration_tablet_phone_controller.dart';
 
 class CardRegistrationTabletPhonePage extends StatefulWidget {
   late final bool editCard;
@@ -26,11 +26,11 @@ class CardRegistrationTabletPhonePage extends StatefulWidget {
 }
 
 class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTabletPhonePage> {
-  late CardRegistrationController controller;
+  late CardRegistrationTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(CardRegistrationController());
+    controller = Get.put(CardRegistrationTabletPhoneController());
 
     super.initState();
   }
@@ -67,7 +67,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        TitleWithBackButtonWidget(
+                        TitleWithBackButtonTabletPhoneWidget(
                           title: widget.editCard ? "Editar Cartão": "Cadastrar Cartão",
                         ),
                         Expanded(
@@ -327,7 +327,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                       ],
                     ),
                   ),
-                  controller.loadingWithSuccessOrErrorWidget,
+                  controller.loadingWithSuccessOrErrorTabletPhoneWidget,
                 ],
               ),
             ),

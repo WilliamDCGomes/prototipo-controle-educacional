@@ -8,9 +8,9 @@ import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/news_and_events_controller.dart';
-import '../widget/news_and_events_card_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/news_and_events_tablet_phone_controller.dart';
+import '../widget/news_and_events_card_tablet_phone_widget.dart';
 
 class NewsAndEventsTabletPhonePage extends StatefulWidget {
   const NewsAndEventsTabletPhonePage({Key? key}) : super(key: key);
@@ -20,11 +20,11 @@ class NewsAndEventsTabletPhonePage extends StatefulWidget {
 }
 
 class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhonePage> {
-  late NewsAndEventsController controller;
+  late NewsAndEventsTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(NewsAndEventsController());
+    controller = Get.put(NewsAndEventsTabletPhoneController());
     super.initState();
   }
 
@@ -58,7 +58,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: "Notícias e Eventos",
                       ),
                       Expanded(
@@ -109,7 +109,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                     padding: EdgeInsets.zero,
                                     itemCount: controller.newsAndEventsList.length,
                                     itemBuilder: (context, index){
-                                      return NewsAndEventsCardWidget(
+                                      return NewsAndEventsCardTabletPhoneWidget(
                                         newsAndEventsViewController: controller.newsAndEventsList[index],
                                       );
                                     },

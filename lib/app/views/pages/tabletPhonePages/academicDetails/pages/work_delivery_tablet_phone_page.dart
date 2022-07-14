@@ -8,10 +8,10 @@ import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/card_upload_files_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/work_delivery_controller.dart';
-import '../widgets/class_content_card_widget.dart';
+import '../../shared/widgets/card_upload_files_tablet_phone_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/work_delivery_tablet_phone_controller.dart';
+import '../widgets/class_content_card_tablet_phone_widget.dart';
 
 class WorkDeliveryTabletPhonePage extends StatefulWidget {
   late final CurriculumDeliveryViewController curriculumDeliveryViewController;
@@ -26,11 +26,11 @@ class WorkDeliveryTabletPhonePage extends StatefulWidget {
 }
 
 class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePage> {
-  late WorkDeliveryController controller;
+  late WorkDeliveryTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(WorkDeliveryController(widget.curriculumDeliveryViewController));
+    controller = Get.put(WorkDeliveryTabletPhoneController(widget.curriculumDeliveryViewController));
     super.initState();
   }
 
@@ -64,7 +64,7 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: "Entrega de trabalho",
                       ),
                       Expanded(
@@ -156,7 +156,7 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                                           itemBuilder: (context, index){
                                             return SizedBox(
                                               width: controller.curriculumDeliveryViewController.workContent!.length > 1 ? 75.w : 100.w - 6.h,
-                                              child: ClassContentCardWidget(
+                                              child: ClassContentCardTabletPhoneWidget(
                                                 files: controller.curriculumDeliveryViewController.workContent![index],
                                               ),
                                             );
@@ -172,7 +172,7 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                                           ),
                                         ),
                                       ),
-                                      CardUploadFilesWidget(
+                                      CardUploadFilesTabletPhoneWidget(
                                         cardMargin: EdgeInsets.symmetric(vertical: 2.h),
                                       ),
                                       SizedBox(
@@ -184,7 +184,7 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                                           physics: NeverScrollableScrollPhysics(),
                                           itemCount: controller.curriculumDeliveryViewController.workDelivery!.length,
                                           itemBuilder: (context, index){
-                                            return ClassContentCardWidget(
+                                            return ClassContentCardTabletPhoneWidget(
                                               files: controller.curriculumDeliveryViewController.workDelivery![index],
                                             );
                                           },
@@ -223,7 +223,7 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                     ],
                   ),
                 ),
-                controller.loadingWithSuccessOrErrorWidget,
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

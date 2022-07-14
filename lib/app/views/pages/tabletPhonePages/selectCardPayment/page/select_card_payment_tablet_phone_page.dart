@@ -10,9 +10,9 @@ import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
-import '../../shared/widgets/payment_card_select_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/select_card_payment_controller.dart';
+import '../../shared/widgets/payment_card_select_tablet_phone_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/select_card_payment_tablet_phone_controller.dart';
 
 class SelectCardPaymentTabletPhonePage extends StatefulWidget {
   late final SelectCardPaymentViewController selectCardPaymentViewController;
@@ -26,11 +26,11 @@ class SelectCardPaymentTabletPhonePage extends StatefulWidget {
 }
 
 class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabletPhonePage> {
-  late SelectCardPaymentController controller;
+  late SelectCardPaymentTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(SelectCardPaymentController(widget.selectCardPaymentViewController));
+    controller = Get.put(SelectCardPaymentTabletPhoneController(widget.selectCardPaymentViewController));
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
@@ -65,7 +65,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TitleWithBackButtonWidget(
+                    TitleWithBackButtonTabletPhoneWidget(
                       title: "Forma de Pagamento",
                     ),
                     Expanded(
@@ -130,7 +130,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(vertical: 2.h),
-                                    child: PaymentCardSelectWidget(
+                                    child: PaymentCardSelectTabletPhoneWidget(
                                       titleCards: "",
                                       showTitleCard: false,
                                       creditDebtCardWidgetHeight: 25.h,
@@ -159,7 +159,7 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
                   ],
                 ),
               ),
-              controller.loadingWithSuccessOrErrorWidget,
+              controller.loadingWithSuccessOrErrorTabletPhoneWidget,
             ],
           ),
         ),

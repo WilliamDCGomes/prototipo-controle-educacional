@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../controller/academic_record_controller.dart';
+import '../controller/academic_record_tablet_phone_controller.dart';
 
 class AcademicRecordTabletPhonePage extends StatefulWidget {
   const AcademicRecordTabletPhonePage({Key? key}) : super(key: key);
@@ -17,11 +17,11 @@ class AcademicRecordTabletPhonePage extends StatefulWidget {
 }
 
 class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhonePage> {
-  late AcademicRecordController controller;
+  late AcademicRecordTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(AcademicRecordController());
+    controller = Get.put(AcademicRecordTabletPhoneController());
     super.initState();
   }
 
@@ -61,7 +61,7 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: TitleWithBackButtonWidget(
+                              child: TitleWithBackButtonTabletPhoneWidget(
                                 title: "Histórico Acadêmico",
                               ),
                             ),
@@ -89,7 +89,7 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                             top: PlatformType.isTablet(context) ? 9.h : 7.h,
                           ),
                           child: Center(
-                            child: controller.cardAcademicRecord
+                            child: controller.cardAcademicRecordTabletPhoneWidget
                           ),
                         ),
                       ),

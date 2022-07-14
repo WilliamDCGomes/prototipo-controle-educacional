@@ -15,20 +15,20 @@ import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
 import '../../newsAndEvents/page/news_and_events_tablet_phone_page.dart';
-import '../../shared/widgets/card_academic_record_widget.dart';
-import '../../shared/widgets/card_main_menu_widget.dart';
-import '../../shared/widgets/credit_debt_card_widget.dart';
+import '../../shared/widgets/card_academic_record_tablet_phone_widget.dart';
+import '../../shared/widgets/card_main_menu_tablet_phone_widget.dart';
+import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
-import '../widgets/group_menu_home_widgets.dart';
-import '../widgets/academic_tab_widget.dart';
-import '../widgets/componentTabWidget/academic_tab_list_widget.dart';
-import '../widgets/componentTabWidget/card_profile_tab_list_widget.dart';
-import '../widgets/financial_tab_widget.dart';
-import '../widgets/home_tab_widget.dart';
+import '../widgets/group_menu_home_tablet_phone_widgets.dart';
+import '../widgets/academic_tab_tablet_phone_widget.dart';
+import '../widgets/componentTabWidget/academic_tab_list_tablet_phone_widget.dart';
+import '../widgets/componentTabWidget/card_profile_tab_list_tablet_phone_widget.dart';
+import '../widgets/financial_tab_tablet_phone_widget.dart';
+import '../widgets/home_tab_tablet_phone_widget.dart';
 import '../../academicCalendar/page/academic_calendar_tablet_phone_page.dart';
 import '../../gradesFault/page/grades_faults_tablet_phone_page.dart';
-import '../widgets/menu_options_widget.dart';
-import '../widgets/profile_tab_widget.dart';
+import '../widgets/menu_options_tablet_phone_widget.dart';
+import '../widgets/profile_tab_tablet_phone_widget.dart';
 import '../../studentCard/page/student_card_tablet_phone_page.dart';
 import '../../../../stylePages/app_colors.dart';
 
@@ -41,11 +41,11 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString courseName;
   late RxString welcomePhrase;
   late PaymentFinishedViewController nextBillToPay;
-  late List<CardMainMenuWidget> cardMainMenuList;
-  late List<GroupMenuHomeWidget> groupMenuHomeList;
-  late List<CardProfileTabListWidget> cardProfileTabList;
-  late List<CreditDebtCardWidget> creditDebtCardList;
-  late List<CardAcademicRecordWidget> cardAcademicRecordList;
+  late List<CardMainMenuTabletPhoneWidget> cardMainMenuList;
+  late List<GroupMenuHomeTabletPhoneWidget> groupMenuHomeList;
+  late List<CardProfileTabListTabletPhoneWidget> cardProfileTabList;
+  late List<CreditDebtCardTabletPhoneWidget> creditDebtCardList;
+  late List<CardAcademicRecordTabletPhoneWidget> cardAcademicRecordList;
   late List<CardPaymentViewController> cardPaymentList;
   late List<CurriculumDeliveryViewController> curriculumTabList;
   late List<CurriculumDeliveryViewController> deliveryTabList;
@@ -93,40 +93,40 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _initializeLists(){
     tabMainMenuList = [
-      HomeTabWidget(controller: this),
-      AcademicTabWidget(controller: this),
-      FinancialTabWidget(controller: this),
-      ProfileTabWidget(controller: this),
+      HomeTabTabletPhoneWidget(controller: this),
+      AcademicTabTabletPhoneWidget(controller: this),
+      FinancialTabTabletPhoneWidget(controller: this),
+      ProfileTabTabletPhoneWidget(controller: this),
     ];
     groupMenuHomeList = [
-      GroupMenuHomeWidget(
+      GroupMenuHomeTabletPhoneWidget(
         titleGroupMenu:  "Ações Rápidas",
         menuOptionsList: [
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Notas e Faltas",
             imagePath: Paths.Icone_Notas_e_Faltas,
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.gradesFaults),
           ),
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Calendário Acadêmico",
             imagePath: Paths.Icone_Calendario_Academico,
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.academicCalendar),
           ),
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Carteirinha Online",
             imagePath: Paths.Icone_Carterinha_Estudante,
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.onlineStudentCard),
           ),
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Histórico Acadêmico",
             imagePath: Paths.Icone_Historico_Academico,
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.academicRecord),
           ),
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Notícias e Eventos",
             imagePath: Paths.Icone_Noticias_e_Eventos,
             textColor: AppColors.blackColor,
@@ -135,16 +135,16 @@ class MainMenuTabletPhoneController extends GetxController {
           SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
         ],
       ),
-      GroupMenuHomeWidget(
+      GroupMenuHomeTabletPhoneWidget(
         titleGroupMenu:  "Solicitações",
         menuOptionsList: [
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Carteirinha de Estudante",
             imagePath: Paths.Icone_Carterinha_Estudante,
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.studentCard),
           ),
-          MenuOptionsWidget(
+          MenuOptionsTabletPhoneWidget(
             text: "Declaração Escolar",
             imagePath: Paths.Icone_Declaracao_Escolar,
             textColor: AppColors.blackColor,
@@ -157,11 +157,11 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
 
     tabAcademicRecordList = [
-      AcademicTabListWidget(
+      AcademicTabListTabletPhoneWidget(
         controller: this,
         academicTabType: academicTabs.curriculum,
       ),
-      AcademicTabListWidget(
+      AcademicTabListTabletPhoneWidget(
         controller: this,
         academicTabType: academicTabs.deliveries,
       ),
@@ -1227,7 +1227,7 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
 
     cardProfileTabList = [
-      CardProfileTabListWidget(
+      CardProfileTabListTabletPhoneWidget(
         iconCard: SvgPicture.asset(
           Paths.Icone_Noticias_e_Eventos,
           height: 4.5.h,
@@ -1245,7 +1245,7 @@ class MainMenuTabletPhoneController extends GetxController {
       //   titleIconPath: "Configurações",
       //   page: destinationsPages.settings,
       // ),
-      CardProfileTabListWidget(
+      CardProfileTabListTabletPhoneWidget(
         iconCard: SvgPicture.asset(
           Paths.Icone_Redefinir_Senha,
           height: 4.5.h,
@@ -1254,7 +1254,7 @@ class MainMenuTabletPhoneController extends GetxController {
         titleIconPath: "Redefinir Senha",
         page: destinationsPages.resetPassword,
       ),
-      CardProfileTabListWidget(
+      CardProfileTabListTabletPhoneWidget(
         iconCard: Icon(
           Icons.qr_code_scanner,
           color: AppColors.purpleDefaultColor,
@@ -1263,7 +1263,7 @@ class MainMenuTabletPhoneController extends GetxController {
         titleIconPath: "Vincular SmartWatch",
         page: destinationsPages.connectToSmartWatch,
       ),
-      CardProfileTabListWidget(
+      CardProfileTabListTabletPhoneWidget(
         iconCard: SvgPicture.asset(
           Paths.Icone_Sair,
           height: 4.5.h,
@@ -1283,7 +1283,7 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _loadCards(){
     cardMainMenuList = [
-      CardMainMenuWidget(
+      CardMainMenuTabletPhoneWidget(
         imagePath: "icone_notificacao.svg",
         firstText: "Meu Painel",
         secondText: "Ciência da Computação",
@@ -1291,7 +1291,7 @@ class MainMenuTabletPhoneController extends GetxController {
         fourthText: "7º Semestre",
         showSeparator: true,
       ),
-      CardMainMenuWidget(
+      CardMainMenuTabletPhoneWidget(
         imagePath: "icone_notificacao.svg",
         firstText: "Próxima Aula",
         secondText: "Banco de Dados",
@@ -1299,13 +1299,13 @@ class MainMenuTabletPhoneController extends GetxController {
         fourthText: "25/04",
         showSeparator: true,
       ),
-      CardMainMenuWidget(
+      CardMainMenuTabletPhoneWidget(
         imagePath: "icone_notificacao.svg",
         firstText: "Próxima Fatura",
         secondText: "R\$ 746,99",
         thirdText: "Vencimento: 05/06",
       ),
-      CardMainMenuWidget(
+      CardMainMenuTabletPhoneWidget(
         imagePath: "icone_notificacao.svg",
         firstText: "Próxima Prova",
         secondText: "Programação Orientada a Objetos",
@@ -1313,7 +1313,7 @@ class MainMenuTabletPhoneController extends GetxController {
         fourthText: "30/06",
         showSeparator: true,
       ),
-      CardMainMenuWidget(
+      CardMainMenuTabletPhoneWidget(
         imagePath: "icone_notificacao.svg",
         firstText: "Última nota postada",
         secondText: "Nota: 7,75",
@@ -1322,42 +1322,42 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
 
     cardAcademicRecordList = [
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2019",
         semesterValueText: "1º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2019",
         semesterValueText: "2º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2020",
         semesterValueText: "3º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2020",
         semesterValueText: "4º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2021",
         semesterValueText: "5º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2021",
         semesterValueText: "6º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2022",
         semesterValueText: "7º Semestre",
         mainMenuTabletPhoneController: this,
       ),
-      CardAcademicRecordWidget(
+      CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2022",
         semesterValueText: "8º Semestre",
         mainMenuTabletPhoneController: this,
@@ -1365,14 +1365,14 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
 
     creditDebtCardList = [
-      CreditDebtCardWidget(
+      CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",
         flagCard: CreditCardType.mastercard,
         creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
-      CreditDebtCardWidget(
+      CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
         cardExpirationDate: "02/29",

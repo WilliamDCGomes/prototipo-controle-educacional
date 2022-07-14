@@ -8,9 +8,9 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
-import '../../shared/widgets/payment_card_select_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/card_payment_controller.dart';
+import '../../shared/widgets/payment_card_select_tablet_phone_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/card_payment_tablet_phone_controller.dart';
 
 class CardPaymentTabletPhonePage extends StatefulWidget {
   CardPaymentTabletPhonePage({Key? key,}) : super(key: key);
@@ -20,11 +20,11 @@ class CardPaymentTabletPhonePage extends StatefulWidget {
 }
 
 class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage> {
-  late CardPaymentController controller;
+  late CardPaymentTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.put(CardPaymentController());
+    controller = Get.put(CardPaymentTabletPhoneController());
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
@@ -59,7 +59,7 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TitleWithBackButtonWidget(
+                    TitleWithBackButtonTabletPhoneWidget(
                       title: "Cartões",
                     ),
                     Expanded(
@@ -95,7 +95,7 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(vertical: 2.h),
-                                    child: PaymentCardSelectWidget(
+                                    child: PaymentCardSelectTabletPhoneWidget(
                                       titleCards: "",
                                       showTitleCard: false,
                                       showRemoveBottom: true,

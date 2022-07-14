@@ -4,15 +4,15 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/copy_bar_code_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/student_card_controller.dart';
+import '../../shared/widgets/copy_bar_code_tablet_phone_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/student_card_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../widgets/student_card_widget.dart';
+import '../widgets/student_card_tablet_phone_widget.dart';
 
 class StudentCardTabletPhonePage extends StatelessWidget {
-  final StudentCardController controller = Get.put(StudentCardController());
+  final StudentCardTabletPhoneController controller = Get.put(StudentCardTabletPhoneController());
 
   StudentCardTabletPhonePage({Key? key}) : super(key: key);
 
@@ -46,12 +46,12 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: "Carteirinha Online",
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: PlatformType.isTablet(context) ? 9.h : 7.h,),
-                        child: StudentCardWidget(
+                        child: StudentCardTabletPhoneWidget(
                           imageBasePath: controller.imageBasePath,
                           cardNumber: controller.cardNumber,
                           raNumber: controller.raNumber,
@@ -111,7 +111,7 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 0.h),
-                            child: CopyBarCodeWidget(
+                            child: CopyBarCodeTabletPhoneWidget(
                               successText: "Número da Carteirinha copiado com sucesso!",
                               valueCopy: controller.cardNumber,
                               widgetCustom: Row(

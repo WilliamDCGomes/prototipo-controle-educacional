@@ -7,9 +7,9 @@ import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/title_with_back_button_widget.dart';
-import '../controller/academic_details_controller.dart';
-import '../widgets/class_content_card_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
+import '../controller/academic_details_tablet_phone_controller.dart';
+import '../widgets/class_content_card_tablet_phone_widget.dart';
 
 class ClassContentTabletPhonePage extends StatefulWidget {
   final Classes classes;
@@ -23,11 +23,11 @@ class ClassContentTabletPhonePage extends StatefulWidget {
 }
 
 class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePage> {
-  late AcademicDetailsController controller;
+  late AcademicDetailsTabletPhoneController controller;
 
   @override
   void initState() {
-    controller = Get.find(tag: "academic-details-controller");
+    controller = Get.find(tag: "academic-details-tablet-phone-controller");
     super.initState();
   }
 
@@ -61,7 +61,7 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonWidget(
+                      TitleWithBackButtonTabletPhoneWidget(
                         title: "Detalhes da aula",
                       ),
                       Expanded(
@@ -168,7 +168,7 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                                       child: ListView.builder(
                                         itemCount: widget.classes.files.length,
                                         itemBuilder: (context, index){
-                                          return ClassContentCardWidget(
+                                          return ClassContentCardTabletPhoneWidget(
                                             files: widget.classes.files[index],
                                           );
                                         },
