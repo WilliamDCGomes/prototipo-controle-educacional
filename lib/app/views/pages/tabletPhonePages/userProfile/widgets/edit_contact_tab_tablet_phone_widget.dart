@@ -41,7 +41,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cellPhoneTextController,
                 hintText: "Celular",
@@ -54,7 +54,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.emailTextController,
                 hintText: "E-mail",
@@ -66,7 +66,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.confirmEmailTextController,
                 hintText: "Confirme o E-mail",

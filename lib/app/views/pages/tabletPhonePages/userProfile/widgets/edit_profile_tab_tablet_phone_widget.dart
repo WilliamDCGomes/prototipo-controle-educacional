@@ -41,7 +41,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.raTextController,
                 hintText: "RA",
@@ -52,7 +52,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.birthDateTextController,
                 hintText: "Data de Nascimento",
@@ -64,7 +64,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cpfTextController,
                 hintText: "CPF",

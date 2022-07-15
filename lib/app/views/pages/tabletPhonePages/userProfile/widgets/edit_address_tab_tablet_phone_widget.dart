@@ -42,7 +42,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: SizedBox(
                 height: 5.6.h,
                 child: Row(
@@ -81,7 +81,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -110,7 +110,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.neighborhoodTextController,
                 hintText: "Bairro",
@@ -122,7 +122,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.complementTextController,
                 hintText: "Complemento",

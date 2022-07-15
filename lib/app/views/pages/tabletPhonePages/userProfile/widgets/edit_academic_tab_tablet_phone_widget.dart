@@ -41,7 +41,7 @@ class _EditAcademicTabTabletPhoneWidgetState extends State<EditAcademicTabTablet
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.courseTextController,
                 hintText: "Curso",
@@ -52,9 +52,9 @@ class _EditAcademicTabTabletPhoneWidgetState extends State<EditAcademicTabTablet
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h),
+              padding: EdgeInsets.only(top: 3.h),
               child: Obx(
-                    () => Row(
+                () => Row(
                   children: [
                     Expanded(
                       child: DropdownButtonWidget(

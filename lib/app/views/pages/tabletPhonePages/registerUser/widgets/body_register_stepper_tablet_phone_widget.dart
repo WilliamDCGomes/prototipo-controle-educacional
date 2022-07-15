@@ -43,7 +43,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   enableSuggestions: true,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.birthDateTextController,
                     hintText: "Data de Nascimento",
@@ -54,7 +54,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.cpfTextController,
                     hintText: "CPF",
@@ -85,7 +85,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: Obx(() => SizedBox(
                     height: 5.6.h,
                     child: Row(
@@ -121,7 +121,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -148,7 +148,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.neighborhoodTextController,
                     hintText: "Bairro",
@@ -159,7 +159,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.complementTextController,
                     hintText: "Complemento",
@@ -187,7 +187,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   enableSuggestions: true,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.courseTextController,
                     hintText: "Curso",
@@ -198,7 +198,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: Obx(
                     () => Row(
                       children: [
@@ -235,7 +235,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.cellPhoneTextController,
                     hintText: "Celular",
@@ -248,7 +248,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.emailTextController,
                     hintText: "E-mail",
@@ -259,7 +259,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: TextFieldWidget(
                     controller: widget.controller.confirmEmailTextController,
                     hintText: "Confirme o E-mail",
@@ -328,7 +328,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   keyboardType: TextInputType.visiblePassword,
                 )),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: Obx(() => TextFieldWidget(
                     controller: widget.controller.confirmPasswordTextController,
                     hintText: "Confirme a Senha",
