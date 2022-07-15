@@ -15,7 +15,6 @@ class WelcomePageTabletPhoneController extends GetxController {
   }
 
   goToLoginPage() async {
-    await Future.delayed(Duration(milliseconds: 200));
     await Get.offAll(() => LoginPageTabletPhone());
   }
 

@@ -23,6 +23,6 @@ class RegistrationCompletedTabletPhoneController extends GetxController {
   }
 
   openWebSite() async {
-    await Future.delayed(Duration(milliseconds: 200));
+
   }
 }

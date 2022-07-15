@@ -20,7 +20,6 @@ class QrCodeScannerTabletPhoneController extends GetxController {
     await Future.delayed(Duration(milliseconds: 200));
     SnackbarTabletPhoneWidget(
       warningText: "Sucesso",
-
       informationText: "Código: ${result!.code}",
       backgrondColor: AppColors.purpleDefaultColorWithOpacity,
     );

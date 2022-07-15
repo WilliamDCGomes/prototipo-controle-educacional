@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../../../helpers/brazil_address_informations.dart';
+import '../../../../../helpers/valid_cellphone_mask.dart';
 import '../widgets/body_register_stepper_tablet_phone_widget.dart';
 import '../widgets/header_register_stepper_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
@@ -208,9 +209,9 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   phoneTextFieldEdited(String cellPhoneTyped){
-    if(cellPhoneTyped.length > 14)
-      cellPhoneTextController.value = maskCellPhoneFormatter.updateMask(mask: "(##) #####-####");
-    else
-      cellPhoneTextController.value = maskCellPhoneFormatter.updateMask(mask: "(##) ####-#####");
+    cellPhoneTextController.value = ValidCellPhoneMask.updateCellPhoneMask(
+      cellPhoneTyped,
+      maskCellPhoneFormatter,
+    );
   }
 }

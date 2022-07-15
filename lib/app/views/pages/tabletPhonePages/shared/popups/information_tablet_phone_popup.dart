@@ -81,6 +81,7 @@ class _InformationTabletPhonePopupState extends State<InformationTabletPhonePopu
                         textColor: AppColors.blackColor,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
+                        maxLines: 4,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 2.h),

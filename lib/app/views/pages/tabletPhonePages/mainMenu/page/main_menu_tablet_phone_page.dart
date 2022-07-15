@@ -42,7 +42,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
             },
             child: Scaffold(
               body: Container(
-                height: 100.h,
+                height: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,

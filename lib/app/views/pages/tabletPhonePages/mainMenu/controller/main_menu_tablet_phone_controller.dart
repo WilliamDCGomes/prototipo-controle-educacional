@@ -19,6 +19,7 @@ import '../../shared/widgets/card_academic_record_tablet_phone_widget.dart';
 import '../../shared/widgets/card_main_menu_tablet_phone_widget.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
+import '../../userProfile/page/user_profile_tablet_phone_page.dart';
 import '../widgets/group_menu_home_tablet_phone_widgets.dart';
 import '../widgets/academic_tab_tablet_phone_widget.dart';
 import '../widgets/componentTabWidget/academic_tab_list_tablet_phone_widget.dart';
@@ -1393,27 +1394,22 @@ class MainMenuTabletPhoneController extends GetxController {
   }
 
   openProfile() async {
-    await Future.delayed(Duration(milliseconds: 200));
-
+    Get.to(() => UserProfileTablePhonePage());
   }
 
   openConfiguration() async {
-    await Future.delayed(Duration(milliseconds: 200));
 
   }
 
   previousAcademicRecordCard() async {
-    await Future.delayed(Duration(milliseconds: 100));
     academicRecordCarouselController.previousPage();
   }
 
   nextAcademicRecordCard() async {
-    await Future.delayed(Duration(milliseconds: 100));
     academicRecordCarouselController.nextPage();
   }
 
   quickActionsClicked(quickActionsOptions chosenOption) async {
-    await Future.delayed(Duration(milliseconds: 200));
     switch(chosenOption){
       case quickActionsOptions.gradesFaults:
         Get.to(() => GradesFaultsTabletPhonePage());

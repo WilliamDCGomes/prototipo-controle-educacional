@@ -16,6 +16,8 @@ class Paths{
   static final String Debit_Card = "${imagesPath}cartao_roxo_pce.png";
   static final String Carteirinha_PCE = "${imagesPath}carteirinha_pce.png";
   static final String Icone_Academico = "${imagesPath}icone_academico.png";
+  static final String Icone_Contato = "${imagesPath}Icone_Contato.png";
+  static final String Icone_Endereco = "${imagesPath}Icone_Endereco.png";
   static final String Credit_Card = "${imagesPath}cartao_laranja_pce.png";
   static final String Icone_Financeiro = "${imagesPath}icone_financeiro.png";
   static final String hipercard_flag = "${imagesPath}hipercard_flag_card.png";

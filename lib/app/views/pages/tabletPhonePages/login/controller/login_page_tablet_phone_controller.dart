@@ -24,15 +24,14 @@ class LoginTabletPhoneController extends GetxController {
   }
 
   forgotRa() async {
-    await Future.delayed(Duration(milliseconds: 200));
+
   }
 
   forgotPassword() async {
-    await Future.delayed(Duration(milliseconds: 200));
+
   }
 
   createAccount() async {
-    await Future.delayed(Duration(milliseconds: 200));
     await Get.to(() => RegisterUserTabletPhonePage());
   }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../userProfile/page/user_profile_tablet_phone_page.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../../helpers/reorderer_lists.dart';
@@ -68,65 +69,66 @@ class _ProfileTabTabletPhoneWidgetState extends State<ProfileTabTabletPhoneWidge
                     ],
                   ),
                 ),
-                Container(
-                  height: 14.h,
-                  width: 14.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.h),
-                    color: AppColors.purpleDefaultColor,
-                  ),
-                  child: Obx(() =>
-                    widget.controller.hasPicture.value ?
-                    Image.asset(
-                        ""
-                    ) :
-                    Center(
-                      child: TextWidget(
-                        widget.controller.nameInitials,
-                        textColor: AppColors.backgroundColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26.sp,
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: .5.h),
-                  child: TextButtonWidget(
-                    onTap: () {
-
-                    },
-                    height: 4.h,
-                    componentPadding: EdgeInsets.zero,
-                    widgetCustom: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 3.w),
-                          child: TextWidget(
-                            "William Douglas, 24",
-                            textColor: AppColors.blackColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17.sp,
-                            textAlign: TextAlign.center,
+                TextButtonWidget(
+                  onTap: () => Get.to(() => UserProfileTablePhonePage()),
+                  borderRadius: 2.h,
+                  widgetCustom: Column(
+                    children: [
+                      Container(
+                        height: 14.h,
+                        width: 14.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7.h),
+                          color: AppColors.purpleDefaultColor,
+                        ),
+                        child: Obx(
+                        () => widget.controller.hasPicture.value ?
+                          Image.asset(
+                              ""
+                          ) :
+                          Center(
+                            child: TextWidget(
+                              widget.controller.nameInitials,
+                              textColor: AppColors.backgroundColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 26.sp,
+                              textAlign: TextAlign.start,
+                            ),
                           ),
                         ),
-                        SvgPicture.asset(
-                          Paths.Icone_Editar,
-                          height: 2.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 1.h, bottom: .5.h),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: 3.w),
+                              child: TextWidget(
+                                "William Douglas, 24",
+                                textColor: AppColors.blackColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17.sp,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            SvgPicture.asset(
+                              Paths.Icone_Editar,
+                              height: 2.h,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      TextWidget(
+                        "Ciência da Computação",
+                        textColor: AppColors.blackColor,
+                        fontSize: 17.sp,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                ),
-                TextWidget(
-                  "Ciência da Computação",
-                  textColor: AppColors.blackColor,
-                  fontSize: 17.sp,
-                  textAlign: TextAlign.center,
                 ),
                 Expanded(
                   child: Padding(
