@@ -63,29 +63,31 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height ?? 65,
-      width: width ?? 200,
-      child: TextFormField(
-        obscureText: isPassword ?? false,
-        maxLength: maxLength,
-        maxLines: maxLines ?? 1,
-        enableSuggestions: enableSuggestions ?? false,
-        style: textStyle ?? standardTextStyle(),
-        textAlign: textAlign ?? TextAlign.start,
-        textAlignVertical: textAlignVertical ?? TextAlignVertical.center,
-        focusNode: focusNode,
-        cursorColor: AppColors.purpleDefaultColor,
-        keyboardType: keyboardType ?? TextInputType.text,
-        decoration: decoration ?? standardDecoration(),
-        inputFormatters: maskTextInputFormatter != null ? [maskTextInputFormatter!] : null,
-        enabled: ableField ?? true,
-        readOnly: justRead ?? false,
-        onTap: onTap,
-        onEditingComplete: onEditingComplete,
-        onChanged: onChanged,
-        onSaved: onSaved,
-        controller: controller,
+    return IgnorePointer(
+      ignoring: justRead ?? false,
+      child: SizedBox(
+        height: height ?? 65,
+        width: width ?? 200,
+        child: TextFormField(
+          obscureText: isPassword ?? false,
+          maxLength: maxLength,
+          maxLines: maxLines ?? 1,
+          enableSuggestions: enableSuggestions ?? false,
+          style: textStyle ?? standardTextStyle(),
+          textAlign: textAlign ?? TextAlign.start,
+          textAlignVertical: textAlignVertical ?? TextAlignVertical.center,
+          focusNode: focusNode,
+          cursorColor: AppColors.purpleDefaultColor,
+          keyboardType: keyboardType ?? TextInputType.text,
+          decoration: decoration ?? standardDecoration(),
+          inputFormatters: maskTextInputFormatter != null ? [maskTextInputFormatter!] : null,
+          enabled: ableField ?? true,
+          onTap: onTap,
+          onEditingComplete: onEditingComplete,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          controller: controller,
+        ),
       ),
     );
   }

@@ -27,6 +27,8 @@ class Paths{
   static final String Debit_Card_Back = "${imagesPath}cartao_roxo_verso_pce.png";
   static final String Card_Not_Registered = "${imagesPath}Cartao_Sem_Cadastro.png";
   static final String Icon_reset_password = "${imagesPath}icon_reset_password.png";
+  static final String Redefinir_Senha = "${imagesPath}Redefinir_Senha.png";
+  static final String Cancelar_Conta = "${imagesPath}Cancelar_Conta.png";
   static final String Credit_Card_Back = "${imagesPath}cartao_laranja_verso_pce.png";
   static final String Ilustracao_Finalizacao = "${imagesPath}ilustracao_finalizacao.png";
   static final String american_express_flag = "${imagesPath}american_express_flag_card.png";

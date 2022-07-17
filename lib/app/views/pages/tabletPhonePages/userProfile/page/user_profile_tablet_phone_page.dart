@@ -7,6 +7,7 @@ import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../requestRegistrationCancellation/page/request_registration_cancellation_tablet_phone_page.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/user_profile_tablet_phone_controller.dart';
 
@@ -143,9 +144,7 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                         ),
                       ),
                       TextButtonWidget(
-                        onTap: (){
-
-                        },
+                        onTap: () => Get.to(() => RequestRegistrationCancellationTabletPhonePage()),
                         widgetCustom: TextWidget(
                           "Solicitar cancelamento de matrícula",
                           textColor: AppColors.purpleDefaultColor,

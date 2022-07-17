@@ -54,3 +54,13 @@ enum billStatus {
   close,
   late,
 }
+
+enum accountCancelation {
+  financialIssues,
+  healthIssues,
+  locomotionIssues,
+  schoolTransfer,
+  changeCourse,
+  noTimeToStudy,
+  others,
+}

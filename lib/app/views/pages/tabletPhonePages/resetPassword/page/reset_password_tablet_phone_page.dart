@@ -67,9 +67,16 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
-                                Paths.Icone_Redefinir_Senha,
-                                height: 18.h,
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.purpleDefaultColorWithOpacity,
+                                  borderRadius: BorderRadius.circular(10.h),
+                                ),
+                                padding: EdgeInsets.all(3.h),
+                                child: Image.asset(
+                                  Paths.Redefinir_Senha,
+                                  height: 14.h,
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 1.h),

@@ -41,9 +41,9 @@ class _InitialPageState extends State<InitialPage> {
             children: [
               Image.asset(
                 Paths.background,
-                fit: BoxFit.fitHeight,
-                height: 100.h,
-                width: 100.w,
+                fit: BoxFit.fill,
+                height: double.infinity,
+                width: double.infinity,
                 cacheHeight: 700,
                 cacheWidth: 700,
               ),

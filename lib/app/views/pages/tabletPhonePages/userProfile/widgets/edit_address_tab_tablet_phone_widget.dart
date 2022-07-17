@@ -52,18 +52,16 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                     Padding(
                       padding: EdgeInsets.only(right: 2.w
                       ),
-                      child: IgnorePointer(
-                        ignoring: _userProfileTabletPhoneController.profileIsDisabled.value,
-                        child: DropdownButtonWidget(
-                          itemSelected: _userProfileTabletPhoneController.ufSelected.value == "" ? null : _userProfileTabletPhoneController.ufSelected.value,
-                          hintText: "Uf",
-                          height: 6.h,
-                          width: 23.w,
-                          rxListItems: _userProfileTabletPhoneController.ufsList,
-                          onChanged: (selectedState) {
-                            _userProfileTabletPhoneController.ufSelected.value = selectedState ?? "";
-                          },
-                        ),
+                      child: DropdownButtonWidget(
+                        itemSelected: _userProfileTabletPhoneController.ufSelected.value == "" ? null : _userProfileTabletPhoneController.ufSelected.value,
+                        hintText: "Uf",
+                        height: 6.h,
+                        width: 23.w,
+                        justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                        rxListItems: _userProfileTabletPhoneController.ufsList,
+                        onChanged: (selectedState) {
+                          _userProfileTabletPhoneController.ufSelected.value = selectedState ?? "";
+                        },
                       ),
                     ),
                     Expanded(
