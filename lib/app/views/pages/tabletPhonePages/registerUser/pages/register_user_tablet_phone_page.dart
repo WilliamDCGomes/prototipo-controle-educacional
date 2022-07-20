@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
+import 'package:projeto_tcc/app/helpers/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
@@ -156,6 +158,25 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: EdgeInsets.all(2.h),
+                    margin: EdgeInsets.only(
+                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
+                      right: 2.w,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.5.h),
+                      color: AppColors.purpleDefaultColor,
+                    ),
+                    child: Image.asset(
+                      Paths.Icone_Exibicao_Cadastro_Usuario,
+                      height: 5.h,
+                      width: 5.h,
                     ),
                   ),
                 ),

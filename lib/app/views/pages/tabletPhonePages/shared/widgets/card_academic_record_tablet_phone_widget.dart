@@ -25,101 +25,90 @@ class CardAcademicRecordTabletPhoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 18.h,
+      height: 20.h,
       margin: EdgeInsets.symmetric(horizontal: .5.w),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1.h),
         color: AppColors.whiteColor,
       ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 1.h),
-            child: Column(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 1.h),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
-                  height: .5.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButtonWidget(
-                      onTap: () => mainMenuTabletPhoneController != null ?
-                        mainMenuTabletPhoneController!.previousAcademicRecordCard() :
-                        gradesFaultsTabletPhoneController!.previousAcademicRecordCard(),
-                      height: 4.h,
-                      width: 4.h,
-                      componentPadding: EdgeInsets.zero,
-                      widgetCustom: Icon(
-                        Icons.arrow_back_ios_outlined,
-                        color: AppColors.purpleDefaultColor,
-                        size: 2.5.h,
-                      ),
-                    ),
-                    TextWidget(
-                      yearValueText,
-                      textColor: AppColors.purpleDefaultColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 21.sp,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                    ),
-                    TextButtonWidget(
-                      onTap: () => mainMenuTabletPhoneController != null ?
-                        mainMenuTabletPhoneController!.nextAcademicRecordCard() :
-                        gradesFaultsTabletPhoneController!.nextAcademicRecordCard(),
-                      height: 4.h,
-                      width: 4.h,
-                      componentPadding: EdgeInsets.zero,
-                      widgetCustom: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: AppColors.purpleDefaultColor,
-                        size: 2.5.h,
-                      ),
-                    ),
-                  ],
-                ),
-                Center(
-                  child: TextWidget(
-                    semesterValueText,
-                    maxLines: 1,
-                    fontSize: 19.sp,
-                    textColor: AppColors.purpleDefaultColor,
-                    textAlign: TextAlign.center,
+                TextButtonWidget(
+                  onTap: () => mainMenuTabletPhoneController != null ?
+                  mainMenuTabletPhoneController!.previousAcademicRecordCard() :
+                  gradesFaultsTabletPhoneController!.previousAcademicRecordCard(),
+                  height: 4.h,
+                  width: 4.h,
+                  componentPadding: EdgeInsets.zero,
+                  widgetCustom: Icon(
+                    Icons.arrow_back_ios_outlined,
+                    color: AppColors.purpleDefaultColor,
+                    size: 2.5.h,
                   ),
                 ),
-                Column(
-                  children: [
-                    TextButtonWidget(
-                      onTap: () => Get.to(() => AcademicRecordTabletPhonePage()),
-                      widgetCustom: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.access_time_filled,
-                            size: 2.h,
-                            color: AppColors.blueLinkColor,
-                          ),
-                          TextWidget(
-                            " Ver Histórico Acadêmico",
-                            maxLines: 1,
-                            textColor: AppColors.blueLinkColor,
-                            fontSize: 17.sp,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                TextWidget(
+                  yearValueText,
+                  textColor: AppColors.purpleDefaultColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 21.sp,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                ),
+                TextButtonWidget(
+                  onTap: () => mainMenuTabletPhoneController != null ?
+                  mainMenuTabletPhoneController!.nextAcademicRecordCard() :
+                  gradesFaultsTabletPhoneController!.nextAcademicRecordCard(),
+                  height: 4.h,
+                  width: 4.h,
+                  componentPadding: EdgeInsets.zero,
+                  widgetCustom: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: AppColors.purpleDefaultColor,
+                    size: 2.5.h,
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+            Center(
+              child: TextWidget(
+                semesterValueText,
+                maxLines: 1,
+                fontSize: 19.sp,
+                textColor: AppColors.purpleDefaultColor,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            TextButtonWidget(
+              onTap: () => Get.to(() => AcademicRecordTabletPhonePage()),
+              widgetCustom: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.access_time_filled,
+                    size: 2.h,
+                    color: AppColors.blueLinkColor,
+                  ),
+                  TextWidget(
+                    " Ver Histórico Acadêmico",
+                    maxLines: 1,
+                    textColor: AppColors.blueLinkColor,
+                    fontSize: 17.sp,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

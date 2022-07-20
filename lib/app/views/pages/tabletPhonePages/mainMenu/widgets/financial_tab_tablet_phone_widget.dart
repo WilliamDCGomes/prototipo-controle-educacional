@@ -165,6 +165,25 @@ class _FinancialTabTabletPhoneWidgetState extends State<FinancialTabTabletPhoneW
               ],
             ),
           ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              padding: EdgeInsets.all(2.h),
+              margin: EdgeInsets.only(
+                top: PlatformType.isTablet(context) ? 14.h : 12.h,
+                right: 2.w,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.5.h),
+                color: AppColors.whiteColor,
+              ),
+              child: Image.asset(
+                Paths.Icone_Exibicao_Financeiro,
+                height: 5.h,
+                width: 5.h,
+              ),
+            ),
+          ),
         ],
       ),
     );

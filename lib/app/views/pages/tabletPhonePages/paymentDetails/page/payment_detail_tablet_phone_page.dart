@@ -68,8 +68,7 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                          top: PlatformType.isTablet(context) ?
-                          9.h : 7.h,
+                          top: PlatformType.isTablet(context) ? 9.h : 7.h,
                         ),
                         child: Center(
                           child: Container(
@@ -78,45 +77,52 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                               color: AppColors.whiteColor,
                               borderRadius: BorderRadius.circular(1.h),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                            child: Row(
                               children: [
                                 Container(
-                                  height: .5.h,
+                                  height: 12.h,
+                                  width: 1.h,
                                   decoration: BoxDecoration(
                                     color: controller.cardPaymentViewController.getCardColor,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(1.h),
-                                      topRight: Radius.circular(1.h),
+                                      bottomLeft: Radius.circular(1.h),
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 1.h),
-                                  child: TextWidget(
-                                    "R\$ ${controller.cardPaymentViewController.billValue}",
-                                    textColor: controller.cardPaymentViewController.getCardColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.sp,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: .1.h),
-                                  child: TextWidget(
-                                    "Valor Total",
-                                    textColor: AppColors.blackColor,
-                                    fontSize: 14.sp,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                                  child: TextWidget(
-                                    controller.cardPaymentViewController.getFullStatus,
-                                    textColor: AppColors.blackColor,
-                                    fontSize: 16.sp,
-                                    textAlign: TextAlign.center,
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 1.h),
+                                        child: TextWidget(
+                                          "R\$ ${controller.cardPaymentViewController.billValue}",
+                                          textColor: controller.cardPaymentViewController.getCardColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.sp,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: .1.h),
+                                        child: TextWidget(
+                                          "Valor Total",
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 14.sp,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                        child: TextWidget(
+                                          controller.cardPaymentViewController.getFullStatus,
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 16.sp,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -239,6 +245,25 @@ class _PaymentDetailTabletPhonePageState extends State<PaymentDetailTabletPhoneP
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: EdgeInsets.all(2.h),
+                    margin: EdgeInsets.only(
+                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
+                      right: 2.w,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.5.h),
+                      color: AppColors.whiteColor,
+                    ),
+                    child: Image.asset(
+                      Paths.Icone_Exibicao_Detalhe_da_Fatura,
+                      height: 5.h,
+                      width: 5.h,
+                    ),
                   ),
                 ),
               ],

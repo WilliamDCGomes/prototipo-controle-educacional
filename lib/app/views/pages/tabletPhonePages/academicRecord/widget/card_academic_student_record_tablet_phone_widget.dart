@@ -26,7 +26,7 @@ class CardAcademicStudentRecordTabletPhoneWidget extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+            padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 2.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,

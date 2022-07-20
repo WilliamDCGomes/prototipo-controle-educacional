@@ -29,7 +29,7 @@ class CardFinancialTabletPhoneWidget extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 1.h),
+            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,

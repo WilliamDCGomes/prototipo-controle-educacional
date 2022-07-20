@@ -74,7 +74,7 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                                 top: PlatformType.isTablet(context) ? 9.h : 7.h,
                                 bottom: 5.h,
                               ),
-                              padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
+                              padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 3.h),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1.h),
                                 color: AppColors.purpleDefaultColor,
@@ -182,6 +182,26 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                         ),
                       ),
                     ],
+                  ),
+                ),
+
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: EdgeInsets.all(2.h),
+                    margin: EdgeInsets.only(
+                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
+                      right: 2.w,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.5.h),
+                      color: AppColors.purpleDefaultColor,
+                    ),
+                    child: Image.asset(
+                      Paths.Icone_Exibicao_Detalhes_da_Aula,
+                      height: 5.h,
+                      width: 5.h,
+                    ),
                   ),
                 ),
               ],

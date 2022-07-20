@@ -71,7 +71,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                 top: PlatformType.isTablet(context) ? 9.h : 7.h,
                                 bottom: 3.h,
                               ),
-                              padding: EdgeInsets.symmetric(vertical: 3.h),
+                              padding: EdgeInsets.only(top: 4.h, bottom: 3.h),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1.h),
                                 color: AppColors.purpleDefaultColor,
@@ -121,6 +121,25 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: EdgeInsets.all(2.h),
+                    margin: EdgeInsets.only(
+                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
+                      right: 2.w,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.5.h),
+                      color: AppColors.purpleDefaultColor,
+                    ),
+                    child: Image.asset(
+                      Paths.Icone_Exibicao_Noticias_e_Eventos,
+                      height: 5.h,
+                      width: 5.h,
+                    ),
                   ),
                 ),
               ],

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/helpers/paths.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
@@ -14,6 +15,7 @@ class StudentRequestTabletPhoneController extends GetxController {
   late int creditDebtCardActiveStep;
   late RxBool loadingAnimetion;
   late RxString requestTitle;
+  late RxString imageIllustration;
   late RxString requestSelected;
   late RxString deliveryDate;
   late RxDouble requestValue;
@@ -40,12 +42,14 @@ class StudentRequestTabletPhoneController extends GetxController {
       case studentTypeRequest.studentCard:
         requestSelected = requestTypeList[0].obs;
         requestTitle = requestTypeList[0].obs;
+        imageIllustration = Paths.Icone_Exibicao_Carterinho_Online.obs;
         requestValue = 35.0.obs;
         deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5))).obs;
         break;
       case studentTypeRequest.schoolStatement:
         requestSelected = requestTypeList[1].obs;
         requestTitle = requestTypeList[1].obs;
+        imageIllustration = Paths.Icone_Exibicao_Declaracao_Escolar.obs;
         requestValue = 20.0.obs;
         deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 3))).obs;
         break;
@@ -97,10 +101,12 @@ class StudentRequestTabletPhoneController extends GetxController {
       switch(requestTitle.value){
         case "Carteirinha de Estudante":
           requestValue.value = 35.0;
+          imageIllustration.value = Paths.Icone_Exibicao_Carterinho_Online;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5)));
           break;
         case "Declaração Escolar":
           requestValue.value = 20.0;
+          imageIllustration.value = Paths.Icone_Exibicao_Declaracao_Escolar;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 3)));
           break;
         default:

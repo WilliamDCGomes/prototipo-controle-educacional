@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -64,38 +65,35 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                         title: "Cancelamento de Matrícula",
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 3.h,),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: AppColors.purpleDefaultColorWithOpacity,
-                                  borderRadius: BorderRadius.circular(10.h),
-                                ),
-                                padding: EdgeInsets.all(3.h),
-                                child: Image.asset(
-                                  Paths.Cancelar_Conta,
-                                  height: 14.h,
-                                ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.only(
+                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
                               ),
-                              Expanded(
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 1.h),
-                                      child: TextWidget(
-                                        "Deseja solicitar o cancelamento da sua matrícula?",
-                                        textColor: AppColors.purpleDefaultColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.sp,
-                                        maxLines: 2,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Align(
+                              padding: EdgeInsets.only(top: 4.h, bottom: 3.h),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1.h),
+                                color: AppColors.purpleDefaultColor,
+                              ),
+                              child: TextWidget(
+                                "Deseja solicitar o cancelamento da sua matrícula?",
+                                textColor: AppColors.whiteColor,
+                                fontSize: 18.sp,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView(
+                                shrinkWrap: true,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h),
+                                    child: Align(
                                       alignment: Alignment.topLeft,
                                       child: TextWidget(
                                         "Qual é o motivo do cancelamento?",
@@ -106,134 +104,153 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
-                                    RadioListTileWidget(
-                                      radioText: "Problemas Financeiros",
-                                      accountCancelationType: accountCancelation.financialIssues,
-                                      accountCancelationGroup: controller.reasonOfCancelation,
-                                      onChanged: (accountCancelation? value) {
-                                        setState(() {
-                                          controller.reasonOfCancelation = value;
-                                        });
-                                        controller.inputOtherReasonVisible.value = false;
-                                      },
-                                    ),
-                                    RadioListTileWidget(
-                                      radioText: "Problemas de Locomoção",
-                                      accountCancelationType: accountCancelation.locomotionIssues,
-                                      accountCancelationGroup: controller.reasonOfCancelation,
-                                      onChanged: (accountCancelation? value) {
-                                        setState(() {
-                                          controller.reasonOfCancelation = value;
-                                        });
-                                        controller.inputOtherReasonVisible.value = false;
-                                      },
-                                    ),
-                                    RadioListTileWidget(
-                                      radioText: "Transferência para Outra Instituição",
-                                      accountCancelationType: accountCancelation.schoolTransfer,
-                                      accountCancelationGroup: controller.reasonOfCancelation,
-                                      onChanged: (accountCancelation? value) {
-                                        setState(() {
-                                          controller.reasonOfCancelation = value;
-                                        });
-                                        controller.inputOtherReasonVisible.value = false;
-                                      },
-                                    ),
-                                    RadioListTileWidget(
-                                      radioText: "Troca de Curso",
-                                      accountCancelationType: accountCancelation.changeCourse,
-                                      accountCancelationGroup: controller.reasonOfCancelation,
-                                      onChanged: (accountCancelation? value) {
-                                        setState(() {
-                                          controller.reasonOfCancelation = value;
-                                        });
-                                        controller.inputOtherReasonVisible.value = false;
-                                      },
-                                    ),
-                                    RadioListTileWidget(
-                                      radioText: "Falta de Tempo para o Estudo",
-                                      accountCancelationType: accountCancelation.noTimeToStudy,
-                                      accountCancelationGroup: controller.reasonOfCancelation,
-                                      onChanged: (accountCancelation? value) {
-                                        setState(() {
-                                          controller.reasonOfCancelation = value;
-                                        });
-                                        controller.inputOtherReasonVisible.value = false;
-                                      },
-                                    ),
-                                    RadioListTileWidget(
-                                      radioText: "Outros",
-                                      accountCancelationType: accountCancelation.others,
-                                      accountCancelationGroup: controller.reasonOfCancelation,
-                                      onChanged: (accountCancelation? value) {
-                                        setState(() {
-                                          controller.reasonOfCancelation = value;
-                                        });
-                                        controller.inputOtherReasonVisible.value = true;
-                                      },
-                                    ),
-                                    Obx(
-                                      () => Visibility(
-                                        visible: controller.inputOtherReasonVisible.value,
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 1.h),
-                                          child: TextFieldWidget(
-                                            controller: controller.otherReason,
-                                            height: 18.h,
-                                            keyboardType: TextInputType.text,
-                                            textAlignVertical: TextAlignVertical.top,
-                                            maxLines: 6,
-                                            decoration: InputDecoration(
-                                              label: TextWidget(
-                                                "Informe qual o motivo",
-                                                fontSize: 16.sp,
-                                                textColor: AppColors.purpleDefaultColor,
-                                              ),
-                                              alignLabelWithHint: true,
-                                              enabledBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(10),
-                                                borderSide: BorderSide(
-                                                  color: AppColors.purpleDefaultColor,
-                                                  width: .25.h,
-                                                ),
-                                              ),
-                                              border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(10),
-                                                borderSide: BorderSide(
-                                                  color: AppColors.purpleDefaultColor,
-                                                  width: .25.h,
-                                                ),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderRadius: BorderRadius.circular(10),
-                                                borderSide: BorderSide(
-                                                  color: AppColors.purpleDefaultColor,
-                                                  width: .25.h,
-                                                ),
-                                              ),
-                                              contentPadding: EdgeInsets.all(1.5.h),
+                                  ),
+                                  RadioListTileWidget(
+                                    radioText: "Problemas Financeiros",
+                                    accountCancelationType: accountCancelation.financialIssues,
+                                    accountCancelationGroup: controller.reasonOfCancelation,
+                                    onChanged: (accountCancelation? value) {
+                                      setState(() {
+                                        controller.reasonOfCancelation = value;
+                                      });
+                                      controller.inputOtherReasonVisible.value = false;
+                                    },
+                                  ),
+                                  RadioListTileWidget(
+                                    radioText: "Problemas de Locomoção",
+                                    accountCancelationType: accountCancelation.locomotionIssues,
+                                    accountCancelationGroup: controller.reasonOfCancelation,
+                                    onChanged: (accountCancelation? value) {
+                                      setState(() {
+                                        controller.reasonOfCancelation = value;
+                                      });
+                                      controller.inputOtherReasonVisible.value = false;
+                                    },
+                                  ),
+                                  RadioListTileWidget(
+                                    radioText: "Transferência para Outra Instituição",
+                                    accountCancelationType: accountCancelation.schoolTransfer,
+                                    accountCancelationGroup: controller.reasonOfCancelation,
+                                    onChanged: (accountCancelation? value) {
+                                      setState(() {
+                                        controller.reasonOfCancelation = value;
+                                      });
+                                      controller.inputOtherReasonVisible.value = false;
+                                    },
+                                  ),
+                                  RadioListTileWidget(
+                                    radioText: "Troca de Curso",
+                                    accountCancelationType: accountCancelation.changeCourse,
+                                    accountCancelationGroup: controller.reasonOfCancelation,
+                                    onChanged: (accountCancelation? value) {
+                                      setState(() {
+                                        controller.reasonOfCancelation = value;
+                                      });
+                                      controller.inputOtherReasonVisible.value = false;
+                                    },
+                                  ),
+                                  RadioListTileWidget(
+                                    radioText: "Falta de Tempo para o Estudo",
+                                    accountCancelationType: accountCancelation.noTimeToStudy,
+                                    accountCancelationGroup: controller.reasonOfCancelation,
+                                    onChanged: (accountCancelation? value) {
+                                      setState(() {
+                                        controller.reasonOfCancelation = value;
+                                      });
+                                      controller.inputOtherReasonVisible.value = false;
+                                    },
+                                  ),
+                                  RadioListTileWidget(
+                                    radioText: "Outros",
+                                    accountCancelationType: accountCancelation.others,
+                                    accountCancelationGroup: controller.reasonOfCancelation,
+                                    onChanged: (accountCancelation? value) {
+                                      setState(() {
+                                        controller.reasonOfCancelation = value;
+                                      });
+                                      controller.inputOtherReasonVisible.value = true;
+                                    },
+                                  ),
+                                  Obx(
+                                    () => Visibility(
+                                      visible: controller.inputOtherReasonVisible.value,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                                        child: TextFieldWidget(
+                                          controller: controller.otherReason,
+                                          height: 18.h,
+                                          keyboardType: TextInputType.text,
+                                          textAlignVertical: TextAlignVertical.top,
+                                          maxLines: 6,
+                                          decoration: InputDecoration(
+                                            label: TextWidget(
+                                              "Informe qual o motivo",
+                                              fontSize: 16.sp,
+                                              textColor: AppColors.purpleDefaultColor,
                                             ),
+                                            alignLabelWithHint: true,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: AppColors.purpleDefaultColor,
+                                                width: .25.h,
+                                              ),
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: AppColors.purpleDefaultColor,
+                                                width: .25.h,
+                                              ),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: AppColors.purpleDefaultColor,
+                                                width: .25.h,
+                                              ),
+                                            ),
+                                            contentPadding: EdgeInsets.all(1.5.h),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 2.h),
-                                child: ButtonWidget(
-                                  hintText: "ENVIAR SOLICITAÇÃO",
-                                  fontWeight: FontWeight.bold,
-                                  widthButton: double.infinity,
-                                  onPressed: () => controller.buttonCancelRegistrationPressed(),
-                                ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 2.h),
+                              child: ButtonWidget(
+                                hintText: "ENVIAR SOLICITAÇÃO",
+                                fontWeight: FontWeight.bold,
+                                widthButton: double.infinity,
+                                onPressed: () => controller.buttonCancelRegistrationPressed(),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: EdgeInsets.all(2.h),
+                    margin: EdgeInsets.only(
+                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
+                      right: 2.w,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.5.h),
+                      color: AppColors.purpleDefaultColor,
+                    ),
+                    child: Image.asset(
+                      Paths.Icone_Exibicao_Cancelar_Matricula,
+                      height: 5.h,
+                      width: 5.h,
+                    ),
                   ),
                 ),
                 controller.loadingWithSuccessOrErrorTabletPhoneWidget,
