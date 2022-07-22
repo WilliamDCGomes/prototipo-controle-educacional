@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
@@ -94,6 +95,7 @@ class _AcademicTabTabletPhoneWidgetState extends State<AcademicTabTabletPhoneWid
                               itemCount: widget.controller.cardAcademicRecordList.length,
                               options: CarouselOptions(
                                 viewportFraction: 1,
+                                height: PlatformType.isTablet(context) ? 30.h : 27.h,
                                 enlargeStrategy: CenterPageEnlargeStrategy.height,
                                 enlargeCenterPage: true,
                                 enableInfiniteScroll: false,

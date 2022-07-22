@@ -29,10 +29,9 @@ class CardMainMenuTabletPhoneWidget extends StatelessWidget {
       textColor: AppColors.whiteColor,
       backgroundColor: AppColors.purpleDefaultColor,
       informationText: "",
-      padding: EdgeInsets.fromLTRB(5.w, 3.h, 5.w, 0),
-      customContainer: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h,),
+      customContainer: ListView(
+        shrinkWrap: true,
         children: [
           SizedBox(
             height: .5.h,
@@ -55,17 +54,37 @@ class CardMainMenuTabletPhoneWidget extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
           ),
-          Expanded(
-            child: Visibility(
-              visible: showSeparator ?? false,
-              replacement: Padding(
-                padding: EdgeInsets.only(left: 5.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 73.w,
-                      child: TextWidget(
+          Visibility(
+            visible: showSeparator ?? false,
+            replacement: Padding(
+              padding: EdgeInsets.only(left: 5.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 73.w,
+                    child: TextWidget(
+                      thirdText,
+                      maxLines: 1,
+                      textColor: AppColors.whiteColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.sp,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            child: Padding(
+              padding: EdgeInsets.only(left: 5.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextWidget(
                         thirdText,
                         maxLines: 1,
                         textColor: AppColors.whiteColor,
@@ -73,50 +92,28 @@ class CardMainMenuTabletPhoneWidget extends StatelessWidget {
                         fontSize: 16.sp,
                         textAlign: TextAlign.start,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 5.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextWidget(
-                          thirdText,
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.w),
+                        child: Container(
+                          height: 3.h,
+                          width: .5.w,
+                          color: AppColors.whiteColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.w),
+                        child: TextWidget(
+                          fourthText ?? "",
                           maxLines: 1,
                           textColor: AppColors.whiteColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp,
                           textAlign: TextAlign.start,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5.w),
-                          child: Container(
-                            height: 3.h,
-                            width: .5.w,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5.w),
-                          child: TextWidget(
-                            fourthText ?? "",
-                            maxLines: 1,
-                            textColor: AppColors.whiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.sp,
-                            textAlign: TextAlign.start,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

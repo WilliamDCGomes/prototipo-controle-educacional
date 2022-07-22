@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
@@ -133,6 +134,7 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                                 itemCount: widget.controller.cardMainMenuList.length,
                                 options: CarouselOptions(
                                   viewportFraction: 1,
+                                  height: PlatformType.isTablet(context) ? 30.h : 27.h,
                                   enlargeStrategy: CenterPageEnlargeStrategy.height,
                                   enlargeCenterPage: true,
                                   enableInfiniteScroll: false,
@@ -172,7 +174,7 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                          padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h),
                           child: ReorderableListView.builder(
                             itemCount: widget.controller.groupMenuHomeList.length,
                             itemBuilder: (context, index){

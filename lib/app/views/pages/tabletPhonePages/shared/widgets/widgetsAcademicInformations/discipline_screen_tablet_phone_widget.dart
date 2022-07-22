@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_tcc/app/helpers/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../helpers/paths.dart';
 import '../../../../../../helpers/reorderer_lists.dart';
@@ -51,7 +52,7 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
           Visibility(
             visible: widget.academicRecordTabletPhoneController != null,
             replacement: SizedBox(
-              height: 26.h,
+              height: PlatformType.isTablet(context) ? 28.h : 26.h,
               child: CardAcademicRecordTabletPhoneWidget(
                 yearValueText: widget.yearValueText,
                 semesterValueText: widget.semesterValueText,
@@ -68,7 +69,7 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h,),
+            padding: EdgeInsets.symmetric(horizontal: 2.h,),
             child: TextFieldWidget(
               controller: searchDisciplineController,
               hintText: "Pesquise a Disciplina",
