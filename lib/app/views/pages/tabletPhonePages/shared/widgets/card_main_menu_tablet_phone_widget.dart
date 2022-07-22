@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
+import 'information_container_tablet_phone_widget.dart';
 
 class CardMainMenuTabletPhoneWidget extends StatelessWidget {
-  final String imagePath;
   final String firstText;
   final String secondText;
   final String thirdText;
@@ -16,7 +15,6 @@ class CardMainMenuTabletPhoneWidget extends StatelessWidget {
 
   const CardMainMenuTabletPhoneWidget(
       { Key? key,
-        required this.imagePath,
         required this.firstText,
         required this.secondText,
         required this.thirdText,
@@ -26,63 +24,88 @@ class CardMainMenuTabletPhoneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 18.h,
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: .5.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(1.h),
-        color: AppColors.purpleDefaultColor,
-      ),
-      child: Stack(
+    return InformationContainerTabletPhoneWidget(
+      iconPath: Paths.Icone_Exibicao_Home,
+      textColor: AppColors.whiteColor,
+      backgroundColor: AppColors.purpleDefaultColor,
+      informationText: "",
+      padding: EdgeInsets.fromLTRB(5.w, 3.h, 5.w, 0),
+      customContainer: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(
+            height: .5.h,
+          ),
+          TextWidget(
+            firstText,
+            textColor: AppColors.whiteColor,
+            fontSize: 18.sp,
+            textAlign: TextAlign.start,
+            maxLines: 1,
+          ),
           Padding(
-            padding: EdgeInsets.fromLTRB(2.h, .5.h, 2.h, 1.h),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  height: .5.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            padding: EdgeInsets.symmetric(vertical: 1.h),
+            child: TextWidget(
+              secondText,
+              fontWeight: FontWeight.bold,
+              maxLines: 1,
+              textColor: AppColors.whiteColor,
+              fontSize: 20.sp,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          Expanded(
+            child: Visibility(
+              visible: showSeparator ?? false,
+              replacement: Padding(
+                padding: EdgeInsets.only(left: 5.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 66.w,
+                      width: 73.w,
                       child: TextWidget(
-                        firstText,
-                        textColor: AppColors.whiteColor,
-                        fontSize: 18.sp,
-                        textAlign: TextAlign.start,
+                        thirdText,
                         maxLines: 1,
+                        textColor: AppColors.whiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                        textAlign: TextAlign.start,
                       ),
-                    ),
-                    SvgPicture.asset(
-                      Paths.svgsPath + imagePath,
-                      width: 4.h,
                     ),
                   ],
                 ),
-                TextWidget(
-                  secondText,
-                  fontWeight: FontWeight.bold,
-                  maxLines: 1,
-                  textColor: AppColors.whiteColor,
-                  fontSize: 20.sp,
-                  textAlign: TextAlign.start,
-                ),
-                Visibility(
-                  visible: !(showSeparator ?? false),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 5.w),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: 5.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          width: 73.w,
+                        TextWidget(
+                          thirdText,
+                          maxLines: 1,
+                          textColor: AppColors.whiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.sp,
+                          textAlign: TextAlign.start,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5.w),
+                          child: Container(
+                            height: 3.h,
+                            width: .5.w,
+                            color: AppColors.whiteColor,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5.w),
                           child: TextWidget(
-                            thirdText,
+                            fourthText ?? "",
                             maxLines: 1,
                             textColor: AppColors.whiteColor,
                             fontWeight: FontWeight.bold,
@@ -92,56 +115,9 @@ class CardMainMenuTabletPhoneWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
-                Visibility(
-                  visible: showSeparator ?? false,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 5.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextWidget(
-                              thirdText,
-                              maxLines: 1,
-                              textColor: AppColors.whiteColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.sp,
-                              textAlign: TextAlign.start,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 5.w),
-                              child: Container(
-                                height: 3.h,
-                                width: .5.w,
-                                color: AppColors.whiteColor,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 5.w),
-                              child: TextWidget(
-                                fourthText ?? "",
-                                maxLines: 1,
-                                textColor: AppColors.whiteColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp,
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: .5.h,
-                ),
-              ],
+              ),
             ),
           ),
         ],

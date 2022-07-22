@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_button_widget.dart';
-import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/all_payments_tablet_phone_controller.dart';
 import '../widgets/card_all_bills_detail_tablet_phone_widget.dart';
@@ -54,12 +53,13 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      Container(
                         height: 8.h,
+                        margin: EdgeInsets.symmetric(horizontal: 2.h,),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -89,36 +89,24 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                       Expanded(
                         child: Column(
                           children: [
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(
-                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                bottom: 3.h,
-                              ),
-                              padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 3.h),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1.h),
-                                color: AppColors.purpleDefaultColor,
-                              ),
-                              child: TextWidget(
-                                "Boletos e Lançamentos\ndo ${DateFormatToBrazil.semesterInformation(DateTime.now())}",
-                                textColor: AppColors.whiteColor,
-                                fontSize: 18.sp,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            InformationContainerTabletPhoneWidget(
+                              iconPath: Paths.Icone_Exibicao_Todos_os_Boletos_e_Lancamentos,
+                              textColor: AppColors.whiteColor,
+                              backgroundColor: AppColors.purpleDefaultColor,
+                              informationText: "Boletos e Lançamentos\ndo ${DateFormatToBrazil.semesterInformation(DateTime.now())}",
                             ),
-                            SizedBox(
+                            Container(
                               width: 95.w,
+                              margin: EdgeInsets.symmetric(horizontal: 2.h,),
                               child: Wrap(
                                 alignment: WrapAlignment.spaceBetween,
                                 children: controller.tagsFilterList,
                               ),
                             ),
                             Expanded(
-                              child: Padding(
+                              child: Container(
                                 padding: EdgeInsets.only(top: 2.h),
+                                margin: EdgeInsets.symmetric(horizontal: 2.h,),
                                 child: ListView.builder(
                                   shrinkWrap: true,
                                   itemCount: controller.cardPaymentList.length,
@@ -134,25 +122,6 @@ class _AllPaymentsTabletPhonePageState extends State<AllPaymentsTabletPhonePage>
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.purpleDefaultColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Todos_os_Boletos_e_Lancamentos,
-                      height: 5.h,
-                      width: 5.h,
-                    ),
                   ),
                 ),
               ],

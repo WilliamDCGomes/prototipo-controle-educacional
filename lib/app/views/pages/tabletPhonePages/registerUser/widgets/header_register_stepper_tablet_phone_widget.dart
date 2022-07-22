@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
+import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 
 class HeaderRegisterStepperTabletPhoneWidget extends StatelessWidget {
   final String firstText;
@@ -17,13 +20,21 @@ class HeaderRegisterStepperTabletPhoneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(1.h),
-        color: AppColors.purpleDefaultColor,
+    return InformationContainerTabletPhoneWidget(
+      iconPath: Paths.Icone_Exibicao_Cadastro_Usuario,
+      textColor: AppColors.whiteColor,
+      backgroundColor: AppColors.purpleDefaultColor,
+      informationText: "",
+      marginContainer: EdgeInsets.only(
+        left: 2.h,
+        top: PlatformType.isTablet(context) ? 7.h : 5.h,
+        right: 2.h,
+        bottom: 2.h,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
-      child: Column(
+      marginIcon: EdgeInsets.only(
+        right: 1.w,
+      ),
+      customContainer: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

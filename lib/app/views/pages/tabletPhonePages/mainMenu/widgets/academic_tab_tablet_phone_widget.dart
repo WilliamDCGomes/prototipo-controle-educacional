@@ -7,7 +7,6 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class AcademicTabTabletPhoneWidget extends StatefulWidget {
@@ -50,12 +49,13 @@ class _AcademicTabTabletPhoneWidgetState extends State<AcademicTabTabletPhoneWid
           Scaffold(
             backgroundColor: AppColors.transparentColor,
             body: Padding(
-              padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+              padding: EdgeInsets.only(top: 2.h,),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  Container(
                     height: 8.h,
+                    margin: EdgeInsets.symmetric(horizontal: 2.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -86,37 +86,32 @@ class _AcademicTabTabletPhoneWidgetState extends State<AcademicTabTabletPhoneWid
                     child: ListView(
                       shrinkWrap: true,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 1.h),
-                              child: CarouselSlider.builder(
-                                carouselController: widget.controller.academicRecordCarouselController,
-                                itemCount: widget.controller.cardAcademicRecordList.length,
-                                options: CarouselOptions(
-                                    height: 18.h,
-                                    viewportFraction: 1,
-                                    enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                    enlargeCenterPage: true,
-                                    enableInfiniteScroll: false,
-                                    onPageChanged: (itemIndex, reason){
-                                      setState(() {
-                                        widget.controller.activeStep = itemIndex;
-                                      });
-                                    }
-                                ),
-                                itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                  return widget.controller.cardAcademicRecordList[itemIndex];
-                                },
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 1.h),
+                            child: CarouselSlider.builder(
+                              carouselController: widget.controller.academicRecordCarouselController,
+                              itemCount: widget.controller.cardAcademicRecordList.length,
+                              options: CarouselOptions(
+                                viewportFraction: 1,
+                                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                enlargeCenterPage: true,
+                                enableInfiniteScroll: false,
+                                onPageChanged: (itemIndex, reason){
+                                  setState(() {
+                                    widget.controller.activeStep = itemIndex;
+                                  });
+                                }
                               ),
+                              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                                return widget.controller.cardAcademicRecordList[itemIndex];
+                              },
                             ),
                           ),
                         ),
-                        SizedBox(
+                        Container(
                           height: 4.h,
+                          margin: EdgeInsets.symmetric(horizontal: 2.h,),
                           child: TabBar(
                             controller: widget.controller.tabAcademicController,
                             indicatorColor: AppColors.purpleDefaultColor,
@@ -183,8 +178,9 @@ class _AcademicTabTabletPhoneWidgetState extends State<AcademicTabTabletPhoneWid
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 2.h),
-                          child: SizedBox(
+                          child: Container(
                             height: 42.h,
+                            margin: EdgeInsets.symmetric(horizontal: 2.h,),
                             child: TabBarView(
                               controller: widget.controller.tabAcademicController,
                               children: widget.controller.tabAcademicRecordList,
@@ -195,25 +191,6 @@ class _AcademicTabTabletPhoneWidgetState extends State<AcademicTabTabletPhoneWid
                     ),
                   ),
                 ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              padding: EdgeInsets.all(2.h),
-              margin: EdgeInsets.only(
-                top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                right: 2.w,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4.5.h),
-                color: AppColors.whiteColor,
-              ),
-              child: Image.asset(
-                Paths.Icone_Exibicao_Academico,
-                height: 5.h,
-                width: 5.h,
               ),
             ),
           ),

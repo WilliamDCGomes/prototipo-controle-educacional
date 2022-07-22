@@ -10,7 +10,6 @@ import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_tablet_phone_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import 'card_financial_tablet_phone_widget.dart';
 import 'componentTabWidget/card_payment_list_tablet_phone_widget.dart';
@@ -55,12 +54,13 @@ class _FinancialTabTabletPhoneWidgetState extends State<FinancialTabTabletPhoneW
             ),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+            padding: EdgeInsets.only(top: 2.h,),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   height: 8.h,
+                  margin: EdgeInsets.symmetric(horizontal: 2.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -78,28 +78,17 @@ class _FinancialTabTabletPhoneWidgetState extends State<FinancialTabTabletPhoneW
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: PlatformType.isTablet(context) ?
-                    9.h : 7.h,
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 1.h),
-                      child: CardFinancialTabletPhoneWidget(
-                        paymentFinishedViewController: widget.controller.nextBillToPay,
-                      )
-                    ),
-                  ),
+                CardFinancialTabletPhoneWidget(
+                  paymentFinishedViewController: widget.controller.nextBillToPay,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 1.h,),
-                          child: Row(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextWidget(
@@ -117,71 +106,52 @@ class _FinancialTabTabletPhoneWidgetState extends State<FinancialTabTabletPhoneW
                               ),
                             ],
                           ),
-                        ),
-                        PaymentCardSelectTabletPhoneWidget(
-                          titleCards: "Cartão Cadastrado William Douglas",
-                          showTitleCard: true,
-                          creditDebtCardWidgetHeight: 25.h,
-                          creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,
-                          creditDebtCardList: widget.controller.creditDebtCardList,
-                          carouselCreditDebtCardController: widget.controller.carouselCreditDebtCardController,
-                          onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 2.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextWidget(
-                                "Últimos Boletos/Lançamentos",
-                                textColor: AppColors.blackColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17.sp,
-                                textAlign: TextAlign.start,
-                              ),
-                              TextButtonWidget(
-                                onTap: () => Get.to(() => AllPaymentsTabletPhonePage()),
-                                hintText: "Ver Todos",
-                                fontWeight: FontWeight.normal,
-                                textDecoration: TextDecoration.underline,
-                              ),
-                            ],
+                          PaymentCardSelectTabletPhoneWidget(
+                            titleCards: "Cartão Cadastrado William Douglas",
+                            showTitleCard: true,
+                            creditDebtCardWidgetHeight: 25.h,
+                            creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,
+                            creditDebtCardList: widget.controller.creditDebtCardList,
+                            carouselCreditDebtCardController: widget.controller.carouselCreditDebtCardController,
+                            onClicked: () => Get.to(() => CardRegistrationTabletPhonePage()),
                           ),
-                        ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: widget.controller.cardPaymentList.length,
-                          itemBuilder: (context, index){
-                            return CardPaymentListTabletPhoneWidget(
-                              cardPaymentViewController: widget.controller.cardPaymentList[index],
-                            );
-                          },
-                        ),
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(top: 2.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextWidget(
+                                  "Últimos Boletos/Lançamentos",
+                                  textColor: AppColors.blackColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17.sp,
+                                  textAlign: TextAlign.start,
+                                ),
+                                TextButtonWidget(
+                                  onTap: () => Get.to(() => AllPaymentsTabletPhonePage()),
+                                  hintText: "Ver Todos",
+                                  fontWeight: FontWeight.normal,
+                                  textDecoration: TextDecoration.underline,
+                                ),
+                              ],
+                            ),
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: widget.controller.cardPaymentList.length,
+                            itemBuilder: (context, index){
+                              return CardPaymentListTabletPhoneWidget(
+                                cardPaymentViewController: widget.controller.cardPaymentList[index],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              padding: EdgeInsets.all(2.h),
-              margin: EdgeInsets.only(
-                top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                right: 2.w,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4.5.h),
-                color: AppColors.whiteColor,
-              ),
-              child: Image.asset(
-                Paths.Icone_Exibicao_Financeiro,
-                height: 5.h,
-                width: 5.h,
-              ),
             ),
           ),
         ],

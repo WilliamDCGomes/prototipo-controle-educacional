@@ -1285,7 +1285,6 @@ class MainMenuTabletPhoneController extends GetxController {
   _loadCards(){
     cardMainMenuList = [
       CardMainMenuTabletPhoneWidget(
-        imagePath: "icone_notificacao.svg",
         firstText: "Meu Painel",
         secondText: "Ciência da Computação",
         thirdText: "4º Ano",
@@ -1293,7 +1292,6 @@ class MainMenuTabletPhoneController extends GetxController {
         showSeparator: true,
       ),
       CardMainMenuTabletPhoneWidget(
-        imagePath: "icone_notificacao.svg",
         firstText: "Próxima Aula",
         secondText: "Banco de Dados",
         thirdText: "19:00 às 20:50",
@@ -1301,13 +1299,11 @@ class MainMenuTabletPhoneController extends GetxController {
         showSeparator: true,
       ),
       CardMainMenuTabletPhoneWidget(
-        imagePath: "icone_notificacao.svg",
         firstText: "Próxima Fatura",
         secondText: "R\$ 746,99",
         thirdText: "Vencimento: 05/06",
       ),
       CardMainMenuTabletPhoneWidget(
-        imagePath: "icone_notificacao.svg",
         firstText: "Próxima Prova",
         secondText: "Programação Orientada a Objetos",
         thirdText: "21:00 às 22:30",
@@ -1315,7 +1311,6 @@ class MainMenuTabletPhoneController extends GetxController {
         showSeparator: true,
       ),
       CardMainMenuTabletPhoneWidget(
-        imagePath: "icone_notificacao.svg",
         firstText: "Última nota postada",
         secondText: "Nota: 7,75",
         thirdText: "Segurança de Rede de Computadores",
@@ -1327,41 +1322,49 @@ class MainMenuTabletPhoneController extends GetxController {
         yearValueText: "2019",
         semesterValueText: "1º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2019",
         semesterValueText: "2º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2020",
         semesterValueText: "3º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2020",
         semesterValueText: "4º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2021",
         semesterValueText: "5º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2021",
         semesterValueText: "6º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2022",
         semesterValueText: "7º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2022",
         semesterValueText: "8º Semestre",
         mainMenuTabletPhoneController: this,
+        iconPath: Paths.Icone_Exibicao_Academico,
       ),
     ];
 

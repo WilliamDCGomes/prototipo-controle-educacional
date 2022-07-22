@@ -28,6 +28,7 @@ class Paths{
   static final String Banner_Promocional = "${imagesPath}banner_promocional.png";
   static final String Debit_Card_Back = "${imagesPath}cartao_roxo_verso_pce.png";
   static final String Card_Not_Registered = "${imagesPath}Cartao_Sem_Cadastro.png";
+  static final String Icone_Exibicao_Home = "${imagesPath}Icone_Exibicao_Home.png";
   static final String Icon_reset_password = "${imagesPath}icon_reset_password.png";
   static final String Icone_Exibicao_Aulas = "${imagesPath}Icone_Exibicao_Aulas.png";
   static final String Credit_Card_Back = "${imagesPath}cartao_laranja_verso_pce.png";
@@ -44,6 +45,7 @@ class Paths{
   static final String Icone_Exibicao_Horario_Das_Aulas = "${imagesPath}Icone_Exibicao_Horario_Das_Aulas.png";
   static final String Icone_Exibicao_Cancelar_Matricula = "${imagesPath}Icone_Exibicao_Cancelar_Matricula.png";
   static final String Icone_Exibicao_Declaracao_Escolar = "${imagesPath}Icone_Exibicao_Declaracao_Escolar.png";
+  static final String Icone_Exibicao_Forma_de_Pagamento = "${imagesPath}Icone_Exibicao_Forma_de_Pagamento.png";
   static final String Icone_Exibicao_Noticias_e_Eventos = "${imagesPath}Icone_Exibicao_Noticias_e_Eventos.png";
   static final String Icone_Exibicao_Cartoes_Cadastrados = "${imagesPath}Icone_Exibicao_Cartoes_Cadastrados.png";
   static final String Icone_Exibicao_Entrega_de_Trabalho = "${imagesPath}Icone_Exibicao_Entrega_de_Trabalho.png";

@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/models/classes.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/academic_details_tablet_phone_controller.dart';
 import '../widgets/class_content_card_tablet_phone_widget.dart';
@@ -57,29 +57,26 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonTabletPhoneWidget(
-                        title: "Detalhes da aula",
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 2.h),
+                        child: TitleWithBackButtonTabletPhoneWidget(
+                          title: "Detalhes da aula",
+                        ),
                       ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(
-                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                bottom: 5.h,
-                              ),
-                              padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 3.h),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1.h),
-                                color: AppColors.purpleDefaultColor,
-                              ),
-                              child: Column(
+                            InformationContainerTabletPhoneWidget(
+                              iconPath: Paths.Icone_Exibicao_Detalhes_da_Aula,
+                              textColor: AppColors.whiteColor,
+                              backgroundColor: AppColors.purpleDefaultColor,
+                              informationText: "",
+                              customContainer: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -112,96 +109,79 @@ class _ClassContentTabletPhonePageState extends State<ClassContentTabletPhonePag
                               ),
                             ),
                             Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextWidget(
-                                    "Descrição da Aula:",
-                                    textColor: AppColors.blackColor,
-                                    fontSize: 18.sp,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: .5.h, bottom: 3.h),
-                                    child: Visibility(
-                                      visible: widget.classes.classDescription != null,
-                                      replacement: TextWidget(
-                                        "Sem descrição",
-                                        textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.start,
-                                      ),
-                                      child: TextWidget(
-                                        widget.classes.classDescription ?? "",
-                                        textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.start,
-                                        maxLines: 5,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(bottom: .5.h),
-                                    child: TextWidget(
-                                      "Material da Aula:",
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2.h),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextWidget(
+                                      "Descrição da Aula:",
                                       textColor: AppColors.blackColor,
                                       fontSize: 18.sp,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Visibility(
-                                      visible: widget.classes.files.isNotEmpty,
-                                      replacement: Center(
-                                        child: TextWidget(
-                                          "Nenhum material encontrado",
-                                          textColor: AppColors.blackColor91Percent,
+                                    Padding(
+                                      padding: EdgeInsets.only(top: .5.h, bottom: 3.h),
+                                      child: Visibility(
+                                        visible: widget.classes.classDescription != null,
+                                        replacement: TextWidget(
+                                          "Sem descrição",
+                                          textColor: AppColors.blackColor,
                                           fontSize: 18.sp,
-                                          textAlign: TextAlign.center,
-                                          fontWeight: FontWeight.bold,
+                                          textAlign: TextAlign.start,
+                                        ),
+                                        child: TextWidget(
+                                          widget.classes.classDescription ?? "",
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 18.sp,
+                                          textAlign: TextAlign.start,
+                                          maxLines: 5,
                                         ),
                                       ),
-                                      child: ListView.builder(
-                                        itemCount: widget.classes.files.length,
-                                        itemBuilder: (context, index){
-                                          return ClassContentCardTabletPhoneWidget(
-                                            files: widget.classes.files[index],
-                                          );
-                                        },
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: .5.h),
+                                      child: TextWidget(
+                                        "Material da Aula:",
+                                        textColor: AppColors.blackColor,
+                                        fontSize: 18.sp,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Expanded(
+                                      child: Visibility(
+                                        visible: widget.classes.files.isNotEmpty,
+                                        replacement: Center(
+                                          child: TextWidget(
+                                            "Nenhum material encontrado",
+                                            textColor: AppColors.blackColor91Percent,
+                                            fontSize: 18.sp,
+                                            textAlign: TextAlign.center,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        child: ListView.builder(
+                                          itemCount: widget.classes.files.length,
+                                          itemBuilder: (context, index){
+                                            return ClassContentCardTabletPhoneWidget(
+                                              files: widget.classes.files[index],
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ],
-                  ),
-                ),
-
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.purpleDefaultColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Detalhes_da_Aula,
-                      height: 5.h,
-                      width: 5.h,
-                    ),
                   ),
                 ),
               ],

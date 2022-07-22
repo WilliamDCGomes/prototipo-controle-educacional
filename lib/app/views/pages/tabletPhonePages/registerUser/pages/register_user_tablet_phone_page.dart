@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
-import 'package:projeto_tcc/app/helpers/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
@@ -55,13 +53,13 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(4.w, 2.h, 4.w, 0),
+                    padding: EdgeInsets.only(top: 2.h,),
                     child: Scaffold(
                       backgroundColor: AppColors.transparentColor,
                       body: Column(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 2.h),
+                            padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h,),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -90,7 +88,7 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.only(top: 5.h),
+                              padding: EdgeInsets.only(top: 1.h),
                               child: ListView(
                                 shrinkWrap: true,
                                 children: [
@@ -98,7 +96,7 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                                     () => controller.headerRegisterStepperList[controller.activeStep.value],
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 2.h, 0, 3.h),
+                                    padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 3.h),
                                     child: Obx(
                                       () => Center(
                                         child: DotStepper(
@@ -119,8 +117,11 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                                       ),
                                     ),
                                   ),
-                                  Obx(
-                                    () => controller.bodyRegisterStepperList[controller.activeStep.value],
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                                    child: Obx(
+                                      () => controller.bodyRegisterStepperList[controller.activeStep.value],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -128,14 +129,17 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
-                            child: ButtonWidget(
-                              hintText: "AVANÇAR",
-                              fontWeight: FontWeight.bold,
-                              widthButton: 90.w,
-                              onPressed: () {
-                                FocusScope.of(context).requestFocus(FocusNode());
-                                controller.nextButtonPressed();
-                              },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                              child: ButtonWidget(
+                                hintText: "AVANÇAR",
+                                fontWeight: FontWeight.bold,
+                                widthButton: 90.w,
+                                onPressed: () {
+                                  FocusScope.of(context).requestFocus(FocusNode());
+                                  controller.nextButtonPressed();
+                                },
+                              ),
                             ),
                           ),
                           Obx(() => controller.activeStep.value == 0 ?
@@ -143,8 +147,9 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                             padding: EdgeInsets.symmetric(vertical: 1.5.h),
                             child: Align(
                               alignment: Alignment.center,
-                              child: SizedBox(
+                              child: Container(
                                 width: 75.w,
+                                margin: EdgeInsets.symmetric(horizontal: 2.h,),
                                 child: TextWidget(
                                   controller.lgpdPhrase,
                                   textColor: AppColors.blackColor,
@@ -158,25 +163,6 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.purpleDefaultColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Cadastro_Usuario,
-                      height: 5.h,
-                      width: 5.h,
                     ),
                   ),
                 ),

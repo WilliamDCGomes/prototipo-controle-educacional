@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../helpers/paths.dart';
 import '../../../../../../helpers/reorderer_lists.dart';
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/text_field_widget.dart';
@@ -49,18 +50,25 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
         children: [
           Visibility(
             visible: widget.academicRecordTabletPhoneController != null,
-            replacement: CardAcademicRecordTabletPhoneWidget(
-              yearValueText: widget.yearValueText,
-              semesterValueText: widget.semesterValueText,
-              gradesFaultsTabletPhoneController: widget.gradesFaultsTabletPhoneController,
-              mainMenuTabletPhoneController: widget.mainMenuTabletPhoneController,
+            replacement: SizedBox(
+              height: 26.h,
+              child: CardAcademicRecordTabletPhoneWidget(
+                yearValueText: widget.yearValueText,
+                semesterValueText: widget.semesterValueText,
+                gradesFaultsTabletPhoneController: widget.gradesFaultsTabletPhoneController,
+                mainMenuTabletPhoneController: widget.mainMenuTabletPhoneController,
+                iconPath: Paths.Icone_Exibicao_Notas_e_Faltas,
+              ),
             ),
-            child: CardAcademicStudentRecordTabletPhoneWidget(
-              academicRecordTabletPhoneController: widget.academicRecordTabletPhoneController,
+            child: SizedBox(
+              height: 30.h,
+              child: CardAcademicStudentRecordTabletPhoneWidget(
+                academicRecordTabletPhoneController: widget.academicRecordTabletPhoneController,
+              ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 2.h),
+            padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h,),
             child: TextFieldWidget(
               controller: searchDisciplineController,
               hintText: "Pesquise a Disciplina",
@@ -76,7 +84,7 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: 2.h),
+              padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h,),
               child: SizedBox(
                 width: double.infinity,
                 child: ReorderableListView.builder(

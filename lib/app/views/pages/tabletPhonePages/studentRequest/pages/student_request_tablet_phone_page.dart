@@ -5,7 +5,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/format_numbers.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/button_widget.dart';
@@ -13,6 +12,7 @@ import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/student_request_tablet_phone_controller.dart';
 
@@ -64,87 +64,87 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonTabletPhoneWidget(
-                        title: "Solicitações",
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                        child: TitleWithBackButtonTabletPhoneWidget(
+                          title: "Solicitações",
+                        ),
                       ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: ListView(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.only(top: PlatformType.isTablet(context) ? 9.h : 7.h,),
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    margin: EdgeInsets.only(
-                                      bottom: 5.h,
-                                    ),
-                                    padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 3.h),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(1.h),
-                                      color: AppColors.purpleDefaultColor,
-                                    ),
-                                    child: Obx(
-                                      () => Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          TextWidget(
-                                            controller.requestTitle.value.toUpperCase(),
-                                            textColor: AppColors.whiteColor,
-                                            fontSize: 18.sp,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 1,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(vertical: 1.5.h),
-                                            child: RichTextTwoDifferentWidget(
-                                              firstText: "Valor: ",
-                                              firstTextColor: AppColors.whiteColor,
-                                              firstTextFontWeight: FontWeight.normal,
-                                              firstTextSize: 16.sp,
-                                              secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
-                                              secondTextColor: AppColors.whiteColor,
-                                              secondTextFontWeight: FontWeight.bold,
-                                              secondTextSize: 16.sp,
-                                              secondTextDecoration: TextDecoration.none,
-                                            ),
-                                          ),
-                                          RichTextTwoDifferentWidget(
-                                            firstText: "Data de Previsão de Entrega: ",
-                                            firstTextColor: AppColors.whiteColor,
-                                            firstTextFontWeight: FontWeight.normal,
-                                            firstTextSize: 16.sp,
-                                            secondText: controller.deliveryDate.value,
-                                            secondTextColor: AppColors.whiteColor,
-                                            secondTextFontWeight: FontWeight.bold,
-                                            secondTextSize: 16.sp,
-                                            secondTextDecoration: TextDecoration.none,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: TextWidget(
-                                      "Preencha os dados para solicitação",
-                                      textColor: AppColors.blackColor,
+                            Obx(
+                              () => InformationContainerTabletPhoneWidget(
+                                iconPath: controller.imageIllustration.value,
+                                textColor: AppColors.whiteColor,
+                                backgroundColor: AppColors.purpleDefaultColor,
+                                informationText: "",
+                                customContainer: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    TextWidget(
+                                      controller.requestTitle.value.toUpperCase(),
+                                      textColor: AppColors.whiteColor,
                                       fontSize: 18.sp,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
                                       fontWeight: FontWeight.bold,
                                     ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 1.5.h),
+                                      child: RichTextTwoDifferentWidget(
+                                        firstText: "Valor: ",
+                                        firstTextColor: AppColors.whiteColor,
+                                        firstTextFontWeight: FontWeight.normal,
+                                        firstTextSize: 16.sp,
+                                        secondText: "R\$ ${FormatNumbers.numbersToString(controller.requestValue.value)}",
+                                        secondTextColor: AppColors.whiteColor,
+                                        secondTextFontWeight: FontWeight.bold,
+                                        secondTextSize: 16.sp,
+                                        secondTextDecoration: TextDecoration.none,
+                                      ),
+                                    ),
+                                    RichTextTwoDifferentWidget(
+                                      firstText: "Data de Previsão de Entrega: ",
+                                      firstTextColor: AppColors.whiteColor,
+                                      firstTextFontWeight: FontWeight.normal,
+                                      firstTextSize: 16.sp,
+                                      secondText: controller.deliveryDate.value,
+                                      secondTextColor: AppColors.whiteColor,
+                                      secondTextFontWeight: FontWeight.bold,
+                                      secondTextSize: 16.sp,
+                                      secondTextDecoration: TextDecoration.none,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView(
+                                shrinkWrap: true,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: TextWidget(
+                                        "Preencha os dados para solicitação",
+                                        textColor: AppColors.blackColor,
+                                        fontSize: 18.sp,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 2.h, bottom: .5.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h, bottom: .5.h),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: TextWidget(
@@ -156,18 +156,21 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                       ),
                                     ),
                                   ),
-                                  Obx(
-                                    () => DropdownButtonWidget(
-                                      itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
-                                      hintText: "Tipo de Solicitação",
-                                      height: 6.h,
-                                      width: 85.w,
-                                      rxListItems: controller.requestTypeList,
-                                      onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                                    child: Obx(
+                                      () => DropdownButtonWidget(
+                                        itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
+                                        hintText: "Tipo de Solicitação",
+                                        height: 6.h,
+                                        width: 85.w,
+                                        rxListItems: controller.requestTypeList,
+                                        onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
+                                      ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 3.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.studentName,
                                       hintText: "Nome",
@@ -178,7 +181,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 3.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.raNumber,
                                       hintText: "RA",
@@ -189,7 +192,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 3.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.dateRequest,
                                       hintText: "Data do Pedido",
@@ -200,7 +203,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 3.h, bottom: 3.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h, bottom: 3.h,),
                                     child: TextFieldWidget(
                                       controller: controller.observations,
                                       height: 18.h,
@@ -243,7 +246,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2.h),
+                              padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.h),
                               child: ButtonWidget(
                                 hintText: "SOLICITAR",
                                 fontWeight: FontWeight.bold,
@@ -255,27 +258,6 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.purpleDefaultColor,
-                    ),
-                    child: Obx(
-                      () => Image.asset(
-                        controller.imageIllustration.value,
-                        height: 5.h,
-                        width: 5.h,
-                      ),
-                    ),
                   ),
                 ),
               ],

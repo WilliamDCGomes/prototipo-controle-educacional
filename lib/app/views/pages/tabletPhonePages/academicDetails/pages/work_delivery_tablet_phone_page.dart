@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/card_upload_files_tablet_phone_widget.dart';
+import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/work_delivery_tablet_phone_controller.dart';
 import '../widgets/class_content_card_tablet_phone_widget.dart';
@@ -60,29 +60,26 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleWithBackButtonTabletPhoneWidget(
-                        title: "Entrega de trabalho",
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 2.h),
+                        child: TitleWithBackButtonTabletPhoneWidget(
+                          title: "Entrega de trabalho",
+                        ),
                       ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(
-                                top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                                bottom: 5.h,
-                              ),
-                              padding: EdgeInsets.fromLTRB(5.w, 4.h, 5.w, 3.h),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1.h),
-                                color: AppColors.purpleDefaultColor,
-                              ),
-                              child: Column(
+                            InformationContainerTabletPhoneWidget(
+                              iconPath: Paths.Icone_Exibicao_Entrega_de_Trabalho,
+                              textColor: AppColors.whiteColor,
+                              backgroundColor: AppColors.purpleDefaultColor,
+                              informationText: "",
+                              customContainer: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -115,97 +112,100 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                               ),
                             ),
                             Expanded(
-                              child: ListView(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      TextWidget(
-                                        "Descrição da Entrega:",
-                                        textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: .5.h, bottom: 2.h),
-                                        child: TextWidget(
-                                          controller.curriculumDeliveryViewController.workDescription ?? "Sem descrição",
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2.h),
+                                child: ListView(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextWidget(
+                                          "Descrição da Entrega:",
                                           textColor: AppColors.blackColor,
-                                          fontSize: 16.sp,
-                                          textAlign: TextAlign.start,
-                                          maxLines: 5,
+                                          fontSize: 18.sp,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                      ),
-                                      TextWidget(
-                                        "Material de aula:",
-                                        textColor: AppColors.blackColor,
-                                        fontSize: 18.sp,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      Container(
-                                        height: 10.h,
-                                        child: controller.curriculumDeliveryViewController.workContent != null && controller.curriculumDeliveryViewController.workContent!.isNotEmpty ?
-                                        ListView.builder(
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: controller.curriculumDeliveryViewController.workContent!.length,
-                                          itemBuilder: (context, index){
-                                            return SizedBox(
-                                              width: controller.curriculumDeliveryViewController.workContent!.length > 1 ? 75.w : 100.w - 6.h,
-                                              child: ClassContentCardTabletPhoneWidget(
-                                                files: controller.curriculumDeliveryViewController.workContent![index],
-                                              ),
-                                            );
-                                          },
-                                        ) :
-                                        Center(
+                                        Padding(
+                                          padding: EdgeInsets.only(top: .5.h, bottom: 2.h),
                                           child: TextWidget(
-                                            "Nenhum material encontrado",
-                                            textColor: AppColors.blackColor91Percent,
-                                            fontSize: 18.sp,
-                                            textAlign: TextAlign.center,
-                                            fontWeight: FontWeight.bold,
+                                            controller.curriculumDeliveryViewController.workDescription ?? "Sem descrição",
+                                            textColor: AppColors.blackColor,
+                                            fontSize: 16.sp,
+                                            textAlign: TextAlign.start,
+                                            maxLines: 5,
                                           ),
                                         ),
-                                      ),
-                                      CardUploadFilesTabletPhoneWidget(
-                                        cardMargin: EdgeInsets.symmetric(vertical: 2.h),
-                                      ),
-                                      SizedBox(
-                                        height: controller.curriculumDeliveryViewController.workDelivery != null && controller.curriculumDeliveryViewController.workDelivery!.isNotEmpty ?
-                                          controller.curriculumDeliveryViewController.workDelivery!.length * 9.h : 10.h,
-                                        child: controller.curriculumDeliveryViewController.workDelivery != null && controller.curriculumDeliveryViewController.workDelivery!.isNotEmpty ?
-                                        ListView.builder(
-                                          shrinkWrap: true,
-                                          physics: NeverScrollableScrollPhysics(),
-                                          itemCount: controller.curriculumDeliveryViewController.workDelivery!.length,
-                                          itemBuilder: (context, index){
-                                            return ClassContentCardTabletPhoneWidget(
-                                              files: controller.curriculumDeliveryViewController.workDelivery![index],
-                                            );
-                                          },
-                                        ) :
-                                        Center(
-                                          child: TextWidget(
-                                            "Nenhum arquivo adicionado",
-                                            textColor: AppColors.blackColor91Percent,
-                                            fontSize: 18.sp,
-                                            textAlign: TextAlign.center,
-                                            fontWeight: FontWeight.bold,
+                                        TextWidget(
+                                          "Material de aula:",
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 18.sp,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        Container(
+                                          height: 10.h,
+                                          child: controller.curriculumDeliveryViewController.workContent != null && controller.curriculumDeliveryViewController.workContent!.isNotEmpty ?
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: controller.curriculumDeliveryViewController.workContent!.length,
+                                            itemBuilder: (context, index){
+                                              return SizedBox(
+                                                width: controller.curriculumDeliveryViewController.workContent!.length > 1 ? 75.w : 100.w - 6.h,
+                                                child: ClassContentCardTabletPhoneWidget(
+                                                  files: controller.curriculumDeliveryViewController.workContent![index],
+                                                ),
+                                              );
+                                            },
+                                          ) :
+                                          Center(
+                                            child: TextWidget(
+                                              "Nenhum material encontrado",
+                                              textColor: AppColors.blackColor91Percent,
+                                              fontSize: 18.sp,
+                                              textAlign: TextAlign.center,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        CardUploadFilesTabletPhoneWidget(
+                                          cardMargin: EdgeInsets.symmetric(vertical: 2.h),
+                                        ),
+                                        SizedBox(
+                                          height: controller.curriculumDeliveryViewController.workDelivery != null && controller.curriculumDeliveryViewController.workDelivery!.isNotEmpty ?
+                                            controller.curriculumDeliveryViewController.workDelivery!.length * 9.h : 10.h,
+                                          child: controller.curriculumDeliveryViewController.workDelivery != null && controller.curriculumDeliveryViewController.workDelivery!.isNotEmpty ?
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            physics: NeverScrollableScrollPhysics(),
+                                            itemCount: controller.curriculumDeliveryViewController.workDelivery!.length,
+                                            itemBuilder: (context, index){
+                                              return ClassContentCardTabletPhoneWidget(
+                                                files: controller.curriculumDeliveryViewController.workDelivery![index],
+                                              );
+                                            },
+                                          ) :
+                                          Center(
+                                            child: TextWidget(
+                                              "Nenhum arquivo adicionado",
+                                              textColor: AppColors.blackColor91Percent,
+                                              fontSize: 18.sp,
+                                              textAlign: TextAlign.center,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2.h),
+                              padding: EdgeInsets.all(2.h),
                               child: Obx(
                                 () => ButtonWidget(
                                   hintText: controller.buttonText.value,
@@ -221,25 +221,6 @@ class _WorkDeliveryTabletPhonePageState extends State<WorkDeliveryTabletPhonePag
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.purpleDefaultColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Entrega_de_Trabalho,
-                      height: 5.h,
-                      width: 5.h,
-                    ),
                   ),
                 ),
                 controller.loadingWithSuccessOrErrorTabletPhoneWidget,

@@ -7,7 +7,6 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/grades_faults_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class GradesFaultsTabletPhonePage extends StatefulWidget {
@@ -52,12 +51,13 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      Container(
                         height: 8.h,
+                        margin: EdgeInsets.symmetric(horizontal: 2.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -85,48 +85,24 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                         ),
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                          ),
-                          child: Center(
-                            child: CarouselSlider.builder(
-                              carouselController: controller.academicRecordCarouselController,
-                              itemCount: controller.cardAcademicRecordList.length,
-                              options: CarouselOptions(
-                                viewportFraction: 1,
-                                height: double.infinity,
-                                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                enlargeCenterPage: true,
-                                enableInfiniteScroll: false,
-                              ),
-                              itemBuilder: (context, itemIndex, pageViewIndex) {
-                                return controller.cardAcademicRecordList[itemIndex];
-                              },
+                        child: Center(
+                          child: CarouselSlider.builder(
+                            carouselController: controller.academicRecordCarouselController,
+                            itemCount: controller.cardAcademicRecordList.length,
+                            options: CarouselOptions(
+                              viewportFraction: 1,
+                              height: double.infinity,
+                              enlargeStrategy: CenterPageEnlargeStrategy.height,
+                              enlargeCenterPage: true,
+                              enableInfiniteScroll: false,
                             ),
+                            itemBuilder: (context, itemIndex, pageViewIndex) {
+                              return controller.cardAcademicRecordList[itemIndex];
+                            },
                           ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.whiteColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Notas_e_Faltas,
-                      height: 5.h,
-                      width: 5.h,
-                    ),
                   ),
                 ),
               ],

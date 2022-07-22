@@ -5,7 +5,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../controller/academic_record_tablet_phone_controller.dart';
 
@@ -51,12 +50,13 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      Container(
                         height: 8.h,
+                        margin: EdgeInsets.symmetric(horizontal: 2.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -84,35 +84,11 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                         ),
                       ),
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                          ),
-                          child: Center(
-                            child: controller.cardAcademicRecordTabletPhoneWidget
-                          ),
+                        child: Center(
+                          child: controller.cardAcademicRecordTabletPhoneWidget
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.whiteColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Historico_Academico,
-                      height: 5.h,
-                      width: 5.h,
-                    ),
                   ),
                 ),
               ],

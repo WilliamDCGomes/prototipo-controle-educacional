@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/platform_type.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
-import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/academic_calendar_tablet_phone_controller.dart';
 import '../../../../../helpers/paths.dart';
@@ -54,12 +53,13 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+                  padding: EdgeInsets.only(top: 2.h,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      Container(
                         height: 8.h,
+                        margin: EdgeInsets.symmetric(horizontal: 2.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -86,33 +86,22 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                           ],
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(
-                          top: PlatformType.isTablet(context) ? 9.h : 7.h,
-                          bottom: 1.h,
-                        ),
-                        padding: EdgeInsets.only(top: 4.h, bottom: 3.h),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(1.h),
-                          color: AppColors.purpleDefaultColor,
-                        ),
-                        child: TextWidget(
-                          "Visualize os Eventos no Calendário Acadêmico",
-                          textColor: AppColors.whiteColor,
-                          fontSize: 18.sp,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      InformationContainerTabletPhoneWidget(
+                        iconPath: Paths.Icone_Exibicao_Calendario_Academico,
+                        textColor: AppColors.whiteColor,
+                        backgroundColor: AppColors.purpleDefaultColor,
+                        informationText: "Visualize os Eventos no Calendário Acadêmico",
                       ),
                       Expanded(
-                        child: CalendarWidget(
-                          dataSource: controller.getDataSource(),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 2.h),
+                          child: CalendarWidget(
+                            dataSource: controller.getDataSource(),
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2.h),
+                        padding: EdgeInsets.all(2.h),
                         child: ButtonWidget(
                           hintText: "COMPARTILHAR",
                           fontWeight: FontWeight.bold,
@@ -126,25 +115,6 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    padding: EdgeInsets.all(2.h),
-                    margin: EdgeInsets.only(
-                      top: PlatformType.isTablet(context) ? 14.h : 12.h,
-                      right: 2.w,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.5.h),
-                      color: AppColors.purpleDefaultColor,
-                    ),
-                    child: Image.asset(
-                      Paths.Icone_Exibicao_Calendario_Academico,
-                      height: 5.h,
-                      width: 5.h,
-                    ),
                   ),
                 ),
               ],
