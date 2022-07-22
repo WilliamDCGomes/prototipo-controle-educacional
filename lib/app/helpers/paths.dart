@@ -36,7 +36,9 @@ class Paths{
   static final String american_express_flag = "${imagesPath}american_express_flag_card.png";
   static final String Icone_Exibicao_Academico = "${imagesPath}Icone_Exibicao_Academico.png";
   static final String Card_Not_Registered_Back = "${imagesPath}Cartao_Sem_Cadastro_Verso.png";
+  static final String Icone_Exibicao_Esqueci_Ra = "${imagesPath}Icone_Exibicao_Esqueci_Ra.png";
   static final String Icone_Exibicao_Financeiro = "${imagesPath}Icone_Exibicao_Financeiro.png";
+  static final String Icone_Exibicao_Esqueci_Senha = "${imagesPath}Icone_Exibicao_Esqueci_Senha.png";
   static final String Icone_Exibicao_Notas_e_Faltas = "${imagesPath}Icone_Exibicao_Notas_e_Faltas.png";
   static final String Icone_Exibicao_Cadastro_Usuario = "${imagesPath}Icone_Exibicao_Cadastro_Usuario.png";
   static final String Icone_Exibicao_Detalhes_da_Aula = "${imagesPath}Icone_Exibicao_Detalhes_da_Aula.png";
