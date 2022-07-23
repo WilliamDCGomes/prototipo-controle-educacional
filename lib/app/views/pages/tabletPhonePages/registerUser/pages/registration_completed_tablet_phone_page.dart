@@ -23,8 +23,8 @@ class RegistrationCompletedTabletPhone extends StatelessWidget {
       onWillPop: () async {
         return AppCloseController.verifyCloseScreen();
       },
-      child: Material(
-        child: SafeArea(
+      child: SafeArea(
+        child: Material(
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(

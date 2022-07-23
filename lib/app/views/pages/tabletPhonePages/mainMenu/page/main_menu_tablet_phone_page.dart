@@ -34,8 +34,8 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
       onWillPop: () async {
         return AppCloseController.verifyCloseScreen();
       },
-      child: Material(
-        child: SafeArea(
+      child: SafeArea(
+        child: Material(
           child: GestureDetector(
             onTap: () {
               FocusScope.of(context).requestFocus(FocusNode());

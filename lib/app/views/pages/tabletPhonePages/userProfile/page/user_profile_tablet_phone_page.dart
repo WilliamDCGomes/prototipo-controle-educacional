@@ -33,11 +33,11 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: SafeArea(
         child: Container(
           height: double.infinity,
           decoration: BoxDecoration(

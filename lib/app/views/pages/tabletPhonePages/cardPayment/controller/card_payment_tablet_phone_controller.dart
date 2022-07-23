@@ -21,7 +21,6 @@ class CardPaymentTabletPhoneController extends GetxController {
 
   _inicializeList(){
     creditDebtCardList = [
-
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
         personCardName: "WILLIAM DOUGLAS COSTA GOMES",
