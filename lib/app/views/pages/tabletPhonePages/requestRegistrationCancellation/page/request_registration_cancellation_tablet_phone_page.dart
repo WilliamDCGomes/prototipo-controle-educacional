@@ -8,7 +8,7 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
-import '../../shared/widgets/RadioListTileWidget.dart';
+import '../../shared/widgets/radioListTileWidget.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/request_registration_cancellation_tablet_phone_controller.dart';

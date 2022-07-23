@@ -36,8 +36,8 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
       onWillPop: () async {
         return AppCloseController.verifyCloseScreen();
       },
-      child: Material(
-        child: SafeArea(
+      child: SafeArea(
+        child: Material(
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(

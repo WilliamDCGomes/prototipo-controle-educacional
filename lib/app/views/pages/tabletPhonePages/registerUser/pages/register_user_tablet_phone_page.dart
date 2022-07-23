@@ -40,8 +40,8 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: Material(
-          child: SafeArea(
+        child: SafeArea(
+          child: Material(
             child: Stack(
               children: [
                 Container(

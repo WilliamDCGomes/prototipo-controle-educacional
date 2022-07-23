@@ -35,8 +35,8 @@ class _InitialPageState extends State<InitialPage> {
       onWillPop: () async {
         return AppCloseController.verifyCloseScreen();
       },
-      child: Material(
-        child: SafeArea(
+      child: SafeArea(
+        child: Material(
           child: Stack(
             children: [
               Image.asset(

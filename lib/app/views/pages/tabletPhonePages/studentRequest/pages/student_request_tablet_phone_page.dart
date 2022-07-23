@@ -39,11 +39,11 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.transparentColor,
           body: Container(
