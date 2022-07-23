@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:projeto_tcc/app/helpers/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../helpers/app_close_controller.dart';
+import '../../../../../helpers/app_close_controller.dart';
+import '../../../../../helpers/paths.dart';
+import '../../../../stylePages/app_colors.dart';
 import '../controller/initial_page_controller.dart';
-import '../../../../helpers/paths.dart';
-import '../../../stylePages/app_colors.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);
@@ -14,18 +15,13 @@ class InitialPage extends StatefulWidget {
 }
 
 class _InitialPageState extends State<InitialPage> {
+  late InitialPageController controller;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(
-          Duration(
-              milliseconds: 2500
-          ),
-          () {
-            InitialPageController().loadFirstScreen(context);
-          }
-      );
+      controller = Get.put(InitialPageController());
     });
   }
 

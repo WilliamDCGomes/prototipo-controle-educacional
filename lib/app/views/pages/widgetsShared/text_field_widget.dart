@@ -3,7 +3,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../stylePages/app_colors.dart';
 
-class TextFieldWidget extends StatelessWidget {
+class TextFieldWidget extends StatefulWidget {
   final String? hintText;
   final int? maxLength;
   final int? maxLines;
@@ -11,6 +11,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool? justRead;
   final bool? isPassword;
   final bool? enableSuggestions;
+  final bool? hasError;
   final double? height;
   final double? width;
   final double? fontSize;
@@ -29,83 +30,64 @@ class TextFieldWidget extends StatelessWidget {
   final Function()? onEditingComplete;
   final Function(String)? onChanged;
   final Function(String?)? onSaved;
+  final String? Function(String?)? validator;
   final TextEditingController controller;
 
-  const TextFieldWidget(
-      { Key? key,
-        this.hintText,
-        this.maxLength,
-        this.maxLines,
-        this.ableField,
-        this.justRead,
-        this.isPassword,
-        this.enableSuggestions,
-        this.height,
-        this.width,
-        this.fontSize,
-        this.iconTextField,
-        this.textColor,
-        this.hintTextColor,
-        this.borderColor,
-        this.textStyle,
-        this.textAlign,
-        this.textAlignVertical,
-        this.focusNode,
-        this.keyboardType,
-        this.decoration,
-        this.maskTextInputFormatter,
-        this.onTap,
-        this.onEditingComplete,
-        this.onChanged,
-        this.onSaved,
-        required this.controller,
-      }) : super(key: key);
+  TextFieldWidget(
+    { Key? key,
+      this.hintText,
+      this.maxLength,
+      this.maxLines,
+      this.ableField,
+      this.justRead,
+      this.isPassword,
+      this.enableSuggestions,
+      this.hasError,
+      this.height,
+      this.width,
+      this.fontSize,
+      this.iconTextField,
+      this.textColor,
+      this.hintTextColor,
+      this.borderColor,
+      this.textStyle,
+      this.textAlign,
+      this.textAlignVertical,
+      this.focusNode,
+      this.keyboardType,
+      this.decoration,
+      this.maskTextInputFormatter,
+      this.onTap,
+      this.onEditingComplete,
+      this.onChanged,
+      this.onSaved,
+      this.validator,
+      required this.controller,
+    }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      ignoring: justRead ?? false,
-      child: SizedBox(
-        height: height ?? 65,
-        width: width ?? 200,
-        child: TextFormField(
-          obscureText: isPassword ?? false,
-          maxLength: maxLength,
-          maxLines: maxLines ?? 1,
-          enableSuggestions: enableSuggestions ?? false,
-          style: textStyle ?? standardTextStyle(),
-          textAlign: textAlign ?? TextAlign.start,
-          textAlignVertical: textAlignVertical ?? TextAlignVertical.center,
-          focusNode: focusNode,
-          cursorColor: AppColors.purpleDefaultColor,
-          keyboardType: keyboardType ?? TextInputType.text,
-          decoration: decoration ?? standardDecoration(),
-          inputFormatters: maskTextInputFormatter != null ? [maskTextInputFormatter!] : null,
-          enabled: ableField ?? true,
-          onTap: onTap,
-          onEditingComplete: onEditingComplete,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          controller: controller,
-        ),
-      ),
-    );
-  }
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+}
 
+class _TextFieldWidgetState extends State<TextFieldWidget> {
   InputDecoration standardDecoration(){
-    double heightInput = height ?? 65;
-    if(height != null)
-      heightInput = height!;
+    double heightInput = widget.height ?? 65;
+    if(widget.height != null) {
+      heightInput = widget.height!;
+    }
     return InputDecoration(
-      labelText: hintText,
+      helperText: "",
+      labelText: widget.hintText,
       labelStyle: TextStyle(
         fontSize: 16.sp,
-        color: hintTextColor ?? AppColors.purpleDefaultColor,
+        color: widget.hasError != null && widget.hasError! ? AppColors.redColor : widget.hintTextColor ?? AppColors.purpleDefaultColor,
       ),
-      suffixIcon: iconTextField,
+      suffixIcon: widget.iconTextField,
       enabledBorder: _getBorderLayout(),
       border: _getBorderLayout(),
       focusedBorder: _getBorderLayout(),
+      errorBorder: _getErrorBorderLayout(),
+      focusedErrorBorder: _getErrorBorderLayout(),
       contentPadding: EdgeInsets.only(
         bottom: heightInput / 2,
         left: 10,
@@ -115,8 +97,8 @@ class TextFieldWidget extends StatelessWidget {
 
   TextStyle standardTextStyle(){
     return TextStyle(
-      color: textColor ?? AppColors.purpleDefaultColor,
-      fontSize: fontSize ?? 16.sp,
+      color: widget.textColor ?? AppColors.purpleDefaultColor,
+      fontSize: widget.fontSize ?? 16.sp,
     );
   }
 
@@ -124,8 +106,50 @@ class TextFieldWidget extends StatelessWidget {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
-        color: borderColor ?? AppColors.purpleDefaultColor,
+        color: widget.borderColor ?? AppColors.purpleDefaultColor,
         width: .25.h,
+      ),
+    );
+  }
+
+  OutlineInputBorder _getErrorBorderLayout(){
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(
+        color: AppColors.redColor,
+        width: .25.h,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      ignoring: widget.justRead ?? false,
+      child: SizedBox(
+        height: widget.height ?? 65,
+        width: widget.width ?? 200,
+        child: TextFormField(
+          validator: widget.validator,
+          obscureText: widget.isPassword ?? false,
+          maxLength: widget.maxLength,
+          maxLines: widget.maxLines ?? 1,
+          enableSuggestions: widget.enableSuggestions ?? false,
+          style: widget.textStyle ?? standardTextStyle(),
+          textAlign: widget.textAlign ?? TextAlign.start,
+          textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.center,
+          focusNode: widget.focusNode,
+          cursorColor: AppColors.purpleDefaultColor,
+          keyboardType: widget.keyboardType ?? TextInputType.text,
+          decoration: widget.decoration ?? standardDecoration(),
+          inputFormatters: widget.maskTextInputFormatter != null ? [widget.maskTextInputFormatter!] : null,
+          enabled: widget.ableField ?? true,
+          onTap: widget.onTap,
+          onEditingComplete: widget.onEditingComplete,
+          onChanged: widget.onChanged,
+          onSaved: widget.onSaved,
+          controller: widget.controller,
+        ),
       ),
     );
   }

@@ -7,8 +7,11 @@ import '../../shared/widgets/loading_tablet_phone_widget.dart';
 class LoginTabletPhoneController extends GetxController {
   late TextEditingController raInputController;
   late TextEditingController passwordInputController;
+  late RxBool raInputHasError;
+  late RxBool passwordInputHasError;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
+  late final GlobalKey<FormState> formKey;
   late LoadingTabletPhoneWidget loadingTabletPhoneWidget;
 
   LoginTabletPhoneController(){
@@ -18,8 +21,11 @@ class LoginTabletPhoneController extends GetxController {
   _initializeVariables(){
     raInputController = TextEditingController();
     passwordInputController = TextEditingController();
+    raInputHasError = false.obs;
+    passwordInputHasError = false.obs;
     passwordFieldEnabled = true.obs;
     loadingAnimation = false.obs;
+    formKey = GlobalKey<FormState>();
     loadingTabletPhoneWidget= LoadingTabletPhoneWidget(loadingAnimetion: loadingAnimation);
   }
 
@@ -28,7 +34,9 @@ class LoginTabletPhoneController extends GetxController {
   }
 
   loginPressed(){
-    loadingAnimation.value = true;
-    loadingTabletPhoneWidget.startAnimation(destinationPage: MainMenuTabletPhonePage());
+    if(formKey.currentState!.validate()){
+      loadingAnimation.value = true;
+      loadingTabletPhoneWidget.startAnimation(destinationPage: MainMenuTabletPhonePage());
+    }
   }
 }

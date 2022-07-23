@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/helpers/text_field_validators.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/app_close_controller.dart';
 import '../../../../../enums/enums.dart';
@@ -77,90 +78,118 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                             ),
                           ),
                           Expanded(
-                            child: ListView(
-                              shrinkWrap: true,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 5.w, top: 5.h, right: 5.w),
-                                  child: TextWidget(
-                                    "O aplicativo oficial para os estudantes terem acesso a todos os conteúdos acadêmico.",
-                                    textColor: AppColors.purpleDefaultColor,
-                                    fontSize: 17.sp,
-                                    textAlign: TextAlign.center,
-                                    maxLines: 4,
+                            child: Form(
+                              key: controller.formKey,
+                              child: ListView(
+                                shrinkWrap: true,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 5.w, top: 5.h, right: 5.w),
+                                    child: TextWidget(
+                                      "O aplicativo oficial para os estudantes terem acesso a todos os conteúdos acadêmico.",
+                                      textColor: AppColors.purpleDefaultColor,
+                                      fontSize: 17.sp,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 4,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 5.h),
-                                  child: TextFieldWidget(
-                                    controller: controller.raInputController,
-                                    hintText: "RA",
-                                    height: 6.h,
-                                    width: 75.w,
-                                    keyboardType: TextInputType.number,
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: TextButtonWidget(
-                                    hintText: "Esqueceu o RA?",
-                                    fontSize: 16.sp,
-                                    onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 1.5.h),
-                                  child: Obx(() => TextFieldWidget(
-                                    controller: controller.passwordInputController,
-                                    hintText: "Digite sua senha",
-                                    height: 6.h,
-                                    width: 75.w,
-                                    isPassword: controller.passwordFieldEnabled.value,
-                                    iconTextField: GestureDetector(
-                                      onTap: () {
-                                        controller.passwordFieldEnabled.value =
-                                        !controller.passwordFieldEnabled.value;
-                                      },
-                                      child: Icon(
-                                        controller.passwordFieldEnabled.value
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                        color: AppColors.purpleDefaultColor,
-                                        size: 2.5.h,
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 5.h),
+                                    child: Obx(
+                                      () => TextFieldWidget(
+                                        controller: controller.raInputController,
+                                        hintText: "RA",
+                                        height: 7.h,
+                                        width: 75.w,
+                                        hasError: controller.raInputHasError.value,
+                                        validator: (String? value) {
+                                          String? validation = TextFieldValidators.standardValidation(value, "Informe o RA");
+                                          if(validation != null && validation != ""){
+                                            controller.raInputHasError.value = true;
+                                          }
+                                          else{
+                                            controller.raInputHasError.value = false;
+                                          }
+                                          return validation;
+                                        },
+                                        keyboardType: TextInputType.number,
                                       ),
                                     ),
-                                    keyboardType: TextInputType.visiblePassword,
                                   ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: TextButtonWidget(
-                                    hintText: "Esqueceu a Senha?",
-                                    fontSize: 16.sp,
-                                    onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.h),
-                                  child: ButtonWidget(
-                                    hintText: "LOGAR",
-                                    fontWeight: FontWeight.bold,
-                                    widthButton: 75.w,
-                                    onPressed: () => controller.loginPressed(),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.h),
-                                  child: TextButtonWidget(
-                                    onTap: () => controller.createAccount(),
-                                    richText: RichTextTwoDifferentWidget(
-                                      firstText: "Não tem Cadastro? ",
-                                      secondText: "Clique Aqui!",
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: TextButtonWidget(
+                                      hintText: "Esqueceu o RA?",
+                                      fontSize: 16.sp,
+                                      onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 1.5.h),
+                                    child: Obx(
+                                      () => TextFieldWidget(
+                                        controller: controller.passwordInputController,
+                                        hintText: "Digite sua senha",
+                                        height: 7.h,
+                                        width: 75.w,
+                                        isPassword: controller.passwordFieldEnabled.value,
+                                        hasError: controller.passwordInputHasError.value,
+                                        validator: (String? value) {
+                                          String? validation = TextFieldValidators.passwordValidation(value);
+                                          if(validation != null && validation != ""){
+                                            controller.passwordInputHasError.value = true;
+                                          }
+                                          else{
+                                            controller.passwordInputHasError.value = false;
+                                          }
+                                          return validation;
+                                        },
+                                        iconTextField: GestureDetector(
+                                          onTap: () {
+                                            controller.passwordFieldEnabled.value =
+                                            !controller.passwordFieldEnabled.value;
+                                          },
+                                          child: Icon(
+                                            controller.passwordFieldEnabled.value
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,
+                                            color: AppColors.purpleDefaultColor,
+                                            size: 2.5.h,
+                                          ),
+                                        ),
+                                        keyboardType: TextInputType.visiblePassword,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: TextButtonWidget(
+                                      hintText: "Esqueceu a Senha?",
+                                      fontSize: 16.sp,
+                                      onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h),
+                                    child: ButtonWidget(
+                                      hintText: "LOGAR",
+                                      fontWeight: FontWeight.bold,
+                                      widthButton: 75.w,
+                                      onPressed: () => controller.loginPressed(),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.h),
+                                    child: TextButtonWidget(
+                                      onTap: () => controller.createAccount(),
+                                      richText: RichTextTwoDifferentWidget(
+                                        firstText: "Não tem Cadastro? ",
+                                        secondText: "Clique Aqui!",
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
