@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../../stylePages/app_colors.dart';
-import '../../../widgetsShared/text_widget.dart';
+import '../../../widgetsShared/button_widget.dart';
+import '../../../widgetsShared/text_field_widget.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/forgot_information_tablet_phone_controller.dart';
 
 class ForgotInformationTabletPhonePage extends StatefulWidget {
-  const ForgotInformationTabletPhonePage({Key? key}) : super(key: key);
+  final forgotInformation information;
+  const ForgotInformationTabletPhonePage({
+    Key? key,
+    required this.information,
+  }) : super(key: key);
 
   @override
   State<ForgotInformationTabletPhonePage> createState() => _ForgotInformationTabletPhonePageState();
@@ -27,8 +33,8 @@ class _ForgotInformationTabletPhonePageState extends State<ForgotInformationTabl
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return SafeArea(
+      child: Material(
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -50,71 +56,61 @@ class _ForgotInformationTabletPhonePageState extends State<ForgotInformationTabl
                     width: 25.w,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h,),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2.h,),
-                        child: TitleWithBackButtonTabletPhoneWidget(
-                          title: "Carteirinha Online",
-                        ),
-                      ),
-                      InformationContainerTabletPhoneWidget(
-                        iconPath: Paths.Icone_Exibicao_Carterinho_Online,
-                        textColor: AppColors.whiteColor,
-                        backgroundColor: AppColors.purpleDefaultColor,
-                        informationText: "Carteirinha de Estudante Online",
-                      ),
-                      Expanded(
-                        child: Padding(
+                Scaffold(
+                  backgroundColor: AppColors.transparentColor,
+                  body: Padding(
+                    padding: EdgeInsets.only(top: 2.h,),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
                           padding: EdgeInsets.symmetric(horizontal: 2.h,),
-                          child: ListView(
+                          child: TitleWithBackButtonTabletPhoneWidget(
+                            title: widget.information == forgotInformation.ra ? "Esqueceu o RA" : "Esqueceu a Senha",
+                          ),
+                        ),
+                        InformationContainerTabletPhoneWidget(
+                          iconPath: widget.information == forgotInformation.ra ? Paths.Icone_Exibicao_Esqueci_Ra : Paths.Icone_Exibicao_Esqueci_Senha,
+                          textColor: AppColors.whiteColor,
+                          backgroundColor: AppColors.purpleDefaultColor,
+                          informationText: "Informe o seu E-mail para recuperar " + (widget.information == forgotInformation.ra ? "o seu RA" : "a sua Senha"),
+                        ),
+                        Expanded(
+                          child: Column(
                             children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 2.h),
-                                child: TextWidget(
-                                  "Nome:",
-                                  textColor: AppColors.blackColor,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                                  child: TextFieldWidget(
+                                    controller: controller.emailInputController,
+                                    hintText: "Confirme o E-mail",
+                                    height: 6.h,
+                                    width: double.infinity,
+                                    keyboardType: TextInputType.emailAddress,
+                                    enableSuggestions: true,
+                                  ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 2.h),
-                                child: TextWidget(
-                                  "RA (Registro Acadêmico):",
-                                  textColor: AppColors.blackColor,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 2.h),
-                                child: TextWidget(
-                                  "Número da Carteirinha:",
-                                  textColor: AppColors.blackColor,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 2.h),
-                                child: TextWidget(
-                                  "Validade:",
-                                  textColor: AppColors.blackColor,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
+                                padding: EdgeInsets.only(left: 2.h, right: 2.h, bottom: 2.h,),
+                                child: ButtonWidget(
+                                  hintText: "ENVIAR",
+                                  fontWeight: FontWeight.bold,
+                                  widthButton: 90.w,
+                                  onPressed: () {
+                                    FocusScope.of(context).requestFocus(FocusNode());
+                                    controller.sendButtonPressed();
+                                  },
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

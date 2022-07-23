@@ -27,8 +27,8 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return SafeArea(
+      child: Material(
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());

@@ -23,14 +23,6 @@ class LoginTabletPhoneController extends GetxController {
     loadingTabletPhoneWidget= LoadingTabletPhoneWidget(loadingAnimetion: loadingAnimation);
   }
 
-  forgotRa() async {
-
-  }
-
-  forgotPassword() async {
-
-  }
-
   createAccount() async {
     await Get.to(() => RegisterUserTabletPhonePage());
   }

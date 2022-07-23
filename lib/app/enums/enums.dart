@@ -64,3 +64,8 @@ enum accountCancelation {
   noTimeToStudy,
   others,
 }
+
+enum forgotInformation {
+  ra,
+  password,
+}

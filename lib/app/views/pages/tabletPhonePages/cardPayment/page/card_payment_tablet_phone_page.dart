@@ -34,8 +34,8 @@ class _CardPaymentTabletPhonePageState extends State<CardPaymentTabletPhonePage>
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return SafeArea(
+      child: Material(
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

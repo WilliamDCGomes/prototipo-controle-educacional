@@ -3,12 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/app_close_controller.dart';
+import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../forgotInformations/page/forgot_information_tablet_phone_page.dart';
 import '../controller/login_page_tablet_phone_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 
@@ -103,7 +105,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                   child: TextButtonWidget(
                                     hintText: "Esqueceu o RA?",
                                     fontSize: 16.sp,
-                                    onTap: () => controller.forgotRa(),
+                                    onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
                                   ),
                                 ),
                                 Padding(
@@ -136,7 +138,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                   child: TextButtonWidget(
                                     hintText: "Esqueceu a Senha?",
                                     fontSize: 16.sp,
-                                    onTap: () => controller.forgotPassword(),
+                                    onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
                                   ),
                                 ),
                                 Padding(

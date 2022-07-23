@@ -34,8 +34,8 @@ class _AcademicDetailsTabletPhonePageState extends State<AcademicDetailsTabletPh
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return SafeArea(
+      child: Material(
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

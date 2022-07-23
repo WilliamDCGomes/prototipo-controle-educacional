@@ -4,8 +4,8 @@ import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
-import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controllers/register_user_tablet_phone_controller.dart';
 
 class RegisterUserTabletPhonePage extends StatefulWidget {
@@ -59,31 +59,9 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                       body: Column(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h,),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextButtonWidget(
-                                  onTap: () => controller.backArrowButtonPressed(),
-                                  widgetCustom: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: AppColors.purpleDefaultColor,
-                                    size: 3.h,
-                                  ),
-                                  componentAlignment: Alignment.centerLeft,
-                                  componentPadding: EdgeInsets.zero,
-                                  width: 3.h,
-                                ),
-                                TextWidget(
-                                  "Cadastro",
-                                  textColor: AppColors.purpleDefaultColor,
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                SizedBox(
-                                  width: 2.h,
-                                ),
-                              ],
+                            padding: EdgeInsets.symmetric(horizontal: 2.h,),
+                            child: TitleWithBackButtonTabletPhoneWidget(
+                              title: "Cadastro",
                             ),
                           ),
                           Expanded(

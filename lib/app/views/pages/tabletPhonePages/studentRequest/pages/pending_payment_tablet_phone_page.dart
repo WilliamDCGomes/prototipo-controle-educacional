@@ -20,8 +20,8 @@ class PendingPaymentTabletPhonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return SafeArea(
+      child: Material(
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

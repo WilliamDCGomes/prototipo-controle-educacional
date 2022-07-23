@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -12,7 +13,8 @@ class BottomSheetTabletPhonePopup {
       maxHeight: 1,
       context: context,
       builder: (context, scrollControlle, bottomSheerOffser){
-        return Material(
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             color: AppColors.whiteColor,
             padding: EdgeInsets.all(2.h),
