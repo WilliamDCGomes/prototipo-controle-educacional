@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/pin_put_widget.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_field_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/text_field_validators.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../controllers/register_user_tablet_phone_controller.dart';
@@ -32,244 +33,399 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
           // Entrys da primeira stepper
           Visibility(
             visible: widget.indexView == 0,
-            child: Column(
-              children: [
-                TextFieldWidget(
-                  controller: widget.controller.nameTextController,
-                  hintText: "Nome",
-                  height: 6.h,
-                  width: double.infinity,
-                  keyboardType: TextInputType.name,
-                  enableSuggestions: true,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.birthDateTextController,
-                    hintText: "Data de Nascimento",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.number,
-                    maskTextInputFormatter: MasksForTextFields.birthDateMask,
+            child: Form(
+              key: widget.controller.formKeyPersonalInformation,
+              child: Column(
+                children: [
+                  Obx(
+                    () => TextFieldWidget(
+                      controller: widget.controller.nameTextController,
+                      hintText: "Nome",
+                      height: 7.h,
+                      width: double.infinity,
+                      keyboardType: TextInputType.name,
+                      enableSuggestions: true,
+                      hasError: widget.controller.nameInputHasError.value,
+                      validator: (String? value) {
+                        String? validation = TextFieldValidators.standardValidation(value, "Informe o seu Nome");
+                        if(validation != null && validation != ""){
+                          widget.controller.nameInputHasError.value = true;
+                        }
+                        else{
+                          widget.controller.nameInputHasError.value = false;
+                        }
+                        return validation;
+                      },
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.cpfTextController,
-                    hintText: "CPF",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.number,
-                    maskTextInputFormatter: MasksForTextFields.cpfMask,
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.birthDateTextController,
+                        hintText: "Data de Nascimento",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.number,
+                        maskTextInputFormatter: MasksForTextFields.birthDateMask,
+                        hasError: widget.controller.birthdayInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.birthDayValidation(value, "de Nascimento");
+                          if(validation != null && validation != ""){
+                            widget.controller.birthdayInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.birthdayInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.cpfTextController,
+                        hintText: "CPF",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.number,
+                        maskTextInputFormatter: MasksForTextFields.cpfMask,
+                        hasError: widget.controller.cpfInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.cpfValidation(value);
+                          if(validation != null && validation != ""){
+                            widget.controller.cpfInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.cpfInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
           // Entrys da segunda stepper
           Visibility(
             visible: widget.indexView == 1,
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: .5.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.cepTextController,
-                    hintText: "Cep",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.number,
-                    maskTextInputFormatter: MasksForTextFields.cepMask,
+            child: Form(
+              key: widget.controller.formKeyAddressInformation,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: .5.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.cepTextController,
+                        hintText: "Cep",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.number,
+                        maskTextInputFormatter: MasksForTextFields.cepMask,
+                        hasError: widget.controller.cepInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.minimumNumberValidation(value, 9, "Cep");
+                          if(validation != null && validation != ""){
+                            widget.controller.cepInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.cepInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                      ),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: Obx(() => SizedBox(
-                    height: 5.6.h,
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => SizedBox(
+                        height: 7.h,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right: 2.w,
+                                bottom: 1.7.h,
+                              ),
+                              child: DropdownButtonWidget(
+                                itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
+                                hintText: "Uf",
+                                height: 5.h,
+                                width: 23.w,
+                                rxListItems: widget.controller.ufsList,
+                                onChanged: (selectedState) {
+                                  widget.controller.ufSelected.value = selectedState ?? "";
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: TextFieldWidget(
+                                controller: widget.controller.cityTextController,
+                                hintText: "Cidade",
+                                height: 7.h,
+                                keyboardType: TextInputType.name,
+                                enableSuggestions: true,
+                                hasError: widget.controller.cityInputHasError.value,
+                                validator: (String? value) {
+                                  String? validation = TextFieldValidators.standardValidation(value, "Informe a Cidade");
+                                  if(validation != null && validation != ""){
+                                    widget.controller.cityInputHasError.value = true;
+                                  }
+                                  else{
+                                    widget.controller.cityInputHasError.value = false;
+                                  }
+                                  return validation;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 2.w
-                          ),
-                          child: DropdownButtonWidget(
-                            itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
-                            hintText: "Uf",
-                            height: 6.h,
-                            width: 23.w,
-                            rxListItems: widget.controller.ufsList,
-                            onChanged: (selectedState) {
-                              widget.controller.ufSelected.value = selectedState ?? "";
-                            },
+                        Expanded(
+                          child: Obx(
+                            () => TextFieldWidget(
+                              controller: widget.controller.streetTextController,
+                              hintText: "Logradouro",
+                              height: 7.h,
+                              keyboardType: TextInputType.streetAddress,
+                              enableSuggestions: true,
+                              hasError: widget.controller.streetInputHasError.value,
+                              validator: (String? value) {
+                                String? validation = TextFieldValidators.standardValidation(value, "Informe o Logradouro");
+                                if(validation != null && validation != ""){
+                                  widget.controller.streetInputHasError.value = true;
+                                }
+                                else{
+                                  widget.controller.streetInputHasError.value = false;
+                                }
+                                return validation;
+                              },
+                            ),
                           ),
                         ),
-                        Expanded(
+                        Padding(
+                          padding: EdgeInsets.only(left: 2.w),
                           child: TextFieldWidget(
-                            controller: widget.controller.cityTextController,
-                            hintText: "Cidade",
-                            height: 6.h,
-                            keyboardType: TextInputType.name,
-                            enableSuggestions: true,
+                            controller: widget.controller.houseNumberTextController,
+                            hintText: "Nº",
+                            height: 7.h,
+                            width: 20.w,
+                            keyboardType: TextInputType.number,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: TextFieldWidget(
-                          controller: widget.controller.streetTextController,
-                          hintText: "Logradouro",
-                          height: 6.h,
-                          keyboardType: TextInputType.streetAddress,
-                          enableSuggestions: true,
-                        ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.neighborhoodTextController,
+                        hintText: "Bairro",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.name,
+                        enableSuggestions: true,
+                        hasError: widget.controller.neighborhoodInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.standardValidation(value, "Informe o Bairro");
+                          if(validation != null && validation != ""){
+                            widget.controller.neighborhoodInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.neighborhoodInputHasError.value = false;
+                          }
+                          return validation;
+                        },
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 2.w),
-                        child: TextFieldWidget(
-                          controller: widget.controller.houseNumberTextController,
-                          hintText: "Nº",
-                          height: 6.h,
-                          width: 20.w,
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.neighborhoodTextController,
-                    hintText: "Bairro",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.name,
-                    enableSuggestions: true,
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.complementTextController,
+                      hintText: "Complemento",
+                      height: 7.h,
+                      width: double.infinity,
+                      keyboardType: TextInputType.text,
+                      enableSuggestions: true,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.complementTextController,
-                    hintText: "Complemento",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.text,
-                    enableSuggestions: true,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
           // Entrys da terceira stepper
           Visibility(
             visible: widget.indexView == 2,
-            child: Column(
-              children: [
-                TextFieldWidget(
-                  controller: widget.controller.institutionTextController,
-                  hintText: "Instituição",
-                  height: 6.h,
-                  width: double.infinity,
-                  keyboardType: TextInputType.name,
-                  enableSuggestions: true,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.courseTextController,
-                    hintText: "Curso",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.name,
-                    enableSuggestions: true,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: Obx(
-                    () => Row(
-                      children: [
-                        Expanded(
-                          child: DropdownButtonWidget(
-                            itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
-                            hintText: "Período",
-                            height: 5.6.h,
-                            listItems: widget.controller.periodList,
-                            onChanged: (selectedPeriod) {
-                              widget.controller.periodSelected.value = selectedPeriod ?? "";
-                            },
-                          ),
-                        ),
-                      ],
+            child: Form(
+              key: widget.controller.formKeySchoolInformation,
+              child: Column(
+                children: [
+                  Obx(
+                    () => TextFieldWidget(
+                      controller: widget.controller.institutionTextController,
+                      hintText: "Instituição",
+                      height: 7.h,
+                      width: double.infinity,
+                      keyboardType: TextInputType.name,
+                      enableSuggestions: true,
+                      hasError: widget.controller.schoolNameInputHasError.value,
+                      validator: (String? value) {
+                        String? validation = TextFieldValidators.standardValidation(value, "Informe o Nome da Instituição");
+                        if(validation != null && validation != ""){
+                          widget.controller.schoolNameInputHasError.value = true;
+                        }
+                        else{
+                          widget.controller.schoolNameInputHasError.value = false;
+                        }
+                        return validation;
+                      },
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.courseTextController,
+                        hintText: "Curso",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.name,
+                        enableSuggestions: true,
+                        hasError: widget.controller.courseInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.standardValidation(value, "Informe o Nome do Curso");
+                          if(validation != null && validation != ""){
+                            widget.controller.courseInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.courseInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButtonWidget(
+                              itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
+                              hintText: "Período",
+                              height: 5.6.h,
+                              listItems: widget.controller.periodList,
+                              onChanged: (selectedPeriod) {
+                                widget.controller.periodSelected.value = selectedPeriod ?? "";
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
           // Entrys da quarta stepper
           Visibility(
             visible: widget.indexView == 3,
-            child: Column(
-              children: [
-                TextFieldWidget(
-                  controller: widget.controller.phoneTextController,
-                  hintText: "Telefone",
-                  height: 6.h,
-                  width: double.infinity,
-                  keyboardType: TextInputType.phone,
-                  maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.cellPhoneTextController,
-                    hintText: "Celular",
-                    height: 6.h,
+            child: Form(
+              key: widget.controller.formKeyContactInformation,
+              child: Column(
+                children: [
+                  TextFieldWidget(
+                    controller: widget.controller.phoneTextController,
+                    hintText: "Telefone",
+                    height: 7.h,
                     width: double.infinity,
                     keyboardType: TextInputType.phone,
-                    maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
-
-                    onChanged: (cellPhoneTyped) => widget.controller.phoneTextFieldEdited(cellPhoneTyped),
+                    maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.emailTextController,
-                    hintText: "E-mail",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.emailAddress,
-                    enableSuggestions: true,
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: TextFieldWidget(
+                      controller: widget.controller.cellPhoneTextController,
+                      hintText: "Celular",
+                      height: 7.h,
+                      width: double.infinity,
+                      keyboardType: TextInputType.phone,
+                      maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
+                      onChanged: (cellPhoneTyped) => widget.controller.phoneTextFieldEdited(cellPhoneTyped),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: TextFieldWidget(
-                    controller: widget.controller.confirmEmailTextController,
-                    hintText: "Confirme o E-mail",
-                    height: 6.h,
-                    width: double.infinity,
-                    keyboardType: TextInputType.emailAddress,
-                    enableSuggestions: true,
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.emailTextController,
+                        hintText: "E-mail",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.emailAddress,
+                        enableSuggestions: true,
+                        hasError: widget.controller.emailInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.emailValidation(value);
+                          if(validation != null && validation != ""){
+                            widget.controller.emailInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.emailInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.confirmEmailTextController,
+                        hintText: "Confirme o E-mail",
+                        height: 7.h,
+                        width: double.infinity,
+                        keyboardType: TextInputType.emailAddress,
+                        enableSuggestions: true,
+                        hasError: widget.controller.confirmEmailInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.emailConfirmationValidation(widget.controller.emailTextController.text, value);
+                          if(validation != null && validation != ""){
+                            widget.controller.confirmEmailInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.confirmEmailInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -304,54 +460,83 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
           // Entrys da sétima stepper
           Visibility(
             visible: widget.indexView == 6,
-            child: Column(
-              children: [
-                Obx(() => TextFieldWidget(
-                  controller: widget.controller.passwordTextController,
-                  hintText: "Senha",
-                  height: 6.h,
-                  width: double.infinity,
-                  isPassword: widget.controller.passwordFieldEnabled.value,
-                  iconTextField: GestureDetector(
-                    onTap: () {
-                      widget.controller.passwordFieldEnabled.value =
-                      !widget.controller.passwordFieldEnabled.value;
-                    },
-                    child: Icon(
-                      widget.controller.passwordFieldEnabled.value
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: AppColors.purpleDefaultColor,
-                      size: 2.5.h,
+            child: Form(
+              key: widget.controller.formKeyPasswordInformation,
+              child: Column(
+                children: [
+                  Obx(
+                    () => TextFieldWidget(
+                      controller: widget.controller.passwordTextController,
+                      hintText: "Senha",
+                      height: 7.h,
+                      width: double.infinity,
+                      hasError: widget.controller.passwordInputHasError.value,
+                      validator: (String? value) {
+                        String? validation = TextFieldValidators.passwordValidation(value);
+                        if(validation != null && validation != ""){
+                          widget.controller.passwordInputHasError.value = true;
+                        }
+                        else{
+                          widget.controller.passwordInputHasError.value = false;
+                        }
+                        return validation;
+                      },
+                      isPassword: widget.controller.passwordFieldEnabled.value,
+                      iconTextField: GestureDetector(
+                        onTap: () {
+                          widget.controller.passwordFieldEnabled.value =
+                          !widget.controller.passwordFieldEnabled.value;
+                        },
+                        child: Icon(
+                          widget.controller.passwordFieldEnabled.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: AppColors.purpleDefaultColor,
+                          size: 2.5.h,
+                        ),
+                      ),
+                      keyboardType: TextInputType.visiblePassword,
                     ),
                   ),
-                  keyboardType: TextInputType.visiblePassword,
-                )),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.h),
-                  child: Obx(() => TextFieldWidget(
-                    controller: widget.controller.confirmPasswordTextController,
-                    hintText: "Confirme a Senha",
-                    height: 6.h,
-                    width: double.infinity,
-                    isPassword: widget.controller.confirmPasswordFieldEnabled.value,
-                    iconTextField: GestureDetector(
-                      onTap: () {
-                        widget.controller.confirmPasswordFieldEnabled.value =
-                        !widget.controller.confirmPasswordFieldEnabled.value;
-                      },
-                      child: Icon(
-                        widget.controller.confirmPasswordFieldEnabled.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: AppColors.purpleDefaultColor,
-                        size: 2.5.h,
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.h),
+                    child: Obx(
+                      () => TextFieldWidget(
+                        controller: widget.controller.confirmPasswordTextController,
+                        hintText: "Confirme a Senha",
+                        height: 7.h,
+                        width: double.infinity,
+                        hasError: widget.controller.confirmPasswordInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.confirmPasswordValidation(widget.controller.passwordTextController.text, value);
+                          if(validation != null && validation != ""){
+                            widget.controller.confirmPasswordInputHasError.value = true;
+                          }
+                          else{
+                            widget.controller.confirmPasswordInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                        isPassword: widget.controller.confirmPasswordFieldEnabled.value,
+                        iconTextField: GestureDetector(
+                          onTap: () {
+                            widget.controller.confirmPasswordFieldEnabled.value =
+                            !widget.controller.confirmPasswordFieldEnabled.value;
+                          },
+                          child: Icon(
+                            widget.controller.confirmPasswordFieldEnabled.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.purpleDefaultColor,
+                            size: 2.5.h,
+                          ),
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
                       ),
                     ),
-                    keyboardType: TextInputType.visiblePassword,
-                  )),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

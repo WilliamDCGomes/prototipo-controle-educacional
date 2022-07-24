@@ -16,9 +16,27 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimetion;
   late RxBool confirmPasswordFieldEnabled;
+  late RxBool nameInputHasError;
+  late RxBool birthdayInputHasError;
+  late RxBool cpfInputHasError;
+  late RxBool cepInputHasError;
+  late RxBool cityInputHasError;
+  late RxBool streetInputHasError;
+  late RxBool neighborhoodInputHasError;
+  late RxBool schoolNameInputHasError;
+  late RxBool courseInputHasError;
+  late RxBool emailInputHasError;
+  late RxBool confirmEmailInputHasError;
+  late RxBool passwordInputHasError;
+  late RxBool confirmPasswordInputHasError;
   late RxString ufSelected;
   late RxString periodSelected;
   late RxList<String> ufsList;
+  late final GlobalKey<FormState> formKeyPersonalInformation;
+  late final GlobalKey<FormState> formKeyAddressInformation;
+  late final GlobalKey<FormState> formKeySchoolInformation;
+  late final GlobalKey<FormState> formKeyContactInformation;
+  late final GlobalKey<FormState> formKeyPasswordInformation;
   late MaskTextInputFormatter maskCellPhoneFormatter;
   late TextEditingController nameTextController;
   late TextEditingController birthDateTextController;
@@ -61,6 +79,19 @@ class RegisterUserTabletPhoneController extends GetxController {
     loadingAnimetion = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
+    nameInputHasError = false.obs;
+    birthdayInputHasError = false.obs;
+    cpfInputHasError = false.obs;
+    cepInputHasError = false.obs;
+    cityInputHasError = false.obs;
+    streetInputHasError = false.obs;
+    neighborhoodInputHasError = false.obs;
+    schoolNameInputHasError = false.obs;
+    courseInputHasError = false.obs;
+    emailInputHasError = false.obs;
+    confirmEmailInputHasError = false.obs;
+    passwordInputHasError = false.obs;
+    confirmPasswordInputHasError = false.obs;
     ufsList = [""].obs;
     periodList = [
       "Matutino",
@@ -69,6 +100,11 @@ class RegisterUserTabletPhoneController extends GetxController {
       "Integral",
     ];
     maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
+    formKeyPersonalInformation = GlobalKey<FormState>();
+    formKeyAddressInformation = GlobalKey<FormState>();
+    formKeySchoolInformation = GlobalKey<FormState>();
+    formKeyContactInformation = GlobalKey<FormState>();
+    formKeyPasswordInformation = GlobalKey<FormState>();
     nameTextController = TextEditingController();
     birthDateTextController = TextEditingController();
     cpfTextController = TextEditingController();
@@ -174,6 +210,42 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   nextButtonPressed(){
+    switch(activeStep.value){
+      case 0:
+        if(formKeyPersonalInformation.currentState!.validate()){
+          _nextPage();
+        }
+        break;
+      case 1:
+        if(formKeyAddressInformation.currentState!.validate()){
+          _nextPage();
+        }
+        break;
+      case 2:
+        if(formKeySchoolInformation.currentState!.validate()){
+          _nextPage();
+        }
+        break;
+      case 3:
+        if(formKeyContactInformation.currentState!.validate()){
+          _nextPage();
+        }
+        break;
+      case 4:
+        _nextPage();
+        break;
+      case 5:
+        _nextPage();
+        break;
+      case 6:
+        if(formKeyPasswordInformation.currentState!.validate()){
+          _nextPage();
+        }
+        break;
+    }
+  }
+
+  _nextPage(){
     if(activeStep.value < 6)
       activeStep.value ++;
     else{

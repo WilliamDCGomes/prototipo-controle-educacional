@@ -7,6 +7,8 @@ import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.d
 class ForgotInformationTabletPhoneController extends GetxController {
   late TextEditingController emailInputController;
   late RxBool loadingAnimetion;
+  late RxBool emailInputHasError;
+  late final GlobalKey<FormState> formKey;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
 
   ForgotInformationTabletPhoneController(){
@@ -16,24 +18,28 @@ class ForgotInformationTabletPhoneController extends GetxController {
   _inicializeVariables(){
     emailInputController = TextEditingController();
     loadingAnimetion = false.obs;
+    emailInputHasError = false.obs;
+    formKey = GlobalKey<FormState>();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimetion: loadingAnimetion,
     );
   }
 
   sendButtonPressed() async {
-    loadingAnimetion.value = true;
-    await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
-    await Future.delayed(Duration(milliseconds: 500));
-    await showDialog(
-      context: Get.context!,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return InformationTabletPhonePopup(
-          warningMessage: "Enviamos em seu E-mail as instruções para recuperar sua conta.",
-        );
-      },
-    );
-    await Get.offAll(() => LoginPageTabletPhone());
+    if(formKey.currentState!.validate()){
+      loadingAnimetion.value = true;
+      await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+      await Future.delayed(Duration(milliseconds: 500));
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Enviamos em seu E-mail as instruções para recuperar sua conta.",
+          );
+        },
+      );
+      await Get.offAll(() => LoginPageTabletPhone());
+    }
   }
 }

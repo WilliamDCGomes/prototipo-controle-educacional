@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/text_field_validators.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -81,13 +82,29 @@ class _ForgotInformationTabletPhonePageState extends State<ForgotInformationTabl
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 2.h,),
-                                  child: TextFieldWidget(
-                                    controller: controller.emailInputController,
-                                    hintText: "Confirme o E-mail",
-                                    height: 6.h,
-                                    width: double.infinity,
-                                    keyboardType: TextInputType.emailAddress,
-                                    enableSuggestions: true,
+                                  child: Form(
+                                    key: controller.formKey,
+                                    child: Obx(
+                                      () => TextFieldWidget(
+                                        controller: controller.emailInputController,
+                                        hintText: "Informe o E-mail",
+                                        height: 6.h,
+                                        width: double.infinity,
+                                        keyboardType: TextInputType.emailAddress,
+                                        enableSuggestions: true,
+                                        hasError: controller.emailInputHasError.value,
+                                        validator: (String? value) {
+                                          String? validation = TextFieldValidators.emailValidation(value);
+                                          if(validation != null && validation != ""){
+                                            controller.emailInputHasError.value = true;
+                                          }
+                                          else{
+                                            controller.emailInputHasError.value = false;
+                                          }
+                                          return validation;
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
