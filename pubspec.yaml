@@ -25,11 +25,15 @@ dependencies:
   flutter_svg: ^1.0.3
   reorderables: ^0.5.0
   bottom_sheet: ^3.1.1
+  firebase_auth: ^3.5.0
+  firebase_core: ^1.20.0
   carousel_slider: ^4.1.1
+  cloud_firestore: ^3.4.0
   cupertino_icons: ^1.0.4
   email_validator: ^2.0.1
   qr_code_scanner: ^1.0.0
   responsive_sizer: ^3.0.8
+  firebase_storage: ^10.3.3
   flutter_flavorizr: ^2.1.3
   shared_preferences: ^2.0.15
   font_awesome_flutter: ^10.1.0
@@ -83,23 +87,23 @@ flavorizr:
       app:
         name: "PCE DEV"
       android:
-        applicationId: "com.trabalhotcc.prototipo_controle_educacional_dev"
+        applicationId: "com.prototipo_controle_educacional_dev"
       ios:
-        bundleId: "com.trabalhotcc.prototipo_controle_educacional_dev"
+        bundleId: "com.prototipo_controle_educacional_dev"
     hmlg:
       app:
         name: "PCE HMLG"
       android:
-        applicationId: "com.trabalhotcc.prototipo_controle_educacional_hmlg"
+        applicationId: "com.prototipo_controle_educacional_hmlg"
       ios:
-        bundleId: "com.trabalhotcc.prototipo_controle_educacional_hmlg"
+        bundleId: "com.prototipo_controle_educacional_hmlg"
     prod:
       app:
         name: "PCE"
       android:
-        applicationId: "com.trabalhotcc.prototipo_controle_educacional"
+        applicationId: "com.prototipo_controle_educacional"
       ios:
-        bundleId: "com.trabalhotcc.prototipo_controle_educacional"
+        bundleId: "com.prototipo_controle_educacional"
 
   flutter_lints: ^1.0.0
 

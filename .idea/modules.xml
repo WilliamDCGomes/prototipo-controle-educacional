@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/projeto_tcc.iml" filepath="$PROJECT_DIR$/.idea/projeto_tcc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/projeto_tcc_android.iml" filepath="$PROJECT_DIR$/android/projeto_tcc_android.iml" />
     </modules>
   </component>
 </project>

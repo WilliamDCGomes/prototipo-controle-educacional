@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "953351580847",
+    "project_id": "pce-project-43477",
+    "storage_bucket": "pce-project-43477.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953351580847:android:828f2a036d99560d19b85a",
+        "android_client_info": {
+          "package_name": "com.prototipo_controle_educacional"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953351580847-ok2dkcl0e26ckd01fv2slfb8l01g9g8k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prototipo_controle_educacional",
+            "certificate_hash": "34cf02b3e098f3fba3ffa7f83495a0554386720f"
+          }
+        },
+        {
+          "client_id": "953351580847-rmflqtagq0m5n1qcev3mvgekcgtc9shm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIT3aGM1W_i9U31WadGMVPK6_0NEf3pyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953351580847-rmflqtagq0m5n1qcev3mvgekcgtc9shm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
