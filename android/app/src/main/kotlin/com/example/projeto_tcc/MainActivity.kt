@@ -1,4 +1,4 @@
-package com.example.projeto_tcc
+package com.trabalhotcc.prototipo_controle_educacional
 
 import io.flutter.embedding.android.FlutterActivity
 
