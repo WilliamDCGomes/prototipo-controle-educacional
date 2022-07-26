@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../controller/user_profile_tablet_phone_controller.dart';
@@ -33,7 +34,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.phoneTextController,
                 hintText: "Telefone",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.phone,
                 maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
@@ -41,11 +42,11 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cellPhoneTextController,
                 hintText: "Celular",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.phone,
                 maskTextInputFormatter: _userProfileTabletPhoneController.maskCellPhoneFormatter,
@@ -54,11 +55,11 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.emailTextController,
                 hintText: "E-mail",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.emailAddress,
                 enableSuggestions: true,
@@ -66,11 +67,11 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.confirmEmailTextController,
                 hintText: "Confirme o E-mail",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.emailAddress,
                 enableSuggestions: true,

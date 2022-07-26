@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -34,7 +35,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cepTextController,
                 hintText: "Cep",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 maskTextInputFormatter: MasksForTextFields.cepMask,
@@ -42,15 +43,17 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: SizedBox(
-                height: 5.6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 2.w
+                      padding: EdgeInsets.only(
+                        right: 2.w,
+                        bottom: PlatformType.isTablet(context) ? 1.7.h : 2.6.h,
                       ),
                       child: DropdownButtonWidget(
                         itemSelected: _userProfileTabletPhoneController.ufSelected.value == "" ? null : _userProfileTabletPhoneController.ufSelected.value,
@@ -68,7 +71,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                       child: TextFieldWidget(
                         controller: _userProfileTabletPhoneController.cityTextController,
                         hintText: "Cidade",
-                        height: 6.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         keyboardType: TextInputType.name,
                         enableSuggestions: true,
                         justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -79,7 +82,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -87,7 +90,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                     child: TextFieldWidget(
                       controller: _userProfileTabletPhoneController.streetTextController,
                       hintText: "Logradouro",
-                      height: 6.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       keyboardType: TextInputType.streetAddress,
                       enableSuggestions: true,
                       justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -98,7 +101,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                     child: TextFieldWidget(
                       controller: _userProfileTabletPhoneController.houseNumberTextController,
                       hintText: "Nº",
-                      height: 6.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       width: 20.w,
                       keyboardType: TextInputType.number,
                       justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -108,11 +111,11 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.neighborhoodTextController,
                 hintText: "Bairro",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
@@ -120,11 +123,11 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.complementTextController,
                 hintText: "Complemento",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.text,
                 enableSuggestions: true,

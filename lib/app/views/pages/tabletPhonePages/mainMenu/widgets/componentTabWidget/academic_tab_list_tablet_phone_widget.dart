@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../helpers/platform_type.dart';
 import '../../../../widgetsShared/text_field_widget.dart';
 import '../../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../../helpers/reorderer_lists.dart';
@@ -35,7 +36,7 @@ class _AcademicTabListTabletPhoneWidgetState extends State<AcademicTabListTablet
                 widget.controller.deliveriesSearchController,
               hintText: widget.academicTabType == academicTabs.curriculum ?
                 "Pesquisar Matéria" : "Pesquisar Trabalho",
-              height: 6.h,
+              height: PlatformType.isTablet(context) ? 7.h : 8.h,
               width: double.infinity,
               iconTextField: Icon(
                 Icons.search,

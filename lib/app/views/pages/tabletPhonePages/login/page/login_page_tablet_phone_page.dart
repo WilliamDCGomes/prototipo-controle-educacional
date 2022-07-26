@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/app_close_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
@@ -95,78 +96,96 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 5.h),
-                                    child: Obx(
-                                      () => TextFieldWidget(
-                                        controller: controller.raInputController,
-                                        hintText: "RA",
-                                        height: 7.h,
-                                        width: 75.w,
-                                        hasError: controller.raInputHasError.value,
-                                        validator: (String? value) {
-                                          String? validation = TextFieldValidators.standardValidation(value, "Informe o RA");
-                                          if(validation != null && validation != ""){
-                                            controller.raInputHasError.value = true;
-                                          }
-                                          else{
-                                            controller.raInputHasError.value = false;
-                                          }
-                                          return validation;
-                                        },
-                                        keyboardType: TextInputType.number,
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: TextButtonWidget(
-                                      hintText: "Esqueceu o RA?",
-                                      fontSize: 16.sp,
-                                      onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
+                                    child: Stack(
+                                      children: [
+                                        Obx(
+                                          () => TextFieldWidget(
+                                            controller: controller.raInputController,
+                                            hintText: "RA",
+                                            height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                            width: double.infinity,
+                                            hasError: controller.raInputHasError.value,
+                                            validator: (String? value) {
+                                              String? validation = TextFieldValidators.standardValidation(value, "Informe o RA");
+                                              if(validation != null && validation != ""){
+                                                controller.raInputHasError.value = true;
+                                              }
+                                              else{
+                                                controller.raInputHasError.value = false;
+                                              }
+                                              return validation;
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 6.h),
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: TextButtonWidget(
+                                              hintText: "Esqueceu o RA?",
+                                              fontSize: 16.sp,
+                                              height: 3.5.h,
+                                              componentPadding: EdgeInsets.zero,
+                                              onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 1.5.h),
-                                    child: Obx(
-                                      () => TextFieldWidget(
-                                        controller: controller.passwordInputController,
-                                        hintText: "Digite sua senha",
-                                        height: 7.h,
-                                        width: 75.w,
-                                        isPassword: controller.passwordFieldEnabled.value,
-                                        hasError: controller.passwordInputHasError.value,
-                                        validator: (String? value) {
-                                          String? validation = TextFieldValidators.passwordValidation(value);
-                                          if(validation != null && validation != ""){
-                                            controller.passwordInputHasError.value = true;
-                                          }
-                                          else{
-                                            controller.passwordInputHasError.value = false;
-                                          }
-                                          return validation;
-                                        },
-                                        iconTextField: GestureDetector(
-                                          onTap: () {
-                                            controller.passwordFieldEnabled.value =
-                                            !controller.passwordFieldEnabled.value;
-                                          },
-                                          child: Icon(
-                                            controller.passwordFieldEnabled.value
-                                                ? Icons.visibility_off
-                                                : Icons.visibility,
-                                            color: AppColors.purpleDefaultColor,
-                                            size: 2.5.h,
+                                    child: Stack(
+                                      children: [
+                                        Obx(
+                                          () => TextFieldWidget(
+                                            controller: controller.passwordInputController,
+                                            hintText: "Digite sua senha",
+                                            height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                            width: double.infinity,
+                                            isPassword: controller.passwordFieldEnabled.value,
+                                            hasError: controller.passwordInputHasError.value,
+                                            validator: (String? value) {
+                                              String? validation = TextFieldValidators.passwordValidation(value);
+                                              if(validation != null && validation != ""){
+                                                controller.passwordInputHasError.value = true;
+                                              }
+                                              else{
+                                                controller.passwordInputHasError.value = false;
+                                              }
+                                              return validation;
+                                            },
+                                            iconTextField: GestureDetector(
+                                              onTap: () {
+                                                controller.passwordFieldEnabled.value =
+                                                !controller.passwordFieldEnabled.value;
+                                              },
+                                              child: Icon(
+                                                controller.passwordFieldEnabled.value
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                                color: AppColors.purpleDefaultColor,
+                                                size: 2.5.h,
+                                              ),
+                                            ),
+                                            keyboardType: TextInputType.visiblePassword,
                                           ),
                                         ),
-                                        keyboardType: TextInputType.visiblePassword,
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: TextButtonWidget(
-                                      hintText: "Esqueceu a Senha?",
-                                      fontSize: 16.sp,
-                                      onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 6.h),
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: TextButtonWidget(
+                                              hintText: "Esqueceu a Senha?",
+                                              fontSize: 16.sp,
+                                              height: 3.5.h,
+                                              componentPadding: EdgeInsets.zero,
+                                              onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Padding(

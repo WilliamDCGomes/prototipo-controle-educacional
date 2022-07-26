@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../../helpers/text_field_validators.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
@@ -88,7 +89,7 @@ class _ForgotInformationTabletPhonePageState extends State<ForgotInformationTabl
                                       () => TextFieldWidget(
                                         controller: controller.emailInputController,
                                         hintText: "Informe o E-mail",
-                                        height: 6.h,
+                                        height: PlatformType.isTablet(context) ? 6.h : 7.h,
                                         width: double.infinity,
                                         keyboardType: TextInputType.emailAddress,
                                         enableSuggestions: true,

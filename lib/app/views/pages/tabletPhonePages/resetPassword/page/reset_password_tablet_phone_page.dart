@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -86,7 +87,7 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                                         () => TextFieldWidget(
                                           controller: controller.oldPasswordInput,
                                           hintText: "Senha Atual",
-                                          height: 6.h,
+                                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                           width: double.infinity,
                                           isPassword: controller.oldPasswordVisible.value,
                                           iconTextField: GestureDetector(
@@ -107,12 +108,12 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: Obx(
                                         () => TextFieldWidget(
                                           controller: controller.newPasswordInput,
                                           hintText: "Nova Senha",
-                                          height: 6.h,
+                                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                           width: double.infinity,
                                           isPassword: controller.newPasswordVisible.value,
                                           iconTextField: GestureDetector(
@@ -133,12 +134,12 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: Obx(
                                         () => TextFieldWidget(
                                           controller: controller.confirmNewPasswordInput,
                                           hintText: "Confirmar Nova Senha",
-                                          height: 6.h,
+                                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                           width: double.infinity,
                                           isPassword: controller.confirmNewPasswordVisible.value,
                                           iconTextField: GestureDetector(

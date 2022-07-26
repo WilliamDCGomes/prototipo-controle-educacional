@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../controller/user_profile_tablet_phone_controller.dart';
@@ -33,7 +34,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.nameTextController,
                 hintText: "Nome",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
@@ -41,22 +42,22 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.raTextController,
                 hintText: "RA",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.birthDateTextController,
                 hintText: "Data de Nascimento",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 maskTextInputFormatter: MasksForTextFields.birthDateMask,
@@ -64,11 +65,11 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 3.h),
+              padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cpfTextController,
                 hintText: "CPF",
-                height: 6.h,
+                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 maskTextInputFormatter: MasksForTextFields.cpfMask,

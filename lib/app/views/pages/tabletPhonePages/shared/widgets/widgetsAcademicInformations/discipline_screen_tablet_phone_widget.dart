@@ -73,7 +73,7 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
             child: TextFieldWidget(
               controller: searchDisciplineController,
               hintText: "Pesquise a Disciplina",
-              height: 6.h,
+              height: PlatformType.isTablet(context) ? 7.h : 8.h,
               width: double.infinity,
               iconTextField: Icon(
                 Icons.search,

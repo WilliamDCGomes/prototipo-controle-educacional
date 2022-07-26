@@ -216,18 +216,18 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                       child: TextFieldWidget(
                                         controller: controller.cardNickname,
                                         hintText: "Apelido do Cartão",
-                                        height: 6.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                         keyboardType: TextInputType.name,
                                         enableSuggestions: true,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: TextFieldWidget(
                                         controller: controller.cardNumber,
                                         focusNode: controller.numberCardFocus,
                                         hintText: "Número do Cartão",
-                                        height: 6.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                         keyboardType: TextInputType.number,
                                         enableSuggestions: true,
                                         onChanged: (value) => controller.numberCardEditing(value),
@@ -235,19 +235,19 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: TextFieldWidget(
                                         controller: controller.nameInCard,
                                         focusNode: controller.nameCardFocus,
                                         hintText: "Nome no Cartão",
-                                        height: 6.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                         keyboardType: TextInputType.name,
                                         enableSuggestions: true,
                                         onChanged: (value) => controller.nameCardEditing(value),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -256,7 +256,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                               controller: controller.dueDate,
                                               focusNode: controller.dueDateFocus,
                                               hintText: "Data de Vencimento",
-                                              height: 6.h,
+                                              height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                               keyboardType: TextInputType.number,
                                               enableSuggestions: true,
                                               onChanged: (value) => controller.dueDateCardEditing(value),
@@ -271,7 +271,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                               controller: controller.cvcCode,
                                               focusNode: controller.cvcCodeFocus,
                                               hintText: "CVC",
-                                              height: 6.h,
+                                              height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                               keyboardType: TextInputType.number,
                                               enableSuggestions: true,
                                               onChanged: (value) => controller.cvcCodeCardEditing(value),
@@ -282,18 +282,18 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: TextFieldWidget(
                                         controller: controller.cardOwnersCpf,
                                         hintText: "CPF do Titular do Cartão",
-                                        height: 6.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                         keyboardType: TextInputType.number,
                                         enableSuggestions: true,
                                         maskTextInputFormatter: MasksForTextFields.cpfMask,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 3.h),
+                                      padding: EdgeInsets.only(top: 1.5.h),
                                       child: Obx(
                                         () => DropdownButtonWidget(
                                           itemSelected: controller.cardSelectedType.value == "" ? null : controller.cardSelectedType.value,

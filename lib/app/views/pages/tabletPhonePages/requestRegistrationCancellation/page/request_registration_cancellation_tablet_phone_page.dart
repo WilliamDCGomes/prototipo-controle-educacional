@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -167,7 +168,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                           padding: EdgeInsets.symmetric(vertical: 1.h),
                                           child: TextFieldWidget(
                                             controller: controller.otherReason,
-                                            height: 18.h,
+                                            height: PlatformType.isTablet(context) ? 18.h : 19.h,
                                             keyboardType: TextInputType.text,
                                             textAlignVertical: TextAlignVertical.top,
                                             maxLines: 6,

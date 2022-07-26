@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/pin_put_widget.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_field_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../../helpers/text_field_validators.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
@@ -41,10 +42,11 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => TextFieldWidget(
                       controller: widget.controller.nameTextController,
                       hintText: "Nome",
-                      height: 7.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       width: double.infinity,
                       keyboardType: TextInputType.name,
                       enableSuggestions: true,
+                      textInputAction: TextInputAction.next,
                       hasError: widget.controller.nameInputHasError.value,
                       validator: (String? value) {
                         String? validation = TextFieldValidators.standardValidation(value, "Informe o seu Nome");
@@ -59,14 +61,15 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.birthDateTextController,
                         hintText: "Data de Nascimento",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
                         maskTextInputFormatter: MasksForTextFields.birthDateMask,
                         hasError: widget.controller.birthdayInputHasError.value,
                         validator: (String? value) {
@@ -83,12 +86,12 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.cpfTextController,
                         hintText: "CPF",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
                         maskTextInputFormatter: MasksForTextFields.cpfMask,
@@ -124,9 +127,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       () => TextFieldWidget(
                         controller: widget.controller.cepTextController,
                         hintText: "Cep",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
                         maskTextInputFormatter: MasksForTextFields.cepMask,
                         hasError: widget.controller.cepInputHasError.value,
                         validator: (String? value) {
@@ -143,10 +147,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => SizedBox(
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -154,7 +158,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                             Padding(
                               padding: EdgeInsets.only(
                                 right: 2.w,
-                                bottom: 1.7.h,
+                                bottom: PlatformType.isTablet(context) ? 1.7.h : 2.6.h,
                               ),
                               child: DropdownButtonWidget(
                                 itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
@@ -171,9 +175,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                               child: TextFieldWidget(
                                 controller: widget.controller.cityTextController,
                                 hintText: "Cidade",
-                                height: 7.h,
+                                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                 keyboardType: TextInputType.name,
                                 enableSuggestions: true,
+                                textInputAction: TextInputAction.next,
                                 hasError: widget.controller.cityInputHasError.value,
                                 validator: (String? value) {
                                   String? validation = TextFieldValidators.standardValidation(value, "Informe a Cidade");
@@ -193,7 +198,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -202,9 +207,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                             () => TextFieldWidget(
                               controller: widget.controller.streetTextController,
                               hintText: "Logradouro",
-                              height: 7.h,
+                              height: PlatformType.isTablet(context) ? 7.h : 8.h,
                               keyboardType: TextInputType.streetAddress,
                               enableSuggestions: true,
+                              textInputAction: TextInputAction.next,
                               hasError: widget.controller.streetInputHasError.value,
                               validator: (String? value) {
                                 String? validation = TextFieldValidators.standardValidation(value, "Informe o Logradouro");
@@ -224,7 +230,8 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                           child: TextFieldWidget(
                             controller: widget.controller.houseNumberTextController,
                             hintText: "Nº",
-                            height: 7.h,
+                            textInputAction: TextInputAction.next,
+                            height: PlatformType.isTablet(context) ? 7.h : 8.h,
                             width: 20.w,
                             keyboardType: TextInputType.number,
                           ),
@@ -233,15 +240,16 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.neighborhoodTextController,
                         hintText: "Bairro",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.name,
                         enableSuggestions: true,
+                        textInputAction: TextInputAction.next,
                         hasError: widget.controller.neighborhoodInputHasError.value,
                         validator: (String? value) {
                           String? validation = TextFieldValidators.standardValidation(value, "Informe o Bairro");
@@ -257,11 +265,11 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: TextFieldWidget(
                       controller: widget.controller.complementTextController,
                       hintText: "Complemento",
-                      height: 7.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       width: double.infinity,
                       keyboardType: TextInputType.text,
                       enableSuggestions: true,
@@ -283,10 +291,11 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => TextFieldWidget(
                       controller: widget.controller.institutionTextController,
                       hintText: "Instituição",
-                      height: 7.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       width: double.infinity,
                       keyboardType: TextInputType.name,
                       enableSuggestions: true,
+                      textInputAction: TextInputAction.next,
                       hasError: widget.controller.schoolNameInputHasError.value,
                       validator: (String? value) {
                         String? validation = TextFieldValidators.standardValidation(value, "Informe o Nome da Instituição");
@@ -301,12 +310,12 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.courseTextController,
                         hintText: "Curso",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.name,
                         enableSuggestions: true,
@@ -325,7 +334,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => Row(
                         children: [
@@ -359,17 +368,19 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                   TextFieldWidget(
                     controller: widget.controller.phoneTextController,
                     hintText: "Telefone",
-                    height: 7.h,
+                    textInputAction: TextInputAction.next,
+                    height: PlatformType.isTablet(context) ? 7.h : 8.h,
                     width: double.infinity,
                     keyboardType: TextInputType.phone,
                     maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: TextFieldWidget(
                       controller: widget.controller.cellPhoneTextController,
                       hintText: "Celular",
-                      height: 7.h,
+                      textInputAction: TextInputAction.next,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       width: double.infinity,
                       keyboardType: TextInputType.phone,
                       maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
@@ -377,12 +388,13 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.emailTextController,
                         hintText: "E-mail",
-                        height: 7.h,
+                        textInputAction: TextInputAction.next,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.emailAddress,
                         enableSuggestions: true,
@@ -401,12 +413,12 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.confirmEmailTextController,
                         hintText: "Confirme o E-mail",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.emailAddress,
                         enableSuggestions: true,
@@ -468,8 +480,9 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => TextFieldWidget(
                       controller: widget.controller.passwordTextController,
                       hintText: "Senha",
-                      height: 7.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                       width: double.infinity,
+                      textInputAction: TextInputAction.next,
                       hasError: widget.controller.passwordInputHasError.value,
                       validator: (String? value) {
                         String? validation = TextFieldValidators.passwordValidation(value);
@@ -499,12 +512,12 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3.h),
+                    padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
                         controller: widget.controller.confirmPasswordTextController,
                         hintText: "Confirme a Senha",
-                        height: 7.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         hasError: widget.controller.confirmPasswordInputHasError.value,
                         validator: (String? value) {

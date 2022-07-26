@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../helpers/date_format_to_brazil.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
@@ -78,7 +79,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                               child: TextFieldWidget(
                                 controller: controller.searchNewsAndEventsController,
                                 hintText: "Pesquisar Notícias e Eventos",
-                                height: 6.h,
+                                height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                 width: double.infinity,
                                 iconTextField: Icon(
                                   Icons.search,

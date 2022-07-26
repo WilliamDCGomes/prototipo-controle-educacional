@@ -26,6 +26,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final InputDecoration? decoration;
   final MaskTextInputFormatter? maskTextInputFormatter;
+  final TextInputAction? textInputAction;
   final Function()? onTap;
   final Function()? onEditingComplete;
   final Function(String)? onChanged;
@@ -57,6 +58,7 @@ class TextFieldWidget extends StatelessWidget {
         this.keyboardType,
         this.decoration,
         this.maskTextInputFormatter,
+        this.textInputAction,
         this.onTap,
         this.onEditingComplete,
         this.onChanged,
@@ -138,6 +140,7 @@ class TextFieldWidget extends StatelessWidget {
           decoration: decoration ?? standardDecoration(),
           inputFormatters: maskTextInputFormatter != null ? [maskTextInputFormatter!] : null,
           enabled: ableField ?? true,
+          textInputAction: textInputAction,
           onTap: onTap,
           onEditingComplete: onEditingComplete,
           onChanged: onChanged,

@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../helpers/format_numbers.dart';
 import '../../../../../helpers/paths.dart';
+import '../../../../../helpers/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/button_widget.dart';
@@ -170,43 +171,43 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 4.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.studentName,
                                       hintText: "Nome",
-                                      height: 6.h,
+                                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                       keyboardType: TextInputType.name,
                                       enableSuggestions: true,
                                       justRead: true,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 1.5.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.raNumber,
                                       hintText: "RA",
-                                      height: 6.h,
+                                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                       keyboardType: TextInputType.number,
                                       enableSuggestions: true,
                                       justRead: true,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 1.5.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.dateRequest,
                                       hintText: "Data do Pedido",
-                                      height: 6.h,
+                                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
                                       keyboardType: TextInputType.number,
                                       maskTextInputFormatter: MasksForTextFields.birthDateMask,
                                       justRead: true,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h, bottom: 3.h,),
+                                    padding: EdgeInsets.only(left: 2.h, top: 1.5.h, right: 2.h, bottom: 3.h,),
                                     child: TextFieldWidget(
                                       controller: controller.observations,
-                                      height: 18.h,
+                                      height: PlatformType.isTablet(context) ? 18.h : 19.h,
                                       keyboardType: TextInputType.text,
                                       textAlignVertical: TextAlignVertical.top,
                                       maxLines: 6,
