@@ -31,8 +31,8 @@ class CoreEntity{
   //#region Construtor
   CoreEntity(){
     id = Uuid().v4();
-    lastChange = null;
-    includeDate = null;
+    lastChange = DateTime.now();
+    includeDate = DateTime.now();
     active = true;
   }
   //#endregion

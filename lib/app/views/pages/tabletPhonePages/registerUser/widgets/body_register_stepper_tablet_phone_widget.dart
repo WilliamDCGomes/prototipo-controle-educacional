@@ -109,6 +109,42 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 1.5.h),
+                    child: Obx(
+                      () => Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButtonWidget(
+                              itemSelected: widget.controller.genderSelected.value == "" ? null : widget.controller.genderSelected.value,
+                              hintText: "Sexo",
+                              height: 5.h,
+                              width: 90.w,
+                              listItems: widget.controller.genderList,
+                              onChanged: (selectedState) {
+                                widget.controller.genderSelected.value = selectedState ?? "";
+                                widget.controller.showOtherGenderType.value = selectedState == "Outro (Qual?)";
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Obx(
+                    () => Visibility(
+                      visible: widget.controller.showOtherGenderType.value,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 37.h),
+                        child: TextFieldWidget(
+                          controller: widget.controller.otherGenderTypeTextController,
+                          hintText: "Informe o seu Gênero",
+                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                          width: double.infinity,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

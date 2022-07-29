@@ -26,7 +26,9 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
   Future startAnimation({Widget? destinationPage, bool? backPage}) async {
     loadingAnimetion.value = true;
     animationController.repeat();
-    await Future.delayed(Duration(seconds: 5));
+  }
+
+  Future stopAnimation({Widget? destinationPage, bool? backPage}) async {
     if(destinationPage != null) {
       isLoading.value = false;
       success.value = true;

@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypt/crypt.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import '../../../../../../base/models/student.dart';
 import '../../../../../helpers/brazil_address_informations.dart';
 import '../../../../../helpers/valid_cellphone_mask.dart';
 import '../widgets/body_register_stepper_tablet_phone_widget.dart';
@@ -12,6 +16,7 @@ import '../../../../stylePages/masks_for_text_fields.dart';
 class RegisterUserTabletPhoneController extends GetxController {
   late String lgpdPhrase;
   late List<String> periodList;
+  late List<String> genderList;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimetion;
@@ -29,7 +34,9 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxBool confirmEmailInputHasError;
   late RxBool passwordInputHasError;
   late RxBool confirmPasswordInputHasError;
+  late RxBool showOtherGenderType;
   late RxString ufSelected;
+  late RxString genderSelected;
   late RxString periodSelected;
   late RxList<String> ufsList;
   late final GlobalKey<FormState> formKeyPersonalInformation;
@@ -62,9 +69,11 @@ class RegisterUserTabletPhoneController extends GetxController {
   late TextEditingController emailVerification5TextController;
   late TextEditingController passwordTextController;
   late TextEditingController confirmPasswordTextController;
+  late TextEditingController otherGenderTypeTextController;
   late List<HeaderRegisterStepperTabletPhoneWidget> headerRegisterStepperList;
   late List<BodyRegisterStepperTabletPhoneWidget> bodyRegisterStepperList;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
+  late Student newStudent;
 
   RegisterUserTabletPhoneController(){
     _initializeVariables();
@@ -75,6 +84,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     lgpdPhrase = "Ao avançar, você esta de acordo e concorda com as Políticas de Privacidade e com os Termos de Serviço.";
     activeStep = 0.obs;
     ufSelected = "".obs;
+    genderSelected = "".obs;
     periodSelected = "".obs;
     loadingAnimetion = false.obs;
     passwordFieldEnabled = true.obs;
@@ -92,7 +102,14 @@ class RegisterUserTabletPhoneController extends GetxController {
     confirmEmailInputHasError = false.obs;
     passwordInputHasError = false.obs;
     confirmPasswordInputHasError = false.obs;
+    showOtherGenderType = false.obs;
     ufsList = [""].obs;
+    genderList = [
+      "Masculino",
+      "Feminino",
+      "Outro (Qual?)",
+      "Prefiro não dizer",
+    ];
     periodList = [
       "Matutino",
       "Vespertino",
@@ -129,6 +146,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     emailVerification5TextController = TextEditingController();
     passwordTextController = TextEditingController();
     confirmPasswordTextController = TextEditingController();
+    otherGenderTypeTextController = TextEditingController();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimetion: loadingAnimetion,
     );
@@ -199,6 +217,7 @@ class RegisterUserTabletPhoneController extends GetxController {
         controller: this,
       ),
     ];
+    newStudent = Student();
   }
 
   _getUfsNames() async {
@@ -213,21 +232,38 @@ class RegisterUserTabletPhoneController extends GetxController {
     switch(activeStep.value){
       case 0:
         if(formKeyPersonalInformation.currentState!.validate()){
+          newStudent.name = nameTextController.text;
+          newStudent.birthdate = birthDateTextController.text;
+          newStudent.cpf = cpfTextController.text;
+          newStudent.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
           _nextPage();
         }
         break;
       case 1:
         if(formKeyAddressInformation.currentState!.validate()){
+          newStudent.cep = cepTextController.text;
+          newStudent.uf = ufSelected.value;
+          newStudent.city = cityTextController.text;
+          newStudent.street = streetTextController.text;
+          newStudent.houseNumber = houseNumberTextController.text;
+          newStudent.neighborhood = neighborhoodTextController.text;
+          newStudent.complement = complementTextController.text;
           _nextPage();
         }
         break;
       case 2:
         if(formKeySchoolInformation.currentState!.validate()){
+          newStudent.schoolName = institutionTextController.text;
+          newStudent.course = courseTextController.text;
+          newStudent.period = periodSelected.value;
           _nextPage();
         }
         break;
       case 3:
         if(formKeyContactInformation.currentState!.validate()){
+          newStudent.phone = phoneTextController.text;
+          newStudent.cellPhone = cellPhoneTextController.text;
+          newStudent.email = emailTextController.text;
           _nextPage();
         }
         break;
@@ -239,13 +275,14 @@ class RegisterUserTabletPhoneController extends GetxController {
         break;
       case 6:
         if(formKeyPasswordInformation.currentState!.validate()){
+          newStudent.password = Crypt.sha512(passwordTextController.text).toString();
           _nextPage();
         }
         break;
     }
   }
 
-  _nextPage(){
+  _nextPage() async {
     if(activeStep.value < 6)
       activeStep.value ++;
     else{
@@ -253,7 +290,16 @@ class RegisterUserTabletPhoneController extends GetxController {
       loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation(
         destinationPage: RegistrationCompletedTabletPhone(),
       );
+      await _saveStudent();
+      loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(
+        destinationPage: RegistrationCompletedTabletPhone(),
+      );
     }
+  }
+
+  _saveStudent() async {
+    await Firebase.initializeApp();
+    FirebaseFirestore.instance.collection("student").doc(newStudent.id).set(newStudent.toJson());
   }
 
   backButtonPressed() async {
