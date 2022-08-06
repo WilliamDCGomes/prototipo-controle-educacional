@@ -14,7 +14,7 @@ class RegistrationCompletedTabletPhoneController extends GetxController {
   _initializeVariables(){
     firstText = 'OBAA! QUE LEGAL!';
     secondText = "Agora é só aguardar! Em breve lhe enviaremos um E-mail para que você possa acessar a nossa plataforma";
-    thirdText = "Sua conta logo estará disponível para acessar os recursos do PCE, caso tenha dúvidas entre em contato em nosso site.";
+    thirdText = "Sua conta logo estará disponível para acessar os recursos do PCE, caso tenha dúvidas entre em contato no nosso site.";
     siteText = "www.pcdeduc.com.br";
   }
 

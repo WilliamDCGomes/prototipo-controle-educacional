@@ -341,20 +341,14 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                             onChanged: (schoolSelected) async {
                               widget.controller.educationInstitutionSelected.value = schoolSelected ?? "";
                               if(widget.controller.educationInstitutionSelected.value != ""){
-                                setState(() {
-                                  widget.controller.courseDropdownDisable.value = false;
-                                });
                                 await Loading.startAndPauseLoading(
-                                      () => widget.controller.searchCoursesOfEducationInstitution(),
+                                  () => widget.controller.searchCoursesOfEducationInstitution(),
                                   widget.controller.loadingAnimetion,
                                   widget.controller.loadingWithSuccessOrErrorTabletPhoneWidget,
                                 );
                                 setState(() {
-                                  widget.controller.courseList = widget.controller.courseList;
+                                  widget.controller.courseList;
                                 });
-                              }
-                              else{
-                                widget.controller.courseDropdownDisable.value = true;
                               }
                             },
                           ),
@@ -368,14 +362,28 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       children: [
                         Expanded(
                           child: DropdownButtonWidget(
-                            justRead: widget.controller.courseDropdownDisable.value,
                             itemSelected: widget.controller.courseSelected.value == "" ? null : widget.controller.courseSelected.value,
                             hintText: "Curso",
                             height: 5.6.h,
                             width: 90.w,
                             rxListItems: widget.controller.courseList,
-                            onChanged: (courseSelected) {
+                            onChanged: (courseSelected) async {
                               widget.controller.courseSelected.value = courseSelected ?? "";
+                              if(widget.controller.courseSelected.value != ""){
+                                await Loading.startAndPauseLoading(
+                                  () => widget.controller.getDisciplinePeriod(
+                                    widget.controller.educationInstitutionList.firstWhere(
+                                      (element) => element.name == widget.controller.educationInstitutionSelected.value
+                                    ).id,
+                                  ),
+                                  widget.controller.loadingAnimetion,
+                                  widget.controller.loadingWithSuccessOrErrorTabletPhoneWidget,
+                                );
+
+                                setState(() {
+                                  widget.controller.periodList;
+                                });
+                              }
                             },
                           ),
                         ),
@@ -392,7 +400,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                             hintText: "Período",
                             height: 5.6.h,
                             width: 90.w,
-                            listItems: widget.controller.periodList,
+                            rxListItems: widget.controller.periodList,
                             onChanged: (selectedPeriod) {
                               widget.controller.periodSelected.value = selectedPeriod ?? "";
                             },

@@ -2,15 +2,19 @@ import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:projeto_tcc/base/models/course.dart';
 import 'package:projeto_tcc/base/services/interfaces/istudent_service.dart';
 import '../../../../../../base/models/address_information.dart';
+import '../../../../../../base/models/discipline_periods.dart';
 import '../../../../../../base/models/education_institution.dart';
 import '../../../../../../base/models/student.dart';
 import '../../../../../../base/services/consult_cep_service.dart';
 import '../../../../../../base/services/course_service.dart';
+import '../../../../../../base/services/discipline_periods_service.dart';
 import '../../../../../../base/services/education_institution_service.dart';
 import '../../../../../../base/services/interfaces/iconsult_cep_service.dart';
 import '../../../../../../base/services/interfaces/icourse_service.dart';
+import '../../../../../../base/services/interfaces/idiscipline_periods_service.dart';
 import '../../../../../../base/services/interfaces/ieducation_institution_service.dart';
 import '../../../../../../base/services/student_service.dart';
 import '../../../../../helpers/brazil_address_informations.dart';
@@ -37,7 +41,6 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxBool cityInputHasError;
   late RxBool streetInputHasError;
   late RxBool neighborhoodInputHasError;
-  late RxBool courseDropdownDisable;
   late RxBool emailInputHasError;
   late RxBool confirmEmailInputHasError;
   late RxBool passwordInputHasError;
@@ -49,8 +52,9 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxString courseSelected;
   late RxString periodSelected;
   late List<String> genderList;
-  late List<String> periodList;
   late List<EducationInstitution> educationInstitutionList;
+  late List<Course> courseFromInstitutionList;
+  late RxList<String> periodList;
   late RxList<String> educationInstitutionNameList;
   late RxList<String> courseList;
   late RxList<String> ufsList;
@@ -91,6 +95,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   late ICourseService courseService;
   late IConsultCepService consultCepService;
   late IEducationInstitutionService educationInstitutionService;
+  late IDisciplinePeriodsService disciplinePeriodsService;
 
   RegisterUserTabletPhoneController(){
     _initializeVariables();
@@ -122,7 +127,6 @@ class RegisterUserTabletPhoneController extends GetxController {
     cityInputHasError = false.obs;
     streetInputHasError = false.obs;
     neighborhoodInputHasError = false.obs;
-    courseDropdownDisable = true.obs;
     emailInputHasError = false.obs;
     confirmEmailInputHasError = false.obs;
     passwordInputHasError = false.obs;
@@ -130,7 +134,8 @@ class RegisterUserTabletPhoneController extends GetxController {
     showOtherGenderType = false.obs;
     ufsList = [""].obs;
     educationInstitutionNameList = [""].obs;
-    educationInstitutionList = <EducationInstitution>[].obs;
+    educationInstitutionList = <EducationInstitution>[];
+    courseFromInstitutionList = <Course>[];
     genderList = [
       "Masculino",
       "Feminino",
@@ -141,11 +146,8 @@ class RegisterUserTabletPhoneController extends GetxController {
       "",
     ].obs;
     periodList = [
-      "Matutino",
-      "Vespertino",
-      "Noturno",
-      "Integral",
-    ];
+      "",
+    ].obs;
     maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
     formKeyPersonalInformation = GlobalKey<FormState>();
     formKeyAddressInformation = GlobalKey<FormState>();
@@ -191,7 +193,7 @@ class RegisterUserTabletPhoneController extends GetxController {
       HeaderRegisterStepperTabletPhoneWidget(
         firstText: "PASSO 3 DE 7",
         secondText: "Dados Institucionais",
-        thirdText: "Preencha os dados institucionais para identificarmos você em nosso sistema.",
+        thirdText: "Preencha os dados institucionais para identificarmos você no nosso sistema.",
       ),
       HeaderRegisterStepperTabletPhoneWidget(
         firstText: "PASSO 4 DE 7",
@@ -259,6 +261,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     courseService = CourseService();
     consultCepService = ConsultCepService();
     educationInstitutionService = EducationInstitutionService();
+    disciplinePeriodsService = DisciplinePeriodsService();
   }
 
   _searchAddressInformation() async {
@@ -416,12 +419,18 @@ class RegisterUserTabletPhoneController extends GetxController {
     try{
       courseList.clear();
       courseSelected.value = "";
+      periodList.clear();
+      periodSelected.value = "";
       EducationInstitution educationInstitution = educationInstitutionList.firstWhere(
         (element) => element.name == educationInstitutionSelected.value
       );
 
-      for(var course in  educationInstitution.courses){
-        courseList.add(await courseService.getCourseNameById(course));
+      for(var course in educationInstitution.courses){
+        var courseReturn = await courseService.getCoursesById(course);
+        if(courseReturn != null){
+          courseFromInstitutionList.add(courseReturn);
+          courseList.add(courseReturn.name);
+        }
       }
     }
     catch(_){
@@ -431,6 +440,34 @@ class RegisterUserTabletPhoneController extends GetxController {
         builder: (BuildContext context) {
           return InformationTabletPhonePopup(
             warningMessage: "Não foi possível encontrar nenhum curso dessa Instituição.",
+          );
+        },
+      );
+    }
+  }
+
+  getDisciplinePeriod(String institutionId) async {
+    try{
+      periodList.clear();
+      periodSelected.value = "";
+      List<DisciplinePeriods> periods = await disciplinePeriodsService.getDisciplinePeriods(institutionId);
+      DisciplinePeriods disciplinePeriods = periods.firstWhere(
+        (element) => element.courseId == courseFromInstitutionList.firstWhere(
+          (element) => element.name == courseSelected.value,
+        ).id,
+      );
+
+      for(var period in disciplinePeriods.period){
+        periodList.add(period);
+      }
+    }
+    catch(_){
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Não foi possível encontrar os períodos letivos dessa disciplina.",
           );
         },
       );

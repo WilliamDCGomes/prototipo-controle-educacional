@@ -37,6 +37,19 @@ class CourseService implements ICourseService {
     }
   }
 
+  Future<Course?> getCoursesById(String id) async {
+    try {
+      var course = await FirebaseFirestore.instance.collection("courses")
+          .doc(id).get();
+      if(course.exists && course.data() != null){
+        return Course.fromJson(course.data()!);
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<String> getCourseNameById(String id) async {
     try {
       var course = await FirebaseFirestore.instance.collection("courses")
@@ -46,7 +59,6 @@ class CourseService implements ICourseService {
       }
       return "";
     } catch (_) {
-      print("Error");
       return "";
     }
   }
