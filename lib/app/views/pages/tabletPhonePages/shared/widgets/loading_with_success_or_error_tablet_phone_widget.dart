@@ -28,8 +28,13 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
     animationController.repeat();
   }
 
-  Future stopAnimation({Widget? destinationPage, bool? backPage}) async {
-    if(destinationPage != null) {
+  Future stopAnimation({Widget? destinationPage, bool? backPage, bool? justLoading}) async {
+    if(justLoading != null && justLoading){
+      await Future.delayed(Duration(seconds: 1));
+      _resetStateWithoutSuccessOrFail();
+      return;
+    }
+    else if(destinationPage != null) {
       isLoading.value = false;
       success.value = true;
       await Future.delayed(Duration(seconds: 3));
@@ -53,6 +58,12 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
     isLoading.value = true;
     success.value = false;
     loadingAnimetion.value = false;
+    animationController.reset();
+  }
+
+  _resetStateWithoutSuccessOrFail(){
+    loadingAnimetion.value = false;
+    isLoading.value = true;
     animationController.reset();
   }
 }

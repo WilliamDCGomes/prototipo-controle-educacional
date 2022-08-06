@@ -60,8 +60,15 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 2.h,),
-                            child: TitleWithBackButtonTabletPhoneWidget(
-                              title: "Cadastro",
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: SizedBox(
+                                width: 30.w,
+                                child: TitleWithBackButtonTabletPhoneWidget(
+                                  title: "Cadastro",
+                                  backButtonPressedFuctionOverride: () async => await controller.backButtonOverridePressed(),
+                                ),
+                              ),
                             ),
                           ),
                           Expanded(

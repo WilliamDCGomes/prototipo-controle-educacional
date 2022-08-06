@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'base/coreEntity.dart';
 import 'files.dart';
 
@@ -33,8 +34,8 @@ class Classes extends CoreEntity{
     professorName = json["professorName"];
     classDate = json["classDate"];
     files = json["files"];
-    lastChange = json["lastChange"];
-    includeDate = json["includeDate"];
+    lastChange = (json["lastChange"] as Timestamp).toDate();
+    includeDate = (json["includeDate"] as Timestamp).toDate();
     active = json["active"];
   }
 

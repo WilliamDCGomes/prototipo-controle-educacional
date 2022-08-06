@@ -8,11 +8,13 @@ import '../../../../stylePages/app_colors.dart';
 class TitleWithBackButtonTabletPhoneWidget extends StatelessWidget {
   final String title;
   final Color? titleColor;
+  final Function()? backButtonPressedFuctionOverride;
 
   const TitleWithBackButtonTabletPhoneWidget(
       { Key? key,
         required this.title,
         this.titleColor,
+        this.backButtonPressedFuctionOverride,
       }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class TitleWithBackButtonTabletPhoneWidget extends StatelessWidget {
     return SizedBox(
       height: 8.h,
       child: TextButtonWidget(
-        onTap: () => Get.back(),
+        onTap: backButtonPressedFuctionOverride != null ? backButtonPressedFuctionOverride : () => Get.back(),
         componentPadding: EdgeInsets.symmetric(vertical: .5.w),
         widgetCustom: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

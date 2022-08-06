@@ -1,12 +1,22 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypt/crypt.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:projeto_tcc/base/services/interfaces/istudent_service.dart';
+import '../../../../../../base/models/address_information.dart';
+import '../../../../../../base/models/education_institution.dart';
 import '../../../../../../base/models/student.dart';
+import '../../../../../../base/services/consult_cep_service.dart';
+import '../../../../../../base/services/course_service.dart';
+import '../../../../../../base/services/education_institution_service.dart';
+import '../../../../../../base/services/interfaces/iconsult_cep_service.dart';
+import '../../../../../../base/services/interfaces/icourse_service.dart';
+import '../../../../../../base/services/interfaces/ieducation_institution_service.dart';
+import '../../../../../../base/services/student_service.dart';
 import '../../../../../helpers/brazil_address_informations.dart';
+import '../../../../../helpers/loading.dart';
 import '../../../../../helpers/valid_cellphone_mask.dart';
+import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../widgets/body_register_stepper_tablet_phone_widget.dart';
 import '../widgets/header_register_stepper_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
@@ -15,8 +25,7 @@ import '../../../../stylePages/masks_for_text_fields.dart';
 
 class RegisterUserTabletPhoneController extends GetxController {
   late String lgpdPhrase;
-  late List<String> periodList;
-  late List<String> genderList;
+  late bool cepSearched;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimetion;
@@ -28,8 +37,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxBool cityInputHasError;
   late RxBool streetInputHasError;
   late RxBool neighborhoodInputHasError;
-  late RxBool schoolNameInputHasError;
-  late RxBool courseInputHasError;
+  late RxBool courseDropdownDisable;
   late RxBool emailInputHasError;
   late RxBool confirmEmailInputHasError;
   late RxBool passwordInputHasError;
@@ -37,11 +45,18 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxBool showOtherGenderType;
   late RxString ufSelected;
   late RxString genderSelected;
+  late RxString educationInstitutionSelected;
+  late RxString courseSelected;
   late RxString periodSelected;
+  late List<String> genderList;
+  late List<String> periodList;
+  late List<EducationInstitution> educationInstitutionList;
+  late RxList<String> educationInstitutionNameList;
+  late RxList<String> courseList;
   late RxList<String> ufsList;
+  late FocusNode cepInputFocusNode;
   late final GlobalKey<FormState> formKeyPersonalInformation;
   late final GlobalKey<FormState> formKeyAddressInformation;
-  late final GlobalKey<FormState> formKeySchoolInformation;
   late final GlobalKey<FormState> formKeyContactInformation;
   late final GlobalKey<FormState> formKeyPasswordInformation;
   late MaskTextInputFormatter maskCellPhoneFormatter;
@@ -54,8 +69,6 @@ class RegisterUserTabletPhoneController extends GetxController {
   late TextEditingController houseNumberTextController;
   late TextEditingController neighborhoodTextController;
   late TextEditingController complementTextController;
-  late TextEditingController institutionTextController;
-  late TextEditingController courseTextController;
   late TextEditingController phoneTextController;
   late TextEditingController cellPhoneTextController;
   late TextEditingController emailTextController;
@@ -74,10 +87,20 @@ class RegisterUserTabletPhoneController extends GetxController {
   late List<BodyRegisterStepperTabletPhoneWidget> bodyRegisterStepperList;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late Student newStudent;
+  late IStudentService studentService;
+  late ICourseService courseService;
+  late IConsultCepService consultCepService;
+  late IEducationInstitutionService educationInstitutionService;
 
   RegisterUserTabletPhoneController(){
     _initializeVariables();
-    _getUfsNames();
+  }
+
+  @override
+  void onInit() async {
+    await _getUfsNames();
+    await _getEducationInstitutionsList();
+    super.onInit();
   }
 
   _initializeVariables(){
@@ -85,7 +108,10 @@ class RegisterUserTabletPhoneController extends GetxController {
     activeStep = 0.obs;
     ufSelected = "".obs;
     genderSelected = "".obs;
+    educationInstitutionSelected = "".obs;
+    courseSelected = "".obs;
     periodSelected = "".obs;
+    cepSearched = false;
     loadingAnimetion = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
@@ -96,20 +122,24 @@ class RegisterUserTabletPhoneController extends GetxController {
     cityInputHasError = false.obs;
     streetInputHasError = false.obs;
     neighborhoodInputHasError = false.obs;
-    schoolNameInputHasError = false.obs;
-    courseInputHasError = false.obs;
+    courseDropdownDisable = true.obs;
     emailInputHasError = false.obs;
     confirmEmailInputHasError = false.obs;
     passwordInputHasError = false.obs;
     confirmPasswordInputHasError = false.obs;
     showOtherGenderType = false.obs;
     ufsList = [""].obs;
+    educationInstitutionNameList = [""].obs;
+    educationInstitutionList = <EducationInstitution>[].obs;
     genderList = [
       "Masculino",
       "Feminino",
       "Outro (Qual?)",
       "Prefiro não dizer",
     ];
+    courseList = [
+      "",
+    ].obs;
     periodList = [
       "Matutino",
       "Vespertino",
@@ -119,7 +149,6 @@ class RegisterUserTabletPhoneController extends GetxController {
     maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
     formKeyPersonalInformation = GlobalKey<FormState>();
     formKeyAddressInformation = GlobalKey<FormState>();
-    formKeySchoolInformation = GlobalKey<FormState>();
     formKeyContactInformation = GlobalKey<FormState>();
     formKeyPasswordInformation = GlobalKey<FormState>();
     nameTextController = TextEditingController();
@@ -131,8 +160,6 @@ class RegisterUserTabletPhoneController extends GetxController {
     houseNumberTextController = TextEditingController();
     neighborhoodTextController = TextEditingController();
     complementTextController = TextEditingController();
-    institutionTextController = TextEditingController();
-    courseTextController = TextEditingController();
     phoneTextController = TextEditingController();
     cellPhoneTextController = TextEditingController();
     emailTextController = TextEditingController();
@@ -217,29 +244,219 @@ class RegisterUserTabletPhoneController extends GetxController {
         controller: this,
       ),
     ];
+    cepInputFocusNode = FocusNode();
+    cepInputFocusNode.addListener(() async {
+      if(!cepSearched && !cepInputFocusNode.hasFocus){
+        await Loading.startAndPauseLoading(
+          () => _searchAddressInformation(),
+          loadingAnimetion,
+          loadingWithSuccessOrErrorTabletPhoneWidget,
+        );
+      }
+    });
     newStudent = Student();
+    studentService = StudentService();
+    courseService = CourseService();
+    consultCepService = ConsultCepService();
+    educationInstitutionService = EducationInstitutionService();
   }
 
-  _getUfsNames() async {
-    ufsList.clear();
-    List<String> states = await BrazilAddressInformations.getUfsNames();
-    for(var uf in states) {
-      ufsList.add(uf);
+  _searchAddressInformation() async {
+    try{
+      if(cepTextController.text.length == 9){
+        AddressInformation? addressInformation = await consultCepService.searchCep(cepTextController.text);
+        if(addressInformation != null){
+          ufSelected.value = addressInformation.uf;
+          cityTextController.text = addressInformation.city;
+          streetTextController.text = addressInformation.street;
+          neighborhoodTextController.text = addressInformation.neighborhood;
+          complementTextController.text = addressInformation.complement;
+          formKeyAddressInformation.currentState!.validate();
+        }
+        else{
+          ufSelected.value = "";
+          cityTextController.text = "";
+          streetTextController.text = "";
+          neighborhoodTextController.text = "";
+          complementTextController.text = "";
+        }
+        cepSearched = true;
+      }
+    }
+    catch(_){
+      cepSearched = false;
+      ufSelected.value = "";
+      cityTextController.text = "";
+      streetTextController.text = "";
+      neighborhoodTextController.text = "";
+      complementTextController.text = "";
     }
   }
 
-  nextButtonPressed(){
+  _getUfsNames() async {
+    try{
+      ufsList.clear();
+      List<String> states = await BrazilAddressInformations.getUfsNames();
+      for(var uf in states) {
+        ufsList.add(uf);
+      }
+    }
+    catch(_){
+      ufsList.clear();
+    }
+  }
+
+  _getEducationInstitutionsList() async {
+    try{
+      educationInstitutionList.clear();
+      educationInstitutionNameList.clear();
+      List<EducationInstitution> institutions = await educationInstitutionService.getEducationInstitutions();
+      educationInstitutionList.addAll(institutions);
+
+      for(var educationInstitution in educationInstitutionList){
+        educationInstitutionNameList.add(educationInstitution.name);
+      }
+    }
+    catch(_){
+      educationInstitutionList.clear();
+    }
+  }
+
+  _checkCpfAlreadyExists() async {
+    if(await studentService.verificationStudentExists(cpfTextController.text)){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "O CPF já está cadastrado no sistema.",
+          );
+        },
+      );
+    }
+    else if(genderSelected.value == "" || (genderSelected.value == "Outro (Qual?)" && otherGenderTypeTextController.text == "")){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Informe o seu sexo.",
+          );
+        },
+      );
+    }
+    else{
+      newStudent.name = nameTextController.text;
+      newStudent.birthdate = birthDateTextController.text;
+      newStudent.cpf = cpfTextController.text;
+      newStudent.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
+      _nextPage();
+    }
+  }
+
+  Future<bool> _validSchoolInformation() async {
+    if(educationInstitutionSelected.value == ""){
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Informe a Instituição de Ensino.",
+          );
+        },
+      );
+      return false;
+    }
+    else if(courseSelected.value == ""){
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Informe o nome do curso.",
+          );
+        },
+      );
+      return false;
+    }
+    else if(periodSelected.value == ""){
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Informe o período do curso.",
+          );
+        },
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  _nextPage() async {
+    if(activeStep.value < 6)
+      activeStep.value ++;
+    else{
+      await Loading.starAnimationAndCallOtherPage(
+        () => _saveStudent(),
+        loadingAnimetion,
+        loadingWithSuccessOrErrorTabletPhoneWidget,
+        RegistrationCompletedTabletPhone(),
+      );
+    }
+  }
+
+  _saveStudent() async {
+    await studentService.sendNewStudent(newStudent);
+  }
+
+  searchCoursesOfEducationInstitution() async {
+    try{
+      courseList.clear();
+      courseSelected.value = "";
+      EducationInstitution educationInstitution = educationInstitutionList.firstWhere(
+        (element) => element.name == educationInstitutionSelected.value
+      );
+
+      for(var course in  educationInstitution.courses){
+        courseList.add(await courseService.getCourseNameById(course));
+      }
+    }
+    catch(_){
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Não foi possível encontrar nenhum curso dessa Instituição.",
+          );
+        },
+      );
+    }
+  }
+
+  nextButtonPressed() async {
     switch(activeStep.value){
       case 0:
         if(formKeyPersonalInformation.currentState!.validate()){
-          newStudent.name = nameTextController.text;
-          newStudent.birthdate = birthDateTextController.text;
-          newStudent.cpf = cpfTextController.text;
-          newStudent.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
-          _nextPage();
+          Loading.startAndPauseLoading(
+            () => _checkCpfAlreadyExists(),
+            loadingAnimetion,
+            loadingWithSuccessOrErrorTabletPhoneWidget,
+          );
         }
         break;
       case 1:
+        if(cepTextController.text.length == 9 && !cepSearched){
+          await Loading.startAndPauseLoading(
+            () => _searchAddressInformation(),
+            loadingAnimetion,
+            loadingWithSuccessOrErrorTabletPhoneWidget,
+          );
+          return;
+        }
         if(formKeyAddressInformation.currentState!.validate()){
           newStudent.cep = cepTextController.text;
           newStudent.uf = ufSelected.value;
@@ -252,9 +469,9 @@ class RegisterUserTabletPhoneController extends GetxController {
         }
         break;
       case 2:
-        if(formKeySchoolInformation.currentState!.validate()){
-          newStudent.schoolName = institutionTextController.text;
-          newStudent.course = courseTextController.text;
+        if(await _validSchoolInformation()){
+          newStudent.educationInstitutionName = educationInstitutionSelected.value;
+          newStudent.course = courseSelected.value;
           newStudent.period = periodSelected.value;
           _nextPage();
         }
@@ -282,26 +499,6 @@ class RegisterUserTabletPhoneController extends GetxController {
     }
   }
 
-  _nextPage() async {
-    if(activeStep.value < 6)
-      activeStep.value ++;
-    else{
-      loadingAnimetion.value = true;
-      loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation(
-        destinationPage: RegistrationCompletedTabletPhone(),
-      );
-      await _saveStudent();
-      loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(
-        destinationPage: RegistrationCompletedTabletPhone(),
-      );
-    }
-  }
-
-  _saveStudent() async {
-    await Firebase.initializeApp();
-    FirebaseFirestore.instance.collection("student").doc(newStudent.id).set(newStudent.toJson());
-  }
-
   backButtonPressed() async {
     int currentIndex = activeStep.value;
     if (activeStep.value > 0) {
@@ -309,21 +506,22 @@ class RegisterUserTabletPhoneController extends GetxController {
     }
 
     return await Future.delayed(
-        const Duration(
-            milliseconds: 100
-        ),
-        () {
-          return currentIndex <= 0;
-        }
+      const Duration(
+          milliseconds: 100
+      ),
+      () {
+        return currentIndex <= 0;
+      }
     );
   }
 
-  backArrowButtonPressed() {
+  backButtonOverridePressed() {
     if (activeStep.value > 0) {
       activeStep.value--;
     }
-    else
+    else {
       Get.back();
+    }
   }
 
   phoneTextFieldEdited(String cellPhoneTyped){

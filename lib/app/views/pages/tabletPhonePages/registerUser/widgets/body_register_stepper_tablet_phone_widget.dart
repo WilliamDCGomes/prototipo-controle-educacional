@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/pin_put_widget.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_field_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../helpers/loading.dart';
 import '../../../../../helpers/platform_type.dart';
 import '../../../../../helpers/text_field_validators.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -135,7 +136,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => Visibility(
                       visible: widget.controller.showOtherGenderType.value,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 37.h),
+                        padding: EdgeInsets.only(top: 3.h),
                         child: TextFieldWidget(
                           controller: widget.controller.otherGenderTypeTextController,
                           hintText: "Informe o seu Gênero",
@@ -163,12 +164,16 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       () => TextFieldWidget(
                         controller: widget.controller.cepTextController,
                         hintText: "Cep",
+                        focusNode: widget.controller.cepInputFocusNode,
                         height: PlatformType.isTablet(context) ? 7.h : 8.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         maskTextInputFormatter: MasksForTextFields.cepMask,
                         hasError: widget.controller.cepInputHasError.value,
+                        onChanged: (value){
+                          widget.controller.cepSearched = false;
+                        },
                         validator: (String? value) {
                           String? validation = TextFieldValidators.minimumNumberValidation(value, 9, "Cep");
                           if(validation != null && validation != ""){
@@ -319,74 +324,81 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
           // Entrys da terceira stepper
           Visibility(
             visible: widget.indexView == 2,
-            child: Form(
-              key: widget.controller.formKeySchoolInformation,
-              child: Column(
+            child: Obx(
+              () => Column(
                 children: [
-                  Obx(
-                    () => TextFieldWidget(
-                      controller: widget.controller.institutionTextController,
-                      hintText: "Instituição",
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
-                      width: double.infinity,
-                      keyboardType: TextInputType.name,
-                      enableSuggestions: true,
-                      textInputAction: TextInputAction.next,
-                      hasError: widget.controller.schoolNameInputHasError.value,
-                      validator: (String? value) {
-                        String? validation = TextFieldValidators.standardValidation(value, "Informe o Nome da Instituição");
-                        if(validation != null && validation != ""){
-                          widget.controller.schoolNameInputHasError.value = true;
-                        }
-                        else{
-                          widget.controller.schoolNameInputHasError.value = false;
-                        }
-                        return validation;
-                      },
-                    ),
-                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 1.5.h),
-                    child: Obx(
-                      () => TextFieldWidget(
-                        controller: widget.controller.courseTextController,
-                        hintText: "Curso",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
-                        width: double.infinity,
-                        keyboardType: TextInputType.name,
-                        enableSuggestions: true,
-                        hasError: widget.controller.courseInputHasError.value,
-                        validator: (String? value) {
-                          String? validation = TextFieldValidators.standardValidation(value, "Informe o Nome do Curso");
-                          if(validation != null && validation != ""){
-                            widget.controller.courseInputHasError.value = true;
-                          }
-                          else{
-                            widget.controller.courseInputHasError.value = false;
-                          }
-                          return validation;
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 1.5.h),
-                    child: Obx(
-                      () => Row(
-                        children: [
-                          Expanded(
-                            child: DropdownButtonWidget(
-                              itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
-                              hintText: "Período",
-                              height: 5.6.h,
-                              listItems: widget.controller.periodList,
-                              onChanged: (selectedPeriod) {
-                                widget.controller.periodSelected.value = selectedPeriod ?? "";
-                              },
-                            ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonWidget(
+                            itemSelected: widget.controller.educationInstitutionSelected.value == "" ? null : widget.controller.educationInstitutionSelected.value,
+                            hintText: "Instituição",
+                            height: 5.6.h,
+                            width: 90.w,
+                            rxListItems: widget.controller.educationInstitutionNameList,
+                            onChanged: (schoolSelected) async {
+                              widget.controller.educationInstitutionSelected.value = schoolSelected ?? "";
+                              if(widget.controller.educationInstitutionSelected.value != ""){
+                                setState(() {
+                                  widget.controller.courseDropdownDisable.value = false;
+                                });
+                                await Loading.startAndPauseLoading(
+                                      () => widget.controller.searchCoursesOfEducationInstitution(),
+                                  widget.controller.loadingAnimetion,
+                                  widget.controller.loadingWithSuccessOrErrorTabletPhoneWidget,
+                                );
+                                setState(() {
+                                  widget.controller.courseList = widget.controller.courseList;
+                                });
+                              }
+                              else{
+                                widget.controller.courseDropdownDisable.value = true;
+                              }
+                            },
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 1.5.h),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonWidget(
+                            justRead: widget.controller.courseDropdownDisable.value,
+                            itemSelected: widget.controller.courseSelected.value == "" ? null : widget.controller.courseSelected.value,
+                            hintText: "Curso",
+                            height: 5.6.h,
+                            width: 90.w,
+                            rxListItems: widget.controller.courseList,
+                            onChanged: (courseSelected) {
+                              widget.controller.courseSelected.value = courseSelected ?? "";
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 1.5.h),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonWidget(
+                            itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
+                            hintText: "Período",
+                            height: 5.6.h,
+                            width: 90.w,
+                            listItems: widget.controller.periodList,
+                            onChanged: (selectedPeriod) {
+                              widget.controller.periodSelected.value = selectedPeriod ?? "";
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'base/coreEntity.dart';
 
 class Student extends CoreEntity{
@@ -13,7 +14,7 @@ class Student extends CoreEntity{
   late String? houseNumber;
   late String neighborhood;
   late String complement;
-  late String schoolName;
+  late String educationInstitutionName;
   late String course;
   late String period;
   late String? phone;
@@ -39,7 +40,7 @@ class Student extends CoreEntity{
     houseNumber = json["houseNumber"];
     neighborhood = json["neighborhood"];
     complement = json["complement"];
-    schoolName = json["schoolName"];
+    educationInstitutionName = json["educationInstitutionName"];
     course = json["course"];
     period = json["period"];
     phone = json["phone"];
@@ -47,8 +48,8 @@ class Student extends CoreEntity{
     email = json["email"];
     password = json["password"];
     id = json["id"];
-    lastChange = json["lastChange"];
-    includeDate = json["includeDate"];
+    lastChange = (json["lastChange"] as Timestamp).toDate();
+    includeDate = (json["includeDate"] as Timestamp).toDate();
     active = json["active"];
   }
 
@@ -65,7 +66,7 @@ class Student extends CoreEntity{
     data["houseNumber"] = this.houseNumber;
     data["neighborhood"] = this.neighborhood;
     data["complement"] = this.complement;
-    data["schoolName"] = this.schoolName;
+    data["educationInstitutionName"] = this.educationInstitutionName;
     data["course"] = this.course;
     data["period"] = this.period;
     data["phone"] = this.phone;
