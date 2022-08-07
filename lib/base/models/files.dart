@@ -22,6 +22,17 @@ class Files extends CoreSendEntity{
     type = json["type"];
     byteArray = json["byteArray"];
     active = json["active"];
+    lastSync = json["lastSync"];
+    lastChange = json["lastChange"];
+    includeDate = json["includeDate"];
+    synced = json["synced"];
+  }
+
+  Files.fromJsonFirebase(Map<String, dynamic> json) {
+    name = json["name"];
+    type = json["type"];
+    byteArray = json["byteArray"];
+    active = json["active"];
     lastSync = (json["lastSync"] as Timestamp).toDate();
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();

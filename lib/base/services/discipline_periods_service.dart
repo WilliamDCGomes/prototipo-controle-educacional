@@ -9,7 +9,7 @@ class DisciplinePeriodsService implements IDisciplinePeriodsService {
           .doc(institutionId).get();
       if(disciplinePeriods.exists && disciplinePeriods.data() != null) {
         List<DisciplinePeriods> disciplinePeriodsList = <DisciplinePeriods>[];
-        disciplinePeriods.data()!.forEach((k, v) => disciplinePeriodsList.add(DisciplinePeriods.fromJson(v)));
+        disciplinePeriods.data()!.forEach((k, v) => disciplinePeriodsList.add(DisciplinePeriods.fromJsonFirebase(v)));
 
         return disciplinePeriodsList;
       }

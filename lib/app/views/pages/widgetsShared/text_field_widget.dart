@@ -66,6 +66,7 @@ class TextFieldWidget extends StatelessWidget {
         this.validator,
         required this.controller,
       }) : super(key: key);
+
   InputDecoration standardDecoration(){
     double heightInput = height ?? 65;
     if(height != null) {

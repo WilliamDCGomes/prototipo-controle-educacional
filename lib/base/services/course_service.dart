@@ -9,7 +9,7 @@ class CourseService implements ICourseService {
       if(courses.size > 0){
         List<Course> coursesName = <Course>[];
         for(var course in courses.docs){
-          coursesName.add(Course.fromJson(course.data()));
+          coursesName.add(Course.fromJsonFirebase(course.data()));
         }
 
         return coursesName;
@@ -42,7 +42,7 @@ class CourseService implements ICourseService {
       var course = await FirebaseFirestore.instance.collection("courses")
           .doc(id).get();
       if(course.exists && course.data() != null){
-        return Course.fromJson(course.data()!);
+        return Course.fromJsonFirebase(course.data()!);
       }
       return null;
     } catch (_) {
@@ -55,7 +55,7 @@ class CourseService implements ICourseService {
       var course = await FirebaseFirestore.instance.collection("courses")
           .doc(id).get();
       if(course.exists && course.data() != null) {
-        return Course.fromJson(course.data()!).name;
+        return Course.fromJsonFirebase(course.data()!).name;
       }
       return "";
     } catch (_) {

@@ -87,7 +87,7 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                                         () => TextFieldWidget(
                                           controller: controller.oldPasswordInput,
                                           hintText: "Senha Atual",
-                                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                          height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                           width: double.infinity,
                                           isPassword: controller.oldPasswordVisible.value,
                                           iconTextField: GestureDetector(
@@ -113,7 +113,7 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                                         () => TextFieldWidget(
                                           controller: controller.newPasswordInput,
                                           hintText: "Nova Senha",
-                                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                          height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                           width: double.infinity,
                                           isPassword: controller.newPasswordVisible.value,
                                           iconTextField: GestureDetector(
@@ -139,7 +139,7 @@ class _ResetPasswordTabletPhonePageState extends State<ResetPasswordTabletPhoneP
                                         () => TextFieldWidget(
                                           controller: controller.confirmNewPasswordInput,
                                           hintText: "Confirmar Nova Senha",
-                                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                          height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                           width: double.infinity,
                                           isPassword: controller.confirmNewPasswordVisible.value,
                                           iconTextField: GestureDetector(

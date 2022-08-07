@@ -10,7 +10,7 @@ class EducationInstitutionService implements IEducationInstitutionService {
       if(educationInstitutions.size > 0){
         List<EducationInstitution> institutions = <EducationInstitution>[];
         for(var educationInstitution in educationInstitutions.docs){
-          institutions.add(EducationInstitution.fromJson(educationInstitution.data()));
+          institutions.add(EducationInstitution.fromJsonFirebase(educationInstitution.data()));
         }
         return institutions;
       }

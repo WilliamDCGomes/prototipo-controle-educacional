@@ -35,7 +35,7 @@ class _EditAcademicTabTabletPhoneWidgetState extends State<EditAcademicTabTablet
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.institutionTextController,
                 hintText: "Instituição",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
@@ -46,7 +46,7 @@ class _EditAcademicTabTabletPhoneWidgetState extends State<EditAcademicTabTablet
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.courseTextController,
                 hintText: "Curso",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
@@ -61,7 +61,7 @@ class _EditAcademicTabTabletPhoneWidgetState extends State<EditAcademicTabTablet
                       child: DropdownButtonWidget(
                         itemSelected: _userProfileTabletPhoneController.periodSelected.value == "" ? null : _userProfileTabletPhoneController.periodSelected.value,
                         hintText: "Período",
-                        height: 5.6.h,
+                        height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                         listItems: _userProfileTabletPhoneController.periodList,
                         onChanged: (selectedPeriod) {
                           _userProfileTabletPhoneController.periodSelected.value = selectedPeriod ?? "";

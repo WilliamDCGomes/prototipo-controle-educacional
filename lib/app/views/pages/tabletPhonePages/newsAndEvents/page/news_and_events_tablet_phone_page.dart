@@ -79,7 +79,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                               child: TextFieldWidget(
                                 controller: controller.searchNewsAndEventsController,
                                 hintText: "Pesquisar Notícias e Eventos",
-                                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                 width: double.infinity,
                                 iconTextField: Icon(
                                   Icons.search,

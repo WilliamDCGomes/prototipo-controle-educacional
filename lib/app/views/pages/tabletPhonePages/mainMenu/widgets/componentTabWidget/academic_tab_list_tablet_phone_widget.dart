@@ -36,7 +36,7 @@ class _AcademicTabListTabletPhoneWidgetState extends State<AcademicTabListTablet
                 widget.controller.deliveriesSearchController,
               hintText: widget.academicTabType == academicTabs.curriculum ?
                 "Pesquisar Matéria" : "Pesquisar Trabalho",
-              height: PlatformType.isTablet(context) ? 7.h : 8.h,
+              height: PlatformType.isTablet(context) ? 7.h : 9.h,
               width: double.infinity,
               iconTextField: Icon(
                 Icons.search,

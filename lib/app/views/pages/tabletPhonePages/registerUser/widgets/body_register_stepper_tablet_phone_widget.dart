@@ -43,7 +43,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => TextFieldWidget(
                       controller: widget.controller.nameTextController,
                       hintText: "Nome",
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: double.infinity,
                       keyboardType: TextInputType.name,
                       enableSuggestions: true,
@@ -59,15 +59,19 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         }
                         return validation;
                       },
+                      onEditingComplete: (){
+                        widget.controller.birthDateFocusNode.requestFocus();
+                      },
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
+                        focusNode: widget.controller.birthDateFocusNode,
                         controller: widget.controller.birthDateTextController,
                         hintText: "Data de Nascimento",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
@@ -83,6 +87,9 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                           }
                           return validation;
                         },
+                        onEditingComplete: (){
+                          widget.controller.cpfFocusNode.requestFocus();
+                        },
                       ),
                     ),
                   ),
@@ -90,9 +97,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
+                        focusNode: widget.controller.cpfFocusNode,
                         controller: widget.controller.cpfTextController,
                         hintText: "CPF",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
                         maskTextInputFormatter: MasksForTextFields.cpfMask,
@@ -119,7 +127,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                             child: DropdownButtonWidget(
                               itemSelected: widget.controller.genderSelected.value == "" ? null : widget.controller.genderSelected.value,
                               hintText: "Sexo",
-                              height: 5.h,
+                              height: PlatformType.isTablet(context) ? 5.h : 6.5.h,
                               width: 90.w,
                               listItems: widget.controller.genderList,
                               onChanged: (selectedState) {
@@ -140,7 +148,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         child: TextFieldWidget(
                           controller: widget.controller.otherGenderTypeTextController,
                           hintText: "Informe o seu Gênero",
-                          height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                          height: PlatformType.isTablet(context) ? 7.h : 9.h,
                           width: double.infinity,
                         ),
                       ),
@@ -165,7 +173,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         controller: widget.controller.cepTextController,
                         hintText: "Cep",
                         focusNode: widget.controller.cepInputFocusNode,
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
@@ -191,7 +199,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => SizedBox(
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,7 +212,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                               child: DropdownButtonWidget(
                                 itemSelected: widget.controller.ufSelected.value == "" ? null : widget.controller.ufSelected.value,
                                 hintText: "Uf",
-                                height: 5.h,
+                                height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                                 width: 23.w,
                                 rxListItems: widget.controller.ufsList,
                                 onChanged: (selectedState) {
@@ -216,7 +224,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                               child: TextFieldWidget(
                                 controller: widget.controller.cityTextController,
                                 hintText: "Cidade",
-                                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                 keyboardType: TextInputType.name,
                                 enableSuggestions: true,
                                 textInputAction: TextInputAction.next,
@@ -230,6 +238,9 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                                     widget.controller.cityInputHasError.value = false;
                                   }
                                   return validation;
+                                },
+                                onEditingComplete: (){
+                                  widget.controller.streetFocusNode.requestFocus();
                                 },
                               ),
                             ),
@@ -246,9 +257,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         Expanded(
                           child: Obx(
                             () => TextFieldWidget(
+                              focusNode: widget.controller.streetFocusNode,
                               controller: widget.controller.streetTextController,
                               hintText: "Logradouro",
-                              height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                              height: PlatformType.isTablet(context) ? 7.h : 9.h,
                               keyboardType: TextInputType.streetAddress,
                               enableSuggestions: true,
                               textInputAction: TextInputAction.next,
@@ -263,18 +275,25 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                                 }
                                 return validation;
                               },
+                              onEditingComplete: (){
+                                widget.controller.houseNumberFocusNode.requestFocus();
+                              },
                             ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 2.w),
                           child: TextFieldWidget(
+                            focusNode: widget.controller.houseNumberFocusNode,
                             controller: widget.controller.houseNumberTextController,
                             hintText: "Nº",
                             textInputAction: TextInputAction.next,
-                            height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                            height: PlatformType.isTablet(context) ? 7.h : 9.h,
                             width: 20.w,
                             keyboardType: TextInputType.number,
+                            onEditingComplete: (){
+                              widget.controller.neighborhoodFocusNode.requestFocus();
+                            },
                           ),
                         ),
                       ],
@@ -284,9 +303,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
+                        focusNode: widget.controller.neighborhoodFocusNode,
                         controller: widget.controller.neighborhoodTextController,
                         hintText: "Bairro",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.name,
                         enableSuggestions: true,
@@ -302,15 +322,19 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                           }
                           return validation;
                         },
+                        onEditingComplete: (){
+                          widget.controller.complementFocusNode.requestFocus();
+                        },
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: TextFieldWidget(
+                      focusNode: widget.controller.complementFocusNode,
                       controller: widget.controller.complementTextController,
                       hintText: "Complemento",
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: double.infinity,
                       keyboardType: TextInputType.text,
                       enableSuggestions: true,
@@ -335,7 +359,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                           child: DropdownButtonWidget(
                             itemSelected: widget.controller.educationInstitutionSelected.value == "" ? null : widget.controller.educationInstitutionSelected.value,
                             hintText: "Instituição",
-                            height: 5.6.h,
+                            height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                             width: 90.w,
                             rxListItems: widget.controller.educationInstitutionNameList,
                             onChanged: (schoolSelected) async {
@@ -357,14 +381,14 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 1.5.h),
+                    padding: EdgeInsets.only(top: 3.5.h),
                     child: Row(
                       children: [
                         Expanded(
                           child: DropdownButtonWidget(
                             itemSelected: widget.controller.courseSelected.value == "" ? null : widget.controller.courseSelected.value,
                             hintText: "Curso",
-                            height: 5.6.h,
+                            height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                             width: 90.w,
                             rxListItems: widget.controller.courseList,
                             onChanged: (courseSelected) async {
@@ -391,14 +415,14 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 1.5.h),
+                    padding: EdgeInsets.only(top: 3.5.h),
                     child: Row(
                       children: [
                         Expanded(
                           child: DropdownButtonWidget(
                             itemSelected: widget.controller.periodSelected.value == "" ? null : widget.controller.periodSelected.value,
                             hintText: "Período",
-                            height: 5.6.h,
+                            height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                             width: 90.w,
                             rxListItems: widget.controller.periodList,
                             onChanged: (selectedPeriod) {
@@ -425,7 +449,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     controller: widget.controller.phoneTextController,
                     hintText: "Telefone",
                     textInputAction: TextInputAction.next,
-                    height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                    height: PlatformType.isTablet(context) ? 7.h : 9.h,
                     width: double.infinity,
                     keyboardType: TextInputType.phone,
                     maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
@@ -440,14 +464,18 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       }
                       return validation;
                     },
+                    onEditingComplete: (){
+                      widget.controller.cellPhoneFocusNode.requestFocus();
+                    },
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: TextFieldWidget(
+                      focusNode: widget.controller.cellPhoneFocusNode,
                       controller: widget.controller.cellPhoneTextController,
                       hintText: "Celular",
                       textInputAction: TextInputAction.next,
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: double.infinity,
                       keyboardType: TextInputType.phone,
                       maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
@@ -463,16 +491,20 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         }
                         return validation;
                       },
+                      onEditingComplete: (){
+                        widget.controller.emailFocusNode.requestFocus();
+                      },
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
+                        focusNode: widget.controller.emailFocusNode,
                         controller: widget.controller.emailTextController,
                         hintText: "E-mail",
                         textInputAction: TextInputAction.next,
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.emailAddress,
                         enableSuggestions: true,
@@ -487,6 +519,9 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                           }
                           return validation;
                         },
+                        onEditingComplete: (){
+                          widget.controller.confirmEmailFocusNode.requestFocus();
+                        },
                       ),
                     ),
                   ),
@@ -494,9 +529,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
+                        focusNode: widget.controller.confirmEmailFocusNode,
                         controller: widget.controller.confirmEmailTextController,
                         hintText: "Confirme o E-mail",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.emailAddress,
                         enableSuggestions: true,
@@ -558,7 +594,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => TextFieldWidget(
                       controller: widget.controller.passwordTextController,
                       hintText: "Senha",
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: double.infinity,
                       textInputAction: TextInputAction.next,
                       hasError: widget.controller.passwordInputHasError.value,
@@ -571,6 +607,9 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                           widget.controller.passwordInputHasError.value = false;
                         }
                         return validation;
+                      },
+                      onEditingComplete: (){
+                        widget.controller.confirmPasswordFocusNode.requestFocus();
                       },
                       isPassword: widget.controller.passwordFieldEnabled.value,
                       iconTextField: GestureDetector(
@@ -593,9 +632,10 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Obx(
                       () => TextFieldWidget(
+                        focusNode: widget.controller.confirmPasswordFocusNode,
                         controller: widget.controller.confirmPasswordTextController,
                         hintText: "Confirme a Senha",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         hasError: widget.controller.confirmPasswordInputHasError.value,
                         validator: (String? value) {

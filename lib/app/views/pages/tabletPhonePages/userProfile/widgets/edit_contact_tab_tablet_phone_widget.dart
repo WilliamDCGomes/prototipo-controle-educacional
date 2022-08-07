@@ -34,7 +34,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.phoneTextController,
                 hintText: "Telefone",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.phone,
                 maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
@@ -46,7 +46,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cellPhoneTextController,
                 hintText: "Celular",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.phone,
                 maskTextInputFormatter: _userProfileTabletPhoneController.maskCellPhoneFormatter,
@@ -59,7 +59,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.emailTextController,
                 hintText: "E-mail",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.emailAddress,
                 enableSuggestions: true,
@@ -71,7 +71,7 @@ class _EditContactTabTabletPhoneWidgetState extends State<EditContactTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.confirmEmailTextController,
                 hintText: "Confirme o E-mail",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.emailAddress,
                 enableSuggestions: true,

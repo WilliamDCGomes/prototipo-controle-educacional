@@ -119,7 +119,7 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                               child: ButtonWidget(
                                 hintText: "AVANÇAR",
                                 fontWeight: FontWeight.bold,
-                                widthButton: 90.w,
+                                widthButton: double.infinity,
                                 onPressed: () {
                                   FocusScope.of(context).requestFocus(FocusNode());
                                   controller.nextButtonPressed();
@@ -133,7 +133,7 @@ class _RegisterUserTabletPhonePageState extends State<RegisterUserTabletPhonePag
                             child: Align(
                               alignment: Alignment.center,
                               child: Container(
-                                width: 75.w,
+                                width: double.infinity,
                                 margin: EdgeInsets.symmetric(horizontal: 2.h,),
                                 child: TextWidget(
                                   controller.lgpdPhrase,

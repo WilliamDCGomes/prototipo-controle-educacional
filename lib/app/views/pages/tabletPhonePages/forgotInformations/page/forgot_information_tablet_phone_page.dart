@@ -89,7 +89,7 @@ class _ForgotInformationTabletPhonePageState extends State<ForgotInformationTabl
                                       () => TextFieldWidget(
                                         controller: controller.emailInputController,
                                         hintText: "Informe o E-mail",
-                                        height: PlatformType.isTablet(context) ? 6.h : 7.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                         width: double.infinity,
                                         keyboardType: TextInputType.emailAddress,
                                         enableSuggestions: true,

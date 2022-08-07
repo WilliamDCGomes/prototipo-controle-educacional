@@ -216,7 +216,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                       child: TextFieldWidget(
                                         controller: controller.cardNickname,
                                         hintText: "Apelido do Cartão",
-                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                         keyboardType: TextInputType.name,
                                         enableSuggestions: true,
                                       ),
@@ -227,7 +227,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                         controller: controller.cardNumber,
                                         focusNode: controller.numberCardFocus,
                                         hintText: "Número do Cartão",
-                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                         keyboardType: TextInputType.number,
                                         enableSuggestions: true,
                                         onChanged: (value) => controller.numberCardEditing(value),
@@ -240,7 +240,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                         controller: controller.nameInCard,
                                         focusNode: controller.nameCardFocus,
                                         hintText: "Nome no Cartão",
-                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                         keyboardType: TextInputType.name,
                                         enableSuggestions: true,
                                         onChanged: (value) => controller.nameCardEditing(value),
@@ -256,7 +256,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                               controller: controller.dueDate,
                                               focusNode: controller.dueDateFocus,
                                               hintText: "Data de Vencimento",
-                                              height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                              height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                               keyboardType: TextInputType.number,
                                               enableSuggestions: true,
                                               onChanged: (value) => controller.dueDateCardEditing(value),
@@ -271,7 +271,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                               controller: controller.cvcCode,
                                               focusNode: controller.cvcCodeFocus,
                                               hintText: "CVC",
-                                              height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                              height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                               keyboardType: TextInputType.number,
                                               enableSuggestions: true,
                                               onChanged: (value) => controller.cvcCodeCardEditing(value),
@@ -286,7 +286,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                       child: TextFieldWidget(
                                         controller: controller.cardOwnersCpf,
                                         hintText: "CPF do Titular do Cartão",
-                                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                         keyboardType: TextInputType.number,
                                         enableSuggestions: true,
                                         maskTextInputFormatter: MasksForTextFields.cpfMask,
@@ -298,7 +298,7 @@ class _CardRegistrationTabletPhonePageState extends State<CardRegistrationTablet
                                         () => DropdownButtonWidget(
                                           itemSelected: controller.cardSelectedType.value == "" ? null : controller.cardSelectedType.value,
                                           hintText: "Tipo do Cartão",
-                                          height: 5.6.h,
+                                          height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                                           listItems: [
                                             "Débito",
                                             "Crédito"

@@ -102,7 +102,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                           () => TextFieldWidget(
                                             controller: controller.raInputController,
                                             hintText: "RA",
-                                            height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                            height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                             width: double.infinity,
                                             hasError: controller.raInputHasError.value,
                                             validator: (String? value) {
@@ -119,7 +119,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 6.h),
+                                          padding: EdgeInsets.only(top: 6.5.h),
                                           child: Align(
                                             alignment: Alignment.topRight,
                                             child: TextButtonWidget(
@@ -142,7 +142,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                           () => TextFieldWidget(
                                             controller: controller.passwordInputController,
                                             hintText: "Digite sua senha",
-                                            height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                            height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                             width: double.infinity,
                                             isPassword: controller.passwordFieldEnabled.value,
                                             hasError: controller.passwordInputHasError.value,
@@ -173,7 +173,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 6.h),
+                                          padding: EdgeInsets.only(top: 6.5.h),
                                           child: Align(
                                             alignment: Alignment.topRight,
                                             child: TextButtonWidget(

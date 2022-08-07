@@ -34,6 +34,19 @@ class Classes extends CoreEntity{
     professorName = json["professorName"];
     classDate = json["classDate"];
     files = json["files"];
+    lastChange = json["lastChange"];
+    includeDate = json["includeDate"];
+    active = json["active"];
+  }
+
+  Classes.fromJsonFirebase(Map<String, dynamic> json) {
+    className = json["className"];
+    classSubject = json["classSubject"];
+    disciplineName = json["disciplineName"];
+    classDescription = json["classDescription"];
+    professorName = json["professorName"];
+    classDate = json["classDate"];
+    files = json["files"];
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();
     active = json["active"];

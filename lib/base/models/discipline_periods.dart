@@ -16,6 +16,15 @@ class DisciplinePeriods extends CoreEntity{
     courseId = json["course_id"];
     period = json["period"];
     id = json["id"];
+    lastChange = json["lastChange"];
+    includeDate = json["includeDate"];
+    active = json["active"];
+  }
+
+  DisciplinePeriods.fromJsonFirebase(Map<String, dynamic> json) {
+    courseId = json["course_id"];
+    period = json["period"];
+    id = json["id"];
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();
     active = json["active"];

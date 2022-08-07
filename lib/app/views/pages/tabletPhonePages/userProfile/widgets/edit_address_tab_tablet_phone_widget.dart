@@ -35,7 +35,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cepTextController,
                 hintText: "Cep",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 maskTextInputFormatter: MasksForTextFields.cepMask,
@@ -45,7 +45,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
             Padding(
               padding: EdgeInsets.only(top: 1.5.h),
               child: SizedBox(
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,7 +58,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                       child: DropdownButtonWidget(
                         itemSelected: _userProfileTabletPhoneController.ufSelected.value == "" ? null : _userProfileTabletPhoneController.ufSelected.value,
                         hintText: "Uf",
-                        height: 6.h,
+                        height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                         width: 23.w,
                         justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
                         rxListItems: _userProfileTabletPhoneController.ufsList,
@@ -71,7 +71,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                       child: TextFieldWidget(
                         controller: _userProfileTabletPhoneController.cityTextController,
                         hintText: "Cidade",
-                        height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                        height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         keyboardType: TextInputType.name,
                         enableSuggestions: true,
                         justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -90,7 +90,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                     child: TextFieldWidget(
                       controller: _userProfileTabletPhoneController.streetTextController,
                       hintText: "Logradouro",
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       keyboardType: TextInputType.streetAddress,
                       enableSuggestions: true,
                       justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -101,7 +101,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                     child: TextFieldWidget(
                       controller: _userProfileTabletPhoneController.houseNumberTextController,
                       hintText: "Nº",
-                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: 20.w,
                       keyboardType: TextInputType.number,
                       justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -115,7 +115,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.neighborhoodTextController,
                 hintText: "Bairro",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
@@ -127,7 +127,7 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.complementTextController,
                 hintText: "Complemento",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.text,
                 enableSuggestions: true,

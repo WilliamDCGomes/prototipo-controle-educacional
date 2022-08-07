@@ -18,6 +18,7 @@ import '../../../../../../base/services/interfaces/idiscipline_periods_service.d
 import '../../../../../../base/services/interfaces/ieducation_institution_service.dart';
 import '../../../../../../base/services/student_service.dart';
 import '../../../../../utils/brazil_address_informations.dart';
+import '../../../../../utils/internet_connection.dart';
 import '../../../../../utils/loading.dart';
 import '../../../../../utils/valid_cellphone_mask.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
@@ -30,6 +31,7 @@ import '../../../../stylePages/masks_for_text_fields.dart';
 class RegisterUserTabletPhoneController extends GetxController {
   late String lgpdPhrase;
   late bool cepSearched;
+  late bool buttonClicked;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimetion;
@@ -81,14 +83,19 @@ class RegisterUserTabletPhoneController extends GetxController {
   late TextEditingController confirmEmailTextController;
   late TextEditingController pinPutSMSController;
   late TextEditingController pinPutEmailController;
-  late TextEditingController emailVerification1TextController;
-  late TextEditingController emailVerification2TextController;
-  late TextEditingController emailVerification3TextController;
-  late TextEditingController emailVerification4TextController;
-  late TextEditingController emailVerification5TextController;
   late TextEditingController passwordTextController;
   late TextEditingController confirmPasswordTextController;
   late TextEditingController otherGenderTypeTextController;
+  late FocusNode birthDateFocusNode;
+  late FocusNode cpfFocusNode;
+  late FocusNode streetFocusNode;
+  late FocusNode houseNumberFocusNode;
+  late FocusNode neighborhoodFocusNode;
+  late FocusNode complementFocusNode;
+  late FocusNode cellPhoneFocusNode;
+  late FocusNode emailFocusNode;
+  late FocusNode confirmEmailFocusNode;
+  late FocusNode confirmPasswordFocusNode;
   late List<HeaderRegisterStepperTabletPhoneWidget> headerRegisterStepperList;
   late List<BodyRegisterStepperTabletPhoneWidget> bodyRegisterStepperList;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
@@ -119,6 +126,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     courseSelected = "".obs;
     periodSelected = "".obs;
     cepSearched = false;
+    buttonClicked = false;
     loadingAnimetion = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
@@ -172,14 +180,19 @@ class RegisterUserTabletPhoneController extends GetxController {
     confirmEmailTextController = TextEditingController();
     pinPutSMSController = TextEditingController();
     pinPutEmailController = TextEditingController();
-    emailVerification1TextController = TextEditingController();
-    emailVerification2TextController = TextEditingController();
-    emailVerification3TextController = TextEditingController();
-    emailVerification4TextController = TextEditingController();
-    emailVerification5TextController = TextEditingController();
     passwordTextController = TextEditingController();
     confirmPasswordTextController = TextEditingController();
     otherGenderTypeTextController = TextEditingController();
+    birthDateFocusNode = FocusNode();
+    cpfFocusNode = FocusNode();
+    streetFocusNode = FocusNode();
+    houseNumberFocusNode = FocusNode();
+    neighborhoodFocusNode = FocusNode();
+    complementFocusNode = FocusNode();
+    cellPhoneFocusNode = FocusNode();
+    emailFocusNode = FocusNode();
+    confirmEmailFocusNode = FocusNode();
+    confirmPasswordFocusNode = FocusNode();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimetion: loadingAnimetion,
     );
@@ -270,6 +283,10 @@ class RegisterUserTabletPhoneController extends GetxController {
 
   _searchAddressInformation() async {
     try{
+      if(buttonClicked){
+        buttonClicked = false;
+        return;
+      }
       if(cepTextController.text.length == 9){
         AddressInformation? addressInformation = await consultCepService.searchCep(cepTextController.text);
         if(addressInformation != null){
@@ -505,16 +522,25 @@ class RegisterUserTabletPhoneController extends GetxController {
     await studentService.sendNewStudent(newStudent);
   }
 
-  _validInternetConnection(){
-
-  }
-
   searchCoursesOfEducationInstitution() async {
     try{
       courseList.clear();
       courseSelected.value = "";
       periodList.clear();
       periodSelected.value = "";
+
+      if(!await InternetConnection.checkConnection()){
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "É necessário uma conexão com a internet para localizar os cursos dessa instituição",
+            );
+          },
+        );
+        return;
+      }
       EducationInstitution educationInstitution = educationInstitutionList.firstWhere(
         (element) => element.name == educationInstitutionSelected.value
       );
@@ -544,6 +570,18 @@ class RegisterUserTabletPhoneController extends GetxController {
     try{
       periodList.clear();
       periodSelected.value = "";
+      if(!await InternetConnection.checkConnection()){
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "É necessário uma conexão com a internet para localizar os períodos letivos desse curso",
+            );
+          },
+        );
+        return;
+      }
       List<DisciplinePeriods> periods = await disciplinePeriodsService.getDisciplinePeriods(institutionId);
       DisciplinePeriods disciplinePeriods = periods.firstWhere(
         (element) => element.courseId == courseFromInstitutionList.firstWhere(
@@ -569,6 +607,14 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   nextButtonPressed() async {
+    buttonClicked = true;
+    if(!await InternetConnection.validInternet(
+      "É necessário uma conexão com a internet para fazer o cadastro",
+      loadingAnimetion,
+      loadingWithSuccessOrErrorTabletPhoneWidget,
+    )){
+      return;
+    }
     switch(activeStep.value){
       case 0:
         if(formKeyPersonalInformation.currentState!.validate()){

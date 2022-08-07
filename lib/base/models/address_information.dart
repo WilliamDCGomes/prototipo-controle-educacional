@@ -12,4 +12,12 @@ class AddressInformation {
     neighborhood = json["bairro"];
     complement = json["complemento"];
   }
+
+  AddressInformation.fromJsonFirebase(Map<String, dynamic> json) {
+    uf = json["uf"];
+    city = json["localidade"];
+    street = json["logradouro"];
+    neighborhood = json["bairro"];
+    complement = json["complemento"];
+  }
 }

@@ -14,6 +14,14 @@ class Course extends CoreEntity{
   Course.fromJson(Map<String, dynamic> json) {
     name = json["name"];
     id = json["id"];
+    lastChange = json["lastChange"];
+    includeDate = json["includeDate"];
+    active = json["active"];
+  }
+
+  Course.fromJsonFirebase(Map<String, dynamic> json) {
+    name = json["name"];
+    id = json["id"];
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();
     active = json["active"];

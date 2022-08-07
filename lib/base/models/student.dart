@@ -48,6 +48,31 @@ class Student extends CoreEntity{
     email = json["email"];
     password = json["password"];
     id = json["id"];
+    lastChange = json["lastChange"];
+    includeDate = json["includeDate"];
+    active = json["active"];
+  }
+
+  Student.fromJsonFirebase(Map<String, dynamic> json) {
+    name = json["name"];
+    birthdate = json["birthdate"];
+    cpf = json["cpf"];
+    gender = json["gender"];
+    cep = json["cep"];
+    uf = json["uf"];
+    city = json["city"];
+    street = json["street"];
+    houseNumber = json["houseNumber"];
+    neighborhood = json["neighborhood"];
+    complement = json["complement"];
+    educationInstitutionName = json["educationInstitutionName"];
+    course = json["course"];
+    period = json["period"];
+    phone = json["phone"];
+    cellPhone = json["cellPhone"];
+    email = json["email"];
+    password = json["password"];
+    id = json["id"];
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();
     active = json["active"];

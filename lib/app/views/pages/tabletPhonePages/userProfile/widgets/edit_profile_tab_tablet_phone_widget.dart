@@ -34,7 +34,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.nameTextController,
                 hintText: "Nome",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
@@ -46,7 +46,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.raTextController,
                 hintText: "RA",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
@@ -57,7 +57,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.birthDateTextController,
                 hintText: "Data de Nascimento",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 maskTextInputFormatter: MasksForTextFields.birthDateMask,
@@ -69,7 +69,7 @@ class _EditProfileTabTabletPhoneWidgetState extends State<EditProfileTabTabletPh
               child: TextFieldWidget(
                 controller: _userProfileTabletPhoneController.cpfTextController,
                 hintText: "CPF",
-                height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
                 maskTextInputFormatter: MasksForTextFields.cpfMask,

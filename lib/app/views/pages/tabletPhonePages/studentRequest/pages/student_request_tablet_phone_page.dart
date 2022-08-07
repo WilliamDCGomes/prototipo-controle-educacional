@@ -163,7 +163,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                       () => DropdownButtonWidget(
                                         itemSelected: controller.requestSelected.value == "" ? null : controller.requestSelected.value,
                                         hintText: "Tipo de Solicitação",
-                                        height: 6.h,
+                                        height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
                                         width: 85.w,
                                         rxListItems: controller.requestTypeList,
                                         onChanged: (selectedState) => controller.onDropdownButtonWidgetChanged(selectedState),
@@ -175,7 +175,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     child: TextFieldWidget(
                                       controller: controller.studentName,
                                       hintText: "Nome",
-                                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                       keyboardType: TextInputType.name,
                                       enableSuggestions: true,
                                       justRead: true,
@@ -186,7 +186,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     child: TextFieldWidget(
                                       controller: controller.raNumber,
                                       hintText: "RA",
-                                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                       keyboardType: TextInputType.number,
                                       enableSuggestions: true,
                                       justRead: true,
@@ -197,7 +197,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                     child: TextFieldWidget(
                                       controller: controller.dateRequest,
                                       hintText: "Data do Pedido",
-                                      height: PlatformType.isTablet(context) ? 7.h : 8.h,
+                                      height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                       keyboardType: TextInputType.number,
                                       maskTextInputFormatter: MasksForTextFields.birthDateMask,
                                       justRead: true,

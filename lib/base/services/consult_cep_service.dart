@@ -13,7 +13,7 @@ class ConsultCepService extends BaseService implements IConsultCepService {
         throw Exception();
       }
 
-      return AddressInformation.fromJson(apiReturn.body);
+      return AddressInformation.fromJsonFirebase(apiReturn.body);
     }
     catch (_) {
       return null;
