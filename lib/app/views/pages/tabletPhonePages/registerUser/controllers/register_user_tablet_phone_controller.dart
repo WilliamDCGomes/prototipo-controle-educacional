@@ -505,6 +505,10 @@ class RegisterUserTabletPhoneController extends GetxController {
     await studentService.sendNewStudent(newStudent);
   }
 
+  _validInternetConnection(){
+    
+  }
+
   searchCoursesOfEducationInstitution() async {
     try{
       courseList.clear();
