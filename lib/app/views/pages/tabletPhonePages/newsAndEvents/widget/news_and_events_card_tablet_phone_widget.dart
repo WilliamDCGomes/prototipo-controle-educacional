@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:projeto_tcc/app/helpers/paths.dart';
+import 'package:projeto_tcc/app/utils/paths.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/news_and_events_view_controller.dart';
 import '../../../../stylePages/app_colors.dart';

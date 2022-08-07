@@ -7,7 +7,7 @@ import '../../shared/widgets/copy_bar_code_tablet_phone_widget.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/student_card_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../widgets/student_card_tablet_phone_widget.dart';
 

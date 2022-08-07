@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/platform_type.dart';
+import '../../../../../utils/platform_type.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class AcademicTabTabletPhoneWidget extends StatefulWidget {

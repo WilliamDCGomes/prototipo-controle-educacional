@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/helpers/text_field_validators.dart';
+import 'package:projeto_tcc/app/utils/text_field_validators.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/app_close_controller.dart';
+import '../../../../../utils/app_close_controller.dart';
 import '../../../../../enums/enums.dart';
-import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
+import '../../../../../utils/paths.dart';
+import '../../../../../utils/platform_type.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';

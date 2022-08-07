@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_tcc/app/helpers/platform_type.dart';
+import 'package:projeto_tcc/app/utils/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../helpers/paths.dart';
-import '../../../../../../helpers/reorderer_lists.dart';
+import '../../../../../../utils/paths.dart';
+import '../../../../../../utils/reorderer_lists.dart';
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/text_field_widget.dart';
 import '../../../academicRecord/controller/academic_record_tablet_phone_controller.dart';

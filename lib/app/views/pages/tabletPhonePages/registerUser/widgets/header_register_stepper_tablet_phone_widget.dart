@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/platform_type.dart';
+import '../../../../../utils/paths.dart';
+import '../../../../../utils/platform_type.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 

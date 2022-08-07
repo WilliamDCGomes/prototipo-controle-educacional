@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 
 class StudentCardTabletPhoneController extends GetxController {
   late String imageBasePath;

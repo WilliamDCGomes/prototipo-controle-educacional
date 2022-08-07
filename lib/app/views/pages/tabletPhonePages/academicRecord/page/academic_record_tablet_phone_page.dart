@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../controller/academic_record_tablet_phone_controller.dart';
 

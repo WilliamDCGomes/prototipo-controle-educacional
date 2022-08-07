@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
-import '../../../../../helpers/format_numbers.dart';
+import '../../../../../utils/format_numbers.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 import '../../studentRequest/pages/payment_finished_tablet_phone_page.dart';

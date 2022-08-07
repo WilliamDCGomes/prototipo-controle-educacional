@@ -7,7 +7,7 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/academic_calendar_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../widgetsShared/calendar_widget.dart';
 import '../../../../stylePages/app_colors.dart';
 

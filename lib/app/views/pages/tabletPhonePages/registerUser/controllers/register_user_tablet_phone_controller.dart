@@ -17,9 +17,9 @@ import '../../../../../../base/services/interfaces/icourse_service.dart';
 import '../../../../../../base/services/interfaces/idiscipline_periods_service.dart';
 import '../../../../../../base/services/interfaces/ieducation_institution_service.dart';
 import '../../../../../../base/services/student_service.dart';
-import '../../../../../helpers/brazil_address_informations.dart';
-import '../../../../../helpers/loading.dart';
-import '../../../../../helpers/valid_cellphone_mask.dart';
+import '../../../../../utils/brazil_address_informations.dart';
+import '../../../../../utils/loading.dart';
+import '../../../../../utils/valid_cellphone_mask.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../widgets/body_register_stepper_tablet_phone_widget.dart';
 import '../widgets/header_register_stepper_tablet_phone_widget.dart';
@@ -506,7 +506,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   _validInternetConnection(){
-    
+
   }
 
   searchCoursesOfEducationInstitution() async {

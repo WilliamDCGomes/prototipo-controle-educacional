@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/format_numbers.dart';
-import '../../../../../helpers/get_status_academic_icon.dart';
+import '../../../../../utils/format_numbers.dart';
+import '../../../../../utils/get_status_academic_icon.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';

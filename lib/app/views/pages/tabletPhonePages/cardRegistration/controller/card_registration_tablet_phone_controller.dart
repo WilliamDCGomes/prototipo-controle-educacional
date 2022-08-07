@@ -2,8 +2,8 @@ import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../../../../helpers/flag_card_type.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/flag_card_type.dart';
+import '../../../../../utils/paths.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 
 class CardRegistrationTabletPhoneController extends GetxController {

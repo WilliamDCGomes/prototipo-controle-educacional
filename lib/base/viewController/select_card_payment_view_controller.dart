@@ -1,6 +1,5 @@
-import 'package:projeto_tcc/app/helpers/date_format_to_brazil.dart';
-
-import '../../app/helpers/format_numbers.dart';
+import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
+import '../../app/utils/format_numbers.dart';
 
 class SelectCardPaymentViewController {
   late String studentName;

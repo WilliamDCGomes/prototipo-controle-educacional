@@ -4,8 +4,8 @@ import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dar
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/meeting_view_controller.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
-import '../../../../../helpers/format_hours.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
+import '../../../../../utils/format_hours.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../academicCalendar/controller/academic_calendar_tablet_phone_controller.dart';
 

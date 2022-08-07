@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/models/files.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 

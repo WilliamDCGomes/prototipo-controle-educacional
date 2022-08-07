@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/base/models/files.dart';
-import '../../app/helpers/date_format_to_brazil.dart';
+import '../../app/utils/date_format_to_brazil.dart';
 import '../models/classes.dart';
 
 class CurriculumDeliveryViewController {

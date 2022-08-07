@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/app_close_controller.dart';
+import '../../../../../utils/app_close_controller.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../controller/welcome_page_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class WelcomePageTabletPhonePage extends StatefulWidget {

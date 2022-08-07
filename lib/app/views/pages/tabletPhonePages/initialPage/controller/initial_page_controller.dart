@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../../helpers/platform_type.dart';
+import '../../../../../utils/platform_type.dart';
 import '../../../watchPages/welcome_page_watch_page.dart';
 import '../../../webPages/welcome_page_web_page.dart';
 import '../../welcomePage/page/welcome_page_tablet_phone_page.dart';

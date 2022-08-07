@@ -9,7 +9,7 @@ import '../../cardPayment/page/card_payment_tablet_phone_page.dart';
 import '../../cardRegistration/page/card_registration_tablet_phone_page.dart';
 import '../../shared/widgets/payment_card_select_tablet_phone_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import 'card_financial_tablet_phone_widget.dart';
 import 'componentTabWidget/card_payment_list_tablet_phone_widget.dart';

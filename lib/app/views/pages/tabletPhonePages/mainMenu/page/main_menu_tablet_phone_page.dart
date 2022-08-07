@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/app_close_controller.dart';
+import '../../../../../utils/app_close_controller.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class MainMenuTabletPhonePage extends StatefulWidget {

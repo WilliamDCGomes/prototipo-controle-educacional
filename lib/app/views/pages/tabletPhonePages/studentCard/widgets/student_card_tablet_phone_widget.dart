@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/platform_type.dart';
+import '../../../../../utils/platform_type.dart';
 import 'information_student_card_tablet_phone_widget.dart';
 
 class StudentCardTabletPhoneWidget extends StatelessWidget {

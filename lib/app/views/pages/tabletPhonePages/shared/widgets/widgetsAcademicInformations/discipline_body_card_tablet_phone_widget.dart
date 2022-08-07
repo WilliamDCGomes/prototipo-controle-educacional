@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../helpers/get_status_academic_icon.dart';
+import '../../../../../../utils/get_status_academic_icon.dart';
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';

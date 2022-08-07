@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import '../../../../../helpers/brazil_address_informations.dart';
-import '../../../../../helpers/valid_cellphone_mask.dart';
+import '../../../../../utils/brazil_address_informations.dart';
+import '../../../../../utils/valid_cellphone_mask.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';

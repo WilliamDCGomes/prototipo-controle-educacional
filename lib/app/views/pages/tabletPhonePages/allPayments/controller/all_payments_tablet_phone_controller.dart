@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../widgets/tag_filter_tablet_phone_widget.dart';
 import 'package:flutter/material.dart';

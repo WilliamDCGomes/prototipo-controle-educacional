@@ -6,8 +6,8 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../userProfile/page/user_profile_tablet_phone_page.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../helpers/paths.dart';
-import '../../../../../helpers/reorderer_lists.dart';
+import '../../../../../utils/paths.dart';
+import '../../../../../utils/reorderer_lists.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class ProfileTabTabletPhoneWidget extends StatefulWidget {

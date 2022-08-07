@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../helpers/platform_type.dart';
+import '../../../../../../utils/platform_type.dart';
 import '../../../../widgetsShared/text_field_widget.dart';
 import '../../controller/main_menu_tablet_phone_controller.dart';
-import '../../../../../../helpers/reorderer_lists.dart';
+import '../../../../../../utils/reorderer_lists.dart';
 import '../../../../../stylePages/app_colors.dart';
 import 'card_tab_list_tablet_phone_widget.dart';
 

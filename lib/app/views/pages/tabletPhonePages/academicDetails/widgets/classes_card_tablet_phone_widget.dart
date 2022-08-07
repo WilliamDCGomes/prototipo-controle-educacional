@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/models/classes.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../pages/class_content_tablet_phone_page.dart';

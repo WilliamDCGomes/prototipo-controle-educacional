@@ -4,7 +4,7 @@ import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/views/stylePages/app_colors.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../../base/viewController/payment_finished_view_controller.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
 import '../../shared/popups/bottom_sheet_tablet_phone_popup.dart';
 import '../../studentRequest/popup/payment_form_tablet_phone_popup.dart';
 

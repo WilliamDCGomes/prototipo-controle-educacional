@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/helpers/paths.dart';
+import 'package:projeto_tcc/app/utils/paths.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
 import '../../../../../enums/enums.dart';
-import '../../../../../helpers/date_format_to_brazil.dart';
-import '../../../../../helpers/format_numbers.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
+import '../../../../../utils/format_numbers.dart';
 import '../../shared/popups/bottom_sheet_tablet_phone_popup.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';

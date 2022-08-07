@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/helpers/platform_type.dart';
+import 'package:projeto_tcc/app/utils/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/app_close_controller.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/app_close_controller.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../controller/initial_page_controller.dart';
 

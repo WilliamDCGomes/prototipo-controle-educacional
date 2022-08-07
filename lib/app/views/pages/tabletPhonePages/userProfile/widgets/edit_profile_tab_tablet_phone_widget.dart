@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/platform_type.dart';
+import '../../../../../utils/platform_type.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../controller/user_profile_tablet_phone_controller.dart';

@@ -1,5 +1,5 @@
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
-import 'package:projeto_tcc/app/helpers/paths.dart';
+import 'package:projeto_tcc/app/utils/paths.dart';
 
 class FlagCardType {
   static String getFlagCard(CreditCardType? flagCard) {

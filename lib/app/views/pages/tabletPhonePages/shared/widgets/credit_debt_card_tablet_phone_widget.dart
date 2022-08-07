@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../helpers/flag_card_type.dart';
-import '../../../../../helpers/paths.dart';
+import '../../../../../utils/flag_card_type.dart';
+import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class CreditDebtCardTabletPhoneWidget extends StatelessWidget {
