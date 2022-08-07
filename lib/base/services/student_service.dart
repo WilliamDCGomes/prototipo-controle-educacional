@@ -8,6 +8,17 @@ class StudentService implements IStudentService {
       await FirebaseFirestore.instance.collection("student")
           .doc(newStudent.cpf)
           .set(newStudent.toJson());
+      return await saveEmail(newStudent.email);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> saveEmail(String email) async {
+    try {
+      await FirebaseFirestore.instance.collection("registered_emails")
+          .doc(email)
+          .set({});
       return true;
     } catch (_) {
       return false;
@@ -18,6 +29,16 @@ class StudentService implements IStudentService {
     try {
       var verification = await FirebaseFirestore.instance.collection("student")
           .doc(cpf).get();
+      return verification.exists;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> verificationEmailExists(String email) async {
+    try {
+      var verification = await FirebaseFirestore.instance.collection("registered_emails")
+          .doc(email).get();
       return verification.exists;
     } catch (_) {
       return false;

@@ -429,6 +429,17 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     width: double.infinity,
                     keyboardType: TextInputType.phone,
                     maskTextInputFormatter: MasksForTextFields.phoneNumberMask,
+                    hasError: widget.controller.phoneInputHasError.value,
+                    validator: (String? value) {
+                      String? validation = TextFieldValidators.phoneValidation(value);
+                      if(validation != null && validation != ""){
+                        widget.controller.phoneInputHasError.value = true;
+                      }
+                      else{
+                        widget.controller.phoneInputHasError.value = false;
+                      }
+                      return validation;
+                    },
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 1.5.h),
@@ -441,6 +452,17 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       keyboardType: TextInputType.phone,
                       maskTextInputFormatter: widget.controller.maskCellPhoneFormatter,
                       onChanged: (cellPhoneTyped) => widget.controller.phoneTextFieldEdited(cellPhoneTyped),
+                      hasError: widget.controller.cellPhoneInputHasError.value,
+                      validator: (String? value) {
+                        String? validation = TextFieldValidators.cellPhoneValidation(value);
+                        if(validation != null && validation != ""){
+                          widget.controller.cellPhoneInputHasError.value = true;
+                        }
+                        else{
+                          widget.controller.cellPhoneInputHasError.value = false;
+                        }
+                        return validation;
+                      },
                     ),
                   ),
                   Padding(

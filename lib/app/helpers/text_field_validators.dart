@@ -104,6 +104,20 @@ class TextFieldValidators {
     return null;
   }
 
+  static String? phoneValidation(String? value) {
+    if (value != null && value.trim().length > 0 && value.trim().length != 14) {
+      return "Telefone Inválido";
+    }
+    return null;
+  }
+
+  static String? cellPhoneValidation(String? value) {
+    if (value != null && value.trim().length > 0 && value.trim().length != 14 && value.trim().length != 15) {
+      return "Celular Inválido";
+    }
+    return null;
+  }
+
   static String? emailValidation(String? value) {
     if (value == null || value.trim().isEmpty) {
       return "Informe o E-mail";

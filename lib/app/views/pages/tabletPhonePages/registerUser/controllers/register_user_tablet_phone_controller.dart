@@ -41,6 +41,8 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxBool cityInputHasError;
   late RxBool streetInputHasError;
   late RxBool neighborhoodInputHasError;
+  late RxBool phoneInputHasError;
+  late RxBool cellPhoneInputHasError;
   late RxBool emailInputHasError;
   late RxBool confirmEmailInputHasError;
   late RxBool passwordInputHasError;
@@ -127,6 +129,8 @@ class RegisterUserTabletPhoneController extends GetxController {
     cityInputHasError = false.obs;
     streetInputHasError = false.obs;
     neighborhoodInputHasError = false.obs;
+    phoneInputHasError = false.obs;
+    cellPhoneInputHasError = false.obs;
     emailInputHasError = false.obs;
     confirmEmailInputHasError = false.obs;
     passwordInputHasError = false.obs;
@@ -202,7 +206,7 @@ class RegisterUserTabletPhoneController extends GetxController {
       ),
       HeaderRegisterStepperTabletPhoneWidget(
         firstText: "PASSO 5 DE 7",
-        secondText: "Confirmação Telefone",
+        secondText: "Confirmação Celular",
         thirdText: "Informe o código de verificação enviado por SMS para o número informado.",
       ),
       HeaderRegisterStepperTabletPhoneWidget(
@@ -325,7 +329,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     }
   }
 
-  _checkCpfAlreadyExists() async {
+  _validPersonalInformationAndAdvanceNextStep() async {
     if(await studentService.verificationStudentExists(cpfTextController.text)){
       showDialog(
         context: Get.context!,
@@ -353,6 +357,26 @@ class RegisterUserTabletPhoneController extends GetxController {
       newStudent.birthdate = birthDateTextController.text;
       newStudent.cpf = cpfTextController.text;
       newStudent.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
+      _nextPage();
+    }
+  }
+
+  _validEmailAndAdvanceNextStep() async {
+    if(await studentService.verificationEmailExists(emailTextController.text)){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "O E-mail já está cadastrado no sistema.",
+          );
+        },
+      );
+    }
+    else{
+      newStudent.phone = phoneTextController.text;
+      newStudent.cellPhone = cellPhoneTextController.text;
+      newStudent.email = emailTextController.text;
       _nextPage();
     }
   }
@@ -396,6 +420,72 @@ class RegisterUserTabletPhoneController extends GetxController {
     }
 
     return true;
+  }
+
+  bool _validPhoneCode(String code) {
+    try{
+      if(code == ""){
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "Informe o código enviado para o seu Celular.",
+            );
+          },
+        );
+        return false;
+      }
+      if(code != "12345"){
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "O código informado é inválido.",
+            );
+          },
+        );
+        return false;
+      }
+      return true;
+    }
+    catch(_){
+      return false;
+    }
+  }
+
+  bool _validEmailCode(String code) {
+    try{
+      if(code == ""){
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "Informe o código enviado para o seu \nE-mail.",
+            );
+          },
+        );
+        return false;
+      }
+      if(code != "12345"){
+        showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "O código informado é inválido.",
+            );
+          },
+        );
+        return false;
+      }
+      return true;
+    }
+    catch(_){
+      return false;
+    }
   }
 
   _nextPage() async {
@@ -479,7 +569,7 @@ class RegisterUserTabletPhoneController extends GetxController {
       case 0:
         if(formKeyPersonalInformation.currentState!.validate()){
           Loading.startAndPauseLoading(
-            () => _checkCpfAlreadyExists(),
+            () => _validPersonalInformationAndAdvanceNextStep(),
             loadingAnimetion,
             loadingWithSuccessOrErrorTabletPhoneWidget,
           );
@@ -515,17 +605,34 @@ class RegisterUserTabletPhoneController extends GetxController {
         break;
       case 3:
         if(formKeyContactInformation.currentState!.validate()){
-          newStudent.phone = phoneTextController.text;
-          newStudent.cellPhone = cellPhoneTextController.text;
-          newStudent.email = emailTextController.text;
-          _nextPage();
+          Loading.startAndPauseLoading(
+            () => _validEmailAndAdvanceNextStep(),
+            loadingAnimetion,
+            loadingWithSuccessOrErrorTabletPhoneWidget,
+          );
         }
         break;
       case 4:
-        _nextPage();
+        await Loading.startAndPauseLoading(
+          () {
+            if(_validPhoneCode(pinPutSMSController.text)){
+            _nextPage();
+            }
+          },
+          loadingAnimetion,
+          loadingWithSuccessOrErrorTabletPhoneWidget,
+        );
         break;
       case 5:
-        _nextPage();
+        await Loading.startAndPauseLoading(
+          () {
+            if(_validEmailCode(pinPutEmailController.text)){
+            _nextPage();
+            }
+          },
+          loadingAnimetion,
+          loadingWithSuccessOrErrorTabletPhoneWidget,
+        );
         break;
       case 6:
         if(formKeyPasswordInformation.currentState!.validate()){
