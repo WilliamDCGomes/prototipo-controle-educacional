@@ -34,7 +34,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   late bool buttonClicked;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late RxBool confirmPasswordFieldEnabled;
   late RxBool nameInputHasError;
   late RxBool birthdayInputHasError;
@@ -127,7 +127,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     periodSelected = "".obs;
     cepSearched = false;
     buttonClicked = false;
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
     nameInputHasError = false.obs;
@@ -194,7 +194,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     confirmEmailFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimetion: loadingAnimation,
     );
     headerRegisterStepperList = [
       HeaderRegisterStepperTabletPhoneWidget(
@@ -268,7 +268,7 @@ class RegisterUserTabletPhoneController extends GetxController {
       if(!cepSearched && !cepInputFocusNode.hasFocus){
         await Loading.startAndPauseLoading(
           () => _searchAddressInformation(),
-          loadingAnimetion,
+          loadingAnimation,
           loadingWithSuccessOrErrorTabletPhoneWidget,
         );
       }
@@ -511,7 +511,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     else{
       await Loading.starAnimationAndCallOtherPage(
         () => _saveStudent(),
-        loadingAnimetion,
+        loadingAnimation,
         loadingWithSuccessOrErrorTabletPhoneWidget,
         RegistrationCompletedTabletPhone(),
       );
@@ -610,7 +610,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     buttonClicked = true;
     if(!await InternetConnection.validInternet(
       "É necessário uma conexão com a internet para fazer o cadastro",
-      loadingAnimetion,
+      loadingAnimation,
       loadingWithSuccessOrErrorTabletPhoneWidget,
     )){
       return;
@@ -620,7 +620,7 @@ class RegisterUserTabletPhoneController extends GetxController {
         if(formKeyPersonalInformation.currentState!.validate()){
           Loading.startAndPauseLoading(
             () => _validPersonalInformationAndAdvanceNextStep(),
-            loadingAnimetion,
+            loadingAnimation,
             loadingWithSuccessOrErrorTabletPhoneWidget,
           );
         }
@@ -629,7 +629,7 @@ class RegisterUserTabletPhoneController extends GetxController {
         if(cepTextController.text.length == 9 && !cepSearched){
           await Loading.startAndPauseLoading(
             () => _searchAddressInformation(),
-            loadingAnimetion,
+            loadingAnimation,
             loadingWithSuccessOrErrorTabletPhoneWidget,
           );
           return;
@@ -657,7 +657,7 @@ class RegisterUserTabletPhoneController extends GetxController {
         if(formKeyContactInformation.currentState!.validate()){
           Loading.startAndPauseLoading(
             () => _validEmailAndAdvanceNextStep(),
-            loadingAnimetion,
+            loadingAnimation,
             loadingWithSuccessOrErrorTabletPhoneWidget,
           );
         }
@@ -669,7 +669,7 @@ class RegisterUserTabletPhoneController extends GetxController {
             _nextPage();
             }
           },
-          loadingAnimetion,
+          loadingAnimation,
           loadingWithSuccessOrErrorTabletPhoneWidget,
         );
         break;
@@ -680,7 +680,7 @@ class RegisterUserTabletPhoneController extends GetxController {
             _nextPage();
             }
           },
-          loadingAnimetion,
+          loadingAnimation,
           loadingWithSuccessOrErrorTabletPhoneWidget,
         );
         break;

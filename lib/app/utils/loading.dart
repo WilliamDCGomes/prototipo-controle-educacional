@@ -16,12 +16,12 @@ class Loading{
 
   static Future starAnimationAndCallOtherPage(
       Function action,
-      RxBool loadingAnimetion,
+      RxBool loadingAnimation,
       LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget,
       Widget destinationPage,
   ) async {
     FocusScope.of(Get.context!).requestFocus(FocusNode());
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
 
     await Future.delayed(Duration(seconds: 1));

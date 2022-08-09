@@ -367,7 +367,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                               if(widget.controller.educationInstitutionSelected.value != ""){
                                 await Loading.startAndPauseLoading(
                                   () => widget.controller.searchCoursesOfEducationInstitution(),
-                                  widget.controller.loadingAnimetion,
+                                  widget.controller.loadingAnimation,
                                   widget.controller.loadingWithSuccessOrErrorTabletPhoneWidget,
                                 );
                                 setState(() {
@@ -400,7 +400,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                                       (element) => element.name == widget.controller.educationInstitutionSelected.value
                                     ).id,
                                   ),
-                                  widget.controller.loadingAnimetion,
+                                  widget.controller.loadingAnimation,
                                   widget.controller.loadingWithSuccessOrErrorTabletPhoneWidget,
                                 );
 

@@ -33,10 +33,11 @@ class LoginTabletPhoneController extends GetxController {
     await Get.to(() => RegisterUserTabletPhonePage());
   }
 
-  loginPressed(){
+  loginPressed() {
     if(formKey.currentState!.validate()){
       loadingAnimation.value = true;
       loadingTabletPhoneWidget.startAnimation(destinationPage: MainMenuTabletPhonePage());
     }
   }
 }
+
