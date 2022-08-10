@@ -4,7 +4,7 @@ import '../../../../../../base/viewController/curriculum_delivery_view_controlle
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 
 class WorkDeliveryTabletPhoneController extends GetxController {
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late RxBool workDelivered;
   late RxString buttonText;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
@@ -16,12 +16,12 @@ class WorkDeliveryTabletPhoneController extends GetxController {
   }
 
   _initializeVariables(){
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     workDelivered = false.obs;
     buttonText = "REALIZAR ENTREGA".obs;
 
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
@@ -32,7 +32,7 @@ class WorkDeliveryTabletPhoneController extends GetxController {
   deliveryWork() async {
     switch(buttonText.value){
       case "REALIZAR ENTREGA":
-        loadingAnimetion.value = true;
+        loadingAnimation.value = true;
         await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
         buttonText.value = "DESFAZER ENTREGA";
         workDelivered.value = true;

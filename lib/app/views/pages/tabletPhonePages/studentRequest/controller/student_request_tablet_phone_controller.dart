@@ -13,7 +13,7 @@ import '../popup/payment_form_tablet_phone_popup.dart';
 
 class StudentRequestTabletPhoneController extends GetxController {
   late int creditDebtCardActiveStep;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late RxString requestTitle;
   late RxString imageIllustration;
   late RxString requestSelected;
@@ -36,7 +36,7 @@ class StudentRequestTabletPhoneController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0;
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
 
     switch(studentRequest){
       case studentTypeRequest.studentCard:
@@ -68,7 +68,7 @@ class StudentRequestTabletPhoneController extends GetxController {
     carouselCreditDebtCardController = CarouselController();
 
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 

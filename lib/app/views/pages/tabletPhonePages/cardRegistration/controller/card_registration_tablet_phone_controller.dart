@@ -8,7 +8,7 @@ import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.d
 
 class CardRegistrationTabletPhoneController extends GetxController {
   late RxBool grayCard;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late RxString cardImagePath;
   late RxString cardImageBackPath;
   late RxString nameCardTyped;
@@ -37,7 +37,7 @@ class CardRegistrationTabletPhoneController extends GetxController {
 
   _inicializeVariables(){
     grayCard = true.obs;
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     cardImagePath = Paths.Card_Not_Registered.obs;
     cardImageBackPath = Paths.Card_Not_Registered_Back.obs;
     numberCardTyped = "NÚMERO DO CARTÃO".obs;
@@ -59,7 +59,7 @@ class CardRegistrationTabletPhoneController extends GetxController {
     numberCardFocus = FocusNode();
 
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
@@ -87,7 +87,7 @@ class CardRegistrationTabletPhoneController extends GetxController {
   }
 
   saveButtonPressed(){
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation(backPage: true);
   }
 

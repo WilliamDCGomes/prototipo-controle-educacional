@@ -7,31 +7,45 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class LoadingTabletPhoneWidget extends StatefulWidget {
-  late final RxBool loadingAnimetion;
+  late final RxBool loadingAnimation;
   late final AnimationController animationController;
 
   LoadingTabletPhoneWidget(
       { Key? key,
-        required this.loadingAnimetion,
+        required this.loadingAnimation,
       }) : super(key: key);
 
   @override
   State<LoadingTabletPhoneWidget> createState() => _LoadingTabletPhoneWidgetState();
 
   Future startAnimation({Widget? destinationPage, bool? backPage}) async {
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     animationController.repeat();
-    await Future.delayed(Duration(seconds: 5));
-    if(destinationPage != null) {
+  }
+
+  Future stopAnimation({Widget? destinationPage, bool? backPage, bool? justLoading}) async {
+    if(justLoading != null && justLoading){
+      await Future.delayed(Duration(seconds: 1));
+      _resetState();
+      return;
+    }
+    else if(destinationPage != null) {
+      await Future.delayed(Duration(seconds: 3));
       Get.offAll(() => destinationPage);
     }
     else if(backPage != null && backPage){
+      await Future.delayed(Duration(seconds: 3));
       Get.back();
     }
     else{
-      loadingAnimetion.value = false;
-      animationController.reset();
+      await Future.delayed(Duration(seconds: 3));
     }
+    _resetState();
+  }
+
+  _resetState(){
+    loadingAnimation.value = false;
+    animationController.reset();
   }
 }
 
@@ -53,11 +67,11 @@ class _LoadingTabletPhoneWidgetState extends State<LoadingTabletPhoneWidget> wit
   Widget build(BuildContext context) {
     return  WillPopScope(
       onWillPop: () async {
-        return !widget.loadingAnimetion.value;
+        return !widget.loadingAnimation.value;
       },
       child: Obx(
         () => Visibility(
-          visible: widget.loadingAnimetion.value,
+          visible: widget.loadingAnimation.value,
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(

@@ -23,7 +23,7 @@ class UserProfileTabletPhoneController extends GetxController {
   late RxBool newPasswordFieldEnabled;
   late RxBool confirmNewPasswordFieldEnabled;
   late RxBool profileIsDisabled;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late TabController tabController;
   late TextEditingController nameTextController;
   late TextEditingController raTextController;
@@ -65,7 +65,7 @@ class UserProfileTabletPhoneController extends GetxController {
     buttonText = "EDITAR".obs;
     hasPicture = false.obs;
     profileIsDisabled = true.obs;
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     currentPasswordFieldEnabled = true.obs;
     newPasswordFieldEnabled = true.obs;
     confirmNewPasswordFieldEnabled = true.obs;
@@ -91,7 +91,7 @@ class UserProfileTabletPhoneController extends GetxController {
     confirmNewPasswordTextController = TextEditingController();
     maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
@@ -132,7 +132,7 @@ class UserProfileTabletPhoneController extends GetxController {
       profileIsDisabled.value = false;
     }
     else{
-      loadingAnimetion.value = true;
+      loadingAnimation.value = true;
       await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
       await Future.delayed(Duration(milliseconds: 500));
       await showDialog(

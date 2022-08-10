@@ -11,7 +11,7 @@ class ResetPasswordTabletPhoneController extends GetxController {
   late RxBool oldPasswordVisible;
   late RxBool newPasswordVisible;
   late RxBool confirmNewPasswordVisible;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
 
   ResetPasswordTabletPhoneController(){
@@ -25,14 +25,14 @@ class ResetPasswordTabletPhoneController extends GetxController {
     oldPasswordVisible = true.obs;
     newPasswordVisible = true.obs;
     confirmNewPasswordVisible = true.obs;
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
   resetPasswordButtonPressed() async {
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
     await Future.delayed(Duration(milliseconds: 500));
     await showDialog(

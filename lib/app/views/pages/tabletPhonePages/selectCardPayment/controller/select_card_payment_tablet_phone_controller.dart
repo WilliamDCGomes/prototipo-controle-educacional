@@ -11,7 +11,7 @@ import '../../studentRequest/pages/payment_finished_tablet_phone_page.dart';
 
 class SelectCardPaymentTabletPhoneController extends GetxController {
   late RxInt creditDebtCardActiveStep;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late SelectCardPaymentViewController selectCardPaymentViewController;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late List<CreditDebtCardTabletPhoneWidget> creditDebtCardList;
@@ -24,11 +24,11 @@ class SelectCardPaymentTabletPhoneController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0.obs;
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     carouselCreditDebtCardController = CarouselController();
 
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
@@ -61,7 +61,7 @@ class SelectCardPaymentTabletPhoneController extends GetxController {
       FormatNumbers.numbersToString(selectCardPaymentViewController.paymentValue),
       selectCardPaymentViewController.getDateRequest,
     );
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation(
       destinationPage: PaymentFinishedTabletPhonePage(
         paymentFinishedViewController: payment,

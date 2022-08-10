@@ -6,7 +6,7 @@ import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 
 class RequestRegistrationCancellationTabletPhoneController extends GetxController {
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late RxBool inputOtherReasonVisible;
   late accountCancelation? reasonOfCancelation;
   late TextEditingController otherReason;
@@ -17,17 +17,17 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
   }
 
   _initializeVariables(){
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     inputOtherReasonVisible = false.obs;
     reasonOfCancelation = accountCancelation.financialIssues;
     otherReason = TextEditingController();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
   buttonCancelRegistrationPressed() async {
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
     await Future.delayed(Duration(milliseconds: 500));
     await showDialog(

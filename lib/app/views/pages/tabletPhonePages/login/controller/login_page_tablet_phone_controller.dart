@@ -1,42 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/base/services/user_service.dart';
+import '../../../../../../base/services/interfaces/iuser_service.dart';
+import '../../../../../utils/internet_connection.dart';
 import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
 import '../../registerUser/pages/register_user_tablet_phone_page.dart';
+import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_tablet_phone_widget.dart';
 
 class LoginTabletPhoneController extends GetxController {
-  late TextEditingController raInputController;
-  late TextEditingController passwordInputController;
   late RxBool raInputHasError;
   late RxBool passwordInputHasError;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
   late final GlobalKey<FormState> formKey;
   late LoadingTabletPhoneWidget loadingTabletPhoneWidget;
+  late TextEditingController raInputController;
+  late TextEditingController passwordInputController;
+  late FocusNode passwordInputFocusNode;
+  late IUserService userService;
 
   LoginTabletPhoneController(){
     _initializeVariables();
   }
 
   _initializeVariables(){
-    raInputController = TextEditingController();
-    passwordInputController = TextEditingController();
     raInputHasError = false.obs;
     passwordInputHasError = false.obs;
     passwordFieldEnabled = true.obs;
     loadingAnimation = false.obs;
     formKey = GlobalKey<FormState>();
-    loadingTabletPhoneWidget= LoadingTabletPhoneWidget(loadingAnimetion: loadingAnimation);
+    loadingTabletPhoneWidget= LoadingTabletPhoneWidget(loadingAnimation: loadingAnimation);
+    raInputController = TextEditingController();
+    passwordInputController = TextEditingController();
+    passwordInputFocusNode = FocusNode();
+    userService = UserService();
   }
 
   createAccount() async {
     await Get.to(() => RegisterUserTabletPhonePage());
   }
 
-  loginPressed() {
+  loginPressed() async {
     if(formKey.currentState!.validate()){
+      if(!await InternetConnection.checkConnection()){
+        await showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "É necessário uma conexão com a internet para fazer o login",
+            );
+          },
+        );
+        return;
+      }
       loadingAnimation.value = true;
-      loadingTabletPhoneWidget.startAnimation(destinationPage: MainMenuTabletPhonePage());
+      await loadingTabletPhoneWidget.startAnimation();
+
+      await Future.delayed(Duration(seconds: 1));
+      bool logged = await userService.loginUser(
+        raInputController.text,
+        passwordInputController.text,
+      );
+
+      await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
+
+      if(logged){
+        Get.offAll(() => MainMenuTabletPhonePage());
+      }
+      else{
+        await showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "Ra ou Senha inválidos.",
+            );
+          },
+        );
+      }
     }
   }
 }

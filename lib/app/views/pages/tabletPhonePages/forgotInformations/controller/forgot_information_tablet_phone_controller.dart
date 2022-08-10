@@ -6,7 +6,7 @@ import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.d
 
 class ForgotInformationTabletPhoneController extends GetxController {
   late TextEditingController emailInputController;
-  late RxBool loadingAnimetion;
+  late RxBool loadingAnimation;
   late RxBool emailInputHasError;
   late final GlobalKey<FormState> formKey;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
@@ -17,17 +17,17 @@ class ForgotInformationTabletPhoneController extends GetxController {
 
   _inicializeVariables(){
     emailInputController = TextEditingController();
-    loadingAnimetion = false.obs;
+    loadingAnimation = false.obs;
     emailInputHasError = false.obs;
     formKey = GlobalKey<FormState>();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimetion,
+      loadingAnimation: loadingAnimation,
     );
   }
 
   sendButtonPressed() async {
     if(formKey.currentState!.validate()){
-      loadingAnimetion.value = true;
+      loadingAnimation.value = true;
       await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
       await Future.delayed(Duration(milliseconds: 500));
       await showDialog(

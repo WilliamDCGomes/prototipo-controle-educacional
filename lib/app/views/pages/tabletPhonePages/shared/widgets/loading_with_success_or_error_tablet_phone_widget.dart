@@ -7,14 +7,14 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/lottie_asset_widget.dart';
 
 class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
-  late final RxBool loadingAnimetion;
+  late final RxBool loadingAnimation;
   late final RxBool isLoading;
   late final RxBool success;
   late final AnimationController animationController;
 
   LoadingWithSuccessOrErrorTabletPhoneWidget(
       { Key? key,
-        required this.loadingAnimetion,
+        required this.loadingAnimation,
       }) : super(key: key){
     this.isLoading = true.obs;
     this.success = false.obs;
@@ -24,7 +24,7 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
   State<LoadingWithSuccessOrErrorTabletPhoneWidget> createState() => _LoadingWithSuccessOrErrorTabletPhoneWidgetState();
 
   Future startAnimation({Widget? destinationPage, bool? backPage}) async {
-    loadingAnimetion.value = true;
+    loadingAnimation.value = true;
     animationController.repeat();
   }
 
@@ -57,12 +57,12 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
   _resetState(){
     isLoading.value = true;
     success.value = false;
-    loadingAnimetion.value = false;
+    loadingAnimation.value = false;
     animationController.reset();
   }
 
   _resetStateWithoutSuccessOrFail(){
-    loadingAnimetion.value = false;
+    loadingAnimation.value = false;
     isLoading.value = true;
     animationController.reset();
   }
@@ -86,11 +86,11 @@ class _LoadingWithSuccessOrErrorTabletPhoneWidgetState extends State<LoadingWith
   Widget build(BuildContext context) {
     return  WillPopScope(
       onWillPop: () async {
-        return !widget.loadingAnimetion.value;
+        return !widget.loadingAnimation.value;
       },
       child: Obx(
         () => Visibility(
-          visible: widget.loadingAnimetion.value,
+          visible: widget.loadingAnimation.value,
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(

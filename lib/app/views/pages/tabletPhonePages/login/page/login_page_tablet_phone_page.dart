@@ -105,6 +105,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                             height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                             width: double.infinity,
                                             hasError: controller.raInputHasError.value,
+                                            textInputAction: TextInputAction.next,
                                             validator: (String? value) {
                                               String? validation = TextFieldValidators.standardValidation(value, "Informe o RA");
                                               if(validation != null && validation != ""){
@@ -114,6 +115,9 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                                 controller.raInputHasError.value = false;
                                               }
                                               return validation;
+                                            },
+                                            onEditingComplete: (){
+                                              controller.passwordInputFocusNode.requestFocus();
                                             },
                                             keyboardType: TextInputType.number,
                                           ),
@@ -141,6 +145,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                         Obx(
                                           () => TextFieldWidget(
                                             controller: controller.passwordInputController,
+                                            focusNode: controller.passwordInputFocusNode,
                                             hintText: "Digite sua senha",
                                             height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                             width: double.infinity,

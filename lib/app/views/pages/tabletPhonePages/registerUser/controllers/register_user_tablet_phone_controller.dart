@@ -1,4 +1,3 @@
-import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -16,7 +15,11 @@ import '../../../../../../base/services/interfaces/iconsult_cep_service.dart';
 import '../../../../../../base/services/interfaces/icourse_service.dart';
 import '../../../../../../base/services/interfaces/idiscipline_periods_service.dart';
 import '../../../../../../base/services/interfaces/ieducation_institution_service.dart';
+import '../../../../../../base/services/interfaces/ira_service.dart';
+import '../../../../../../base/services/interfaces/iuser_service.dart';
+import '../../../../../../base/services/ra_service.dart';
 import '../../../../../../base/services/student_service.dart';
+import '../../../../../../base/services/user_service.dart';
 import '../../../../../utils/brazil_address_informations.dart';
 import '../../../../../utils/internet_connection.dart';
 import '../../../../../utils/loading.dart';
@@ -105,6 +108,8 @@ class RegisterUserTabletPhoneController extends GetxController {
   late IConsultCepService consultCepService;
   late IEducationInstitutionService educationInstitutionService;
   late IDisciplinePeriodsService disciplinePeriodsService;
+  late IUserService userService;
+  late IRaService raService;
 
   RegisterUserTabletPhoneController(){
     _initializeVariables();
@@ -194,7 +199,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     confirmEmailFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
-      loadingAnimetion: loadingAnimation,
+      loadingAnimation: loadingAnimation,
     );
     headerRegisterStepperList = [
       HeaderRegisterStepperTabletPhoneWidget(
@@ -279,6 +284,8 @@ class RegisterUserTabletPhoneController extends GetxController {
     consultCepService = ConsultCepService();
     educationInstitutionService = EducationInstitutionService();
     disciplinePeriodsService = DisciplinePeriodsService();
+    userService = UserService();
+    raService = RaService();
   }
 
   _searchAddressInformation() async {
@@ -519,7 +526,26 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   _saveStudent() async {
-    await studentService.sendNewStudent(newStudent);
+    try{
+      newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
+      if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
+        await studentService.sendNewStudent(newStudent);
+      }
+      else{
+        throw Exception();
+      }
+    }
+    catch(_){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Erro ao cadastrar usuário.\n Tente novamente mais tarde",
+          );
+        },
+      );
+    }
   }
 
   searchCoursesOfEducationInstitution() async {
@@ -647,8 +673,13 @@ class RegisterUserTabletPhoneController extends GetxController {
         break;
       case 2:
         if(await _validSchoolInformation()){
-          newStudent.educationInstitutionName = educationInstitutionSelected.value;
-          newStudent.course = courseSelected.value;
+          newStudent.educationInstitutionId = educationInstitutionList.firstWhere(
+            (element) => element.name == educationInstitutionSelected.value
+          ).id;
+          newStudent.courseId = courseFromInstitutionList.firstWhere(
+            (element) => element.name == courseSelected.value
+          ).id;
+
           newStudent.period = periodSelected.value;
           _nextPage();
         }
@@ -686,7 +717,7 @@ class RegisterUserTabletPhoneController extends GetxController {
         break;
       case 6:
         if(formKeyPasswordInformation.currentState!.validate()){
-          newStudent.password = Crypt.sha512(passwordTextController.text).toString();
+          newStudent.password = passwordTextController.text;
           _nextPage();
         }
         break;

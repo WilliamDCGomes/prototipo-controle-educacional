@@ -14,8 +14,9 @@ class Student extends CoreEntity{
   late String? houseNumber;
   late String neighborhood;
   late String complement;
-  late String educationInstitutionName;
-  late String course;
+  late int ra;
+  late String educationInstitutionId;
+  late String courseId;
   late String period;
   late String? phone;
   late String? cellPhone;
@@ -30,6 +31,7 @@ class Student extends CoreEntity{
   //#region Conversões
   Student.fromJson(Map<String, dynamic> json) {
     name = json["name"];
+    ra = json["ra"];
     birthdate = json["birthdate"];
     cpf = json["cpf"];
     gender = json["gender"];
@@ -40,13 +42,12 @@ class Student extends CoreEntity{
     houseNumber = json["houseNumber"];
     neighborhood = json["neighborhood"];
     complement = json["complement"];
-    educationInstitutionName = json["educationInstitutionName"];
-    course = json["course"];
+    educationInstitutionId = json["educationInstitutionId"];
+    courseId = json["courseId"];
     period = json["period"];
     phone = json["phone"];
     cellPhone = json["cellPhone"];
     email = json["email"];
-    password = json["password"];
     id = json["id"];
     lastChange = json["lastChange"];
     includeDate = json["includeDate"];
@@ -55,6 +56,7 @@ class Student extends CoreEntity{
 
   Student.fromJsonFirebase(Map<String, dynamic> json) {
     name = json["name"];
+    ra = json["ra"];
     birthdate = json["birthdate"];
     cpf = json["cpf"];
     gender = json["gender"];
@@ -65,13 +67,12 @@ class Student extends CoreEntity{
     houseNumber = json["houseNumber"];
     neighborhood = json["neighborhood"];
     complement = json["complement"];
-    educationInstitutionName = json["educationInstitutionName"];
-    course = json["course"];
+    educationInstitutionId = json["educationInstitutionId"];
+    courseId = json["courseId"];
     period = json["period"];
     phone = json["phone"];
     cellPhone = json["cellPhone"];
     email = json["email"];
-    password = json["password"];
     id = json["id"];
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();
@@ -81,6 +82,7 @@ class Student extends CoreEntity{
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data["name"] = this.name;
+    data["ra"] = this.ra;
     data["birthdate"] = this.birthdate;
     data["cpf"] = this.cpf;
     data["gender"] = this.gender;
@@ -91,13 +93,12 @@ class Student extends CoreEntity{
     data["houseNumber"] = this.houseNumber;
     data["neighborhood"] = this.neighborhood;
     data["complement"] = this.complement;
-    data["educationInstitutionName"] = this.educationInstitutionName;
-    data["course"] = this.course;
+    data["educationInstitutionId"] = this.educationInstitutionId;
+    data["courseId"] = this.courseId;
     data["period"] = this.period;
     data["phone"] = this.phone;
     data["cellPhone"] = this.cellPhone;
     data["email"] = this.email;
-    data["password"] = this.password;
     data["id"] = this.id;
     data["lastChange"] = this.lastChange;
     data["includeDate"] = this.includeDate;
