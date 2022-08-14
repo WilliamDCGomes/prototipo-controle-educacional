@@ -516,35 +516,47 @@ class RegisterUserTabletPhoneController extends GetxController {
     if(activeStep.value < 6)
       activeStep.value ++;
     else{
-      await Loading.starAnimationAndCallOtherPage(
-        () => _saveStudent(),
-        loadingAnimation,
-        loadingWithSuccessOrErrorTabletPhoneWidget,
-        RegistrationCompletedTabletPhone(),
-      );
+      await _saveStudent();
     }
   }
 
   _saveStudent() async {
-    try{
-      newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
-      if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
-        await studentService.sendNewStudent(newStudent);
+    FocusScope.of(Get.context!).requestFocus(FocusNode());
+    loadingAnimation.value = true;
+    await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+
+    await Future.delayed(Duration(seconds: 1));
+    int trys = 0;
+
+    while(true){
+      try{
+        newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
+        if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
+          await studentService.sendNewStudent(newStudent);
+          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(destinationPage: RegistrationCompletedTabletPhone());
+        }
+        else{
+          await raService.deleteDuplicateRa(newStudent.id);
+          throw Exception();
+        }
       }
-      else{
-        throw Exception();
+      catch(_){
+        if(trys < 2){
+          trys++;
+          continue;
+        }
+        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+        await showDialog(
+          context: Get.context!,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return InformationTabletPhonePopup(
+              warningMessage: "Erro ao cadastrar usuário.\n Tente novamente mais tarde",
+            );
+          },
+        );
       }
-    }
-    catch(_){
-      showDialog(
-        context: Get.context!,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return InformationTabletPhonePopup(
-            warningMessage: "Erro ao cadastrar usuário.\n Tente novamente mais tarde",
-          );
-        },
-      );
+      break;
     }
   }
 

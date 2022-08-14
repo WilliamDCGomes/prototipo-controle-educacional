@@ -198,6 +198,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                     child: ButtonWidget(
                                       hintText: "LOGAR",
                                       fontWeight: FontWeight.bold,
+                                      focusNode: controller.loginButtonFocusNode,
                                       widthButton: 75.w,
                                       onPressed: () => controller.loginPressed(),
                                     ),

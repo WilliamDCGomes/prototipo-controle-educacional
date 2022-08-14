@@ -43,6 +43,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                     () => TextFieldWidget(
                       controller: widget.controller.nameTextController,
                       hintText: "Nome",
+                      textCapitalization: TextCapitalization.words,
                       height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: double.infinity,
                       keyboardType: TextInputType.name,
@@ -148,6 +149,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         child: TextFieldWidget(
                           controller: widget.controller.otherGenderTypeTextController,
                           hintText: "Informe o seu Gênero",
+                          textCapitalization: TextCapitalization.sentences,
                           height: PlatformType.isTablet(context) ? 7.h : 9.h,
                           width: double.infinity,
                         ),
@@ -224,6 +226,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                               child: TextFieldWidget(
                                 controller: widget.controller.cityTextController,
                                 hintText: "Cidade",
+                                textCapitalization: TextCapitalization.words,
                                 height: PlatformType.isTablet(context) ? 7.h : 9.h,
                                 keyboardType: TextInputType.name,
                                 enableSuggestions: true,
@@ -260,6 +263,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                               focusNode: widget.controller.streetFocusNode,
                               controller: widget.controller.streetTextController,
                               hintText: "Logradouro",
+                              textCapitalization: TextCapitalization.words,
                               height: PlatformType.isTablet(context) ? 7.h : 9.h,
                               keyboardType: TextInputType.streetAddress,
                               enableSuggestions: true,
@@ -306,6 +310,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                         focusNode: widget.controller.neighborhoodFocusNode,
                         controller: widget.controller.neighborhoodTextController,
                         hintText: "Bairro",
+                        textCapitalization: TextCapitalization.words,
                         height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.name,
@@ -334,6 +339,7 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       focusNode: widget.controller.complementFocusNode,
                       controller: widget.controller.complementTextController,
                       hintText: "Complemento",
+                      textCapitalization: TextCapitalization.sentences,
                       height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: double.infinity,
                       keyboardType: TextInputType.text,

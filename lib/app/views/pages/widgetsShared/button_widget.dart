@@ -12,6 +12,7 @@ class ButtonWidget extends StatelessWidget {
   final Color? backgroundColor;
   final Color? borderColor;
   final Color? textColor;
+  final FocusNode? focusNode;
   final Function()? onPressed;
 
   const ButtonWidget(
@@ -24,6 +25,7 @@ class ButtonWidget extends StatelessWidget {
         this.backgroundColor,
         this.borderColor,
         this.textColor,
+        this.focusNode,
         this.onPressed,
       }) : super(key: key);
 
@@ -34,6 +36,7 @@ class ButtonWidget extends StatelessWidget {
       width: widthButton ?? 25.w,
       child: ElevatedButton(
         onPressed: onPressed,
+        focusNode: focusNode,
         style: ElevatedButton.styleFrom(
           elevation: 2,
           primary: backgroundColor ?? AppColors.backgroundButtonColor,

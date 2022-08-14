@@ -32,6 +32,7 @@ class TextFieldWidget extends StatelessWidget {
   final Function(String)? onChanged;
   final Function(String?)? onSaved;
   final String? Function(String?)? validator;
+  final TextCapitalization? textCapitalization;
   final TextEditingController controller;
 
   const TextFieldWidget(
@@ -64,6 +65,7 @@ class TextFieldWidget extends StatelessWidget {
         this.onChanged,
         this.onSaved,
         this.validator,
+        this.textCapitalization,
         required this.controller,
       }) : super(key: key);
 
@@ -128,6 +130,7 @@ class TextFieldWidget extends StatelessWidget {
         width: width ?? 200,
         child: TextFormField(
           validator: validator,
+          textCapitalization: textCapitalization ?? TextCapitalization.none,
           obscureText: isPassword ?? false,
           maxLength: maxLength,
           maxLines: maxLines ?? 1,

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uuid/uuid.dart';
 import '../models/ra_information.dart';
 import 'interfaces/ira_service.dart';
 
@@ -26,13 +25,12 @@ class RaService implements IRaService {
           raInformation.studentId = studentId;
           raInformation.educationInstitutionId = educationInstitutionId;
 
-          String docId = Uuid().v4();
           await FirebaseFirestore.instance.collection("ra")
-              .doc(docId)
+              .doc(studentId)
               .set(raInformation.toJson());
 
           if(await checkIfExistDuplicateRa(raValue)){
-            await deleteDuplicateRa(docId);
+            await deleteDuplicateRa(studentId);
             continue;
           }
           else{

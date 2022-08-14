@@ -18,6 +18,7 @@ class LoginTabletPhoneController extends GetxController {
   late TextEditingController raInputController;
   late TextEditingController passwordInputController;
   late FocusNode passwordInputFocusNode;
+  late FocusNode loginButtonFocusNode;
   late IUserService userService;
 
   LoginTabletPhoneController(){
@@ -34,6 +35,7 @@ class LoginTabletPhoneController extends GetxController {
     raInputController = TextEditingController();
     passwordInputController = TextEditingController();
     passwordInputFocusNode = FocusNode();
+    loginButtonFocusNode = FocusNode();
     userService = UserService();
   }
 
@@ -43,6 +45,7 @@ class LoginTabletPhoneController extends GetxController {
 
   loginPressed() async {
     if(formKey.currentState!.validate()){
+      loginButtonFocusNode.requestFocus();
       if(!await InternetConnection.checkConnection()){
         await showDialog(
           context: Get.context!,
@@ -75,7 +78,7 @@ class LoginTabletPhoneController extends GetxController {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return InformationTabletPhonePopup(
-              warningMessage: "Ra ou Senha inválidos.",
+              warningMessage: "O Ra ou a Senha estão incorreto.",
             );
           },
         );
