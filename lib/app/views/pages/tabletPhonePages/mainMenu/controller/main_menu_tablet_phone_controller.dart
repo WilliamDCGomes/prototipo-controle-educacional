@@ -4,9 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
+import 'package:projeto_tcc/app/utils/internet_connection.dart';
 import 'package:projeto_tcc/base/models/classes.dart';
+import 'package:projeto_tcc/base/services/itens_orders_by_user_service.dart';
+import 'package:projeto_tcc/base/services/student_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/models/files.dart';
+import '../../../../../../base/models/student.dart';
+import '../../../../../../base/services/interfaces/iitens_orders_by_user_service.dart';
+import '../../../../../../base/services/interfaces/istudent_service.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../../base/viewController/payment_finished_view_controller.dart';
@@ -37,13 +44,15 @@ class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
   late RxInt creditDebtCardActiveStep;
   late String nameInitials;
+  static const String quick_buttons = "quick_buttons";
+  static const String request_buttons = "request_buttons";
+  static const String group_menu = "group_menu";
   late RxBool hasPicture;
   late RxBool deliveryTabSelected;
   late RxString courseName;
   late RxString welcomePhrase;
   late PaymentFinishedViewController nextBillToPay;
   late List<CardMainMenuTabletPhoneWidget> cardMainMenuList;
-  late List<GroupMenuHomeTabletPhoneWidget> groupMenuHomeList;
   late List<CardProfileTabListTabletPhoneWidget> cardProfileTabList;
   late List<CreditDebtCardTabletPhoneWidget> creditDebtCardList;
   late List<CardAcademicRecordTabletPhoneWidget> cardAcademicRecordList;
@@ -52,6 +61,9 @@ class MainMenuTabletPhoneController extends GetxController {
   late List<CurriculumDeliveryViewController> deliveryTabList;
   late List<Widget> tabMainMenuList;
   late List<Widget> tabAcademicRecordList;
+  late RxList<GroupMenuHomeTabletPhoneWidget> groupMenuHomeList;
+  late RxList<MenuOptionsTabletPhoneWidget> quickItemsList;
+  late RxList<MenuOptionsTabletPhoneWidget> requestItemsList;
   late TabController tabController;
   late TabController tabAcademicController;
   late TabController tabFinancialController;
@@ -60,6 +72,10 @@ class MainMenuTabletPhoneController extends GetxController {
   late CarouselController academicRecordCarouselController;
   late TextEditingController curriculumSearchController;
   late TextEditingController deliveriesSearchController;
+  late SharedPreferences sharedPreferences;
+  late Student? student;
+  late IStudentService studentService;
+  late IItensOrderByUserService itensOrderByUserService;
 
   MainMenuTabletPhoneController(){
     _initializeVariables();
@@ -67,6 +83,14 @@ class MainMenuTabletPhoneController extends GetxController {
     _getValues();
     _loadCards();
     _getWelcomePhrase();
+  }
+
+  @override
+  void onInit() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    await _getUserLogged();
+    await _getListOrderByUser();
+    super.onInit();
   }
 
   _initializeVariables(){
@@ -90,6 +114,8 @@ class MainMenuTabletPhoneController extends GetxController {
       statusText: "Aberta",
       hasCardRegistered: true,
     );
+    studentService = StudentService();
+    itensOrderByUserService = ItensOrderByUserService();
   }
 
   _initializeLists(){
@@ -99,63 +125,9 @@ class MainMenuTabletPhoneController extends GetxController {
       FinancialTabTabletPhoneWidget(controller: this),
       ProfileTabTabletPhoneWidget(controller: this),
     ];
-    groupMenuHomeList = [
-      GroupMenuHomeTabletPhoneWidget(
-        titleGroupMenu:  "Ações Rápidas",
-        menuOptionsList: [
-          MenuOptionsTabletPhoneWidget(
-            text: "Notas e Faltas",
-            imagePath: Paths.Icone_Notas_e_Faltas,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.gradesFaults),
-          ),
-          MenuOptionsTabletPhoneWidget(
-            text: "Calendário Acadêmico",
-            imagePath: Paths.Icone_Calendario_Academico,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.academicCalendar),
-          ),
-          MenuOptionsTabletPhoneWidget(
-            text: "Carteirinha Online",
-            imagePath: Paths.Icone_Carterinha_Estudante,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.onlineStudentCard),
-          ),
-          MenuOptionsTabletPhoneWidget(
-            text: "Histórico Acadêmico",
-            imagePath: Paths.Icone_Historico_Academico,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.academicRecord),
-          ),
-          MenuOptionsTabletPhoneWidget(
-            text: "Notícias e Eventos",
-            imagePath: Paths.Icone_Noticias_e_Eventos,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.newsEvents),
-          ),
-          SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
-        ],
-      ),
-      GroupMenuHomeTabletPhoneWidget(
-        titleGroupMenu:  "Solicitações",
-        menuOptionsList: [
-          MenuOptionsTabletPhoneWidget(
-            text: "Carteirinha de Estudante",
-            imagePath: Paths.Icone_Carterinha_Estudante,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.studentCard),
-          ),
-          MenuOptionsTabletPhoneWidget(
-            text: "Declaração Escolar",
-            imagePath: Paths.Icone_Declaracao_Escolar,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.schoolStatement),
-          ),
-          SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
-          SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),
-        ],
-      ),
-    ];
+    groupMenuHomeList = <GroupMenuHomeTabletPhoneWidget>[].obs;
+    quickItemsList = <MenuOptionsTabletPhoneWidget>[].obs;
+    requestItemsList = <MenuOptionsTabletPhoneWidget>[].obs;
 
     tabAcademicRecordList = [
       AcademicTabListTabletPhoneWidget(
@@ -1274,6 +1246,306 @@ class MainMenuTabletPhoneController extends GetxController {
         page: destinationsPages.logout,
       ),
     ];
+  }
+
+  _getUserLogged() async {
+    try{
+      int? ra = sharedPreferences.getInt("ra_student_logged");
+      if(ra != null) {
+        student = await studentService.getStudent(ra);
+      }
+    }
+    catch(_){
+
+    }
+  }
+
+  _getListOrderByUser() async {
+    try{
+      if(student != null){
+        Map<String, dynamic>? items = null;
+        if(await InternetConnection.checkConnection()){
+          items = await itensOrderByUserService.getOrderLists(student!.cpf);
+          if(items != null){
+            List<Map<String, dynamic>> groupMenuList = <Map<String, dynamic>>[];
+            List<Map<String, dynamic>> quickButtonsList = <Map<String, dynamic>>[];
+            List<Map<String, dynamic>> requestButtonList = <Map<String, dynamic>>[];
+
+            items[group_menu].forEach((element) => groupMenuList.add(element));
+            items[quick_buttons].forEach((element) => quickButtonsList.add(element));
+            items[request_buttons].forEach((element) => requestButtonList.add(element));
+
+            _loadListMenu(quickButtonsList);
+            _loadListMenu(requestButtonList);
+            _loadListMenu(groupMenuList);
+
+            await _saveListMenu(quick_buttons, quickButtonsList);
+            await _saveListMenu(request_buttons, requestButtonList);
+            await _saveListMenu(group_menu, groupMenuList);
+          }
+        }
+        if(items == null){
+          await _loadListMenuWithoutInternet(quick_buttons);
+          await _loadListMenuWithoutInternet(request_buttons);
+          await _loadListMenuWithoutInternet(group_menu);
+        }
+      }
+    }
+    catch(_){
+
+    }
+  }
+
+  _saveListMenu(String key, List<Map<String, dynamic>> items) async {
+    try{
+      List<String> orderList = <String>[];
+      for(var item in items) {
+        if (item["visible"]) {
+          orderList.add(item["id"]);
+        }
+      }
+      await sharedPreferences.setStringList(key, orderList);
+    }
+    catch(_){
+
+    }
+  }
+
+  updateListOfflineAndOnline(String key, List<String> items) async {
+    try{
+      if(key == "quick_actions_id"){
+        key = quick_buttons;
+      }
+      else if(key == "request_id"){
+        key = request_buttons;
+      }
+      await sharedPreferences.setStringList(key, items);
+      if(student != null){
+        var oldItems = await itensOrderByUserService.getOrderLists(student!.cpf);
+
+        if(oldItems != null){
+          List<Map<String, dynamic>> newItems = <Map<String, dynamic>>[];
+
+          for(var item in items){
+            for(var element in oldItems[key]){
+              if(element["id"] == item){
+                newItems.add(element);
+                break;
+              }
+            }
+          }
+
+          itensOrderByUserService.updateOrderLists(student!.cpf, key, newItems);
+        }
+      }
+    }
+    catch(_){
+
+    }
+  }
+
+  _loadListMenuWithoutInternet(String key) async {
+    try{
+      var orderList = sharedPreferences.getStringList(key);
+      if(orderList != null){
+        for(var item in orderList) {
+          _setList(item);
+        }
+      }
+      else{
+        List<String> list = <String>[];
+        switch(key){
+          case quick_buttons:
+            list = [
+              "grades_faults_id",
+              "academic_calendar_id",
+              "online_student_card_id",
+              "academic_record_id",
+              "news_events_id",
+            ];
+            break;
+          case request_buttons:
+            list = [
+              "student_card_id",
+              "school_statement_id",
+            ];
+            break;
+          case group_menu:
+            list = [
+              "quick_actions_id",
+              "request_id",
+            ];
+            break;
+        }
+        list.forEach((element) => _setList(element));
+        await sharedPreferences.setStringList(
+          key,
+          list,
+        );
+        if(student != null) {
+          _insertListInFirebase(key, list);
+        }
+      }
+    }
+    catch(_){
+
+    }
+  }
+
+  _insertListInFirebase(String key, List<String> list) async {
+    try{
+      List<Map<String, dynamic>> newList = <Map<String, dynamic>>[];
+      for(var item in list){
+        newList.add(
+          {
+            "id": item,
+            "visible": true,
+          }
+        );
+      }
+      await itensOrderByUserService.insertOrderLists(
+        student!.cpf,
+        key,
+        newList,
+      );
+    }
+    catch(_){
+
+    }
+  }
+
+  _loadListMenu(List<Map<String, dynamic>> items){
+    try{
+      for(var item in items){
+        if(item["visible"]){
+          _setList(item["id"]);
+        }
+      }
+    }
+    catch(_){
+
+    }
+  }
+
+  _setList(String key){
+    switch(key){
+      case "quick_actions_id":
+        List<Widget> requestList = <Widget>[];
+        requestList.addAll(quickItemsList);
+        while(true){
+          if(requestList.length % 4 != 0){
+            requestList.add(SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),);
+            continue;
+          }
+          break;
+        }
+        groupMenuHomeList.add(
+          GroupMenuHomeTabletPhoneWidget(
+            groupMenuId: "quick_actions_id",
+            titleGroupMenu:  "Ações Rápidas",
+            menuOptionsList: requestList,
+            mainMenuTabletPhoneController: this,
+          ),
+        );
+        break;
+      case "request_id":
+        List<Widget> requestList = <Widget>[];
+        requestList.addAll(requestItemsList);
+        while(true){
+          if(requestList.length % 4 != 0){
+            requestList.add(SizedBox(width: PlatformType.isAndroid() ? 13.h : 14.h,),);
+            continue;
+          }
+          break;
+        }
+
+        groupMenuHomeList.add(
+          GroupMenuHomeTabletPhoneWidget(
+            groupMenuId: "request_id",
+            titleGroupMenu:  "Solicitações",
+            menuOptionsList: requestList,
+            mainMenuTabletPhoneController: this,
+          ),
+        );
+        break;
+      case "grades_faults_id":
+        quickItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "grades_faults_id",
+            text: "Notas e Faltas",
+            imagePath: Paths.Icone_Notas_e_Faltas,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.gradesFaults),
+          ),
+        );
+        break;
+      case "academic_calendar_id":
+        quickItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "academic_calendar_id",
+            text: "Calendário Acadêmico",
+            imagePath: Paths.Icone_Calendario_Academico,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.academicCalendar),
+          ),
+        );
+        break;
+      case "online_student_card_id":
+        quickItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "online_student_card_id",
+            text: "Carteirinha Online",
+            imagePath: Paths.Icone_Carterinha_Estudante,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.onlineStudentCard),
+          ),
+        );
+        break;
+      case "academic_record_id":
+        quickItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "academic_record_id",
+            text: "Histórico Acadêmico",
+            imagePath: Paths.Icone_Historico_Academico,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.academicRecord),
+          ),
+        );
+        break;
+      case "news_events_id":
+        quickItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "news_events_id",
+            text: "Notícias e Eventos",
+            imagePath: Paths.Icone_Noticias_e_Eventos,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.newsEvents),
+          ),
+        );
+        break;
+      case "student_card_id":
+        requestItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "student_card_id",
+            text: "Carteirinha de Estudante",
+            imagePath: Paths.Icone_Carterinha_Estudante,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.studentCard),
+          ),
+        );
+        break;
+      case "school_statement_id":
+        requestItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "school_statement_id",
+            text: "Declaração Escolar",
+            imagePath: Paths.Icone_Declaracao_Escolar,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.schoolStatement),
+          ),
+        );
+        break;
+    }
   }
 
   _getValues(){

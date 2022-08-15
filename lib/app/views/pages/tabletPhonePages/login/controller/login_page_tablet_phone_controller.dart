@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 import 'package:projeto_tcc/base/services/user_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/services/interfaces/iuser_service.dart';
 import '../../../../../utils/internet_connection.dart';
 import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
@@ -19,10 +21,17 @@ class LoginTabletPhoneController extends GetxController {
   late TextEditingController passwordInputController;
   late FocusNode passwordInputFocusNode;
   late FocusNode loginButtonFocusNode;
+  late SharedPreferences sharedPreferences;
   late IUserService userService;
 
   LoginTabletPhoneController(){
     _initializeVariables();
+  }
+
+  @override
+  void onInit() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    super.onInit();
   }
 
   _initializeVariables(){
@@ -37,6 +46,10 @@ class LoginTabletPhoneController extends GetxController {
     passwordInputFocusNode = FocusNode();
     loginButtonFocusNode = FocusNode();
     userService = UserService();
+    if (kDebugMode){
+      raInputController.text = "1000";
+      passwordInputController.text = "47122223";
+    }
   }
 
   createAccount() async {
@@ -70,6 +83,15 @@ class LoginTabletPhoneController extends GetxController {
       await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
 
       if(logged){
+        int? oldRa = sharedPreferences.getInt("ra_student_logged");
+        if(oldRa == null){
+          await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
+        }
+        else if(oldRa != int.parse(raInputController.text)){
+          await sharedPreferences.clear();
+          await sharedPreferences.setBool("show-welcome-page-key", false);
+          await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
+        }
         Get.offAll(() => MainMenuTabletPhonePage());
       }
       else{

@@ -14,6 +14,19 @@ class StudentService implements IStudentService {
     }
   }
 
+  Future<Student?> getStudent(int ra) async {
+    try {
+      var lastRaRegistered = await FirebaseFirestore.instance.collection("student")
+          .where("ra", isEqualTo: ra).get();
+      if(lastRaRegistered.size > 0) {
+        return Student.fromJsonFirebase(lastRaRegistered.docs.first.data());
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<bool> verificationStudentExists(String cpf) async {
     try {
       var verification = await FirebaseFirestore.instance.collection("student")

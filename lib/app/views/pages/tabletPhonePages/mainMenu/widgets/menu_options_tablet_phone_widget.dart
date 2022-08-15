@@ -8,6 +8,7 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 
 class MenuOptionsTabletPhoneWidget extends StatelessWidget {
+  final String id_option;
   final String text;
   final String? imagePath;
   final int? maxLines;
@@ -24,6 +25,7 @@ class MenuOptionsTabletPhoneWidget extends StatelessWidget {
   const MenuOptionsTabletPhoneWidget(
       { Key? key,
         required this.text,
+        required this.id_option,
         this.imagePath,
         this.maxLines,
         this.icon,

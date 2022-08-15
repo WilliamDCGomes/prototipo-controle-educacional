@@ -175,22 +175,29 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h),
-                          child: ReorderableListView.builder(
-                            itemCount: widget.controller.groupMenuHomeList.length,
-                            itemBuilder: (context, index){
-                              return Container(
-                                key: Key("$index"),
-                                child: widget.controller.groupMenuHomeList[index],
-                              );
-                            },
-                            onReorder: (oldIndex, newIndex) {
-                              var newList = ReorderListHelper.reorderList(
-                                oldIndex,
-                                newIndex,
-                                widget.controller.groupMenuHomeList,
-                              );
-                              //TODO Fazer um método para salvar a nova lista
-                            }
+                          child: Obx(
+                            () => ReorderableListView.builder(
+                              itemCount: widget.controller.groupMenuHomeList.length,
+                              itemBuilder: (context, index){
+                                return Container(
+                                  key: Key(widget.controller.groupMenuHomeList[index].groupMenuId),
+                                  child: widget.controller.groupMenuHomeList[index],
+                                );
+                              },
+                              onReorder: (oldIndex, newIndex) async {
+                                var newList = ReorderListHelper.reorderList(
+                                  oldIndex,
+                                  newIndex,
+                                  widget.controller.groupMenuHomeList,
+                                );
+                                List<String> list = <String>[];
+                                newList.forEach((element) => list.add(element.groupMenuId));
+                                widget.controller.updateListOfflineAndOnline(
+                                  MainMenuTabletPhoneController.group_menu,
+                                  list,
+                                );
+                              }
+                            ),
                           ),
                         ),
                       ),
