@@ -5,6 +5,7 @@ import 'package:projeto_tcc/base/viewController/payment_finished_view_controller
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../utils/format_numbers.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 import '../../studentRequest/pages/payment_finished_tablet_phone_page.dart';
@@ -36,14 +37,14 @@ class SelectCardPaymentTabletPhoneController extends GetxController {
     creditDebtCardList = [
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
-        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        personCardName: LoggedUser.name.toUpperCase(),
         cardExpirationDate: "02/29",
         flagCard: CreditCardType.mastercard,
         creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
-        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        personCardName: LoggedUser.name.toUpperCase(),
         cardExpirationDate: "02/29",
         flagCard: CreditCardType.elo,
         creditDebtCardTypeEnum: creditDebtCardType.credit,

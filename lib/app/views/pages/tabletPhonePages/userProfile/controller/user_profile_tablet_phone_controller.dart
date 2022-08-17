@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:projeto_tcc/app/utils/logged_user.dart';
 import '../../../../../utils/brazil_address_informations.dart';
 import '../../../../../utils/valid_cellphone_mask.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
@@ -53,13 +54,14 @@ class UserProfileTabletPhoneController extends GetxController {
   UserProfileTabletPhoneController(){
     _initializeVariables();
     _getUfsNames();
+    _getUserInformation();
     _initializeLists();
   }
 
   _initializeVariables(){
-    nameInitials = "WG";
-    disciplineName = "Ciência da Computação";
-    userName = "William Douglas".obs;
+    nameInitials = LoggedUser.nameInitials;
+    disciplineName = LoggedUser.courseName;
+    userName = LoggedUser.nameAndLastName.obs;
     ufSelected = "".obs;
     periodSelected = "".obs;
     buttonText = "EDITAR".obs;
@@ -101,6 +103,24 @@ class UserProfileTabletPhoneController extends GetxController {
     for(var uf in states) {
       ufsList.add(uf);
     }
+  }
+
+  _getUserInformation(){
+    nameTextController.text = LoggedUser.name;
+    raTextController.text = LoggedUser.ra.toString();
+    birthDateTextController.text = LoggedUser.birthdate;
+    cpfTextController.text = LoggedUser.cpf;
+    cepTextController.text = LoggedUser.cep;
+    cityTextController.text = LoggedUser.city;
+    streetTextController.text = LoggedUser.street;
+    houseNumberTextController.text = LoggedUser.houseNumber.toString();
+    neighborhoodTextController.text = LoggedUser.neighborhood;
+    complementTextController.text = LoggedUser.complement;
+    phoneTextController.text = LoggedUser.phone ?? "";
+    cellPhoneTextController.text = LoggedUser.cellPhone ?? "";
+    emailTextController.text = LoggedUser.email;
+    institutionTextController.text = LoggedUser.educationInstitutionName;
+    courseTextController.text = LoggedUser.courseName;
   }
 
   _initializeLists(){

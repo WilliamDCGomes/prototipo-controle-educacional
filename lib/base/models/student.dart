@@ -3,6 +3,10 @@ import 'base/coreEntity.dart';
 
 class Student extends CoreEntity{
   //#region Atributos
+  late int ra;
+  late int bimester;
+  late int semester;
+  late int studentYear;
   late String name;
   late String birthdate;
   late String cpf;
@@ -14,7 +18,6 @@ class Student extends CoreEntity{
   late String? houseNumber;
   late String neighborhood;
   late String complement;
-  late int ra;
   late String educationInstitutionId;
   late String courseId;
   late String period;
@@ -25,13 +28,20 @@ class Student extends CoreEntity{
   //#endregion
 
   //#region Construtor
-  Student() : super();
+  Student() : super(){
+    bimester = 1;
+    semester = 1;
+    studentYear = 1;
+  }
   //#endregion
 
   //#region Conversões
   Student.fromJson(Map<String, dynamic> json) {
     name = json["name"];
     ra = json["ra"];
+    bimester = json["bimester"];
+    semester = json["semester"];
+    studentYear = json["studentYear"];
     birthdate = json["birthdate"];
     cpf = json["cpf"];
     gender = json["gender"];
@@ -57,6 +67,9 @@ class Student extends CoreEntity{
   Student.fromJsonFirebase(Map<String, dynamic> json) {
     name = json["name"];
     ra = json["ra"];
+    bimester = json["bimester"];
+    semester = json["semester"];
+    studentYear = json["studentYear"];
     birthdate = json["birthdate"];
     cpf = json["cpf"];
     gender = json["gender"];
@@ -83,6 +96,9 @@ class Student extends CoreEntity{
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data["name"] = this.name;
     data["ra"] = this.ra;
+    data["bimester"] = this.bimester;
+    data["semester"] = this.semester;
+    data["studentYear"] = this.studentYear;
     data["birthdate"] = this.birthdate;
     data["cpf"] = this.cpf;
     data["gender"] = this.gender;

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/utils/logged_user.dart';
 import '../../../../../utils/paths.dart';
 
 class StudentCardTabletPhoneController extends GetxController {
@@ -15,8 +16,8 @@ class StudentCardTabletPhoneController extends GetxController {
   _initializeVariables(){
     imageBasePath = Paths.Carteirinha_PCE;
     cardNumber = "0026 2659 0211 0365";
-    raNumber = "48467";
-    studentName = "WILLIAM DOUGLAS";
+    raNumber = LoggedUser.ra.toString();
+    studentName = LoggedUser.nameAndLastName.toUpperCase();
     validateCard = "12/2022";
   }
 }

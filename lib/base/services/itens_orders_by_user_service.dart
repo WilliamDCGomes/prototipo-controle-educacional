@@ -19,7 +19,7 @@ class ItensOrderByUserService implements IItensOrderByUserService {
     try {
       await FirebaseFirestore.instance.collection("itens_orders_by_user")
         .doc(cpfStudent)
-        .update(
+        .set(
           {
             key: newList,
           }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/utils/logged_user.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -107,7 +108,7 @@ class _FinancialTabTabletPhoneWidgetState extends State<FinancialTabTabletPhoneW
                             ],
                           ),
                           PaymentCardSelectTabletPhoneWidget(
-                            titleCards: "Cartão Cadastrado William Douglas",
+                            titleCards: "Cartão Cadastrado ${LoggedUser.nameAndLastName}",
                             showTitleCard: true,
                             creditDebtCardWidgetHeight: 25.h,
                             creditDebtCardActiveStep: widget.controller.creditDebtCardActiveStep,

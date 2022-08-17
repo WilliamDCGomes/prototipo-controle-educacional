@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../shared/widgets/widgetsAcademicInformations/discipline_card_tablet_phone_widget.dart';
 import '../../shared/widgets/widgetsAcademicInformations/discipline_screen_tablet_phone_widget.dart';
 
@@ -18,11 +19,11 @@ class AcademicRecordTabletPhoneController extends GetxController {
   }
 
   _inicializeVariables(){
-    studentName = "WILLIAM DOUGLAS COSTA GOMES";
+    studentName = LoggedUser.name.toUpperCase();
     studentBirthday = "30/01/1998";
-    studentRA = "48467";
+    studentRA = LoggedUser.ra.toString();
     studentClass = "156-7A";
-    studentCourse = "Ciência da Computação";
+    studentCourse = LoggedUser.courseName;
     studentStatus = "MATRICULADO";
     searchDisciplineController = TextEditingController();
     cardAcademicRecordTabletPhoneWidget = DisciplineScreenTabletPhoneWidget(

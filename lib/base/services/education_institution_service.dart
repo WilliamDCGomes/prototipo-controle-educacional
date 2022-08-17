@@ -20,4 +20,17 @@ class EducationInstitutionService implements IEducationInstitutionService {
       return [];
     }
   }
+
+  Future<String> getEducationInstitutionNameById(String id) async {
+    try {
+      var institution = await FirebaseFirestore.instance.collection("educational_institution")
+          .doc(id).get();
+      if(institution.exists && institution.data() != null) {
+        return EducationInstitution.fromJsonFirebase(institution.data()!).name;
+      }
+      return "";
+    } catch (_) {
+      return "";
+    }
+  }
 }

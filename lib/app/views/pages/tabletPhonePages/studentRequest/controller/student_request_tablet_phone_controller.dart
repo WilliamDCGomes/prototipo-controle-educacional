@@ -6,6 +6,7 @@ import 'package:projeto_tcc/base/viewController/payment_finished_view_controller
 import '../../../../../enums/enums.dart';
 import '../../../../../utils/date_format_to_brazil.dart';
 import '../../../../../utils/format_numbers.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../shared/popups/bottom_sheet_tablet_phone_popup.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
@@ -62,8 +63,8 @@ class StudentRequestTabletPhoneController extends GetxController {
     dateRequest = TextEditingController();
     observations = TextEditingController();
 
-    studentName.text = "William Douglas Costa Gomes";
-    raNumber.text = "48467";
+    studentName.text = LoggedUser.name;
+    raNumber.text = LoggedUser.ra.toString();
     dateRequest.text = DateFormatToBrazil.formatDate(DateTime.now());
     carouselCreditDebtCardController = CarouselController();
 
@@ -81,13 +82,13 @@ class StudentRequestTabletPhoneController extends GetxController {
     creditDebtCardList = [
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
-        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        personCardName: LoggedUser.name.toUpperCase(),
         cardExpirationDate: "02/29",
         creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "5967",
-        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        personCardName: LoggedUser.name.toUpperCase(),
         cardExpirationDate: "10/27",
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
