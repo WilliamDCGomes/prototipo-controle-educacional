@@ -13,8 +13,9 @@ class EducationInstitution extends CoreEntity{
 
   //#region Conversões
   EducationInstitution.fromJson(Map<String, dynamic> json) {
+    courses = <dynamic>[];
     name = json["name"];
-    courses = json["courses"];
+    courses = json["courses"]["id_course"];
     id = json["id"];
     lastChange = json["lastChange"];
     includeDate = json["includeDate"];
@@ -22,8 +23,11 @@ class EducationInstitution extends CoreEntity{
   }
 
   EducationInstitution.fromJsonFirebase(Map<String, dynamic> json) {
+    courses = <dynamic>[];
     name = json["name"];
-    courses = json["courses"];
+    for(var course in json["courses"]){
+      courses.add(course["id_course"]);
+    }
     id = json["id"];
     lastChange = (json["lastChange"] as Timestamp).toDate();
     includeDate = (json["includeDate"] as Timestamp).toDate();
@@ -33,7 +37,9 @@ class EducationInstitution extends CoreEntity{
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data["name"] = this.name;
-    data["courses"] = this.courses;
+    data["courses"] = {
+      "id_course": this.courses,
+    };
     data["id"] = this.id;
     data["lastChange"] = this.lastChange;
     data["includeDate"] = this.includeDate;

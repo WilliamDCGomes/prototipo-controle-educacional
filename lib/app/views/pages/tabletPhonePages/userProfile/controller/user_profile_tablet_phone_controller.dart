@@ -121,6 +121,8 @@ class UserProfileTabletPhoneController extends GetxController {
     emailTextController.text = LoggedUser.email;
     institutionTextController.text = LoggedUser.educationInstitutionName;
     courseTextController.text = LoggedUser.courseName;
+    ufSelected.value = LoggedUser.uf;
+    periodSelected.value = LoggedUser.period;
   }
 
   _initializeLists(){

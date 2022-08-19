@@ -18,6 +18,7 @@ class LoggedUser {
   static int bimester = 0;
   static int semester = 0;
   static int studentYear = 0;
+  static double monthly_payment = 0.0;
   static String educationInstitutionId = "";
   static String courseId = "";
   static String educationInstitutionName = "";
