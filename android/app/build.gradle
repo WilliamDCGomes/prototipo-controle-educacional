@@ -34,12 +34,12 @@ android {
     productFlavors {
         dev {
             dimension "flavor-type"
-            applicationId "com.prototipo_controle_educacional_dev"
+            applicationId "com.prototipo_controle_educacional"
             resValue "string", "app_name", "PCE DEV"
         }
         hmlg {
             dimension "flavor-type"
-            applicationId "com.prototipo_controle_educacional_hmlg"
+            applicationId "com.prototipo_controle_educacional"
             resValue "string", "app_name", "PCE HMLG"
         }
         prod {

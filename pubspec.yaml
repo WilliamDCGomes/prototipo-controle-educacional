@@ -89,16 +89,16 @@ flavorizr:
       app:
         name: "PCE DEV"
       android:
-        applicationId: "com.prototipo_controle_educacional_dev"
+        applicationId: "com.prototipo_controle_educacional"
       ios:
-        bundleId: "com.prototipo_controle_educacional_dev"
+        bundleId: "com.prototipo_controle_educacional"
     hmlg:
       app:
         name: "PCE HMLG"
       android:
-        applicationId: "com.prototipo_controle_educacional_hmlg"
+        applicationId: "com.prototipo_controle_educacional"
       ios:
-        bundleId: "com.prototipo_controle_educacional_hmlg"
+        bundleId: "com.prototipo_controle_educacional"
     prod:
       app:
         name: "PCE"

@@ -6,11 +6,13 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
 import 'package:projeto_tcc/app/utils/internet_connection.dart';
 import 'package:projeto_tcc/base/models/classes.dart';
+import 'package:projeto_tcc/base/models/user.dart';
 import 'package:projeto_tcc/base/services/course_service.dart';
 import 'package:projeto_tcc/base/services/education_institution_service.dart';
 import 'package:projeto_tcc/base/services/interfaces/ieducation_institution_service.dart';
 import 'package:projeto_tcc/base/services/itens_orders_by_user_service.dart';
 import 'package:projeto_tcc/base/services/student_service.dart';
+import 'package:projeto_tcc/base/services/user_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/models/files.dart';
@@ -18,6 +20,7 @@ import '../../../../../../base/models/student.dart';
 import '../../../../../../base/services/interfaces/icourse_service.dart';
 import '../../../../../../base/services/interfaces/iitens_orders_by_user_service.dart';
 import '../../../../../../base/services/interfaces/istudent_service.dart';
+import '../../../../../../base/services/interfaces/iuser_service.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../../base/viewController/payment_finished_view_controller.dart';
@@ -78,7 +81,9 @@ class MainMenuTabletPhoneController extends GetxController {
   late TextEditingController deliveriesSearchController;
   late SharedPreferences sharedPreferences;
   late Student? student;
+  late Users? user;
   late IStudentService studentService;
+  late IUserService userService;
   late ICourseService courseService;
   late IEducationInstitutionService educationInstitutionService;
   late IItensOrderByUserService itensOrderByUserService;
@@ -130,6 +135,7 @@ class MainMenuTabletPhoneController extends GetxController {
       hasCardRegistered: true,
     );
     studentService = StudentService();
+    userService = UserService();
     courseService = CourseService();
     educationInstitutionService = EducationInstitutionService();
     itensOrderByUserService = ItensOrderByUserService();
@@ -1275,17 +1281,6 @@ class MainMenuTabletPhoneController extends GetxController {
       if(ra != null) {
         student = await studentService.getStudent(ra);
         if(student != null){
-          LoggedUser.name = student!.name;
-          LoggedUser.birthdate = student!.birthdate;
-          LoggedUser.cpf = student!.cpf;
-          LoggedUser.gender = student!.gender;
-          LoggedUser.cep = student!.cep;
-          LoggedUser.uf = student!.uf;
-          LoggedUser.city = student!.city;
-          LoggedUser.street = student!.street;
-          LoggedUser.houseNumber = student!.houseNumber;
-          LoggedUser.neighborhood = student!.neighborhood;
-          LoggedUser.complement = student!.complement;
           LoggedUser.ra = student!.ra;
           LoggedUser.bimester = student!.bimester;
           LoggedUser.semester = student!.semester;
@@ -1293,10 +1288,25 @@ class MainMenuTabletPhoneController extends GetxController {
           LoggedUser.educationInstitutionId = student!.educationInstitutionId;
           LoggedUser.courseId = student!.courseId;
           LoggedUser.period = student!.period;
-          LoggedUser.phone = student!.phone;
-          LoggedUser.cellPhone = student!.cellPhone;
-          LoggedUser.email = student!.email;
-          LoggedUser.password = student!.password;
+
+          user = await userService.getUser(student!.cpf);
+
+          if(user != null){
+            LoggedUser.name = user!.name;
+            LoggedUser.birthdate = user!.birthdate;
+            LoggedUser.cpf = user!.cpf;
+            LoggedUser.gender = user!.gender;
+            LoggedUser.cep = user!.cep;
+            LoggedUser.uf = user!.uf;
+            LoggedUser.city = user!.city;
+            LoggedUser.street = user!.street;
+            LoggedUser.houseNumber = user!.houseNumber;
+            LoggedUser.neighborhood = user!.neighborhood;
+            LoggedUser.complement = user!.complement;
+            LoggedUser.phone = user!.phone;
+            LoggedUser.cellPhone = user!.cellPhone;
+            LoggedUser.email = user!.email;
+          }
         }
       }
     }

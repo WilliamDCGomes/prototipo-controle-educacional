@@ -1,7 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../models/user.dart';
 import 'interfaces/iuser_service.dart';
 
 class UserService implements IUserService {
+  Future<bool> sendNewUser(Users newUser) async {
+    try {
+      await FirebaseFirestore.instance.collection("users")
+          .doc(newUser.cpf)
+          .set(newUser.toJson());
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<Users?> getUser(String cpf) async {
+    try {
+      var lastRaRegistered = await FirebaseFirestore.instance.collection("users")
+          .where("cpf", isEqualTo: cpf).get();
+      if(lastRaRegistered.size > 0) {
+        return Users.fromJsonFirebase(lastRaRegistered.docs.first.data());
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<bool> registerNewUser(int ra, String password) async {
     return await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: "$ra@pce.com",

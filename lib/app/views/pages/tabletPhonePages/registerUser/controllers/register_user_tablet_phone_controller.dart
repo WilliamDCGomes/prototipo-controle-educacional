@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:projeto_tcc/base/models/course.dart';
+import 'package:projeto_tcc/base/models/user.dart';
 import 'package:projeto_tcc/base/services/interfaces/istudent_service.dart';
 import '../../../../../../base/models/address_information.dart';
 import '../../../../../../base/models/discipline_periods.dart';
@@ -103,6 +104,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   late List<BodyRegisterStepperTabletPhoneWidget> bodyRegisterStepperList;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late Student newStudent;
+  late Users newUser;
   late IStudentService studentService;
   late ICourseService courseService;
   late IConsultCepService consultCepService;
@@ -279,6 +281,9 @@ class RegisterUserTabletPhoneController extends GetxController {
       }
     });
     newStudent = Student();
+    newUser = Users();
+    newUser.id = newStudent.id;
+
     studentService = StudentService();
     courseService = CourseService();
     consultCepService = ConsultCepService();
@@ -377,10 +382,11 @@ class RegisterUserTabletPhoneController extends GetxController {
       );
     }
     else{
-      newStudent.name = nameTextController.text;
-      newStudent.birthdate = birthDateTextController.text;
+      newUser.name = nameTextController.text;
+      newUser.birthdate = birthDateTextController.text;
+      newUser.cpf = cpfTextController.text;
       newStudent.cpf = cpfTextController.text;
-      newStudent.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
+      newUser.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
       _nextPage();
     }
   }
@@ -398,9 +404,9 @@ class RegisterUserTabletPhoneController extends GetxController {
       );
     }
     else{
-      newStudent.phone = phoneTextController.text;
-      newStudent.cellPhone = cellPhoneTextController.text;
-      newStudent.email = emailTextController.text;
+      newUser.phone = phoneTextController.text;
+      newUser.cellPhone = cellPhoneTextController.text;
+      newUser.email = emailTextController.text;
       _nextPage();
     }
   }
@@ -532,6 +538,7 @@ class RegisterUserTabletPhoneController extends GetxController {
       try{
         newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
         if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
+          await userService.sendNewUser(newUser);
           await studentService.sendNewStudent(newStudent);
           await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(destinationPage: RegistrationCompletedTabletPhone());
         }
@@ -673,13 +680,13 @@ class RegisterUserTabletPhoneController extends GetxController {
           return;
         }
         if(formKeyAddressInformation.currentState!.validate()){
-          newStudent.cep = cepTextController.text;
-          newStudent.uf = ufSelected.value;
-          newStudent.city = cityTextController.text;
-          newStudent.street = streetTextController.text;
-          newStudent.houseNumber = houseNumberTextController.text;
-          newStudent.neighborhood = neighborhoodTextController.text;
-          newStudent.complement = complementTextController.text;
+          newUser.cep = cepTextController.text;
+          newUser.uf = ufSelected.value;
+          newUser.city = cityTextController.text;
+          newUser.street = streetTextController.text;
+          newUser.houseNumber = houseNumberTextController.text;
+          newUser.neighborhood = neighborhoodTextController.text;
+          newUser.complement = complementTextController.text;
           _nextPage();
         }
         break;
