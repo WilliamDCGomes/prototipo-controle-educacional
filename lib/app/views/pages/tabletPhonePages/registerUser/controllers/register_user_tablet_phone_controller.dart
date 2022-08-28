@@ -34,8 +34,6 @@ import '../../../../stylePages/masks_for_text_fields.dart';
 
 class RegisterUserTabletPhoneController extends GetxController {
   late String lgpdPhrase;
-  late bool cepSearched;
-  late bool buttonClicked;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
@@ -132,8 +130,6 @@ class RegisterUserTabletPhoneController extends GetxController {
     educationInstitutionSelected = "".obs;
     courseSelected = "".obs;
     periodSelected = "".obs;
-    cepSearched = false;
-    buttonClicked = false;
     loadingAnimation = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
@@ -271,15 +267,6 @@ class RegisterUserTabletPhoneController extends GetxController {
       ),
     ];
     cepInputFocusNode = FocusNode();
-    cepInputFocusNode.addListener(() async {
-      if(!cepSearched && !cepInputFocusNode.hasFocus){
-        await Loading.startAndPauseLoading(
-          () => _searchAddressInformation(),
-          loadingAnimation,
-          loadingWithSuccessOrErrorTabletPhoneWidget,
-        );
-      }
-    });
     newStudent = Student();
     newUser = Users();
     newUser.id = newStudent.id;
@@ -293,39 +280,46 @@ class RegisterUserTabletPhoneController extends GetxController {
     raService = RaService();
   }
 
-  _searchAddressInformation() async {
-    try{
-      if(buttonClicked){
-        buttonClicked = false;
-        return;
-      }
-      if(cepTextController.text.length == 9){
-        AddressInformation? addressInformation = await consultCepService.searchCep(cepTextController.text);
-        if(addressInformation != null){
-          ufSelected.value = addressInformation.uf;
-          cityTextController.text = addressInformation.city;
-          streetTextController.text = addressInformation.street;
-          neighborhoodTextController.text = addressInformation.neighborhood;
-          complementTextController.text = addressInformation.complement;
-          formKeyAddressInformation.currentState!.validate();
+  searchAddressInformation() async {
+    int trys = 1;
+    while(true){
+      try{
+        if(cepTextController.text.length == 9){
+          AddressInformation? addressInformation = await consultCepService.searchCep(cepTextController.text);
+          if(addressInformation != null){
+            ufSelected.value = addressInformation.uf;
+            cityTextController.text = addressInformation.city;
+            streetTextController.text = addressInformation.street;
+            neighborhoodTextController.text = addressInformation.neighborhood;
+            complementTextController.text = addressInformation.complement;
+            formKeyAddressInformation.currentState!.validate();
+            break;
+          }
+          else{
+            ufSelected.value = "";
+            cityTextController.text = "";
+            streetTextController.text = "";
+            neighborhoodTextController.text = "";
+            complementTextController.text = "";
+          }
         }
-        else{
-          ufSelected.value = "";
-          cityTextController.text = "";
-          streetTextController.text = "";
-          neighborhoodTextController.text = "";
-          complementTextController.text = "";
-        }
-        cepSearched = true;
       }
-    }
-    catch(_){
-      cepSearched = false;
-      ufSelected.value = "";
-      cityTextController.text = "";
-      streetTextController.text = "";
-      neighborhoodTextController.text = "";
-      complementTextController.text = "";
+      catch(_){
+        ufSelected.value = "";
+        cityTextController.text = "";
+        streetTextController.text = "";
+        neighborhoodTextController.text = "";
+        complementTextController.text = "";
+      }
+      finally{
+        trys++;
+        if(trys > 3){
+          break;
+        }
+        else {
+          continue;
+        }
+      }
     }
   }
 
@@ -652,7 +646,6 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   nextButtonPressed() async {
-    buttonClicked = true;
     if(!await InternetConnection.validInternet(
       "É necessário uma conexão com a internet para fazer o cadastro",
       loadingAnimation,
@@ -671,14 +664,6 @@ class RegisterUserTabletPhoneController extends GetxController {
         }
         break;
       case 1:
-        if(cepTextController.text.length == 9 && !cepSearched){
-          await Loading.startAndPauseLoading(
-            () => _searchAddressInformation(),
-            loadingAnimation,
-            loadingWithSuccessOrErrorTabletPhoneWidget,
-          );
-          return;
-        }
         if(formKeyAddressInformation.currentState!.validate()){
           newUser.cep = cepTextController.text;
           newUser.uf = ufSelected.value;
