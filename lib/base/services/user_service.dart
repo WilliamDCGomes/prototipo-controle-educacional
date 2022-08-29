@@ -15,6 +15,17 @@ class UserService implements IUserService {
     }
   }
 
+  Future<bool> updateUser(Users user) async {
+    try {
+      await FirebaseFirestore.instance.collection("users")
+          .doc(user.cpf)
+          .update(user.toJson());
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<Users?> getUser(String cpf) async {
     try {
       var lastRaRegistered = await FirebaseFirestore.instance.collection("users")

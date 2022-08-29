@@ -1,6 +1,7 @@
 import 'package:age_calculator/age_calculator.dart';
 
 class LoggedUser {
+  static String id = "";
   static String name = "";
   static String nameInitials = "";
   static String nameAndLastName = "";
@@ -28,6 +29,8 @@ class LoggedUser {
   static String? cellPhone = "";
   static String email = "";
   static String password = "";
+  static DateTime? lastChange;
+
   static String get userAge {
     try{
       var bithdayUsaVersion = birthdate.split('/');

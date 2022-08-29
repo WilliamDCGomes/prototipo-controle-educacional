@@ -1,9 +1,9 @@
-
-
 import '../../models/user.dart';
 
 abstract class IUserService {
   Future<bool> sendNewUser(Users newUser);
+
+  Future<bool> updateUser(Users user);
 
   Future<Users?> getUser(String cpf);
 

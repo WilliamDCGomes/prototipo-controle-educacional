@@ -133,7 +133,7 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                       Padding(
                         padding: EdgeInsets.only(top: 3.h),
                         child: Obx(
-                              () => ButtonWidget(
+                          () => ButtonWidget(
                             hintText: controller.buttonText.value,
                             fontWeight: FontWeight.bold,
                             widthButton: double.infinity,

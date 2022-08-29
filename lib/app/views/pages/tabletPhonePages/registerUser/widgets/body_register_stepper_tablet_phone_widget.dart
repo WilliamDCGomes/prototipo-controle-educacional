@@ -174,7 +174,6 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       () => TextFieldWidget(
                         controller: widget.controller.cepTextController,
                         hintText: "Cep",
-                        focusNode: widget.controller.cepInputFocusNode,
                         height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,

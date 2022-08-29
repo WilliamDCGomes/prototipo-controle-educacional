@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../utils/loading.dart';
 import '../../../../../utils/platform_type.dart';
+import '../../../../../utils/text_field_validators.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../../widgetsShared/dropdown_button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
@@ -38,8 +40,29 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                 height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.number,
-                maskTextInputFormatter: MasksForTextFields.cepMask,
                 justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                textInputAction: TextInputAction.next,
+                maskTextInputFormatter: MasksForTextFields.cepMask,
+                hasError: _userProfileTabletPhoneController.cepInputHasError.value,
+                onChanged: (value) async {
+                  if(value.length == 9){
+                    await Loading.startAndPauseLoading(
+                          () => _userProfileTabletPhoneController.searchAddressInformation(),
+                      _userProfileTabletPhoneController.loadingAnimation,
+                      _userProfileTabletPhoneController.loadingWithSuccessOrErrorTabletPhoneWidget,
+                    );
+                  }
+                },
+                validator: (String? value) {
+                  String? validation = TextFieldValidators.minimumNumberValidation(value, 9, "Cep");
+                  if(validation != null && validation != ""){
+                    _userProfileTabletPhoneController.cepInputHasError.value = true;
+                  }
+                  else{
+                    _userProfileTabletPhoneController.cepInputHasError.value = false;
+                  }
+                  return validation;
+                },
               ),
             ),
             Padding(
@@ -71,10 +94,26 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                       child: TextFieldWidget(
                         controller: _userProfileTabletPhoneController.cityTextController,
                         hintText: "Cidade",
+                        textCapitalization: TextCapitalization.words,
                         height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         keyboardType: TextInputType.name,
                         enableSuggestions: true,
+                        textInputAction: TextInputAction.next,
                         justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                        hasError: _userProfileTabletPhoneController.cityInputHasError.value,
+                        validator: (String? value) {
+                          String? validation = TextFieldValidators.standardValidation(value, "Informe a Cidade");
+                          if(validation != null && validation != ""){
+                            _userProfileTabletPhoneController.cityInputHasError.value = true;
+                          }
+                          else{
+                            _userProfileTabletPhoneController.cityInputHasError.value = false;
+                          }
+                          return validation;
+                        },
+                        onEditingComplete: (){
+                          _userProfileTabletPhoneController.streetFocusNode.requestFocus();
+                        },
                       ),
                     ),
                   ],
@@ -88,23 +127,45 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
                 children: [
                   Expanded(
                     child: TextFieldWidget(
+                      focusNode: _userProfileTabletPhoneController.streetFocusNode,
                       controller: _userProfileTabletPhoneController.streetTextController,
                       hintText: "Logradouro",
+                      textCapitalization: TextCapitalization.words,
                       height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       keyboardType: TextInputType.streetAddress,
                       enableSuggestions: true,
                       justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                      textInputAction: TextInputAction.next,
+                      hasError: _userProfileTabletPhoneController.streetInputHasError.value,
+                      validator: (String? value) {
+                        String? validation = TextFieldValidators.standardValidation(value, "Informe o Logradouro");
+                        if(validation != null && validation != ""){
+                          _userProfileTabletPhoneController.streetInputHasError.value = true;
+                        }
+                        else{
+                          _userProfileTabletPhoneController.streetInputHasError.value = false;
+                        }
+                        return validation;
+                      },
+                      onEditingComplete: (){
+                        _userProfileTabletPhoneController.houseNumberFocusNode.requestFocus();
+                      },
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 2.w),
                     child: TextFieldWidget(
+                      focusNode: _userProfileTabletPhoneController.houseNumberFocusNode,
                       controller: _userProfileTabletPhoneController.houseNumberTextController,
                       hintText: "Nº",
+                      justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                      textInputAction: TextInputAction.next,
                       height: PlatformType.isTablet(context) ? 7.h : 9.h,
                       width: 20.w,
                       keyboardType: TextInputType.number,
-                      justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                      onEditingComplete: (){
+                        _userProfileTabletPhoneController.neighborhoodFocusNode.requestFocus();
+                      },
                     ),
                   ),
                 ],
@@ -113,20 +174,39 @@ class _EditAddressTabTabletPhoneWidgetState extends State<EditAddressTabTabletPh
             Padding(
               padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
+                focusNode: _userProfileTabletPhoneController.neighborhoodFocusNode,
                 controller: _userProfileTabletPhoneController.neighborhoodTextController,
                 hintText: "Bairro",
+                justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                textCapitalization: TextCapitalization.words,
                 height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.name,
                 enableSuggestions: true,
-                justRead: _userProfileTabletPhoneController.profileIsDisabled.value,
+                textInputAction: TextInputAction.next,
+                hasError: _userProfileTabletPhoneController.neighborhoodInputHasError.value,
+                validator: (String? value) {
+                  String? validation = TextFieldValidators.standardValidation(value, "Informe o Bairro");
+                  if(validation != null && validation != ""){
+                    _userProfileTabletPhoneController.neighborhoodInputHasError.value = true;
+                  }
+                  else{
+                    _userProfileTabletPhoneController.neighborhoodInputHasError.value = false;
+                  }
+                  return validation;
+                },
+                onEditingComplete: (){
+                  _userProfileTabletPhoneController.complementFocusNode.requestFocus();
+                },
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 1.5.h),
               child: TextFieldWidget(
+                focusNode: _userProfileTabletPhoneController.complementFocusNode,
                 controller: _userProfileTabletPhoneController.complementTextController,
                 hintText: "Complemento",
+                textCapitalization: TextCapitalization.sentences,
                 height: PlatformType.isTablet(context) ? 7.h : 9.h,
                 width: double.infinity,
                 keyboardType: TextInputType.text,

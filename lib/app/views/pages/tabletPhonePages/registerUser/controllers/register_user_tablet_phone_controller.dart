@@ -64,7 +64,6 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxList<String> educationInstitutionNameList;
   late RxList<String> courseList;
   late RxList<String> ufsList;
-  late FocusNode cepInputFocusNode;
   late final GlobalKey<FormState> formKeyPersonalInformation;
   late final GlobalKey<FormState> formKeyAddressInformation;
   late final GlobalKey<FormState> formKeyContactInformation;
@@ -266,7 +265,6 @@ class RegisterUserTabletPhoneController extends GetxController {
         controller: this,
       ),
     ];
-    cepInputFocusNode = FocusNode();
     newStudent = Student();
     newUser = Users();
     newUser.id = newStudent.id;
@@ -353,24 +351,24 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   _validPersonalInformationAndAdvanceNextStep() async {
-    if(await studentService.verificationStudentExists(cpfTextController.text)){
-      showDialog(
-        context: Get.context!,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return InformationTabletPhonePopup(
-            warningMessage: "O CPF já está cadastrado no sistema.",
-          );
-        },
-      );
-    }
-    else if(genderSelected.value == "" || (genderSelected.value == "Outro (Qual?)" && otherGenderTypeTextController.text == "")){
+    if(genderSelected.value == "" || (genderSelected.value == "Outro (Qual?)" && otherGenderTypeTextController.text == "")){
       showDialog(
         context: Get.context!,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return InformationTabletPhonePopup(
             warningMessage: "Informe o seu sexo.",
+          );
+        },
+      );
+    }
+    else if(await studentService.verificationStudentExists(cpfTextController.text)){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "O CPF já está cadastrado no sistema.",
           );
         },
       );
@@ -532,9 +530,17 @@ class RegisterUserTabletPhoneController extends GetxController {
       try{
         newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
         if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
-          await userService.sendNewUser(newUser);
-          await studentService.sendNewStudent(newStudent);
-          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(destinationPage: RegistrationCompletedTabletPhone());
+          bool userSend = await userService.sendNewUser(newUser);
+          bool studenteSend = await studentService.sendNewStudent(newStudent);
+          if(userSend && studenteSend) {
+            await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(
+              destinationPage: RegistrationCompletedTabletPhone(),
+            );
+            break;
+          }
+          else{
+            throw Exception();
+          }
         }
         else{
           await raService.deleteDuplicateRa(newStudent.id);
