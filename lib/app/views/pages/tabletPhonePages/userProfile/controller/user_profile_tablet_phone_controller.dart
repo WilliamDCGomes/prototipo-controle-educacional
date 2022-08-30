@@ -11,14 +11,12 @@ import '../../../../../../base/services/interfaces/iuser_service.dart';
 import '../../../../../../base/services/user_service.dart';
 import '../../../../../utils/brazil_address_informations.dart';
 import '../../../../../utils/internet_connection.dart';
+import '../../../../../utils/text_field_validators.dart';
 import '../../../../../utils/valid_cellphone_mask.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
-import '../widgets/edit_academic_tab_tablet_phone_widget.dart';
-import '../widgets/edit_address_tab_tablet_phone_widget.dart';
-import '../widgets/edit_contact_tab_tablet_phone_widget.dart';
-import '../widgets/edit_profile_tab_tablet_phone_widget.dart';
+import '../widget/user_profile_tabs_widget.dart';
 
 class UserProfileTabletPhoneController extends GetxController {
   late String nameInitials;
@@ -35,6 +33,7 @@ class UserProfileTabletPhoneController extends GetxController {
   late RxBool profileIsDisabled;
   late RxBool loadingAnimation;
   late RxBool nameInputHasError;
+  late RxBool otherGenderInputHasError;
   late RxBool birthdayInputHasError;
   late RxBool showOtherGenderType;
   late RxBool cepInputHasError;
@@ -75,9 +74,6 @@ class UserProfileTabletPhoneController extends GetxController {
   late FocusNode emailFocusNode;
   late FocusNode confirmEmailFocusNode;
   late FocusNode confirmPasswordFocusNode;
-  late final GlobalKey<FormState> formKeyPersonalInformation;
-  late final GlobalKey<FormState> formKeyAddressInformation;
-  late final GlobalKey<FormState> formKeyContactInformation;
   late MaskTextInputFormatter maskCellPhoneFormatter;
   late List<Widget> tabsList;
   late List<String> periodList;
@@ -110,6 +106,7 @@ class UserProfileTabletPhoneController extends GetxController {
     newPasswordFieldEnabled = true.obs;
     confirmNewPasswordFieldEnabled = true.obs;
     nameInputHasError = false.obs;
+    otherGenderInputHasError = false.obs;
     birthdayInputHasError = false.obs;
     showOtherGenderType = false.obs;
     cepInputHasError = false.obs;
@@ -141,9 +138,6 @@ class UserProfileTabletPhoneController extends GetxController {
     currentPasswordTextController = TextEditingController();
     newPasswordTextController = TextEditingController();
     confirmNewPasswordTextController = TextEditingController();
-    formKeyPersonalInformation = GlobalKey<FormState>();
-    formKeyAddressInformation = GlobalKey<FormState>();
-    formKeyContactInformation = GlobalKey<FormState>();
     birthDateFocusNode = FocusNode();
     streetFocusNode = FocusNode();
     houseNumberFocusNode = FocusNode();
@@ -185,21 +179,7 @@ class UserProfileTabletPhoneController extends GetxController {
       "Prefiro não dizer",
     ];
 
-    tabsList = <Widget> [
-      Form(
-        key: formKeyPersonalInformation,
-        child: EditProfileTabTabletPhoneWidget(),
-      ),
-      Form(
-        key: formKeyAddressInformation,
-        child: EditAddressTabTabletPhoneWidget(),
-      ),
-      Form(
-        key: formKeyContactInformation,
-        child: EditContactTabTabletPhoneWidget(),
-      ),
-      EditAcademicTabTabletPhoneWidget(),
-    ];
+    tabsList = UserProfileTabsWidget.getList(this);
   }
 
   _getUserInformation(){
@@ -261,7 +241,6 @@ class UserProfileTabletPhoneController extends GetxController {
             streetTextController.text = addressInformation.street;
             neighborhoodTextController.text = addressInformation.neighborhood;
             complementTextController.text = addressInformation.complement;
-            formKeyAddressInformation.currentState!.validate();
             break;
           }
           else{
@@ -308,7 +287,8 @@ class UserProfileTabletPhoneController extends GetxController {
     user.email = emailTextController.text;
     user.id = LoggedUser.id;
     user.cpf = LoggedUser.cpf;
-    user.lastChange = LoggedUser.lastChange;
+    user.includeDate = LoggedUser.includeDate;
+    user.lastChange = DateTime.now();
   }
 
   _updateLocaleUser(){
@@ -327,7 +307,7 @@ class UserProfileTabletPhoneController extends GetxController {
     emailTextController.text = user.email;
     LoggedUser.id = user.id;
     LoggedUser.cpf = user.cpf;
-    LoggedUser.lastChange = user.lastChange;
+    LoggedUser.includeDate = user.includeDate;
   }
 
   editButtonPressed() async {
@@ -350,16 +330,10 @@ class UserProfileTabletPhoneController extends GetxController {
         return;
       }
 
-      /*if(!formKeyPersonalInformation.currentState!.validate()){
+      if(!_validProfile()){
         return;
       }
-      else if(!formKeyAddressInformation.currentState!.validate()){
-        return;
-      }
-      else if(!formKeyContactInformation.currentState!.validate()){
-        return;
-      }
-      else */if(_validPersonalInformationAndAdvanceNextStep()){
+      else if(_validPersonalInformationAndAdvanceNextStep()){
         _setUserToUpdate();
 
         if(await _saveStudent()){
@@ -381,13 +355,145 @@ class UserProfileTabletPhoneController extends GetxController {
     }
   }
 
+  bool _validProfile(){
+    try{
+      if(nameTextController.text == ""){
+        nameInputHasError.value = true;
+        tabController.index = 0;
+        throw Exception("Informe o seu Nome");
+      }
+      else{
+        nameInputHasError.value = false;
+      }
+
+      String? birthDateValidation = TextFieldValidators.birthDayValidation(birthDateTextController.text, "de Nascimento");
+      if(birthDateValidation != null && birthDateValidation != ""){
+        birthdayInputHasError.value = true;
+        tabController.index = 0;
+        throw Exception(birthDateValidation);
+      }
+      else{
+        birthdayInputHasError.value = false;
+      }
+
+      if(showOtherGenderType.value && otherGenderTypeTextController.text == ""){
+        otherGenderInputHasError.value = true;
+        tabController.index = 0;
+        throw Exception("Informe o seu sexo.");
+      }
+      else{
+        otherGenderInputHasError.value = false;
+      }
+
+      String? cepValidation = TextFieldValidators.minimumNumberValidation(
+        cepTextController.text,
+        9,
+        "Cep",
+      );
+      if(cepValidation != null && cepValidation != ""){
+        cepInputHasError.value = true;
+        tabController.index = 1;
+        throw Exception(cepValidation);
+      }
+      else{
+        cepInputHasError.value = false;
+      }
+
+      String? cityValidation = TextFieldValidators.standardValidation(cityTextController.text, "Informe a Cidade");
+      if(cityValidation != null && cityValidation != ""){
+        cityInputHasError.value = true;
+        tabController.index = 1;
+        throw Exception(cityValidation);
+      }
+      else{
+        cityInputHasError.value = false;
+      }
+
+      String? streetValidation = TextFieldValidators.standardValidation(streetTextController.text, "Informe o Logradouro");
+      if(streetValidation != null && streetValidation != ""){
+        streetInputHasError.value = true;
+        tabController.index = 1;
+        throw Exception(streetValidation);
+      }
+      else{
+        streetInputHasError.value = false;
+      }
+
+      String? neighborhoodValidation = TextFieldValidators.standardValidation(neighborhoodTextController.text, "Informe o Bairro");
+      if(neighborhoodValidation != null && neighborhoodValidation != ""){
+        neighborhoodInputHasError.value = true;
+        tabController.index = 1;
+        throw Exception(neighborhoodValidation);
+      }
+      else{
+        neighborhoodInputHasError.value = false;
+      }
+
+      String? phoneValidation = TextFieldValidators.phoneValidation(phoneTextController.text);
+      if(phoneValidation != null && phoneValidation != ""){
+        phoneInputHasError.value = true;
+        tabController.index = 2;
+        throw Exception(phoneValidation);
+      }
+      else{
+        phoneInputHasError.value = false;
+      }
+
+      String? cellPhoneValidation = TextFieldValidators.cellPhoneValidation(cellPhoneTextController.text);
+      if(cellPhoneValidation != null && cellPhoneValidation != ""){
+        cellPhoneInputHasError.value = true;
+        tabController.index = 2;
+        throw Exception(cellPhoneValidation);
+      }
+      else{
+        cellPhoneInputHasError.value = false;
+      }
+
+      String? emailValidation = TextFieldValidators.emailValidation(emailTextController.text);
+      if(emailValidation != null && emailValidation != ""){
+        emailInputHasError.value = true;
+        tabController.index = 2;
+        throw Exception(emailValidation);
+      }
+      else{
+        emailInputHasError.value = false;
+      }
+
+      String? confirmEmailvalidation = TextFieldValidators.emailConfirmationValidation(
+          emailTextController.text,
+          confirmEmailTextController.text,
+      );
+      if(confirmEmailvalidation != null && confirmEmailvalidation != ""){
+        confirmEmailInputHasError.value = true;
+        tabController.index = 2;
+        throw Exception(confirmEmailvalidation);
+      }
+      else{
+        confirmEmailInputHasError.value = false;
+      }
+      return true;
+    }
+    catch(e){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: e.toString().replaceAll("Exception: ", ""),
+          );
+        },
+      );
+      return false;
+    }
+  }
+
   Future<bool> _saveStudent() async {
     int trys = 0;
 
     while(true){
       try{
         if(await userService.updateUser(user)) {
-          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
+          loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
           return true;
         }
         else{

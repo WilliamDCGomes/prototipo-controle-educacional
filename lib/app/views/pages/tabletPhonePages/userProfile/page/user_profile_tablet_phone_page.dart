@@ -88,7 +88,7 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                           color: AppColors.purpleDefaultColor,
                         ),
                         child: Obx(
-                              () => controller.hasPicture.value ?
+                          () => controller.hasPicture.value ?
                           Image.asset(
                               ""
                           ) :

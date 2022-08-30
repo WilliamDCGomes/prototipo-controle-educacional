@@ -6,7 +6,11 @@ import 'app/views/stylePages/app_colors.dart';
 import 'flavors.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  final MaterialColor color;
+  const App({
+    Key? key,
+    required this.color,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          primaryColor: AppColors.purpleDefaultColor,
+          primarySwatch: color,
         ),
         getPages: [
           GetPage(name: "/initialPage", page: () => F.initialScreen),

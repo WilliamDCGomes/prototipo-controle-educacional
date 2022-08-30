@@ -29,7 +29,7 @@ class LoggedUser {
   static String? cellPhone = "";
   static String email = "";
   static String password = "";
-  static DateTime? lastChange;
+  static DateTime? includeDate;
 
   static String get userAge {
     try{

@@ -1289,7 +1289,7 @@ class MainMenuTabletPhoneController extends GetxController {
           LoggedUser.courseId = student!.courseId;
           LoggedUser.period = student!.period;
           LoggedUser.id = student!.id;
-          LoggedUser.lastChange = student!.lastChange;
+          LoggedUser.includeDate = student!.includeDate;
 
           user = await userService.getUser(student!.cpf);
 

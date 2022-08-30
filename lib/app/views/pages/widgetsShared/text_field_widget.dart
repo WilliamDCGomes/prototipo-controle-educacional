@@ -105,7 +105,7 @@ class TextFieldWidget extends StatelessWidget {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
-        color: borderColor ?? AppColors.purpleDefaultColor,
+        color: hasError != null && hasError! ? AppColors.redColor : borderColor ?? AppColors.purpleDefaultColor,
         width: .25.h,
       ),
     );
