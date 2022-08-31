@@ -15,6 +15,7 @@ class LoginTabletPhoneController extends GetxController {
   late RxBool passwordInputHasError;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
+  late RxBool keepConected;
   late final GlobalKey<FormState> formKey;
   late LoadingTabletPhoneWidget loadingTabletPhoneWidget;
   late TextEditingController raInputController;
@@ -39,6 +40,7 @@ class LoginTabletPhoneController extends GetxController {
     passwordInputHasError = false.obs;
     passwordFieldEnabled = true.obs;
     loadingAnimation = false.obs;
+    keepConected = false.obs;
     formKey = GlobalKey<FormState>();
     loadingTabletPhoneWidget= LoadingTabletPhoneWidget(loadingAnimation: loadingAnimation);
     raInputController = TextEditingController();
