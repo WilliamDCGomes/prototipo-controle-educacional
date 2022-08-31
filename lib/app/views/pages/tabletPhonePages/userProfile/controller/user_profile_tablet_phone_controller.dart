@@ -7,7 +7,9 @@ import 'package:projeto_tcc/base/models/user.dart';
 import '../../../../../../base/models/address_information.dart';
 import '../../../../../../base/services/consult_cep_service.dart';
 import '../../../../../../base/services/interfaces/iconsult_cep_service.dart';
+import '../../../../../../base/services/interfaces/irequest_registration_cancellation_service.dart';
 import '../../../../../../base/services/interfaces/iuser_service.dart';
+import '../../../../../../base/services/request_registration_cancellation_service.dart';
 import '../../../../../../base/services/user_service.dart';
 import '../../../../../utils/brazil_address_informations.dart';
 import '../../../../../utils/internet_connection.dart';
@@ -44,6 +46,7 @@ class UserProfileTabletPhoneController extends GetxController {
   late RxBool cellPhoneInputHasError;
   late RxBool emailInputHasError;
   late RxBool confirmEmailInputHasError;
+  late RxBool enableRegistrationCancellation;
   late TabController tabController;
   late TextEditingController nameTextController;
   late TextEditingController raTextController;
@@ -83,12 +86,19 @@ class UserProfileTabletPhoneController extends GetxController {
   late Users user;
   late IConsultCepService consultCepService;
   late IUserService userService;
+  late IRequestRegistrationCancellationService _requestRegistrationCancellationService;
 
   UserProfileTabletPhoneController(){
     _initializeVariables();
     _getUfsNames();
     _initializeLists();
     _getUserInformation();
+  }
+
+  @override
+  void onInit() async {
+    await _checkCancellationVisibility();
+    super.onInit();
   }
 
   _initializeVariables(){
@@ -117,6 +127,7 @@ class UserProfileTabletPhoneController extends GetxController {
     cellPhoneInputHasError = false.obs;
     emailInputHasError = false.obs;
     confirmEmailInputHasError = false.obs;
+    enableRegistrationCancellation = false.obs;
     ufsList = [""].obs;
     nameTextController = TextEditingController();
     raTextController = TextEditingController();
@@ -154,6 +165,7 @@ class UserProfileTabletPhoneController extends GetxController {
     user = Users();
     consultCepService = ConsultCepService();
     userService = UserService();
+    _requestRegistrationCancellationService = RequestRegistrationCancellationService();
   }
 
   _getUfsNames() async {
@@ -220,6 +232,10 @@ class UserProfileTabletPhoneController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  _checkCancellationVisibility() async {
+    enableRegistrationCancellation.value = !await _requestRegistrationCancellationService.checkRegistrationCancellationAlrightExist(LoggedUser.cpf);
   }
 
   phoneTextFieldEdited(String cellPhoneTyped){
@@ -360,7 +376,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(nameTextController.text == ""){
         nameInputHasError.value = true;
         tabController.index = 0;
-        throw Exception("Informe o seu Nome");
+        throw "Informe o seu Nome";
       }
       else{
         nameInputHasError.value = false;
@@ -370,7 +386,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(birthDateValidation != null && birthDateValidation != ""){
         birthdayInputHasError.value = true;
         tabController.index = 0;
-        throw Exception(birthDateValidation);
+        throw birthDateValidation;
       }
       else{
         birthdayInputHasError.value = false;
@@ -379,7 +395,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(showOtherGenderType.value && otherGenderTypeTextController.text == ""){
         otherGenderInputHasError.value = true;
         tabController.index = 0;
-        throw Exception("Informe o seu sexo.");
+        throw "Informe o seu sexo.";
       }
       else{
         otherGenderInputHasError.value = false;
@@ -393,7 +409,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(cepValidation != null && cepValidation != ""){
         cepInputHasError.value = true;
         tabController.index = 1;
-        throw Exception(cepValidation);
+        throw cepValidation;
       }
       else{
         cepInputHasError.value = false;
@@ -403,7 +419,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(cityValidation != null && cityValidation != ""){
         cityInputHasError.value = true;
         tabController.index = 1;
-        throw Exception(cityValidation);
+        throw cityValidation;
       }
       else{
         cityInputHasError.value = false;
@@ -413,7 +429,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(streetValidation != null && streetValidation != ""){
         streetInputHasError.value = true;
         tabController.index = 1;
-        throw Exception(streetValidation);
+        throw streetValidation;
       }
       else{
         streetInputHasError.value = false;
@@ -423,7 +439,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(neighborhoodValidation != null && neighborhoodValidation != ""){
         neighborhoodInputHasError.value = true;
         tabController.index = 1;
-        throw Exception(neighborhoodValidation);
+        throw neighborhoodValidation;
       }
       else{
         neighborhoodInputHasError.value = false;
@@ -433,7 +449,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(phoneValidation != null && phoneValidation != ""){
         phoneInputHasError.value = true;
         tabController.index = 2;
-        throw Exception(phoneValidation);
+        throw phoneValidation;
       }
       else{
         phoneInputHasError.value = false;
@@ -443,7 +459,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(cellPhoneValidation != null && cellPhoneValidation != ""){
         cellPhoneInputHasError.value = true;
         tabController.index = 2;
-        throw Exception(cellPhoneValidation);
+        throw cellPhoneValidation;
       }
       else{
         cellPhoneInputHasError.value = false;
@@ -453,7 +469,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(emailValidation != null && emailValidation != ""){
         emailInputHasError.value = true;
         tabController.index = 2;
-        throw Exception(emailValidation);
+        throw emailValidation;
       }
       else{
         emailInputHasError.value = false;
@@ -466,7 +482,7 @@ class UserProfileTabletPhoneController extends GetxController {
       if(confirmEmailvalidation != null && confirmEmailvalidation != ""){
         confirmEmailInputHasError.value = true;
         tabController.index = 2;
-        throw Exception(confirmEmailvalidation);
+        throw confirmEmailvalidation;
       }
       else{
         confirmEmailInputHasError.value = false;
@@ -479,7 +495,7 @@ class UserProfileTabletPhoneController extends GetxController {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return InformationTabletPhonePopup(
-            warningMessage: e.toString().replaceAll("Exception: ", ""),
+            warningMessage: e.toString(),
           );
         },
       );

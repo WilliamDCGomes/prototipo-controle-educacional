@@ -6,6 +6,7 @@ import '../../../../stylePages/app_colors.dart';
 
 class RadioListTileWidget extends StatefulWidget {
   final String radioText;
+  final bool? justRead;
   final accountCancelation accountCancelationType;
   final accountCancelation? accountCancelationGroup;
   final Function(accountCancelation? value)? onChanged;
@@ -13,6 +14,7 @@ class RadioListTileWidget extends StatefulWidget {
   const RadioListTileWidget({
     Key? key,
     required this.radioText,
+    this.justRead,
     required this.accountCancelationType,
     required this.accountCancelationGroup,
     required this.onChanged,
@@ -25,22 +27,25 @@ class RadioListTileWidget extends StatefulWidget {
 class _RadioListTileWidgetState extends State<RadioListTileWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 5.h,
-      child: RadioListTile<accountCancelation>(
-        activeColor: AppColors.purpleDefaultColor,
-        contentPadding: EdgeInsets.zero,
-        title: TextWidget(
-          widget.radioText,
-          textColor: AppColors.blackColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 15.sp,
-          maxLines: 1,
-          textAlign: TextAlign.start,
+    return IgnorePointer(
+      ignoring: widget.justRead ?? false,
+      child: SizedBox(
+        height: 5.h,
+        child: RadioListTile<accountCancelation>(
+          activeColor: AppColors.purpleDefaultColor,
+          contentPadding: EdgeInsets.zero,
+          title: TextWidget(
+            widget.radioText,
+            textColor: AppColors.blackColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 15.sp,
+            maxLines: 1,
+            textAlign: TextAlign.start,
+          ),
+          value: widget.accountCancelationType,
+          groupValue: widget.accountCancelationGroup,
+          onChanged: widget.onChanged,
         ),
-        value: widget.accountCancelationType,
-        groupValue: widget.accountCancelationGroup,
-        onChanged: widget.onChanged,
       ),
     );
   }
