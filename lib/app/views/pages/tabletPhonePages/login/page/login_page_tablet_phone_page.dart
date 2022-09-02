@@ -180,33 +180,27 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(top: 6.5.h),
-                                          child: SizedBox(
-                                            height: 5.h,
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                              children: [
-                                                Expanded(
-                                                  child: Obx(
-                                                    () => CheckboxListTileWidget(
-                                                      radioText: "Mantenha Conectado?",
-                                                      checked: controller.keepConected.value,
-                                                      onChanged: (value){
-                                                        print("teste 0 " + controller.keepConected.value.toString());
-                                                        controller.keepConected.value = value ?? false;
-                                                      },
-                                                    ),
-                                                  ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Obx(
+                                                () => CheckboxListTileWidget(
+                                                  radioText: "Manter-se Conectado?",
+                                                  checked: controller.keepConected.value,
+                                                  onChanged: (){
+                                                    controller.keepConected.value = !controller.keepConected.value;
+                                                  },
                                                 ),
-                                                TextButtonWidget(
-                                                  hintText: "Esqueceu a Senha?",
-                                                  fontSize: 15.sp,
-                                                  height: 3.5.h,
-                                                  componentPadding: EdgeInsets.zero,
-                                                  onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
-                                                ),
-                                              ],
-                                            ),
+                                              ),
+                                              TextButtonWidget(
+                                                hintText: "Esqueceu a Senha?",
+                                                fontSize: 15.sp,
+                                                height: 3.5.h,
+                                                componentPadding: EdgeInsets.zero,
+                                                onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],

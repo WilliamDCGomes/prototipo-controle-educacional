@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -9,8 +10,7 @@ class CheckboxListTileWidget extends StatefulWidget {
   final bool? justRead;
   final Color? checkedColor;
   final Color? titleColor;
-  final Icon? checkboxIcon;
-  final Function(bool? value)? onChanged;
+  final Function()? onChanged;
 
   CheckboxListTileWidget({
     Key? key,
@@ -18,7 +18,6 @@ class CheckboxListTileWidget extends StatefulWidget {
     this.justRead,
     this.checkedColor,
     this.titleColor,
-    this.checkboxIcon,
     required this.checked,
     required this.onChanged,
   }) : super(key: key);
@@ -32,21 +31,44 @@ class _CheckboxListTileWidgetState extends State<CheckboxListTileWidget> {
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: widget.justRead ?? false,
-      child: CheckboxListTile(
-        checkColor: widget.checkedColor ?? AppColors.whiteColor,
-        activeColor: AppColors.purpleDefaultColor,
-        contentPadding: EdgeInsets.zero,
-        secondary: widget.checkboxIcon,
-        title: TextWidget(
-          widget.radioText,
-          textColor: widget.titleColor ?? AppColors.purpleDefaultColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 15.sp,
-          maxLines: 1,
-          textAlign: TextAlign.start,
+      child: TextButtonWidget(
+        componentPadding: EdgeInsets.zero,
+        onTap: widget.onChanged,
+        widgetCustom: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 2.h,
+              width: 2.h,
+              child: Checkbox(
+                checkColor: widget.checkedColor ?? AppColors.whiteColor,
+                activeColor: AppColors.purpleDefaultColor,
+                value: widget.checked,
+                hoverColor: AppColors.purpleDefaultColor,
+                side: MaterialStateBorderSide.resolveWith(
+                  (states) => BorderSide(
+                    width: .25.h,
+                    color: AppColors.purpleDefaultColor,
+                  ),
+                ),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                onChanged: (value) => widget.onChanged!(),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 2.w),
+              child: TextWidget(
+                widget.radioText,
+                textColor: widget.titleColor ?? AppColors.purpleDefaultColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 15.sp,
+                maxLines: 1,
+                textAlign: TextAlign.start,
+              ),
+            ),
+          ],
         ),
-        value: widget.checked,
-        onChanged: widget.onChanged,
       ),
     );
   }
