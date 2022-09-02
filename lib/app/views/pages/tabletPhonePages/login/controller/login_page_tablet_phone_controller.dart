@@ -16,7 +16,6 @@ class LoginTabletPhoneController extends GetxController {
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
   late RxBool keepConected;
-  late final GlobalKey<FormState> formKey;
   late LoadingTabletPhoneWidget loadingTabletPhoneWidget;
   late TextEditingController raInputController;
   late TextEditingController passwordInputController;
@@ -24,6 +23,7 @@ class LoginTabletPhoneController extends GetxController {
   late FocusNode loginButtonFocusNode;
   late SharedPreferences sharedPreferences;
   late IUserService userService;
+  late final GlobalKey<FormState> formKey;
 
   LoginTabletPhoneController(){
     _initializeVariables();
@@ -32,7 +32,20 @@ class LoginTabletPhoneController extends GetxController {
   @override
   void onInit() async {
     sharedPreferences = await SharedPreferences.getInstance();
+    await _getKeepConnected();
+    await _getRaId();
     super.onInit();
+  }
+
+  _getKeepConnected() async {
+    keepConected.value = await sharedPreferences.getBool("keep-connected") ?? false;
+  }
+
+  _getRaId() async {
+    var ra = await sharedPreferences.getInt("ra_student_logged");
+    if(ra != null) {
+      raInputController.text = ra.toString();
+    }
   }
 
   _initializeVariables(){
@@ -85,7 +98,7 @@ class LoginTabletPhoneController extends GetxController {
       await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
 
       if(logged){
-        int? oldRa = sharedPreferences.getInt("ra_student_logged");
+        int? oldRa = await sharedPreferences.getInt("ra_student_logged");
         if(oldRa == null){
           await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
         }
@@ -94,6 +107,14 @@ class LoginTabletPhoneController extends GetxController {
           await sharedPreferences.setBool("show-welcome-page-key", false);
           await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
         }
+
+        if(keepConected.value){
+          await sharedPreferences.setBool("keep-connected", true);
+        }
+        else{
+          await sharedPreferences.setBool("keep-connected", false);
+        }
+
         Get.offAll(() => MainMenuTabletPhonePage());
       }
       else{

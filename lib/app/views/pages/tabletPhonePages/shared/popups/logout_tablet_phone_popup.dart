@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -16,12 +17,14 @@ class LogoutTabletPhonePopup extends StatefulWidget {
 
 class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
   late bool showPopup;
+  late SharedPreferences sharedPreferences;
 
   @override
   void initState() {
     showPopup = false;
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      sharedPreferences = await SharedPreferences.getInstance();
       await Future.delayed(Duration(milliseconds: 150));
       setState(() {
         showPopup = true;
@@ -98,7 +101,10 @@ class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
                               heightButton: 5.h,
                               widthButton: 32.w,
                               fontWeight: FontWeight.bold,
-                              onPressed: () => Get.offAll(() => LoginPageTabletPhone()),
+                              onPressed: () async {
+                                await sharedPreferences.setBool("keep-connected", false);
+                                Get.offAll(() => LoginPageTabletPhone());
+                              },
                             ),
                           ],
                         ),

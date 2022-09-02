@@ -1277,7 +1277,7 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _getUserLogged() async {
     try{
-      int? ra = sharedPreferences.getInt("ra_student_logged");
+      int? ra = await sharedPreferences.getInt("ra_student_logged");
       if(ra != null) {
         student = await studentService.getStudent(ra);
         if(student != null){
@@ -1422,7 +1422,7 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _loadListMenuWithoutInternet(String key) async {
     try{
-      var orderList = sharedPreferences.getStringList(key);
+      var orderList = await sharedPreferences.getStringList(key);
       if(orderList != null){
         for(var item in orderList) {
           _setList(item);
