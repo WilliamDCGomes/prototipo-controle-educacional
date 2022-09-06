@@ -552,7 +552,7 @@ class RegisterUserTabletPhoneController extends GetxController {
           trys++;
           continue;
         }
-        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
         await showDialog(
           context: Get.context!,
           barrierDismissible: false,

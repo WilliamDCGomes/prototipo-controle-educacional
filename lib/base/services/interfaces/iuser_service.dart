@@ -5,6 +5,8 @@ abstract class IUserService {
 
   Future<bool> updateUser(Users user);
 
+  Future<bool> updatePassword(String newPassword);
+
   Future<Users?> getUser(String cpf);
 
   Future<bool> registerNewUser(int ra, String password);

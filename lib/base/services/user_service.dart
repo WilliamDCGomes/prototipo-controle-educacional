@@ -44,12 +44,24 @@ class UserService implements IUserService {
       email: "$ra@pce.com",
       password: password,
     ).then((value){
-      print("Sucesso " + value.user.toString());
       return true;
     }).catchError((error){
-      print("Erro " + error.toString());
       return false;
     });
+  }
+
+  Future<bool> updatePassword(String newPassword) async {
+    bool result = false;
+    if(FirebaseAuth.instance.currentUser != null){
+      await FirebaseAuth.instance.currentUser?.updatePassword(
+        newPassword,
+      ).then((value){
+        result = true;
+      }).catchError((error){
+        result = false;
+      });
+    }
+    return result;
   }
 
   Future<bool> loggedUser() async {
