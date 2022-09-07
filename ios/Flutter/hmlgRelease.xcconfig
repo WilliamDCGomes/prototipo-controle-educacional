@@ -1,5 +1,5 @@
 #include "Generated.xcconfig"
 
-FLUTTER_TARGET=lib/main-hmlg.dart
+FLUTTER_TARGET=lib/main_hmlg.dart
 ASSET_PREFIX=hmlg
 BUNDLE_NAME=PCE HMLG

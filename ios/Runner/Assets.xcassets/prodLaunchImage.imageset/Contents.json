@@ -1,23 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "logo_pce.png",
       "idiom" : "universal",
+      "filename" : "LaunchImage.png",
       "scale" : "1x"
     },
     {
-      "filename" : "logo_pce@2x.png",
       "idiom" : "universal",
+      "filename" : "LaunchImage@2x.png",
       "scale" : "2x"
     },
     {
-      "filename" : "logo_pce@3x.png",
       "idiom" : "universal",
+      "filename" : "LaunchImage@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
