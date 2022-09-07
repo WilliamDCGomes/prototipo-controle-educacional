@@ -174,15 +174,20 @@ class _BodyRegisterStepperTabletPhoneWidgetState extends State<BodyRegisterStepp
                       () => TextFieldWidget(
                         controller: widget.controller.cepTextController,
                         hintText: "Cep",
-                        focusNode: widget.controller.cepInputFocusNode,
                         height: PlatformType.isTablet(context) ? 7.h : 9.h,
                         width: double.infinity,
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         maskTextInputFormatter: MasksForTextFields.cepMask,
                         hasError: widget.controller.cepInputHasError.value,
-                        onChanged: (value){
-                          widget.controller.cepSearched = false;
+                        onChanged: (value) async {
+                          if(value.length == 9){
+                            await Loading.startAndPauseLoading(
+                              () => widget.controller.searchAddressInformation(),
+                              widget.controller.loadingAnimation,
+                              widget.controller.loadingWithSuccessOrErrorTabletPhoneWidget,
+                            );
+                          }
                         },
                         validator: (String? value) {
                           String? validation = TextFieldValidators.minimumNumberValidation(value, 9, "Cep");

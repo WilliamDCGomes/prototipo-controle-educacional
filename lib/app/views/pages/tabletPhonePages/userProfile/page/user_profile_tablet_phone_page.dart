@@ -88,7 +88,7 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                           color: AppColors.purpleDefaultColor,
                         ),
                         child: Obx(
-                              () => controller.hasPicture.value ?
+                          () => controller.hasPicture.value ?
                           Image.asset(
                               ""
                           ) :
@@ -133,7 +133,7 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                       Padding(
                         padding: EdgeInsets.only(top: 3.h),
                         child: Obx(
-                              () => ButtonWidget(
+                          () => ButtonWidget(
                             hintText: controller.buttonText.value,
                             fontWeight: FontWeight.bold,
                             widthButton: double.infinity,
@@ -143,15 +143,31 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                           ),
                         ),
                       ),
-                      TextButtonWidget(
-                        onTap: () => Get.to(() => RequestRegistrationCancellationTabletPhonePage()),
-                        widgetCustom: TextWidget(
-                          "Solicitar cancelamento de matrícula",
-                          textColor: AppColors.purpleDefaultColor,
-                          fontSize: 17.sp,
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          textDecoration: TextDecoration.underline,
+                      Obx(
+                        () => Visibility(
+                          visible: controller.enableRegistrationCancellation.value,
+                          replacement: TextButtonWidget(
+                            onTap: () => Get.to(() => RequestRegistrationCancellationTabletPhonePage(registrationCancellationExist: true,)),
+                            widgetCustom: TextWidget(
+                              "Cancelamento de matrícula solicitado",
+                              textColor: AppColors.orangeColor,
+                              fontSize: 17.sp,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          ),
+                          child: TextButtonWidget(
+                            onTap: () => Get.to(() => RequestRegistrationCancellationTabletPhonePage(registrationCancellationExist: false,)),
+                            widgetCustom: TextWidget(
+                              "Solicitar cancelamento de matrícula",
+                              textColor: AppColors.purpleDefaultColor,
+                              fontSize: 17.sp,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          ),
                         ),
                       ),
                     ],

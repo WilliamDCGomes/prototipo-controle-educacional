@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:projeto_tcc/base/models/course.dart';
+import 'package:projeto_tcc/base/models/user.dart';
 import 'package:projeto_tcc/base/services/interfaces/istudent_service.dart';
 import '../../../../../../base/models/address_information.dart';
 import '../../../../../../base/models/discipline_periods.dart';
@@ -33,8 +34,6 @@ import '../../../../stylePages/masks_for_text_fields.dart';
 
 class RegisterUserTabletPhoneController extends GetxController {
   late String lgpdPhrase;
-  late bool cepSearched;
-  late bool buttonClicked;
   late RxInt activeStep;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
@@ -65,7 +64,6 @@ class RegisterUserTabletPhoneController extends GetxController {
   late RxList<String> educationInstitutionNameList;
   late RxList<String> courseList;
   late RxList<String> ufsList;
-  late FocusNode cepInputFocusNode;
   late final GlobalKey<FormState> formKeyPersonalInformation;
   late final GlobalKey<FormState> formKeyAddressInformation;
   late final GlobalKey<FormState> formKeyContactInformation;
@@ -103,6 +101,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   late List<BodyRegisterStepperTabletPhoneWidget> bodyRegisterStepperList;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late Student newStudent;
+  late Users newUser;
   late IStudentService studentService;
   late ICourseService courseService;
   late IConsultCepService consultCepService;
@@ -130,8 +129,6 @@ class RegisterUserTabletPhoneController extends GetxController {
     educationInstitutionSelected = "".obs;
     courseSelected = "".obs;
     periodSelected = "".obs;
-    cepSearched = false;
-    buttonClicked = false;
     loadingAnimation = false.obs;
     passwordFieldEnabled = true.obs;
     confirmPasswordFieldEnabled = true.obs;
@@ -268,17 +265,10 @@ class RegisterUserTabletPhoneController extends GetxController {
         controller: this,
       ),
     ];
-    cepInputFocusNode = FocusNode();
-    cepInputFocusNode.addListener(() async {
-      if(!cepSearched && !cepInputFocusNode.hasFocus){
-        await Loading.startAndPauseLoading(
-          () => _searchAddressInformation(),
-          loadingAnimation,
-          loadingWithSuccessOrErrorTabletPhoneWidget,
-        );
-      }
-    });
     newStudent = Student();
+    newUser = Users();
+    newUser.id = newStudent.id;
+
     studentService = StudentService();
     courseService = CourseService();
     consultCepService = ConsultCepService();
@@ -288,39 +278,46 @@ class RegisterUserTabletPhoneController extends GetxController {
     raService = RaService();
   }
 
-  _searchAddressInformation() async {
-    try{
-      if(buttonClicked){
-        buttonClicked = false;
-        return;
-      }
-      if(cepTextController.text.length == 9){
-        AddressInformation? addressInformation = await consultCepService.searchCep(cepTextController.text);
-        if(addressInformation != null){
-          ufSelected.value = addressInformation.uf;
-          cityTextController.text = addressInformation.city;
-          streetTextController.text = addressInformation.street;
-          neighborhoodTextController.text = addressInformation.neighborhood;
-          complementTextController.text = addressInformation.complement;
-          formKeyAddressInformation.currentState!.validate();
+  searchAddressInformation() async {
+    int trys = 1;
+    while(true){
+      try{
+        if(cepTextController.text.length == 9){
+          AddressInformation? addressInformation = await consultCepService.searchCep(cepTextController.text);
+          if(addressInformation != null){
+            ufSelected.value = addressInformation.uf;
+            cityTextController.text = addressInformation.city;
+            streetTextController.text = addressInformation.street;
+            neighborhoodTextController.text = addressInformation.neighborhood;
+            complementTextController.text = addressInformation.complement;
+            formKeyAddressInformation.currentState!.validate();
+            break;
+          }
+          else{
+            ufSelected.value = "";
+            cityTextController.text = "";
+            streetTextController.text = "";
+            neighborhoodTextController.text = "";
+            complementTextController.text = "";
+          }
         }
-        else{
-          ufSelected.value = "";
-          cityTextController.text = "";
-          streetTextController.text = "";
-          neighborhoodTextController.text = "";
-          complementTextController.text = "";
-        }
-        cepSearched = true;
       }
-    }
-    catch(_){
-      cepSearched = false;
-      ufSelected.value = "";
-      cityTextController.text = "";
-      streetTextController.text = "";
-      neighborhoodTextController.text = "";
-      complementTextController.text = "";
+      catch(_){
+        ufSelected.value = "";
+        cityTextController.text = "";
+        streetTextController.text = "";
+        neighborhoodTextController.text = "";
+        complementTextController.text = "";
+      }
+      finally{
+        trys++;
+        if(trys > 3){
+          break;
+        }
+        else {
+          continue;
+        }
+      }
     }
   }
 
@@ -354,18 +351,7 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   _validPersonalInformationAndAdvanceNextStep() async {
-    if(await studentService.verificationStudentExists(cpfTextController.text)){
-      showDialog(
-        context: Get.context!,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return InformationTabletPhonePopup(
-            warningMessage: "O CPF já está cadastrado no sistema.",
-          );
-        },
-      );
-    }
-    else if(genderSelected.value == "" || (genderSelected.value == "Outro (Qual?)" && otherGenderTypeTextController.text == "")){
+    if(genderSelected.value == "" || (genderSelected.value == "Outro (Qual?)" && otherGenderTypeTextController.text == "")){
       showDialog(
         context: Get.context!,
         barrierDismissible: false,
@@ -376,11 +362,23 @@ class RegisterUserTabletPhoneController extends GetxController {
         },
       );
     }
+    else if(await studentService.verificationStudentExists(cpfTextController.text)){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "O CPF já está cadastrado no sistema.",
+          );
+        },
+      );
+    }
     else{
-      newStudent.name = nameTextController.text;
-      newStudent.birthdate = birthDateTextController.text;
+      newUser.name = nameTextController.text;
+      newUser.birthdate = birthDateTextController.text;
+      newUser.cpf = cpfTextController.text;
       newStudent.cpf = cpfTextController.text;
-      newStudent.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
+      newUser.gender = genderSelected.value != "" ? genderSelected.value : otherGenderTypeTextController.text;
       _nextPage();
     }
   }
@@ -398,9 +396,9 @@ class RegisterUserTabletPhoneController extends GetxController {
       );
     }
     else{
-      newStudent.phone = phoneTextController.text;
-      newStudent.cellPhone = cellPhoneTextController.text;
-      newStudent.email = emailTextController.text;
+      newUser.phone = phoneTextController.text;
+      newUser.cellPhone = cellPhoneTextController.text;
+      newUser.email = emailTextController.text;
       _nextPage();
     }
   }
@@ -532,8 +530,17 @@ class RegisterUserTabletPhoneController extends GetxController {
       try{
         newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
         if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
-          await studentService.sendNewStudent(newStudent);
-          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(destinationPage: RegistrationCompletedTabletPhone());
+          bool userSend = await userService.sendNewUser(newUser);
+          bool studenteSend = await studentService.sendNewStudent(newStudent);
+          if(userSend && studenteSend) {
+            await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(
+              destinationPage: RegistrationCompletedTabletPhone(),
+            );
+            break;
+          }
+          else{
+            throw Exception();
+          }
         }
         else{
           await raService.deleteDuplicateRa(newStudent.id);
@@ -545,7 +552,7 @@ class RegisterUserTabletPhoneController extends GetxController {
           trys++;
           continue;
         }
-        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
         await showDialog(
           context: Get.context!,
           barrierDismissible: false,
@@ -645,7 +652,6 @@ class RegisterUserTabletPhoneController extends GetxController {
   }
 
   nextButtonPressed() async {
-    buttonClicked = true;
     if(!await InternetConnection.validInternet(
       "É necessário uma conexão com a internet para fazer o cadastro",
       loadingAnimation,
@@ -664,22 +670,14 @@ class RegisterUserTabletPhoneController extends GetxController {
         }
         break;
       case 1:
-        if(cepTextController.text.length == 9 && !cepSearched){
-          await Loading.startAndPauseLoading(
-            () => _searchAddressInformation(),
-            loadingAnimation,
-            loadingWithSuccessOrErrorTabletPhoneWidget,
-          );
-          return;
-        }
         if(formKeyAddressInformation.currentState!.validate()){
-          newStudent.cep = cepTextController.text;
-          newStudent.uf = ufSelected.value;
-          newStudent.city = cityTextController.text;
-          newStudent.street = streetTextController.text;
-          newStudent.houseNumber = houseNumberTextController.text;
-          newStudent.neighborhood = neighborhoodTextController.text;
-          newStudent.complement = complementTextController.text;
+          newUser.cep = cepTextController.text;
+          newUser.uf = ufSelected.value;
+          newUser.city = cityTextController.text;
+          newUser.street = streetTextController.text;
+          newUser.houseNumber = houseNumberTextController.text;
+          newUser.neighborhood = neighborhoodTextController.text;
+          newUser.complement = complementTextController.text;
           _nextPage();
         }
         break;

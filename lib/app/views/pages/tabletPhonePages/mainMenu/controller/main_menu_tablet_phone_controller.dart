@@ -6,18 +6,26 @@ import 'package:get/get.dart';
 import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
 import 'package:projeto_tcc/app/utils/internet_connection.dart';
 import 'package:projeto_tcc/base/models/classes.dart';
+import 'package:projeto_tcc/base/models/user.dart';
+import 'package:projeto_tcc/base/services/course_service.dart';
+import 'package:projeto_tcc/base/services/education_institution_service.dart';
+import 'package:projeto_tcc/base/services/interfaces/ieducation_institution_service.dart';
 import 'package:projeto_tcc/base/services/itens_orders_by_user_service.dart';
 import 'package:projeto_tcc/base/services/student_service.dart';
+import 'package:projeto_tcc/base/services/user_service.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/models/files.dart';
 import '../../../../../../base/models/student.dart';
+import '../../../../../../base/services/interfaces/icourse_service.dart';
 import '../../../../../../base/services/interfaces/iitens_orders_by_user_service.dart';
 import '../../../../../../base/services/interfaces/istudent_service.dart';
+import '../../../../../../base/services/interfaces/iuser_service.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
 import '../../../../../../base/viewController/payment_finished_view_controller.dart';
 import '../../../../../enums/enums.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../../../../utils/paths.dart';
 import '../../../../../utils/platform_type.dart';
 import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
@@ -42,25 +50,24 @@ import '../../../../stylePages/app_colors.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
+  late bool firstRegister;
   late RxInt creditDebtCardActiveStep;
-  late String nameInitials;
-  static const String quick_buttons = "quick_buttons";
-  static const String request_buttons = "request_buttons";
-  static const String group_menu = "group_menu";
+  late RxString nameInitials;
+  late RxString nameProfile;
   late RxBool hasPicture;
   late RxBool deliveryTabSelected;
   late RxString courseName;
   late RxString welcomePhrase;
   late PaymentFinishedViewController nextBillToPay;
-  late List<CardMainMenuTabletPhoneWidget> cardMainMenuList;
   late List<CardProfileTabListTabletPhoneWidget> cardProfileTabList;
-  late List<CreditDebtCardTabletPhoneWidget> creditDebtCardList;
-  late List<CardAcademicRecordTabletPhoneWidget> cardAcademicRecordList;
   late List<CardPaymentViewController> cardPaymentList;
   late List<CurriculumDeliveryViewController> curriculumTabList;
   late List<CurriculumDeliveryViewController> deliveryTabList;
   late List<Widget> tabMainMenuList;
   late List<Widget> tabAcademicRecordList;
+  late RxList<CardMainMenuTabletPhoneWidget> cardMainMenuList;
+  late RxList<CardAcademicRecordTabletPhoneWidget> cardAcademicRecordList;
+  late RxList<CreditDebtCardTabletPhoneWidget> creditDebtCardList;
   late RxList<GroupMenuHomeTabletPhoneWidget> groupMenuHomeList;
   late RxList<MenuOptionsTabletPhoneWidget> quickItemsList;
   late RxList<MenuOptionsTabletPhoneWidget> requestItemsList;
@@ -74,14 +81,19 @@ class MainMenuTabletPhoneController extends GetxController {
   late TextEditingController deliveriesSearchController;
   late SharedPreferences sharedPreferences;
   late Student? student;
+  late Users? user;
   late IStudentService studentService;
+  late IUserService userService;
+  late ICourseService courseService;
+  late IEducationInstitutionService educationInstitutionService;
   late IItensOrderByUserService itensOrderByUserService;
+  static const String quick_buttons = "quick_buttons";
+  static const String request_buttons = "request_buttons";
+  static const String group_menu = "group_menu";
 
   MainMenuTabletPhoneController(){
     _initializeVariables();
     _initializeLists();
-    _getValues();
-    _loadCards();
     _getWelcomePhrase();
   }
 
@@ -89,11 +101,19 @@ class MainMenuTabletPhoneController extends GetxController {
   void onInit() async {
     sharedPreferences = await SharedPreferences.getInstance();
     await _getUserLogged();
+    await _getCourseName();
+    await _getEducationInstitutionName();
+    _loadCards();
     await _getListOrderByUser();
+    _getValues();
     super.onInit();
   }
 
   _initializeVariables(){
+    firstRegister = true;
+    nameProfile = "".obs;
+    nameInitials = "".obs;
+    hasPicture = false.obs;
     deliveryTabSelected = false.obs;
     activeStep = 0;
     creditDebtCardActiveStep = 0.obs;
@@ -103,8 +123,8 @@ class MainMenuTabletPhoneController extends GetxController {
     curriculumSearchController = TextEditingController();
     deliveriesSearchController = TextEditingController();
     nextBillToPay = PaymentFinishedViewController(
-      "William Douglas Costa Gomes",
-      "48467",
+      LoggedUser.name,
+      LoggedUser.ra.toString(),
       "Mensalidade",
       "BANCO ITAÚ UNIBANCO S/A",
       "60.701.190/0001-04",
@@ -115,6 +135,9 @@ class MainMenuTabletPhoneController extends GetxController {
       hasCardRegistered: true,
     );
     studentService = StudentService();
+    userService = UserService();
+    courseService = CourseService();
+    educationInstitutionService = EducationInstitutionService();
     itensOrderByUserService = ItensOrderByUserService();
   }
 
@@ -128,6 +151,10 @@ class MainMenuTabletPhoneController extends GetxController {
     groupMenuHomeList = <GroupMenuHomeTabletPhoneWidget>[].obs;
     quickItemsList = <MenuOptionsTabletPhoneWidget>[].obs;
     requestItemsList = <MenuOptionsTabletPhoneWidget>[].obs;
+
+    cardMainMenuList = <CardMainMenuTabletPhoneWidget>[].obs;
+    cardAcademicRecordList = <CardAcademicRecordTabletPhoneWidget>[].obs;
+    creditDebtCardList = <CreditDebtCardTabletPhoneWidget>[].obs;
 
     tabAcademicRecordList = [
       AcademicTabListTabletPhoneWidget(
@@ -1154,8 +1181,8 @@ class MainMenuTabletPhoneController extends GetxController {
 
     cardPaymentList = [
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -1165,8 +1192,8 @@ class MainMenuTabletPhoneController extends GetxController {
         paymentStatus.finished,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -1176,8 +1203,8 @@ class MainMenuTabletPhoneController extends GetxController {
         paymentStatus.late,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -1187,8 +1214,8 @@ class MainMenuTabletPhoneController extends GetxController {
         paymentStatus.next,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -1250,10 +1277,58 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _getUserLogged() async {
     try{
-      int? ra = sharedPreferences.getInt("ra_student_logged");
+      int? ra = await sharedPreferences.getInt("ra_student_logged");
       if(ra != null) {
         student = await studentService.getStudent(ra);
+        if(student != null){
+          LoggedUser.ra = student!.ra;
+          LoggedUser.bimester = student!.bimester;
+          LoggedUser.semester = student!.semester;
+          LoggedUser.studentYear = student!.studentYear;
+          LoggedUser.educationInstitutionId = student!.educationInstitutionId;
+          LoggedUser.courseId = student!.courseId;
+          LoggedUser.period = student!.period;
+          LoggedUser.id = student!.id;
+          LoggedUser.includeDate = student!.includeDate;
+
+          user = await userService.getUser(student!.cpf);
+
+          if(user != null){
+            LoggedUser.name = user!.name;
+            LoggedUser.birthdate = user!.birthdate;
+            LoggedUser.cpf = user!.cpf;
+            LoggedUser.gender = user!.gender;
+            LoggedUser.cep = user!.cep;
+            LoggedUser.uf = user!.uf;
+            LoggedUser.city = user!.city;
+            LoggedUser.street = user!.street;
+            LoggedUser.houseNumber = user!.houseNumber;
+            LoggedUser.neighborhood = user!.neighborhood;
+            LoggedUser.complement = user!.complement;
+            LoggedUser.phone = user!.phone;
+            LoggedUser.cellPhone = user!.cellPhone;
+            LoggedUser.email = user!.email;
+          }
+        }
       }
+    }
+    catch(_){
+
+    }
+  }
+
+  _getCourseName() async {
+    try{
+      LoggedUser.courseName = await courseService.getCourseNameById(LoggedUser.courseId);
+    }
+    catch(_){
+
+    }
+  }
+
+  _getEducationInstitutionName() async {
+    try{
+      LoggedUser.educationInstitutionName = await  educationInstitutionService.getEducationInstitutionNameById(LoggedUser.educationInstitutionId);
     }
     catch(_){
 
@@ -1262,33 +1337,31 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _getListOrderByUser() async {
     try{
-      if(student != null){
-        Map<String, dynamic>? items = null;
-        if(await InternetConnection.checkConnection()){
-          items = await itensOrderByUserService.getOrderLists(student!.cpf);
-          if(items != null){
-            List<Map<String, dynamic>> groupMenuList = <Map<String, dynamic>>[];
-            List<Map<String, dynamic>> quickButtonsList = <Map<String, dynamic>>[];
-            List<Map<String, dynamic>> requestButtonList = <Map<String, dynamic>>[];
+      Map<String, dynamic>? items = null;
+      if(await InternetConnection.checkConnection()){
+        items = await itensOrderByUserService.getOrderLists(LoggedUser.cpf);
+        if(items != null){
+          List<Map<String, dynamic>> groupMenuList = <Map<String, dynamic>>[];
+          List<Map<String, dynamic>> quickButtonsList = <Map<String, dynamic>>[];
+          List<Map<String, dynamic>> requestButtonList = <Map<String, dynamic>>[];
 
-            items[group_menu].forEach((element) => groupMenuList.add(element));
-            items[quick_buttons].forEach((element) => quickButtonsList.add(element));
-            items[request_buttons].forEach((element) => requestButtonList.add(element));
+          items[group_menu].forEach((element) => groupMenuList.add(element));
+          items[quick_buttons].forEach((element) => quickButtonsList.add(element));
+          items[request_buttons].forEach((element) => requestButtonList.add(element));
 
-            _loadListMenu(quickButtonsList);
-            _loadListMenu(requestButtonList);
-            _loadListMenu(groupMenuList);
+          _loadListMenu(quickButtonsList);
+          _loadListMenu(requestButtonList);
+          _loadListMenu(groupMenuList);
 
-            await _saveListMenu(quick_buttons, quickButtonsList);
-            await _saveListMenu(request_buttons, requestButtonList);
-            await _saveListMenu(group_menu, groupMenuList);
-          }
+          await _saveListMenu(quick_buttons, quickButtonsList);
+          await _saveListMenu(request_buttons, requestButtonList);
+          await _saveListMenu(group_menu, groupMenuList);
         }
-        if(items == null){
-          await _loadListMenuWithoutInternet(quick_buttons);
-          await _loadListMenuWithoutInternet(request_buttons);
-          await _loadListMenuWithoutInternet(group_menu);
-        }
+      }
+      if(items == null){
+        await _loadListMenuWithoutInternet(quick_buttons);
+        await _loadListMenuWithoutInternet(request_buttons);
+        await _loadListMenuWithoutInternet(group_menu);
       }
     }
     catch(_){
@@ -1320,23 +1393,26 @@ class MainMenuTabletPhoneController extends GetxController {
         key = request_buttons;
       }
       await sharedPreferences.setStringList(key, items);
-      if(student != null){
-        var oldItems = await itensOrderByUserService.getOrderLists(student!.cpf);
 
-        if(oldItems != null){
-          List<Map<String, dynamic>> newItems = <Map<String, dynamic>>[];
 
-          for(var item in items){
-            for(var element in oldItems[key]){
-              if(element["id"] == item){
-                newItems.add(element);
-                break;
-              }
+      var oldItems = await itensOrderByUserService.getOrderLists(LoggedUser.cpf);
+
+      if(oldItems != null){
+        List<Map<String, dynamic>> newItems = <Map<String, dynamic>>[];
+
+        for(var item in items){
+          for(var element in oldItems[key]){
+            if(element["id"] == item){
+              newItems.add(element);
+              break;
             }
           }
-
-          itensOrderByUserService.updateOrderLists(student!.cpf, key, newItems);
         }
+        await itensOrderByUserService.updateOrderLists(
+          LoggedUser.cpf,
+          key,
+          newItems,
+        );
       }
     }
     catch(_){
@@ -1346,7 +1422,7 @@ class MainMenuTabletPhoneController extends GetxController {
 
   _loadListMenuWithoutInternet(String key) async {
     try{
-      var orderList = sharedPreferences.getStringList(key);
+      var orderList = await sharedPreferences.getStringList(key);
       if(orderList != null){
         for(var item in orderList) {
           _setList(item);
@@ -1377,14 +1453,15 @@ class MainMenuTabletPhoneController extends GetxController {
             ];
             break;
         }
+
         list.forEach((element) => _setList(element));
+
         await sharedPreferences.setStringList(
           key,
           list,
         );
-        if(student != null) {
-          _insertListInFirebase(key, list);
-        }
+
+        _insertListInFirebase(key, list);
       }
     }
     catch(_){
@@ -1403,11 +1480,21 @@ class MainMenuTabletPhoneController extends GetxController {
           }
         );
       }
-      await itensOrderByUserService.insertOrderLists(
-        student!.cpf,
-        key,
-        newList,
-      );
+      if(firstRegister){
+        firstRegister = false;
+        await itensOrderByUserService.insertOrderLists(
+          LoggedUser.cpf,
+          key,
+          newList,
+        );
+      }
+      else {
+        await itensOrderByUserService.updateOrderLists(
+          LoggedUser.cpf,
+          key,
+          newList,
+        );
+      }
     }
     catch(_){
 
@@ -1549,18 +1636,40 @@ class MainMenuTabletPhoneController extends GetxController {
   }
 
   _getValues(){
-    nameInitials = "WG";
-    hasPicture = false.obs;
-    courseName = "Ciência da Computação".obs;
+    var names = LoggedUser.name.split(" ");
+
+    if(names.isNotEmpty){
+      nameProfile.value = names[0];
+      LoggedUser.nameAndLastName = names[0];
+      nameInitials.value = nameProfile.value[0];
+      if(names.length > 1){
+        nameInitials.value += names.last[0];
+        LoggedUser.nameAndLastName += " ${names.last}";
+      }
+      LoggedUser.nameInitials = nameInitials.value;
+    }
+
+    hasPicture.value = false;
+    courseName = LoggedUser.courseName.obs;
+  }
+
+  _getWelcomePhrase() {
+    int currentHour = DateTime.now().hour;
+    if(currentHour >= 0 && currentHour < 12)
+      welcomePhrase = "Bom dia!".obs;
+    else if(currentHour >= 12 && currentHour < 18)
+      welcomePhrase = "Boa tarde!".obs;
+    else
+      welcomePhrase = "Boa noite!".obs;
   }
 
   _loadCards(){
-    cardMainMenuList = [
+    cardMainMenuList.value = [
       CardMainMenuTabletPhoneWidget(
         firstText: "Meu Painel",
-        secondText: "Ciência da Computação",
-        thirdText: "4º Ano",
-        fourthText: "7º Semestre",
+        secondText: LoggedUser.courseName,
+        thirdText: "${LoggedUser.studentYear}º Ano",
+        fourthText: "${LoggedUser.semester}º Semestre",
         showSeparator: true,
       ),
       CardMainMenuTabletPhoneWidget(
@@ -1589,7 +1698,7 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
     ];
 
-    cardAcademicRecordList = [
+    cardAcademicRecordList.value = [
       CardAcademicRecordTabletPhoneWidget(
         yearValueText: "2019",
         semesterValueText: "1º Semestre",
@@ -1640,32 +1749,22 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
     ];
 
-    creditDebtCardList = [
+    creditDebtCardList.value = [
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
-        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        personCardName: LoggedUser.name,
         cardExpirationDate: "02/29",
         flagCard: CreditCardType.mastercard,
         creditDebtCardTypeEnum: creditDebtCardType.debit,
       ),
       CreditDebtCardTabletPhoneWidget(
         numericEnd: "0365",
-        personCardName: "WILLIAM DOUGLAS COSTA GOMES",
+        personCardName: LoggedUser.name,
         cardExpirationDate: "02/29",
         flagCard: CreditCardType.elo,
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
-  }
-
-  _getWelcomePhrase() {
-    int currentHour = DateTime.now().hour;
-    if(currentHour >= 0 && currentHour < 12)
-      welcomePhrase = "Bom dia!".obs;
-    else if(currentHour >= 12 && currentHour < 18)
-      welcomePhrase = "Boa tarde!".obs;
-    else
-      welcomePhrase = "Boa noite!".obs;
   }
 
   openProfile() async {

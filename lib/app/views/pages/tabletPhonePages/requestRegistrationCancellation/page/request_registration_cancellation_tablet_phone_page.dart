@@ -15,7 +15,11 @@ import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../controller/request_registration_cancellation_tablet_phone_controller.dart';
 
 class RequestRegistrationCancellationTabletPhonePage extends StatefulWidget {
-  const RequestRegistrationCancellationTabletPhonePage({Key? key}) : super(key: key);
+  final bool registrationCancellationExist;
+  const RequestRegistrationCancellationTabletPhonePage({
+    Key? key,
+    required this.registrationCancellationExist,
+  }) : super(key: key);
 
   @override
   State<RequestRegistrationCancellationTabletPhonePage> createState() => _RequestRegistrationCancellationTabletPhonePageState();
@@ -26,8 +30,15 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
 
   @override
   void initState() {
-    controller = Get.put(RequestRegistrationCancellationTabletPhoneController());
-
+    controller = Get.put(RequestRegistrationCancellationTabletPhoneController(widget.registrationCancellationExist));
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if(controller.registrationCancellationExist) {
+        await controller.getRegistrationCancellation();
+        setState(() {
+          controller.reasonOfCancelation;
+        });
+      }
+    });
     super.initState();
   }
 
@@ -76,7 +87,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                               iconPath: Paths.Icone_Exibicao_Cancelar_Matricula,
                               textColor: AppColors.whiteColor,
                               backgroundColor: AppColors.purpleDefaultColor,
-                              informationText: "Deseja solicitar o cancelamento da sua matrícula?",
+                              informationText: widget.registrationCancellationExist ? "O seu pedido de cancelamento de matrícula está em análise!" : "Deseja solicitar o cancelamento da sua matrícula?",
                             ),
                             Expanded(
                               child: Padding(
@@ -97,6 +108,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                     ),
                                     RadioListTileWidget(
                                       radioText: "Problemas Financeiros",
+                                      justRead: widget.registrationCancellationExist,
                                       accountCancelationType: accountCancelation.financialIssues,
                                       accountCancelationGroup: controller.reasonOfCancelation,
                                       onChanged: (accountCancelation? value) {
@@ -108,6 +120,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                     ),
                                     RadioListTileWidget(
                                       radioText: "Problemas de Locomoção",
+                                      justRead: widget.registrationCancellationExist,
                                       accountCancelationType: accountCancelation.locomotionIssues,
                                       accountCancelationGroup: controller.reasonOfCancelation,
                                       onChanged: (accountCancelation? value) {
@@ -119,6 +132,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                     ),
                                     RadioListTileWidget(
                                       radioText: "Transferência para Outra Instituição",
+                                      justRead: widget.registrationCancellationExist,
                                       accountCancelationType: accountCancelation.schoolTransfer,
                                       accountCancelationGroup: controller.reasonOfCancelation,
                                       onChanged: (accountCancelation? value) {
@@ -130,6 +144,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                     ),
                                     RadioListTileWidget(
                                       radioText: "Troca de Curso",
+                                      justRead: widget.registrationCancellationExist,
                                       accountCancelationType: accountCancelation.changeCourse,
                                       accountCancelationGroup: controller.reasonOfCancelation,
                                       onChanged: (accountCancelation? value) {
@@ -141,6 +156,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                     ),
                                     RadioListTileWidget(
                                       radioText: "Falta de Tempo para o Estudo",
+                                      justRead: widget.registrationCancellationExist,
                                       accountCancelationType: accountCancelation.noTimeToStudy,
                                       accountCancelationGroup: controller.reasonOfCancelation,
                                       onChanged: (accountCancelation? value) {
@@ -152,6 +168,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                     ),
                                     RadioListTileWidget(
                                       radioText: "Outros",
+                                      justRead: widget.registrationCancellationExist,
                                       accountCancelationType: accountCancelation.others,
                                       accountCancelationGroup: controller.reasonOfCancelation,
                                       onChanged: (accountCancelation? value) {
@@ -168,8 +185,10 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                           padding: EdgeInsets.symmetric(vertical: 1.h),
                                           child: TextFieldWidget(
                                             controller: controller.otherReason,
+                                            justRead: widget.registrationCancellationExist,
                                             height: PlatformType.isTablet(context) ? 18.h : 19.h,
                                             keyboardType: TextInputType.text,
+                                            textCapitalization: TextCapitalization.sentences,
                                             textAlignVertical: TextAlignVertical.top,
                                             maxLines: 6,
                                             decoration: InputDecoration(
@@ -214,10 +233,14 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                               margin: EdgeInsets.symmetric(horizontal: 2.h,),
                               padding: EdgeInsets.symmetric(vertical: 2.h),
                               child: ButtonWidget(
-                                hintText: "ENVIAR SOLICITAÇÃO",
+                                hintText: widget.registrationCancellationExist ? "CANCELAR SOLICITAÇÃO" : "ENVIAR SOLICITAÇÃO",
+                                backgroundColor: widget.registrationCancellationExist ? AppColors.orangeColor : AppColors.purpleDefaultColor,
+                                borderColor: widget.registrationCancellationExist ? AppColors.orangeColor : AppColors.purpleDefaultColor,
                                 fontWeight: FontWeight.bold,
                                 widthButton: double.infinity,
-                                onPressed: () => controller.buttonCancelRegistrationPressed(),
+                                onPressed: () => widget.registrationCancellationExist ?
+                                  controller.buttonDeleteRegistrationCancellationPressed() :
+                                  controller.buttonCancelRegistrationPressed(),
                               ),
                             ),
                           ],

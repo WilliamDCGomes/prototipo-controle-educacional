@@ -1,30 +1,36 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 
-class LogoutTabletPhonePopup extends StatefulWidget {
-  const LogoutTabletPhonePopup({Key? key}) : super(key: key);
+class ConfirmationTabletPhonePopup extends StatefulWidget {
+  final String title;
+  final String? subTitle;
+  final Function buttonYes;
+  final Function buttonNo;
+  const ConfirmationTabletPhonePopup({
+    Key? key,
+    required this.title,
+    this.subTitle,
+    required this.buttonYes,
+    required this.buttonNo,
+  }) : super(key: key);
 
   @override
-  State<LogoutTabletPhonePopup> createState() => _LogoutTabletPhonePopupState();
+  State<ConfirmationTabletPhonePopup> createState() => _ConfirmationTabletPhonePopupState();
 }
 
-class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
+class _ConfirmationTabletPhonePopupState extends State<ConfirmationTabletPhonePopup> {
   late bool showPopup;
-  late SharedPreferences sharedPreferences;
 
   @override
   void initState() {
     showPopup = false;
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      sharedPreferences = await SharedPreferences.getInstance();
       await Future.delayed(Duration(milliseconds: 150));
       setState(() {
         showPopup = true;
@@ -62,7 +68,7 @@ class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
                     ),
                   ),
                   child: TextWidget(
-                    "SAIR",
+                    widget.title,
                     textColor: AppColors.whiteColor,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
@@ -76,9 +82,10 @@ class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       TextWidget(
-                        "Deseja mesmo sair do aplicativo?",
+                        widget.subTitle ?? "",
                         textColor: AppColors.blackColor,
                         fontSize: 16.sp,
+                        maxLines: 5,
                         fontWeight: FontWeight.bold,
                       ),
                       Padding(
@@ -94,16 +101,19 @@ class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
                               backgroundColor: AppColors.whiteColor,
                               borderColor: AppColors.orangeColor,
                               textColor: AppColors.orangeColor,
-                              onPressed: () => Get.back(),
+                              onPressed: () {
+                                widget.buttonNo();
+                                Get.back();
+                              },
                             ),
                             ButtonWidget(
                               hintText: "SIM",
                               heightButton: 5.h,
                               widthButton: 32.w,
                               fontWeight: FontWeight.bold,
-                              onPressed: () async {
-                                await sharedPreferences.setBool("keep-connected", false);
-                                Get.offAll(() => LoginPageTabletPhone());
+                              onPressed: () {
+                                widget.buttonYes();
+                                Get.back();
                               },
                             ),
                           ],

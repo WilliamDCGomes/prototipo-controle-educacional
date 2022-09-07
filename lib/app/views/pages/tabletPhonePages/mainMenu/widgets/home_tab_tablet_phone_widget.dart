@@ -75,13 +75,13 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                                   color: AppColors.standardColor,
                                 ),
                                 child: Obx(
-                                      () => widget.controller.hasPicture.value ?
+                                  () => widget.controller.hasPicture.value ?
                                   Image.asset(
                                       ""
                                   ) :
                                   Center(
                                     child: TextWidget(
-                                      widget.controller.nameInitials,
+                                      widget.controller.nameInitials.value,
                                       textColor: AppColors.grayColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.sp,
@@ -91,24 +91,26 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                                 ),
                               ),
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextWidget(
-                                  "Olá, William",
-                                  textColor: AppColors.blackColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
-                                ),
-                                Obx(() => TextWidget(
-                                  widget.controller.welcomePhrase.value,
-                                  textColor: AppColors.blackColor,
-                                  fontSize: 17.sp,
-                                  textAlign: TextAlign.start,
-                                ),),
-                              ],
+                            Obx(
+                              () => Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    "Olá, ${widget.controller.nameProfile}",
+                                    textColor: AppColors.blackColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  TextWidget(
+                                    widget.controller.welcomePhrase.value,
+                                    textColor: AppColors.blackColor,
+                                    fontSize: 17.sp,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -125,51 +127,55 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Center(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 1.h),
-                              child: CarouselSlider.builder(
-                                carouselController: widget.controller.carouselController,
-                                itemCount: widget.controller.cardMainMenuList.length,
-                                options: CarouselOptions(
-                                  viewportFraction: 1,
-                                  height: PlatformType.isTablet(context) ? 30.h : 27.h,
-                                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                  enlargeCenterPage: true,
-                                  enableInfiniteScroll: false,
-                                  onPageChanged: (itemIndex, reason){
-                                    setState(() {
-                                      widget.controller.activeStep = itemIndex;
-                                    });
-                                  }
+                        child: Obx(
+                          () => Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 1.h),
+                                child: CarouselSlider.builder(
+                                  carouselController: widget.controller.carouselController,
+                                  itemCount: widget.controller.cardMainMenuList.length,
+                                  options: CarouselOptions(
+                                      viewportFraction: 1,
+                                      height: PlatformType.isTablet(context) ? 30.h : 27.h,
+                                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                      enlargeCenterPage: true,
+                                      enableInfiniteScroll: false,
+                                      onPageChanged: (itemIndex, reason){
+                                        setState(() {
+                                          widget.controller.activeStep = itemIndex;
+                                        });
+                                      }
+                                  ),
+                                  itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                                    return widget.controller.cardMainMenuList[itemIndex];
+                                  },
                                 ),
-                                itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                  return widget.controller.cardMainMenuList[itemIndex];
+                              ),
+                              DotStepper(
+                                dotCount: widget.controller.cardMainMenuList.length > 1
+                                  ? widget.controller.cardMainMenuList.length
+                                  : 2,
+                                dotRadius: 1.h,
+                                activeStep: widget.controller.activeStep,
+                                shape: Shape.stadium,
+                                spacing: 3.w,
+                                indicator: Indicator.magnify,
+                                fixedDotDecoration: FixedDotDecoration(
+                                  color: AppColors.grayStepColor,
+                                ),
+                                indicatorDecoration: IndicatorDecoration(
+                                  color: AppColors.purpleDefaultColor,
+                                ),
+                                onDotTapped: (tappedDotIndex) {
+                                  setState(() {
+                                    widget.controller.activeStep = tappedDotIndex;
+                                    widget.controller.carouselController.jumpToPage(tappedDotIndex);
+                                  });
                                 },
                               ),
-                            ),
-                            DotStepper(
-                              dotCount: widget.controller.cardMainMenuList.length,
-                              dotRadius: 1.h,
-                              activeStep: widget.controller.activeStep,
-                              shape: Shape.stadium,
-                              spacing: 3.w,
-                              indicator: Indicator.magnify,
-                              fixedDotDecoration: FixedDotDecoration(
-                                color: AppColors.grayStepColor,
-                              ),
-                              indicatorDecoration: IndicatorDecoration(
-                                color: AppColors.purpleDefaultColor,
-                              ),
-                              onDotTapped: (tappedDotIndex) {
-                                setState(() {
-                                  widget.controller.activeStep = tappedDotIndex;
-                                  widget.controller.carouselController.jumpToPage(tappedDotIndex);
-                                });
-                              },
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Expanded(

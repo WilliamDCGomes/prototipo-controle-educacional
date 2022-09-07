@@ -90,24 +90,26 @@ class _AcademicTabTabletPhoneWidgetState extends State<AcademicTabTabletPhoneWid
                         Center(
                           child: Padding(
                             padding: EdgeInsets.only(bottom: 1.h),
-                            child: CarouselSlider.builder(
-                              carouselController: widget.controller.academicRecordCarouselController,
-                              itemCount: widget.controller.cardAcademicRecordList.length,
-                              options: CarouselOptions(
-                                viewportFraction: 1,
-                                height: PlatformType.isTablet(context) ? 30.h : 27.h,
-                                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                                enlargeCenterPage: true,
-                                enableInfiniteScroll: false,
-                                onPageChanged: (itemIndex, reason){
-                                  setState(() {
-                                    widget.controller.activeStep = itemIndex;
-                                  });
-                                }
+                            child: Obx(
+                              () => CarouselSlider.builder(
+                                carouselController: widget.controller.academicRecordCarouselController,
+                                itemCount: widget.controller.cardAcademicRecordList.length,
+                                options: CarouselOptions(
+                                  viewportFraction: 1,
+                                  height: PlatformType.isTablet(context) ? 30.h : 27.h,
+                                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                  enlargeCenterPage: true,
+                                  enableInfiniteScroll: false,
+                                  onPageChanged: (itemIndex, reason){
+                                    setState(() {
+                                      widget.controller.activeStep = itemIndex;
+                                    });
+                                  }
+                                ),
+                                itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+                                  return widget.controller.cardAcademicRecordList[itemIndex];
+                                },
                               ),
-                              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-                                return widget.controller.cardAcademicRecordList[itemIndex];
-                              },
                             ),
                           ),
                         ),

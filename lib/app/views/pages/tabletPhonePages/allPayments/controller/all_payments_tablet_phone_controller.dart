@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
+import 'package:projeto_tcc/app/utils/logged_user.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../base/viewController/card_payment_view_controller.dart';
 import '../../../../../utils/paths.dart';
@@ -74,8 +75,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
 
     cardPaymentList = <CardPaymentViewController> [
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -85,8 +86,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.finished,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -96,8 +97,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.late,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -107,8 +108,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.next,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -118,8 +119,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.future,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -129,8 +130,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.future,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -140,8 +141,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.future,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",
@@ -151,8 +152,8 @@ class AllPaymentsTabletPhoneController extends GetxController {
         paymentStatus.future,
       ),
       CardPaymentViewController(
-        "William Douglas Costa Gomes",
-        "48467",
+        LoggedUser.name,
+        LoggedUser.ra.toString(),
         "Mensalidade",
         "BANCO ITAÚ UNIBANCO S/A",
         "60.701.190/0001-01",

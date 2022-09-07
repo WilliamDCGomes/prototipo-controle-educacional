@@ -13,6 +13,7 @@ import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_field_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../forgotInformations/page/forgot_information_tablet_phone_page.dart';
+import '../../shared/widgets/checkboxListTileWidget.dart';
 import '../controller/login_page_tablet_phone_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 
@@ -123,12 +124,12 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 6.5.h),
+                                          padding: EdgeInsets.only(top: 7.5.h),
                                           child: Align(
                                             alignment: Alignment.topRight,
                                             child: TextButtonWidget(
                                               hintText: "Esqueceu o RA?",
-                                              fontSize: 16.sp,
+                                              fontSize: 15.sp,
                                               height: 3.5.h,
                                               componentPadding: EdgeInsets.zero,
                                               onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
@@ -179,15 +180,27 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(top: 6.5.h),
-                                          child: Align(
-                                            alignment: Alignment.topRight,
-                                            child: TextButtonWidget(
-                                              hintText: "Esqueceu a Senha?",
-                                              fontSize: 16.sp,
-                                              height: 3.5.h,
-                                              componentPadding: EdgeInsets.zero,
-                                              onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
-                                            ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Obx(
+                                                () => CheckboxListTileWidget(
+                                                  radioText: "Manter-se Conectado?",
+                                                  checked: controller.keepConected.value,
+                                                  onChanged: (){
+                                                    controller.keepConected.value = !controller.keepConected.value;
+                                                  },
+                                                ),
+                                              ),
+                                              TextButtonWidget(
+                                                hintText: "Esqueceu a Senha?",
+                                                fontSize: 15.sp,
+                                                height: 3.5.h,
+                                                componentPadding: EdgeInsets.zero,
+                                                onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.password,)),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],

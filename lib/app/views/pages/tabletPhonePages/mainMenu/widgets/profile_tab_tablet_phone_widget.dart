@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../userProfile/page/user_profile_tablet_phone_page.dart';
@@ -88,7 +89,7 @@ class _ProfileTabTabletPhoneWidgetState extends State<ProfileTabTabletPhoneWidge
                           ) :
                           Center(
                             child: TextWidget(
-                              widget.controller.nameInitials,
+                              LoggedUser.nameInitials,
                               textColor: AppColors.backgroundColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 26.sp,
@@ -107,7 +108,7 @@ class _ProfileTabTabletPhoneWidgetState extends State<ProfileTabTabletPhoneWidge
                             Padding(
                               padding: EdgeInsets.only(right: 3.w),
                               child: TextWidget(
-                                "William Douglas, 24",
+                                LoggedUser.nameAndLastName + LoggedUser.userAge,
                                 textColor: AppColors.blackColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17.sp,
@@ -122,7 +123,7 @@ class _ProfileTabTabletPhoneWidgetState extends State<ProfileTabTabletPhoneWidge
                         ),
                       ),
                       TextWidget(
-                        "Ciência da Computação",
+                        LoggedUser.courseName,
                         textColor: AppColors.blackColor,
                         fontSize: 17.sp,
                         textAlign: TextAlign.center,
