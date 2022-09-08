@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:projeto_tcc/base/services/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/services/interfaces/iuser_service.dart';
@@ -23,6 +24,7 @@ class LoginTabletPhoneController extends GetxController {
   late FocusNode loginButtonFocusNode;
   late SharedPreferences sharedPreferences;
   late IUserService userService;
+  late final LocalAuthentication fingerPrintAuth;
   late final GlobalKey<FormState> formKey;
 
   LoginTabletPhoneController(){
@@ -34,6 +36,7 @@ class LoginTabletPhoneController extends GetxController {
     sharedPreferences = await SharedPreferences.getInstance();
     await _getKeepConnected();
     await _getRaId();
+    await _checkBiometricSensor();
     super.onInit();
   }
 
@@ -60,6 +63,7 @@ class LoginTabletPhoneController extends GetxController {
     passwordInputController = TextEditingController();
     passwordInputFocusNode = FocusNode();
     loginButtonFocusNode = FocusNode();
+    fingerPrintAuth = LocalAuthentication();
     userService = UserService();
     if (kDebugMode){
       raInputController.text = "1000";
@@ -69,6 +73,27 @@ class LoginTabletPhoneController extends GetxController {
 
   createAccount() async {
     await Get.to(() => RegisterUserTabletPhonePage());
+  }
+
+  _checkBiometricSensor() async {
+    try {
+      bool? useFingerPrint = await sharedPreferences.getBool("user_finger_print");
+      if(true && await fingerPrintAuth.canCheckBiometrics || (useFingerPrint ?? false)){
+        var authenticate = await fingerPrintAuth.authenticate(
+          localizedReason: "Utilize a sua digital para fazer o login.",
+        );
+
+
+        if (authenticate) {
+          await _saveOptions();
+
+          Get.offAll(() => MainMenuTabletPhonePage());
+        }
+      }
+    }
+    catch(e){
+
+    }
   }
 
   loginPressed() async {
@@ -98,22 +123,7 @@ class LoginTabletPhoneController extends GetxController {
       await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
 
       if(logged){
-        int? oldRa = await sharedPreferences.getInt("ra_student_logged");
-        if(oldRa == null){
-          await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
-        }
-        else if(oldRa != int.parse(raInputController.text)){
-          await sharedPreferences.clear();
-          await sharedPreferences.setBool("show-welcome-page-key", false);
-          await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
-        }
-
-        if(keepConected.value){
-          await sharedPreferences.setBool("keep-connected", true);
-        }
-        else{
-          await sharedPreferences.setBool("keep-connected", false);
-        }
+        await _saveOptions();
 
         Get.offAll(() => MainMenuTabletPhonePage());
       }
@@ -129,6 +139,20 @@ class LoginTabletPhoneController extends GetxController {
         );
       }
     }
+  }
+
+  _saveOptions() async {
+    int? oldRa = await sharedPreferences.getInt("ra_student_logged");
+    if(oldRa == null){
+      await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
+    }
+    else if(oldRa != int.parse(raInputController.text)){
+      await sharedPreferences.clear();
+      await sharedPreferences.setBool("show-welcome-page-key", false);
+      await sharedPreferences.setInt("ra_student_logged", int.parse(raInputController.text));
+    }
+
+    await sharedPreferences.setBool("keep-connected", keepConected.value);
   }
 }
 

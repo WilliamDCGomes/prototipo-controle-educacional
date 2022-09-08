@@ -30,6 +30,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
   @override
   void initState() {
     controller = Get.put(LoginTabletPhoneController());
+
     super.initState();
   }
 
