@@ -3,6 +3,7 @@ import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
 import 'package:projeto_tcc/app/utils/internet_connection.dart';
 import 'package:projeto_tcc/base/models/classes.dart';
@@ -30,6 +31,7 @@ import '../../../../../utils/paths.dart';
 import '../../../../../utils/platform_type.dart';
 import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
 import '../../newsAndEvents/page/news_and_events_tablet_phone_page.dart';
+import '../../shared/popups/confirmation_tablet_phone_popup.dart';
 import '../../shared/widgets/card_academic_record_tablet_phone_widget.dart';
 import '../../shared/widgets/card_main_menu_tablet_phone_widget.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
@@ -106,6 +108,7 @@ class MainMenuTabletPhoneController extends GetxController {
     _loadCards();
     await _getListOrderByUser();
     _getValues();
+    await _checkFingerPrintUser();
     super.onInit();
   }
 
@@ -1765,6 +1768,24 @@ class MainMenuTabletPhoneController extends GetxController {
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
+  }
+
+  _checkFingerPrintUser() async {
+    bool? useFingerPrint = await sharedPreferences.getBool("user_finger_print");
+    if(useFingerPrint == null && await LocalAuthentication().canCheckBiometrics){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return ConfirmationTabletPhonePopup(
+            title: "Aviso",
+            subTitle: "Deseja habilitar o login por digital?",
+            buttonYes: () => sharedPreferences.setBool("user_finger_print", true),
+            buttonNo: () => sharedPreferences.setBool("user_finger_print", false),
+          );
+        },
+      );
+    }
   }
 
   openProfile() async {

@@ -12,14 +12,14 @@ class BottomSheetTabletPhonePopup {
       initHeight: initHeight,
       maxHeight: 1,
       context: context,
-      builder: (context, scrollControlle, bottomSheerOffser){
+      builder: (context, scrollController, bottomSheerOffser){
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             color: AppColors.whiteColor,
             padding: EdgeInsets.all(2.h),
             child: ListView(
-              controller: scrollControlle,
+              controller: scrollController,
               shrinkWrap: true,
               children: bottomSheetBody,
             ),

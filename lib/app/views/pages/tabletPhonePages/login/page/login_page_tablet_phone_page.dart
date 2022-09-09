@@ -18,7 +18,11 @@ import '../controller/login_page_tablet_phone_controller.dart';
 import '../../../../stylePages/app_colors.dart';
 
 class LoginPageTabletPhone extends StatefulWidget {
-  const LoginPageTabletPhone({Key? key}) : super(key: key);
+  final bool cancelFingerPrint;
+  LoginPageTabletPhone({
+    Key? key,
+    this.cancelFingerPrint = false,
+  }) : super(key: key);
 
   @override
   State<LoginPageTabletPhone> createState() => _LoginPageTabletPhoneState();
@@ -29,8 +33,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
 
   @override
   void initState() {
-    controller = Get.put(LoginTabletPhoneController());
-
+    controller = Get.put(LoginTabletPhoneController(widget.cancelFingerPrint));
     super.initState();
   }
 

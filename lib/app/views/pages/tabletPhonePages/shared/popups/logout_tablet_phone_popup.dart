@@ -103,7 +103,7 @@ class _LogoutTabletPhonePopupState extends State<LogoutTabletPhonePopup> {
                               fontWeight: FontWeight.bold,
                               onPressed: () async {
                                 await sharedPreferences.setBool("keep-connected", false);
-                                Get.offAll(() => LoginPageTabletPhone());
+                                Get.offAll(() => LoginPageTabletPhone(cancelFingerPrint: true,));
                               },
                             ),
                           ],

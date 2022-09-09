@@ -182,7 +182,7 @@ class _RequestRegistrationCancellationTabletPhonePageState extends State<Request
                                       () => Visibility(
                                         visible: controller.inputOtherReasonVisible.value,
                                         child: Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 1.h),
+                                          padding: EdgeInsets.symmetric(vertical: PlatformType.isAndroid() ? 1.h : 3.h),
                                           child: TextFieldWidget(
                                             controller: controller.otherReason,
                                             justRead: widget.registrationCancellationExist,

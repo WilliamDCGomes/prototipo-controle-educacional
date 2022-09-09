@@ -47,5 +47,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>io.flutter.embedded_views_preview</key>
+    <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>O aplicativo precisa acessar a câmera do seu aparelho para fazer a leitura de QR Codes</string>
 </dict>
 </plist>

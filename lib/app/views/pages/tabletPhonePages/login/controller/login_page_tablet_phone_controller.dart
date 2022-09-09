@@ -12,6 +12,7 @@ import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_tablet_phone_widget.dart';
 
 class LoginTabletPhoneController extends GetxController {
+  late bool _cancelFingerPrint;
   late RxBool raInputHasError;
   late RxBool passwordInputHasError;
   late RxBool passwordFieldEnabled;
@@ -27,7 +28,7 @@ class LoginTabletPhoneController extends GetxController {
   late final LocalAuthentication fingerPrintAuth;
   late final GlobalKey<FormState> formKey;
 
-  LoginTabletPhoneController(){
+  LoginTabletPhoneController(this._cancelFingerPrint){
     _initializeVariables();
   }
 
@@ -36,7 +37,9 @@ class LoginTabletPhoneController extends GetxController {
     sharedPreferences = await SharedPreferences.getInstance();
     await _getKeepConnected();
     await _getRaId();
-    await _checkBiometricSensor();
+    if(!_cancelFingerPrint){
+      await _checkBiometricSensor();
+    }
     super.onInit();
   }
 
@@ -78,11 +81,10 @@ class LoginTabletPhoneController extends GetxController {
   _checkBiometricSensor() async {
     try {
       bool? useFingerPrint = await sharedPreferences.getBool("user_finger_print");
-      if(true && await fingerPrintAuth.canCheckBiometrics || (useFingerPrint ?? false)){
+      if(await fingerPrintAuth.canCheckBiometrics && (useFingerPrint ?? false)){
         var authenticate = await fingerPrintAuth.authenticate(
           localizedReason: "Utilize a sua digital para fazer o login.",
         );
-
 
         if (authenticate) {
           await _saveOptions();
