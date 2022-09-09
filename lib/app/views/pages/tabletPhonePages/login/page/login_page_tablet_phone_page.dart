@@ -240,6 +240,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                   ),
                 ),
                 controller.loadingTabletPhoneWidget,
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),
