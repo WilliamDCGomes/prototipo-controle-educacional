@@ -28,7 +28,7 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
     animationController.repeat();
   }
 
-  Future stopAnimation({Widget? destinationPage, bool? backPage, bool? justLoading, bool? fail}) async {
+  Future stopAnimation({Widget? destinationPage, bool? backPage, bool? justLoading, bool? fail, int? duration}) async {
     if(justLoading != null && justLoading){
       await Future.delayed(Duration(seconds: 1));
       _resetStateWithoutSuccessOrFail();
@@ -37,24 +37,24 @@ class LoadingWithSuccessOrErrorTabletPhoneWidget extends StatefulWidget {
     else if(destinationPage != null) {
       isLoading.value = false;
       success.value = true;
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: duration ?? 3));
       Get.offAll(() => destinationPage);
     }
     else if(backPage != null && backPage){
       isLoading.value = false;
       success.value = true;
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: duration ?? 3));
       Get.back();
     }
     else if(fail != null && fail){
       isLoading.value = false;
       success.value = false;
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: duration ?? 3));
     }
     else{
       isLoading.value = false;
       success.value = true;
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: duration ?? 3));
     }
     _resetState();
   }

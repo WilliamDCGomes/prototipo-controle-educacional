@@ -10,6 +10,7 @@ import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
 import '../../registerUser/pages/register_user_tablet_phone_page.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_tablet_phone_widget.dart';
+import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 
 class LoginTabletPhoneController extends GetxController {
   late bool _cancelFingerPrint;
@@ -17,6 +18,7 @@ class LoginTabletPhoneController extends GetxController {
   late RxBool passwordInputHasError;
   late RxBool passwordFieldEnabled;
   late RxBool loadingAnimation;
+  late RxBool loadingAnimationSuccess;
   late RxBool keepConected;
   late LoadingTabletPhoneWidget loadingTabletPhoneWidget;
   late TextEditingController raInputController;
@@ -27,6 +29,7 @@ class LoginTabletPhoneController extends GetxController {
   late IUserService userService;
   late final LocalAuthentication fingerPrintAuth;
   late final GlobalKey<FormState> formKey;
+  late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
 
   LoginTabletPhoneController(this._cancelFingerPrint){
     _initializeVariables();
@@ -59,6 +62,7 @@ class LoginTabletPhoneController extends GetxController {
     passwordInputHasError = false.obs;
     passwordFieldEnabled = true.obs;
     loadingAnimation = false.obs;
+    loadingAnimationSuccess = false.obs;
     keepConected = false.obs;
     formKey = GlobalKey<FormState>();
     loadingTabletPhoneWidget= LoadingTabletPhoneWidget(loadingAnimation: loadingAnimation);
@@ -72,6 +76,9 @@ class LoginTabletPhoneController extends GetxController {
       raInputController.text = "1000";
       passwordInputController.text = "47122223";
     }
+    loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
+      loadingAnimation: loadingAnimationSuccess,
+    );
   }
 
   createAccount() async {
@@ -87,8 +94,10 @@ class LoginTabletPhoneController extends GetxController {
         );
 
         if (authenticate) {
+          loadingAnimationSuccess.value = true;
           await _saveOptions();
 
+          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(duration: 2);
           Get.offAll(() => MainMenuTabletPhonePage());
         }
       }
