@@ -5,7 +5,7 @@ import 'interfaces/ieducation_institution_service.dart';
 class EducationInstitutionService implements IEducationInstitutionService {
   Future<List<EducationInstitution>> getEducationInstitutions() async {
     try {
-      var educationInstitutions = await FirebaseFirestore.instance.collection("educational_institution").get();
+      var educationInstitutions = await FirebaseFirestore.instance.collection("educational_institution").get().timeout(Duration(minutes: 2));
 
       if(educationInstitutions.size > 0){
         List<EducationInstitution> institutions = <EducationInstitution>[];
@@ -24,7 +24,7 @@ class EducationInstitutionService implements IEducationInstitutionService {
   Future<String> getEducationInstitutionNameById(String id) async {
     try {
       var institution = await FirebaseFirestore.instance.collection("educational_institution")
-          .doc(id).get();
+          .doc(id).get().timeout(Duration(minutes: 2));
       if(institution.exists && institution.data() != null) {
         return EducationInstitution.fromJsonFirebase(institution.data()!).name;
       }

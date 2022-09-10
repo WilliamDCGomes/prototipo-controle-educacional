@@ -104,7 +104,7 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
       }
     }
     catch(_){
-      loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
       showDialog(
         context: Get.context!,
         barrierDismissible: false,
@@ -177,7 +177,7 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
       }
     }
     catch(_){
-      loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
       showDialog(
         context: Get.context!,
         barrierDismissible: false,

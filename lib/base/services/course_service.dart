@@ -5,7 +5,7 @@ import 'interfaces/icourse_service.dart';
 class CourseService implements ICourseService {
   Future<List<Course>> getCourses() async {
     try {
-      var courses = await FirebaseFirestore.instance.collection("courses").get();
+      var courses = await FirebaseFirestore.instance.collection("courses").get().timeout(Duration(minutes: 2));
       if(courses.size > 0){
         List<Course> coursesName = <Course>[];
         for(var course in courses.docs){
@@ -22,7 +22,7 @@ class CourseService implements ICourseService {
 
   Future<List<String>> getCoursesName() async {
     try {
-      var courses = await FirebaseFirestore.instance.collection("courses").get();
+      var courses = await FirebaseFirestore.instance.collection("courses").get().timeout(Duration(minutes: 2));
       if(courses.size > 0){
         List<String> coursesName = <String>[];
         for(var course in courses.docs){
@@ -40,7 +40,7 @@ class CourseService implements ICourseService {
   Future<Course?> getCoursesById(String id) async {
     try {
       var course = await FirebaseFirestore.instance.collection("courses")
-          .doc(id).get();
+          .doc(id).get().timeout(Duration(minutes: 2));
       if(course.exists && course.data() != null){
         return Course.fromJsonFirebase(course.data()!);
       }
@@ -53,7 +53,7 @@ class CourseService implements ICourseService {
   Future<String> getCourseNameById(String id) async {
     try {
       var course = await FirebaseFirestore.instance.collection("courses")
-          .doc(id).get();
+          .doc(id).get().timeout(Duration(minutes: 2));
       if(course.exists && course.data() != null) {
         return Course.fromJsonFirebase(course.data()!).name;
       }

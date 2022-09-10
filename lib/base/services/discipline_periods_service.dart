@@ -6,7 +6,7 @@ class DisciplinePeriodsService implements IDisciplinePeriodsService {
   Future<List<DisciplinePeriods>> getDisciplinePeriods(String institutionId) async {
     try {
       var disciplinePeriods = await FirebaseFirestore.instance.collection("discipline_periods")
-          .doc(institutionId).get();
+          .doc(institutionId).get().timeout(Duration(minutes: 2));
       if(disciplinePeriods.exists && disciplinePeriods.data() != null) {
         List<DisciplinePeriods> disciplinePeriodsList = <DisciplinePeriods>[];
         disciplinePeriods.data()!.forEach((k, v) => disciplinePeriodsList.add(DisciplinePeriods.fromJsonFirebase(v)));

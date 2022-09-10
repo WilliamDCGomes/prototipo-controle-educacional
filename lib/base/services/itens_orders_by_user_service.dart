@@ -5,7 +5,7 @@ class ItensOrderByUserService implements IItensOrderByUserService {
   Future<Map<String, dynamic>?> getOrderLists(String cpfStudent) async {
     try {
       var lastRaRegistered = await FirebaseFirestore.instance.collection("itens_orders_by_user")
-          .doc(cpfStudent).get();
+          .doc(cpfStudent).get().timeout(Duration(minutes: 2));
       if(lastRaRegistered.exists) {
         return lastRaRegistered.data();
       }
@@ -23,7 +23,7 @@ class ItensOrderByUserService implements IItensOrderByUserService {
           {
             key: newList,
           }
-        );
+        ).timeout(Duration(minutes: 2));
       return true;
     } catch (_) {
       return false;
@@ -38,7 +38,7 @@ class ItensOrderByUserService implements IItensOrderByUserService {
           {
             key: newList,
           }
-        );
+        ).timeout(Duration(minutes: 2));
       return true;
     } catch (_) {
       return false;

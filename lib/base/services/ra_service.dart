@@ -6,7 +6,7 @@ class RaService implements IRaService {
   Future<int> createNewRA(String studentId, String educationInstitutionId) async {
     try {
       while(true){
-        var lastRaRegistered = await FirebaseFirestore.instance.collection("ra").get();
+        var lastRaRegistered = await FirebaseFirestore.instance.collection("ra").get().timeout(Duration(minutes: 2));
         int raValue = 0;
         if(lastRaRegistered.size > 0) {
           for(var item in lastRaRegistered.docs){
@@ -49,7 +49,7 @@ class RaService implements IRaService {
   Future<bool> checkIfExistDuplicateRa(int ra) async {
     try {
       var lastRaRegistered = await FirebaseFirestore.instance.collection("ra")
-          .where("ra", isEqualTo: ra).get();
+          .where("ra", isEqualTo: ra).get().timeout(Duration(minutes: 2));
       if(lastRaRegistered.size > 1) {
         return true;
       }
@@ -66,7 +66,7 @@ class RaService implements IRaService {
     try {
       await FirebaseFirestore.instance.collection("ra")
           .doc(docId)
-          .delete();
+          .delete().timeout(Duration(minutes: 2));
       return true;
     }
     catch (_) {
