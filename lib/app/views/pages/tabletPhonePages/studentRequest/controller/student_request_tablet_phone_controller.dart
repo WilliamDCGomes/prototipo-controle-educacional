@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projeto_tcc/app/utils/paths.dart';
 import 'package:projeto_tcc/base/viewController/payment_finished_view_controller.dart';
+import '../../../../../../base/models/student_request.dart';
+import '../../../../../../base/services/discipline_service.dart';
+import '../../../../../../base/services/interfaces/idiscipline_service.dart';
+import '../../../../../../base/services/interfaces/istudent_request_service.dart';
+import '../../../../../../base/services/student_request_service.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../utils/date_format_to_brazil.dart';
 import '../../../../../utils/format_numbers.dart';
 import '../../../../../utils/logged_user.dart';
 import '../../shared/popups/bottom_sheet_tablet_phone_popup.dart';
+import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
+import '../pages/pending_payment_tablet_phone_page.dart';
 import '../popup/payment_form_tablet_phone_popup.dart';
 
 class StudentRequestTabletPhoneController extends GetxController {
@@ -32,6 +39,10 @@ class StudentRequestTabletPhoneController extends GetxController {
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late List<CreditDebtCardTabletPhoneWidget> creditDebtCardList;
   late CarouselController carouselCreditDebtCardController;
+  late PaymentFinishedViewController payment;
+  late StudentRequest _studentRequest;
+  late IDisciplineService _disciplineService;
+  late IStudentRequestService _studentRequestService;
 
   StudentRequestTabletPhoneController(this.studentRequest){
     _inicializeList();
@@ -42,7 +53,7 @@ class StudentRequestTabletPhoneController extends GetxController {
     creditDebtCardActiveStep = 0;
     showDisciplines = false.obs;
     loadingAnimation = false.obs;
-    disciplineSelected = "".obs;
+    disciplineSelected = disciplinesList.first.obs;
 
     switch(studentRequest){
       case studentTypeRequest.studentCard:
@@ -87,6 +98,10 @@ class StudentRequestTabletPhoneController extends GetxController {
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimation: loadingAnimation,
     );
+
+    _studentRequest = StudentRequest();
+    _disciplineService = DisciplineService();
+    _studentRequestService = StudentRequestService();
   }
 
   _inicializeList(){
@@ -101,6 +116,7 @@ class StudentRequestTabletPhoneController extends GetxController {
       "Computação Gráfica e Visão Computacional",
       "Legislação e Ética",
       "Projetos de Redes de Computadores",
+      "Projeto I",
       "Projeto II",
       "Pesquisa Operacional",
       "Tópicos Avançados em Sistemas Computacionais",
@@ -159,8 +175,25 @@ class StudentRequestTabletPhoneController extends GetxController {
     disciplineSelected.value = selectedState ?? "";
   }
 
+  _setRequestData() async {
+    try{
+      _studentRequest.value = requestValue.value;
+      _studentRequest.studentRa = LoggedUser.ra;
+      _studentRequest.educationalInstitutionId = LoggedUser.educationInstitutionId;
+      _studentRequest.requestDate = DateTime.now();
+      _studentRequest.observation = observations.text;
+      _studentRequest.requestType = requestSelected.value;
+      _studentRequest.disciplineId = await _disciplineService.getDisciplineId(disciplineSelected.value);
+    }
+    catch(_){
+
+    }
+  }
+
   payRequest() async {
-    var payment = PaymentFinishedViewController(
+    await _setRequestData();
+
+    payment = PaymentFinishedViewController(
       studentName.text,
       raNumber.text,
       requestTitle.value,
@@ -172,9 +205,47 @@ class StudentRequestTabletPhoneController extends GetxController {
 
     BottomSheetTabletPhonePopup.showAlert(
       Get.context!,
-      PaymentFormTabletPhonePopup(payment).getWidgetList(
+      PaymentFormTabletPhonePopup(
+        payment,
+        studentRequest: _studentRequest,
+        function: () => _pendingPaymentRequest(),
+      ).getWidgetList(
         Get.context!,
       ),
     );
+  }
+
+  _pendingPaymentRequest() async {
+    try{
+      loadingAnimation.value = true;
+      await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+
+      _studentRequest.paid = false;
+      _studentRequest.paymentDate = null;
+      _studentRequest.paymentCardId = "";
+
+      if(await _studentRequestService.sendNewRequest(_studentRequest)){
+        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(
+          destinationPage: PendingPaymentTabletPhonePage(
+            paymentFinishedViewController: payment,
+          ),
+        );
+      }
+      else{
+        throw Exception();
+      }
+    }
+    catch(_){
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Ocorreu um erro durante a solicitação.\nTente novamente mais tarde!",
+          );
+        },
+      );
+    }
   }
 }

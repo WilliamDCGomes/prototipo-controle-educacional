@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/models/student_request.dart';
 import '../../../../../../base/viewController/payment_finished_view_controller.dart';
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../utils/format_numbers.dart';
@@ -8,21 +9,23 @@ import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../selectCardPayment/page/select_card_payment_tablet_phone_page.dart';
-import '../pages/pending_payment_tablet_phone_page.dart';
 import '../widget/bottom_select_payment_form_tablet_phone_widget.dart';
 
 class PaymentFormTabletPhonePopup {
   late RxBool cardSelected;
   late RxBool bankSlipSelected;
   late PaymentFinishedViewController paymentFinishedViewController;
+  late StudentRequest? studentRequest;
+  late Function()? function;
 
-  PaymentFormTabletPhonePopup(this.paymentFinishedViewController){
+  PaymentFormTabletPhonePopup(this.paymentFinishedViewController, {this.studentRequest, this.function}){
     _inicializeVariables();
   }
 
   _inicializeVariables(){
     cardSelected = true.obs;
     bankSlipSelected = false.obs;
+    studentRequest!.paymentMethod = "Cartão";
   }
 
   List<Widget> getWidgetList(context){
@@ -56,6 +59,9 @@ class PaymentFormTabletPhonePopup {
               onTap: (){
                 cardSelected.value = true;
                 bankSlipSelected.value = false;
+                if(studentRequest != null){
+                  studentRequest!.paymentMethod = "Cartão";
+                }
               },
               child: BottomSelectPaymentFormTabletPhoneWidget(
                 cardTitle: "Cartão",
@@ -66,6 +72,9 @@ class PaymentFormTabletPhonePopup {
               onTap: (){
                 cardSelected.value = false;
                 bankSlipSelected.value = true;
+                if(studentRequest != null){
+                  studentRequest!.paymentMethod = "Boleto";
+                }
               },
               child: BottomSelectPaymentFormTabletPhoneWidget(
                 cardTitle: "Boleto",
@@ -93,12 +102,11 @@ class PaymentFormTabletPhonePopup {
               );
               Get.to(() => SelectCardPaymentTabletPhonePage(
                 selectCardPaymentViewController: paymentCard,
+                studentRequest: studentRequest,
               ));
             }
-            else{
-              Get.to(() => PendingPaymentTabletPhonePage(
-                paymentFinishedViewController: paymentFinishedViewController,
-              ));
+            else if(function != null){
+              function!();
             }
           },
         ),

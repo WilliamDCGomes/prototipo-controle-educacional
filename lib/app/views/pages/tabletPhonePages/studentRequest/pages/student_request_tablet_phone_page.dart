@@ -253,6 +253,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                       controller: controller.observations,
                                       height: PlatformType.isTablet(context) ? 18.h : 19.h,
                                       keyboardType: TextInputType.text,
+                                      textCapitalization: TextCapitalization.sentences,
                                       textAlignVertical: TextAlignVertical.top,
                                       maxLines: 6,
                                       decoration: InputDecoration(
@@ -305,6 +306,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                     ],
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

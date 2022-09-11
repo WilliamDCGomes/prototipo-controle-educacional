@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../../base/models/student_request.dart';
 import '../../../../../../base/viewController/select_card_payment_view_controller.dart';
 import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -16,9 +17,11 @@ import '../controller/select_card_payment_tablet_phone_controller.dart';
 
 class SelectCardPaymentTabletPhonePage extends StatefulWidget {
   late final SelectCardPaymentViewController selectCardPaymentViewController;
+  late final StudentRequest? studentRequest;
   SelectCardPaymentTabletPhonePage({
     Key? key,
     required this.selectCardPaymentViewController,
+    this.studentRequest,
   }) : super(key: key);
 
   @override
@@ -30,8 +33,13 @@ class _SelectCardPaymentTabletPhonePageState extends State<SelectCardPaymentTabl
 
   @override
   void initState() {
-    controller = Get.put(SelectCardPaymentTabletPhoneController(widget.selectCardPaymentViewController));
+    controller = Get.put(SelectCardPaymentTabletPhoneController(
+      widget.selectCardPaymentViewController,
+      studentRequest: widget.studentRequest,
+    ));
+
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
         controller.creditDebtCardActiveStep.value = 0;
