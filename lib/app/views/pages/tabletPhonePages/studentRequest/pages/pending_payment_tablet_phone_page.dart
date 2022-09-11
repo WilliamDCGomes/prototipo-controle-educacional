@@ -8,7 +8,6 @@ import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../mainMenu/page/main_menu_tablet_phone_page.dart';
 import '../../shared/widgets/copy_bar_code_tablet_phone_widget.dart';
-import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 
 class PendingPaymentTabletPhonePage extends StatelessWidget {
   final PaymentFinishedViewController paymentFinishedViewController;
@@ -31,13 +30,10 @@ class PendingPaymentTabletPhonePage extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),
+            padding: EdgeInsets.fromLTRB(2.h, 10.h, 2.h, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TitleWithBackButtonTabletPhoneWidget(
-                  title: "Pagamento Boleto",
-                ),
                 Image.asset(
                   Paths.Ilustracao_03,
                   height: 26.h,
