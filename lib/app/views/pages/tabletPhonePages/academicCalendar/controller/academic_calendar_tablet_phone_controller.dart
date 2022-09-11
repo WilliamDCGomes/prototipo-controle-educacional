@@ -64,7 +64,6 @@ class AcademicCalendarTabletPhoneController extends GetxController {
         Get.context!,
         _meetingViewController,
       ),
-      .58,
     );
   }
 }
