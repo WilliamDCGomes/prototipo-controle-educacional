@@ -13,43 +13,41 @@ dependencies:
     sdk: flutter
 
   dio: ^4.0.6
-  get: ^4.6.3
+  get: ^4.6.5
   uuid: ^3.0.6
-  crypt: ^4.2.1
   intl: ^0.17.0
-  lottie: ^1.3.0
-  pinput: ^2.2.9
+  lottie: ^1.4.2
+  pinput: ^2.2.12
   shimmer: ^2.0.0
   flip_card: ^0.6.0
-  sqflite: ^2.0.2+1
-  im_stepper: ^1.0.0
+  sqflite: ^2.0.3+1
   local_auth: ^2.1.2
-  flutter_svg: ^1.0.3
+  flutter_svg: ^1.1.5
+  im_stepper: ^1.0.1+1
   reorderables: ^0.5.0
   bottom_sheet: ^3.1.1
-  firebase_auth: ^3.5.0
+  firebase_auth: ^3.8.0
   age_calculator: ^1.0.0
-  firebase_core: ^1.20.0
+  firebase_core: ^1.22.0
   carousel_slider: ^4.1.1
-  cloud_firestore: ^3.4.0
-  cupertino_icons: ^1.0.4
-  email_validator: ^2.0.1
-  qr_code_scanner: ^1.0.0
-  responsive_sizer: ^3.0.8
-  firebase_storage: ^10.3.3
-  flutter_flavorizr: ^2.1.3
+  cloud_firestore: ^3.4.7
+  cupertino_icons: ^1.0.5
+  qr_code_scanner: ^1.0.1
+  email_validator: ^2.1.17
+  responsive_sizer: ^3.1.0
+  firebase_storage: ^10.3.8
+  flutter_flavorizr: ^2.1.4
   shared_preferences: ^2.0.15
-  font_awesome_flutter: ^10.1.0
-  rounded_loading_button: ^2.1.0
+  font_awesome_flutter: ^10.2.1
   credit_card_type_detector: ^2.0.0
-  mask_text_input_formatter: ^2.3.0
-  syncfusion_flutter_calendar: ^20.1.56
+  mask_text_input_formatter: ^2.4.0
+  syncfusion_flutter_calendar: ^20.2.48
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.2.0
-  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^2.2.9
+  flutter_launcher_icons: ^0.10.0
 
 # Rodar sempre que quiser atualizar a splashscreen
 # flutter clean
@@ -108,7 +106,7 @@ flavorizr:
       ios:
         bundleId: "com.prototipo_controle_educacional"
 
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
