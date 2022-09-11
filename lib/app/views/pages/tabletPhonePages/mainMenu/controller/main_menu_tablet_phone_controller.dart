@@ -1447,6 +1447,7 @@ class MainMenuTabletPhoneController extends GetxController {
             list = [
               "student_card_id",
               "school_statement_id",
+              "substitute_exam_id",
             ];
             break;
           case group_menu:
@@ -1632,6 +1633,17 @@ class MainMenuTabletPhoneController extends GetxController {
             imagePath: Paths.Icone_Declaracao_Escolar,
             textColor: AppColors.blackColor,
             onTap: () => quickActionsClicked(quickActionsOptions.schoolStatement),
+          ),
+        );
+        break;
+      case "substitute_exam_id":
+        requestItemsList.add(
+          MenuOptionsTabletPhoneWidget(
+            id_option: "substitute_exam_id",
+            text: "Prova Substitutiva",
+            imagePath: Paths.Solicitacao_Segunda_Chamada_Menu,
+            textColor: AppColors.blackColor,
+            onTap: () => quickActionsClicked(quickActionsOptions.substituteExam),
           ),
         );
         break;
@@ -1826,6 +1838,11 @@ class MainMenuTabletPhoneController extends GetxController {
       case quickActionsOptions.schoolStatement:
         Get.to(() => StudentRequestTablePhonePage(
           studentRequest: studentTypeRequest.schoolStatement,
+        ));
+        break;
+      case quickActionsOptions.substituteExam:
+        Get.to(() => StudentRequestTablePhonePage(
+          studentRequest: studentTypeRequest.substituteExam,
         ));
         break;
       case quickActionsOptions.newsEvents:

@@ -39,6 +39,19 @@ class MenuOptionsTabletPhoneWidget extends StatelessWidget {
         this.onTap,
       }) : super(key: key);
 
+  bool _loadSvgImage(){
+    if(imagePath != null){
+      var image = imagePath!.split('.');
+      switch(image.last){
+        case "png":
+          return false;
+        case "svg":
+          return true;
+      }
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,15 +75,18 @@ class MenuOptionsTabletPhoneWidget extends StatelessWidget {
               Visibility(
                 visible: imagePath != null && imagePath != "",
                 child: Center(
-                  child: SvgPicture.asset(
+                  child: _loadSvgImage() ? SvgPicture.asset(
                     imagePath ?? "",
                     height: imageSize ?? 6.h,
+                  ) : Image.asset(
+                    imagePath ?? "",
+                    height: imageSize ?? 7.h,
                   ),
                 ),
               ),
               Center(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 1.h),
+                  padding: EdgeInsets.only(top: _loadSvgImage() ? 1.h : 0),
                   child: SizedBox(
                     height: 4.h,
                     child: TextWidget(

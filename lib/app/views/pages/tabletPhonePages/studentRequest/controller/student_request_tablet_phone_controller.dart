@@ -14,13 +14,16 @@ import '../popup/payment_form_tablet_phone_popup.dart';
 
 class StudentRequestTabletPhoneController extends GetxController {
   late int creditDebtCardActiveStep;
+  late RxBool showDisciplines;
   late RxBool loadingAnimation;
   late RxString requestTitle;
   late RxString imageIllustration;
   late RxString requestSelected;
+  late RxString disciplineSelected;
   late RxString deliveryDate;
   late RxDouble requestValue;
   late RxList<String> requestTypeList;
+  late RxList<String> disciplinesList;
   late TextEditingController studentName;
   late TextEditingController raNumber;
   late TextEditingController dateRequest;
@@ -37,7 +40,9 @@ class StudentRequestTabletPhoneController extends GetxController {
 
   _inicializeVariables(){
     creditDebtCardActiveStep = 0;
+    showDisciplines = false.obs;
     loadingAnimation = false.obs;
+    disciplineSelected = "".obs;
 
     switch(studentRequest){
       case studentTypeRequest.studentCard:
@@ -46,6 +51,7 @@ class StudentRequestTabletPhoneController extends GetxController {
         imageIllustration = Paths.Icone_Exibicao_Carterinho_Online.obs;
         requestValue = 35.0.obs;
         deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5))).obs;
+        showDisciplines.value = false;
         break;
       case studentTypeRequest.schoolStatement:
         requestSelected = requestTypeList[1].obs;
@@ -53,9 +59,19 @@ class StudentRequestTabletPhoneController extends GetxController {
         imageIllustration = Paths.Icone_Exibicao_Declaracao_Escolar.obs;
         requestValue = 20.0.obs;
         deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 3))).obs;
+        showDisciplines.value = false;
+        break;
+      case studentTypeRequest.substituteExam:
+        requestSelected = requestTypeList[2].obs;
+        requestTitle = requestTypeList[2].obs;
+        imageIllustration = Paths.Solicitacao_Segunda_Chamada.obs;
+        requestValue = 25.0.obs;
+        deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 0))).obs;
+        showDisciplines.value = true;
         break;
       default:
         requestValue = 0.0.obs;
+        showDisciplines.value = false;
         break;
     }
     studentName = TextEditingController();
@@ -77,6 +93,18 @@ class StudentRequestTabletPhoneController extends GetxController {
     requestTypeList = [
       "Carteirinha de Estudante",
       "Declaração Escolar",
+      "Prova Substitutiva",
+    ].obs;
+
+    disciplinesList = [
+      "Ciência de Dados II",
+      "Computação Gráfica e Visão Computacional",
+      "Legislação e Ética",
+      "Projetos de Redes de Computadores",
+      "Projeto II",
+      "Pesquisa Operacional",
+      "Tópicos Avançados em Sistemas Computacionais",
+      "Liderança, Empreendedorismo e Inovação",
     ].obs;
 
     creditDebtCardList = [
@@ -104,18 +132,31 @@ class StudentRequestTabletPhoneController extends GetxController {
           requestValue.value = 35.0;
           imageIllustration.value = Paths.Icone_Exibicao_Carterinho_Online;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5)));
+          showDisciplines.value = false;
           break;
         case "Declaração Escolar":
           requestValue.value = 20.0;
           imageIllustration.value = Paths.Icone_Exibicao_Declaracao_Escolar;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 3)));
+          showDisciplines.value = false;
+          break;
+        case "Prova Substitutiva":
+          requestValue.value = 25.0;
+          imageIllustration.value = Paths.Solicitacao_Segunda_Chamada;
+          deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 0)));
+          showDisciplines.value = true;
           break;
         default:
           requestValue.value = 0.0;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now());
+          showDisciplines.value = false;
           break;
       }
     }
+  }
+
+  onDropdownButtonDisciplineChanged(String? selectedState){
+    disciplineSelected.value = selectedState ?? "";
   }
 
   payRequest() async {

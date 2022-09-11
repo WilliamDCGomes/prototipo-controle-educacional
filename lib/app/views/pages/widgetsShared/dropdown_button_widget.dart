@@ -63,22 +63,26 @@ class DropdownButtonWidget extends StatelessWidget {
               ),
               items: (listItems ?? rxListItems)!.map((String item) {
                 return DropdownMenuItem<String>(
+                  value: item,
+                  alignment: Alignment.centerLeft,
                   child: SizedBox(
                     width: (width ?? 200) - 6.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        TextWidget(
-                          item,
-                          fontSize: 16.sp,
-                          textColor: AppColors.purpleDefaultColor,
-                          textOverflow: TextOverflow.clip,
+                        Expanded(
+                          child: TextWidget(
+                            item,
+                            fontSize: 16.sp,
+                            textAlign: TextAlign.start,
+                            textColor: AppColors.purpleDefaultColor,
+                            textOverflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  value: item,
-                  alignment: Alignment.centerLeft,
                 );
               }).toList(),
             ),

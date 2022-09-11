@@ -111,7 +111,19 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                         secondTextDecoration: TextDecoration.none,
                                       ),
                                     ),
+                                    controller.showDisciplines.value ?
                                     RichTextTwoDifferentWidget(
+                                      firstText: "Disciplina Selecionada: ",
+                                      firstTextColor: AppColors.whiteColor,
+                                      firstTextFontWeight: FontWeight.normal,
+                                      firstTextSize: 16.sp,
+                                      secondText: controller.disciplineSelected.value != "" ?
+                                      controller.disciplineSelected.value : "Nenhuma",
+                                      secondTextColor: AppColors.whiteColor,
+                                      secondTextFontWeight: FontWeight.bold,
+                                      secondTextSize: 16.sp,
+                                      secondTextDecoration: TextDecoration.none,
+                                    ) : RichTextTwoDifferentWidget(
                                       firstText: "Data de Previsão de Entrega: ",
                                       firstTextColor: AppColors.whiteColor,
                                       firstTextFontWeight: FontWeight.normal,
@@ -150,7 +162,7 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                       alignment: Alignment.centerLeft,
                                       child: TextWidget(
                                         "Tipo de Solicitação",
-                                        textColor: AppColors.blackColor,
+                                        textColor: AppColors.purpleDefaultColor,
                                         fontSize: 16.sp,
                                         textAlign: TextAlign.center,
                                         maxLines: 1,
@@ -170,8 +182,40 @@ class _StudentRequestTablePhonePageState extends State<StudentRequestTablePhoneP
                                       ),
                                     ),
                                   ),
+                                  Obx(
+                                    () => Visibility(
+                                      visible: controller.showDisciplines.value,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h, bottom: .5.h),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(bottom: .5.h),
+                                              child: TextWidget(
+                                                "Selecione a Disciplina",
+                                                textColor: AppColors.purpleDefaultColor,
+                                                fontSize: 16.sp,
+                                                textAlign: TextAlign.start,
+                                                maxLines: 1,
+                                              ),
+                                            ),
+                                            DropdownButtonWidget(
+                                              itemSelected: controller.disciplineSelected.value == "" ? null : controller.disciplineSelected.value,
+                                              hintText: "Selecione a Disciplina",
+                                              height: PlatformType.isTablet(context) ? 5.6.h : 6.5.h,
+                                              width: 85.w,
+                                              rxListItems: controller.disciplinesList,
+                                              onChanged: (selectedState) => controller.onDropdownButtonDisciplineChanged(selectedState),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 2.h, top: 4.h, right: 2.h),
+                                    padding: EdgeInsets.only(left: 2.h, top: 3.h, right: 2.h),
                                     child: TextFieldWidget(
                                       controller: controller.studentName,
                                       hintText: "Nome",

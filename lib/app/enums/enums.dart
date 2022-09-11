@@ -11,6 +11,7 @@ enum quickActionsOptions {
   academicCalendar,
   academicRecord,
   schoolStatement,
+  substituteExam,
   newsEvents,
 }
 
@@ -26,7 +27,8 @@ enum creditDebtCardType {
 
 enum studentTypeRequest {
   studentCard,
-  schoolStatement
+  schoolStatement,
+  substituteExam,
 }
 
 enum paymentMethod {

@@ -38,6 +38,7 @@ class Paths{
   static final String Card_Not_Registered_Back = "${imagesPath}Cartao_Sem_Cadastro_Verso.png";
   static final String Icone_Exibicao_Esqueci_Ra = "${imagesPath}Icone_Exibicao_Esqueci_Ra.png";
   static final String Icone_Exibicao_Financeiro = "${imagesPath}Icone_Exibicao_Financeiro.png";
+  static final String Solicitacao_Segunda_Chamada = "${imagesPath}solicitacao_segunda_chamada.png";
   static final String Icone_Exibicao_Esqueci_Senha = "${imagesPath}Icone_Exibicao_Esqueci_Senha.png";
   static final String Icone_Exibicao_Notas_e_Faltas = "${imagesPath}Icone_Exibicao_Notas_e_Faltas.png";
   static final String Icone_Exibicao_Cadastro_Usuario = "${imagesPath}Icone_Exibicao_Cadastro_Usuario.png";
@@ -45,6 +46,7 @@ class Paths{
   static final String Icone_Exibicao_Carterinho_Online = "${imagesPath}Icone_Exibicao_Carterinho_Online.png";
   static final String Icone_Exibicao_Detalhe_da_Fatura = "${imagesPath}Icone_Exibicao_Detalhe_da_Fatura.png";
   static final String Icone_Exibicao_Horario_Das_Aulas = "${imagesPath}Icone_Exibicao_Horario_Das_Aulas.png";
+  static final String Solicitacao_Segunda_Chamada_Menu = "${imagesPath}solicitacao_segunda_chamada_menu.png";
   static final String Icone_Exibicao_Cancelar_Matricula = "${imagesPath}Icone_Exibicao_Cancelar_Matricula.png";
   static final String Icone_Exibicao_Declaracao_Escolar = "${imagesPath}Icone_Exibicao_Declaracao_Escolar.png";
   static final String Icone_Exibicao_Forma_de_Pagamento = "${imagesPath}Icone_Exibicao_Forma_de_Pagamento.png";
