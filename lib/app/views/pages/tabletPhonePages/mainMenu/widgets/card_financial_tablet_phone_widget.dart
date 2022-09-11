@@ -105,7 +105,6 @@ class CardFinancialTabletPhoneWidget extends StatelessWidget {
                       PaymentFormTabletPhonePopup(payment).getWidgetList(
                         Get.context!,
                       ),
-                      .3,
                     );
                   },
                   height: 4.h,

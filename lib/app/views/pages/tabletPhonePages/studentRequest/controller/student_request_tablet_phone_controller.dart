@@ -49,7 +49,7 @@ class StudentRequestTabletPhoneController extends GetxController {
         requestSelected = requestTypeList[0].obs;
         requestTitle = requestTypeList[0].obs;
         imageIllustration = Paths.Icone_Exibicao_Carterinho_Online.obs;
-        requestValue = 35.0.obs;
+        requestValue = 30.0.obs;
         deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5))).obs;
         showDisciplines.value = false;
         break;
@@ -65,7 +65,7 @@ class StudentRequestTabletPhoneController extends GetxController {
         requestSelected = requestTypeList[2].obs;
         requestTitle = requestTypeList[2].obs;
         imageIllustration = Paths.Solicitacao_Segunda_Chamada.obs;
-        requestValue = 25.0.obs;
+        requestValue = 35.0.obs;
         deliveryDate = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 0))).obs;
         showDisciplines.value = true;
         break;
@@ -129,7 +129,7 @@ class StudentRequestTabletPhoneController extends GetxController {
       requestTitle.value = selectedState;
       switch(requestTitle.value){
         case "Carteirinha de Estudante":
-          requestValue.value = 35.0;
+          requestValue.value = 30.0;
           imageIllustration.value = Paths.Icone_Exibicao_Carterinho_Online;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 5)));
           showDisciplines.value = false;
@@ -141,7 +141,7 @@ class StudentRequestTabletPhoneController extends GetxController {
           showDisciplines.value = false;
           break;
         case "Prova Substitutiva":
-          requestValue.value = 25.0;
+          requestValue.value = 35.0;
           imageIllustration.value = Paths.Solicitacao_Segunda_Chamada;
           deliveryDate.value = DateFormatToBrazil.formatDate(DateTime.now().add(Duration(days: 0)));
           showDisciplines.value = true;
@@ -169,12 +169,12 @@ class StudentRequestTabletPhoneController extends GetxController {
       FormatNumbers.numbersToString(requestValue.value),
       dateRequest.text,
     );
+
     BottomSheetTabletPhonePopup.showAlert(
       Get.context!,
       PaymentFormTabletPhonePopup(payment).getWidgetList(
         Get.context!,
       ),
-      .3,
     );
   }
 }

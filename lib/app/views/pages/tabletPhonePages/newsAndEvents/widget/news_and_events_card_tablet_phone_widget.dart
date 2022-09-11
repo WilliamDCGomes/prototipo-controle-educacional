@@ -37,7 +37,6 @@ class NewsAndEventsCardTabletPhoneWidget extends StatelessWidget {
                 context,
                 newsAndEventsViewController,
               ),
-              .55,
             );
           },
           borderRadius: 1.h,

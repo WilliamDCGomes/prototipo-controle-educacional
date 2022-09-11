@@ -44,7 +44,6 @@ class PaymentDetailTabletPhoneController extends GetxController {
         PaymentFormTabletPhonePopup(payment).getWidgetList(
           Get.context!,
         ),
-        .3,
       );
     }
     else{
