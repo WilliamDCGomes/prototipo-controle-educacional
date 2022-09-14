@@ -127,19 +127,6 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                             keyboardType: TextInputType.number,
                                           ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 7.5.h),
-                                          child: Align(
-                                            alignment: Alignment.topRight,
-                                            child: TextButtonWidget(
-                                              hintText: "Esqueceu o RA?",
-                                              fontSize: 15.sp,
-                                              height: 3.5.h,
-                                              componentPadding: EdgeInsets.zero,
-                                              onTap: () => Get.to(() => ForgotInformationTabletPhonePage(information: forgotInformation.ra,)),
-                                            ),
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -183,7 +170,7 @@ class _LoginPageTabletPhoneState extends State<LoginPageTabletPhone> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 6.5.h),
+                                          padding: EdgeInsets.only(top: 8.h),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment: CrossAxisAlignment.center,

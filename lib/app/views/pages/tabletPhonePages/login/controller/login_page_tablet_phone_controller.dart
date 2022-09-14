@@ -30,6 +30,7 @@ class LoginTabletPhoneController extends GetxController {
   late final LocalAuthentication fingerPrintAuth;
   late final GlobalKey<FormState> formKey;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
+  late IUserService _userService;
 
   LoginTabletPhoneController(this._cancelFingerPrint){
     _initializeVariables();
@@ -79,6 +80,7 @@ class LoginTabletPhoneController extends GetxController {
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimation: loadingAnimationSuccess,
     );
+    _userService = UserService();
   }
 
   createAccount() async {
@@ -108,47 +110,63 @@ class LoginTabletPhoneController extends GetxController {
   }
 
   loginPressed() async {
-    if(formKey.currentState!.validate()){
-      loginButtonFocusNode.requestFocus();
-      if(!await InternetConnection.checkConnection()){
-        await showDialog(
-          context: Get.context!,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return InformationTabletPhonePopup(
-              warningMessage: "É necessário uma conexão com a internet para fazer o login",
-            );
-          },
-        );
-        return;
-      }
-      loadingAnimation.value = true;
-      await loadingTabletPhoneWidget.startAnimation();
+    try{
+      if(formKey.currentState!.validate()){
+        loginButtonFocusNode.requestFocus();
+        if(!await InternetConnection.checkConnection()){
+          await showDialog(
+            context: Get.context!,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return InformationTabletPhonePopup(
+                warningMessage: "É necessário uma conexão com a internet para fazer o login",
+              );
+            },
+          );
+          return;
+        }
+        loadingAnimation.value = true;
+        await loadingTabletPhoneWidget.startAnimation();
 
-      await Future.delayed(Duration(seconds: 1));
-      bool logged = await userService.loginUser(
-        raInputController.text,
-        passwordInputController.text,
+        String userCpf = await _userService.getCpf(int.parse(raInputController.text));
+
+        String userEmail = await _userService.getEmail(userCpf);
+
+        bool logged = await userService.loginUser(
+          userEmail,
+          passwordInputController.text,
+        );
+
+        await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
+
+        if(logged){
+          await _saveOptions();
+
+          Get.offAll(() => MainMenuTabletPhonePage());
+        }
+        else{
+          await showDialog(
+            context: Get.context!,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return InformationTabletPhonePopup(
+                warningMessage: "O Ra ou a Senha estão incorreto.",
+              );
+            },
+          );
+        }
+      }
+    }
+    catch(_){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Erro ao fazer Login!\nTente novamente mais tarde.",
+          );
+        },
       );
-
-      await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
-
-      if(logged){
-        await _saveOptions();
-
-        Get.offAll(() => MainMenuTabletPhonePage());
-      }
-      else{
-        await showDialog(
-          context: Get.context!,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return InformationTabletPhonePopup(
-              warningMessage: "O Ra ou a Senha estão incorreto.",
-            );
-          },
-        );
-      }
     }
   }
 

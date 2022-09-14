@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:projeto_tcc/base/models/student.dart';
 import '../models/user.dart';
 import 'interfaces/iuser_service.dart';
 
@@ -39,9 +40,35 @@ class UserService implements IUserService {
     }
   }
 
-  Future<bool> registerNewUser(int ra, String password) async {
+  Future<String> getCpf(int studentRa) async {
+    try {
+      var student = await FirebaseFirestore.instance.collection("student")
+          .where("ra", isEqualTo: studentRa).get().timeout(Duration(minutes: 2));
+      if(student.size > 0) {
+        return Student.fromJsonFirebase(student.docs.first.data()).cpf;
+      }
+      return "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  Future<String> getEmail(String userCpf) async {
+    try {
+      var student = await FirebaseFirestore.instance.collection("users")
+          .where("cpf", isEqualTo: userCpf).get().timeout(Duration(minutes: 2));
+      if(student.size > 0) {
+        return Users.fromJsonFirebase(student.docs.first.data()).email;
+      }
+      return "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  Future<bool> registerNewUser(String email, String password) async {
     return await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: "$ra@pce.com",
+      email: email,
       password: password,
     ).timeout(Duration(minutes: 2)).then((value){
       return true;
@@ -64,6 +91,18 @@ class UserService implements IUserService {
     return result;
   }
 
+  Future<bool> resetPassword(String email) async {
+    bool result = false;
+
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email)
+        .timeout(Duration(minutes: 2)).then((value){
+      result = true;
+    }).catchError((error){
+      result = false;
+    });
+    return result;
+  }
+
   Future<bool> loggedUser() async {
     try{
       var user = await FirebaseAuth.instance.currentUser;
@@ -74,9 +113,9 @@ class UserService implements IUserService {
     }
   }
 
-  Future<bool> loginUser(String ra, String password) async {
+  Future<bool> loginUser(String email, String password) async {
     return await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: "$ra@pce.com",
+      email: email,
       password: password,
     ).timeout(Duration(minutes: 2)).then((value){
       return true;

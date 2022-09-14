@@ -7,13 +7,19 @@ abstract class IUserService {
 
   Future<bool> updatePassword(String newPassword);
 
+  Future<bool> resetPassword(String email);
+
   Future<Users?> getUser(String cpf);
 
-  Future<bool> registerNewUser(int ra, String password);
+  Future<String> getCpf(int studentRa);
+
+  Future<String> getEmail(String userCpf);
+
+  Future<bool> registerNewUser(String email, String password);
 
   Future<bool> loggedUser();
 
-  Future<bool> loginUser(String ra, String password);
+  Future<bool> loginUser(String email, String password);
 
   Future<bool> logoutUser();
 }

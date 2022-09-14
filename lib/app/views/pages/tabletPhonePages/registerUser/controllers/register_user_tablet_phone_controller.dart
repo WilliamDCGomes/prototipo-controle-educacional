@@ -529,7 +529,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     while(true){
       try{
         newStudent.ra = await raService.createNewRA(newStudent.id, newStudent.educationInstitutionId);
-        if(await userService.registerNewUser(newStudent.ra, newStudent.password)){
+        if(await userService.registerNewUser(newUser.email, newStudent.password)){
           bool userSend = await userService.sendNewUser(newUser);
           bool studenteSend = await studentService.sendNewStudent(newStudent);
           if(userSend && studenteSend) {
