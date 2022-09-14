@@ -62,7 +62,7 @@ class ResetPasswordTabletPhoneController extends GetxController {
   Future<bool?> _validPasswordReset() async {
     try{
       bool valid =  await _userService.loginUser(
-        LoggedUser.ra.toString(),
+        LoggedUser.email,
         oldPasswordInput.text,
       );
 
@@ -99,6 +99,7 @@ class ResetPasswordTabletPhoneController extends GetxController {
               );
 
               await sharedPreferences.setBool("keep-connected", false);
+              await sharedPreferences.remove("user_finger_print");
               await Get.offAll(() => LoginPageTabletPhone());
               return;
             }
