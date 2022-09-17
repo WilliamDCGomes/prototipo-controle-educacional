@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/newsAndEvents/page/news_and_events_tablet_phone_page.dart';
-import 'package:projeto_tcc/app/views/pages/tabletPhonePages/qrCodeScanner/page/qr_code_scanner_tablet_phone_page.dart';
+import '../../../../../stylePages/app_colors.dart';
+import '../../../../widgetsShared/text_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../widgetsShared/text_button_widget.dart';
-import '../../../../widgetsShared/text_widget.dart';
-import '../../../../../stylePages/app_colors.dart';
-import '../../../resetPassword/page/reset_password_tablet_phone_page.dart';
 import '../../../shared/popups/logout_tablet_phone_popup.dart';
+import '../../../settingsApp/page/settings_app_tablet_phone_page.dart';
+import '../../../resetPassword/page/reset_password_tablet_phone_page.dart';
+import '../../../fingerPrintSetting/page/finger_print_setting_tablet_phone_page.dart';
+import 'package:projeto_tcc/app/views/pages/tabletPhonePages/newsAndEvents/page/news_and_events_tablet_phone_page.dart';
+import 'package:projeto_tcc/app/views/pages/tabletPhonePages/qrCodeScanner/page/qr_code_scanner_tablet_phone_page.dart';
 
 class CardProfileTabListTabletPhoneWidget extends StatelessWidget {
   final Widget iconCard;
@@ -42,7 +44,10 @@ class CardProfileTabListTabletPhoneWidget extends StatelessWidget {
                   Get.to(() => NewsAndEventsTabletPhonePage());
                   break;
                 case destinationsPages.settings:
-
+                  Get.to(() => SettingsAppTabletPhonePage());
+                  break;
+                case destinationsPages.fingerPrintSetting:
+                  Get.to(() => FingerPrintSettingTabletPhonePage());
                   break;
                 case destinationsPages.resetPassword:
                   Get.to(() => ResetPasswordTabletPhonePage());

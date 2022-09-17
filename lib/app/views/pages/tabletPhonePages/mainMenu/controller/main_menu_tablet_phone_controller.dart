@@ -1,54 +1,54 @@
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:credit_card_type_detector/credit_card_type_detector.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:local_auth/local_auth.dart';
-import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
-import 'package:projeto_tcc/app/utils/internet_connection.dart';
-import 'package:projeto_tcc/base/models/classes.dart';
-import 'package:projeto_tcc/base/models/user.dart';
-import 'package:projeto_tcc/base/services/course_service.dart';
-import 'package:projeto_tcc/base/services/education_institution_service.dart';
-import 'package:projeto_tcc/base/services/interfaces/ieducation_institution_service.dart';
-import 'package:projeto_tcc/base/services/itens_orders_by_user_service.dart';
-import 'package:projeto_tcc/base/services/student_service.dart';
-import 'package:projeto_tcc/base/services/user_service.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../../../base/models/files.dart';
-import '../../../../../../base/models/student.dart';
-import '../../../../../../base/services/interfaces/icourse_service.dart';
-import '../../../../../../base/services/interfaces/iitens_orders_by_user_service.dart';
-import '../../../../../../base/services/interfaces/istudent_service.dart';
-import '../../../../../../base/services/interfaces/iuser_service.dart';
-import '../../../../../../base/viewController/card_payment_view_controller.dart';
-import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
-import '../../../../../../base/viewController/payment_finished_view_controller.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter/material.dart';
 import '../../../../../enums/enums.dart';
-import '../../../../../utils/logged_user.dart';
 import '../../../../../utils/paths.dart';
-import '../../../../../utils/platform_type.dart';
-import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
-import '../../newsAndEvents/page/news_and_events_tablet_phone_page.dart';
-import '../../shared/popups/confirmation_tablet_phone_popup.dart';
-import '../../shared/widgets/card_academic_record_tablet_phone_widget.dart';
-import '../../shared/widgets/card_main_menu_tablet_phone_widget.dart';
-import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
-import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
-import '../../userProfile/page/user_profile_tablet_phone_page.dart';
-import '../widgets/group_menu_home_tablet_phone_widgets.dart';
-import '../widgets/academic_tab_tablet_phone_widget.dart';
-import '../widgets/componentTabWidget/academic_tab_list_tablet_phone_widget.dart';
-import '../widgets/componentTabWidget/card_profile_tab_list_tablet_phone_widget.dart';
-import '../widgets/financial_tab_tablet_phone_widget.dart';
-import '../widgets/home_tab_tablet_phone_widget.dart';
-import '../../academicCalendar/page/academic_calendar_tablet_phone_page.dart';
-import '../../gradesFault/page/grades_faults_tablet_phone_page.dart';
-import '../widgets/menu_options_tablet_phone_widget.dart';
-import '../widgets/profile_tab_tablet_phone_widget.dart';
-import '../../studentCard/page/student_card_tablet_phone_page.dart';
+import 'package:local_auth/local_auth.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../../../stylePages/app_colors.dart';
+import '../../../../../utils/platform_type.dart';
+import '../../../../../../base/models/files.dart';
+import 'package:projeto_tcc/base/models/user.dart';
+import '../../../../../../base/models/student.dart';
+import 'package:projeto_tcc/base/models/classes.dart';
+import '../widgets/home_tab_tablet_phone_widget.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import '../widgets/profile_tab_tablet_phone_widget.dart';
+import '../widgets/academic_tab_tablet_phone_widget.dart';
+import 'package:carousel_slider/carousel_controller.dart';
+import '../widgets/menu_options_tablet_phone_widget.dart';
+import '../widgets/financial_tab_tablet_phone_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:projeto_tcc/base/services/user_service.dart';
+import '../widgets/group_menu_home_tablet_phone_widgets.dart';
+import 'package:projeto_tcc/base/services/course_service.dart';
+import 'package:projeto_tcc/app/utils/internet_connection.dart';
+import 'package:projeto_tcc/base/services/student_service.dart';
+import '../../shared/popups/confirmation_tablet_phone_popup.dart';
+import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
+import '../../studentCard/page/student_card_tablet_phone_page.dart';
+import '../../userProfile/page/user_profile_tablet_phone_page.dart';
+import '../../gradesFault/page/grades_faults_tablet_phone_page.dart';
+import '../../shared/widgets/card_main_menu_tablet_phone_widget.dart';
+import '../../../../../../base/services/interfaces/iuser_service.dart';
+import '../../shared/widgets/credit_debt_card_tablet_phone_widget.dart';
+import '../../../../../../base/services/interfaces/icourse_service.dart';
+import '../../newsAndEvents/page/news_and_events_tablet_phone_page.dart';
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
+import '../../academicRecord/page/academic_record_tablet_phone_page.dart';
+import '../../../../../../base/services/interfaces/istudent_service.dart';
+import '../../studentRequest/pages/student_request_tablet_phone_page.dart';
+import '../../shared/widgets/card_academic_record_tablet_phone_widget.dart';
+import 'package:projeto_tcc/base/services/itens_orders_by_user_service.dart';
+import '../../academicCalendar/page/academic_calendar_tablet_phone_page.dart';
+import 'package:projeto_tcc/base/services/education_institution_service.dart';
+import '../../../../../../base/viewController/card_payment_view_controller.dart';
+import '../widgets/componentTabWidget/academic_tab_list_tablet_phone_widget.dart';
+import '../../../../../../base/viewController/payment_finished_view_controller.dart';
+import '../widgets/componentTabWidget/card_profile_tab_list_tablet_phone_widget.dart';
+import '../../../../../../base/services/interfaces/iitens_orders_by_user_service.dart';
+import '../../../../../../base/viewController/curriculum_delivery_view_controller.dart';
+import 'package:projeto_tcc/base/services/interfaces/ieducation_institution_service.dart';
 
 class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
@@ -1239,32 +1239,14 @@ class MainMenuTabletPhoneController extends GetxController {
         titleIconPath: "Notícias e Eventos",
         page: destinationsPages.newsAndEvents,
       ),
-      // CardProfileTabListWidget(
-      //   iconCard: Icon(
-      //     Icons.settings,
-      //     color: AppColors.purpleDefaultColor,
-      //     size: 5.h,
-      //   ),
-      //   titleIconPath: "Configurações",
-      //   page: destinationsPages.settings,
-      // ),
       CardProfileTabListTabletPhoneWidget(
-        iconCard: SvgPicture.asset(
-          Paths.Icone_Redefinir_Senha,
+        iconCard: Image.asset(
+          Paths.Icone_Configuracao_Menu,
           height: 4.5.h,
           width: 4.5.h,
         ),
-        titleIconPath: "Redefinir Senha",
-        page: destinationsPages.resetPassword,
-      ),
-      CardProfileTabListTabletPhoneWidget(
-        iconCard: Icon(
-          Icons.qr_code_scanner,
-          color: AppColors.purpleDefaultColor,
-          size: 5.h,
-        ),
-        titleIconPath: "Vincular SmartWatch",
-        page: destinationsPages.connectToSmartWatch,
+        titleIconPath: "Configurações",
+        page: destinationsPages.settings,
       ),
       CardProfileTabListTabletPhoneWidget(
         iconCard: SvgPicture.asset(

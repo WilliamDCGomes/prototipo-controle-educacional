@@ -46,6 +46,7 @@ enum paymentStatus {
 enum destinationsPages {
   newsAndEvents,
   settings,
+  fingerPrintSetting,
   resetPassword,
   connectToSmartWatch,
   logout,
