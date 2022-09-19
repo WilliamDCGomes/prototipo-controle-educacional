@@ -23,6 +23,7 @@ class AppColors {
   static final Color grayColor = const Color(0XFFE1E1E1);
   static final Color grayStepColor = const Color(0XFFC9C9C9);
   static final Color grayTabColor = const Color(0XFFCECECE);
+  static final Color grayTextColor = const Color(0XFFA9A9A9);
   static final Color grayAcademicCardColor = const Color(0XFFDEDADA);
   static final Color orangeColor = const Color(0XFFEA6F55);
   static final Color orangeColorWithOpacity = const Color(0XFFEA6F55).withOpacity(.65);

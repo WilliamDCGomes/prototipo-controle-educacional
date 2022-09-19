@@ -5,6 +5,7 @@ import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../widgetsShared/switch_widget.dart';
 import '../controller/finger_print_setting_tablet_phone_controller.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
@@ -72,10 +73,85 @@ class _FingerPrintSettingTabletPhonePageState extends State<FingerPrintSettingTa
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 2.h),
-                              child: ListView(
-                                shrinkWrap: true,
+                              child: Column(
                                 children: [
-
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 1.h),
+                                    child: Card(
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(1.h),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(1.h),
+                                        child: Obx(
+                                          () => SwitchWidget(
+                                            text: "Habilitar o login por digital?",
+                                            checked: controller.fingerPrintLoginChecked.value,
+                                            onClicked: () => controller.fingerPrintLoginPressed(),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 1.h),
+                                    child: Card(
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(1.h),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(1.h),
+                                        child: Obx(
+                                          () => SwitchWidget(
+                                            text: "Sempre solicitar a digital quando entrar no aplicativo?",
+                                            checked: controller.alwaysRequestFingerPrintChecked.value,
+                                            justRead: controller.enableAlwaysRequestFingerPrint.value,
+                                            onClicked: () => controller.alwaysRequestFingerPrintPressed(),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 1.h),
+                                    child: Card(
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(1.h),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(1.h),
+                                        child: Obx(
+                                          () => SwitchWidget(
+                                            text: "Habilitar a digital para pagamentos no aplicativo?",
+                                            checked: controller.fingerPrintPaymentChecked.value,
+                                            onClicked: () => controller.fingerPrintPaymentPressed(),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 1.h),
+                                    child: Card(
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(1.h),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(1.h),
+                                        child: Obx(
+                                          () => SwitchWidget(
+                                            text: "Habilitar a digital para solicitar cancelamento de matrícula?",
+                                            checked: controller.fingerPrintRegistrationCancellationChecked.value,
+                                            onClicked: () => controller.fingerPrintRegistrationCancellationPressed(),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

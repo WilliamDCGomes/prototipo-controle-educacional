@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../utils/paths.dart';
-import '../../../../stylePages/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../mainMenu/widgets/componentTabWidget/card_profile_tab_list_tablet_phone_widget.dart';
