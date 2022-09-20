@@ -7,5 +7,5 @@ abstract class IRequestRegistrationCancellationService {
 
   Future<bool> checkRegistrationCancellationAlrightExist(String cpf);
 
-  Future<bool> deleteRegistrationCancellation(String cpf);
+  Future<bool> deleteRegistrationCancellation(RegistrationCancellation cancellation);
 }

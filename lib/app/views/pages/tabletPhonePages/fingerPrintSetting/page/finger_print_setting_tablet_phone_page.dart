@@ -82,14 +82,11 @@ class _FingerPrintSettingTabletPhonePageState extends State<FingerPrintSettingTa
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(1.h),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(1.h),
-                                        child: Obx(
-                                          () => SwitchWidget(
-                                            text: "Habilitar o login por digital?",
-                                            checked: controller.fingerPrintLoginChecked.value,
-                                            onClicked: () => controller.fingerPrintLoginPressed(),
-                                          ),
+                                      child: Obx(
+                                        () => SwitchWidget(
+                                          text: "Habilitar o login por digital?",
+                                          checked: controller.fingerPrintLoginChecked.value,
+                                          onClicked: () => controller.fingerPrintLoginPressed(),
                                         ),
                                       ),
                                     ),
@@ -101,15 +98,12 @@ class _FingerPrintSettingTabletPhonePageState extends State<FingerPrintSettingTa
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(1.h),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(1.h),
-                                        child: Obx(
-                                          () => SwitchWidget(
-                                            text: "Sempre solicitar a digital quando entrar no aplicativo?",
-                                            checked: controller.alwaysRequestFingerPrintChecked.value,
-                                            justRead: controller.enableAlwaysRequestFingerPrint.value,
-                                            onClicked: () => controller.alwaysRequestFingerPrintPressed(),
-                                          ),
+                                      child: Obx(
+                                        () => SwitchWidget(
+                                          text: "Sempre solicitar a digital quando entrar no aplicativo?",
+                                          checked: controller.alwaysRequestFingerPrintChecked.value,
+                                          justRead: controller.enableAlwaysRequestFingerPrint.value,
+                                          onClicked: () => controller.alwaysRequestFingerPrintPressed(),
                                         ),
                                       ),
                                     ),
@@ -121,14 +115,11 @@ class _FingerPrintSettingTabletPhonePageState extends State<FingerPrintSettingTa
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(1.h),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(1.h),
-                                        child: Obx(
-                                          () => SwitchWidget(
-                                            text: "Habilitar a digital para pagamentos no aplicativo?",
-                                            checked: controller.fingerPrintPaymentChecked.value,
-                                            onClicked: () => controller.fingerPrintPaymentPressed(),
-                                          ),
+                                      child: Obx(
+                                        () => SwitchWidget(
+                                          text: "Habilitar a digital para pagamentos no aplicativo?",
+                                          checked: controller.fingerPrintPaymentChecked.value,
+                                          onClicked: () => controller.fingerPrintPaymentPressed(),
                                         ),
                                       ),
                                     ),
@@ -140,14 +131,11 @@ class _FingerPrintSettingTabletPhonePageState extends State<FingerPrintSettingTa
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(1.h),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(1.h),
-                                        child: Obx(
-                                          () => SwitchWidget(
-                                            text: "Habilitar a digital para solicitar cancelamento de matrícula?",
-                                            checked: controller.fingerPrintRegistrationCancellationChecked.value,
-                                            onClicked: () => controller.fingerPrintRegistrationCancellationPressed(),
-                                          ),
+                                      child: Obx(
+                                        () => SwitchWidget(
+                                          text: "Habilitar a digital para solicitar cancelamento de matrícula?",
+                                          checked: controller.fingerPrintRegistrationCancellationChecked.value,
+                                          onClicked: () => controller.fingerPrintRegistrationCancellationPressed(),
                                         ),
                                       ),
                                     ),

@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/utils/logged_user.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/mainMenu/page/main_menu_tablet_phone_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/models/registration_cancellation.dart';
 import '../../../../../../base/services/interfaces/irequest_registration_cancellation_service.dart';
 import '../../../../../../base/services/request_registration_cancellation_service.dart';
@@ -19,10 +21,18 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late RegistrationCancellation _registrationCancellation;
   late IRequestRegistrationCancellationService _requestRegistrationCancellationService;
+  late SharedPreferences sharedPreferences;
+  late final LocalAuthentication fingerPrintAuth;
 
   RequestRegistrationCancellationTabletPhoneController(this.registrationCancellationExist){
     _initializeVariables();
     _setRegistrationCancellationInformations();
+  }
+
+  @override
+  void onInit() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    super.onInit();
   }
 
   _initializeVariables(){
@@ -35,6 +45,7 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
     );
     _registrationCancellation = RegistrationCancellation();
     _requestRegistrationCancellationService = RequestRegistrationCancellationService();
+    fingerPrintAuth = LocalAuthentication();
   }
 
   _setRegistrationCancellationInformations(){
@@ -64,6 +75,20 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
     return true;
   }
 
+  _checkFingerPrint(String title) async {
+    if(await fingerPrintAuth.canCheckBiometrics && (await sharedPreferences.getBool("finger_print_for_registration_cancellation") ?? false)){
+      var authenticate = await fingerPrintAuth.authenticate(
+        localizedReason: title,
+      );
+
+      if (authenticate) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  }
+
   buttonDeleteRegistrationCancellationPressed() async {
     showDialog(
       context: Get.context!,
@@ -71,7 +96,11 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
         return ConfirmationTabletPhonePopup(
           title: "Aviso",
           subTitle: "Deseja realmente excluir a solicitação de cancelamento?",
-          buttonYes: () => _deleteRegistrationCancellation(),
+          buttonYes: () async {
+            if(await _checkFingerPrint("Utilize a sua digital para excluir a solicitação de cancelamento da matrícula.")){
+              _deleteRegistrationCancellation();
+            }
+          },
           buttonNo: (){},
         );
       },
@@ -84,7 +113,9 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
       await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
       await Future.delayed(Duration(milliseconds: 500));
 
-      bool request = await _requestRegistrationCancellationService.deleteRegistrationCancellation(LoggedUser.cpf);
+      _registrationCancellation.active = false;
+      _registrationCancellation.lastChange = DateTime.now();
+      bool request = await _requestRegistrationCancellationService.deleteRegistrationCancellation(_registrationCancellation);
 
       if(request){
         await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
@@ -103,7 +134,7 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
         throw Exception();
       }
     }
-    catch(_){
+    catch(e){
       await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
       showDialog(
         context: Get.context!,
@@ -124,7 +155,11 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
         return ConfirmationTabletPhonePopup(
           title: "Aviso",
           subTitle: "Deseja realmente solicitar o cancelamento de matrícula?",
-          buttonYes: () => _requestRegistrationCancellation(),
+          buttonYes: () async {
+            if(await _checkFingerPrint("Utilize a sua digital para solicitar o cancelamento da matrícula.")){
+              _requestRegistrationCancellation();
+            }
+          },
           buttonNo: (){},
         );
       },

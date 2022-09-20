@@ -72,22 +72,24 @@ class _SettingsAppTabletPhonePageState extends State<SettingsAppTabletPhonePage>
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 2.h),
-                              child: ReorderableListView.builder(
-                                itemCount: controller.cardSettingsList.length,
-                                itemBuilder: (context, index){
-                                  return Container(
-                                    key: Key("$index"),
-                                    child: controller.cardSettingsList[index],
-                                  );
-                                },
-                                onReorder: (oldIndex, newIndex) {
-                                  var newList = ReorderListHelper.reorderList(
-                                    oldIndex,
-                                    newIndex,
-                                    controller.cardSettingsList,
-                                  );
-                                  //TODO Fazer um método para salvar a nova lista
-                                },
+                              child: Obx(
+                                () => ReorderableListView.builder(
+                                  itemCount: controller.cardSettingsList.length,
+                                  itemBuilder: (context, index){
+                                    return Container(
+                                      key: Key("$index"),
+                                      child: controller.cardSettingsList[index],
+                                    );
+                                  },
+                                  onReorder: (oldIndex, newIndex) {
+                                    var newList = ReorderListHelper.reorderList(
+                                      oldIndex,
+                                      newIndex,
+                                      controller.cardSettingsList,
+                                    );
+                                    //TODO Fazer um método para salvar a nova lista
+                                  },
+                                ),
                               ),
                             ),
                           ),

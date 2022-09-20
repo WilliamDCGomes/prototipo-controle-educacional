@@ -19,10 +19,8 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   void initState() {
+    controller = Get.put(InitialPageController());
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      controller = Get.put(InitialPageController());
-    });
   }
 
   @override
@@ -64,6 +62,7 @@ class _InitialPageState extends State<InitialPage> {
                   ],
                 ),
               ),
+              controller.loadingWithSuccessOrErrorTabletPhoneWidget,
             ],
           ),
         ),

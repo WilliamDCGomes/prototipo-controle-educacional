@@ -31,7 +31,7 @@ class SwitchWidget extends StatelessWidget {
         ignoring: justRead ?? false,
         child: TextButtonWidget(
           onTap: () => onClicked(),
-          componentPadding: EdgeInsets.zero,
+          borderRadius: 1.h,
           widgetCustom: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class SwitchWidget extends StatelessWidget {
                 child: TextWidget(
                   text ?? "",
                   textColor: (justRead ?? false) ? AppColors.grayTextColor : (textColor ?? AppColors.blackColor),
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                   textAlign: TextAlign.start,
                   maxLines: 3,
                   fontWeight: FontWeight.bold,
