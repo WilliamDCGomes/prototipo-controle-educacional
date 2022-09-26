@@ -11,6 +11,7 @@ class FingerPrintSettingTabletPhoneController extends GetxController {
   late RxBool enableAlwaysRequestFingerPrint;
   late RxBool fingerPrintPaymentChecked;
   late RxBool fingerPrintRegistrationCancellationChecked;
+  late RxBool fingerPrintChangePasswordChecked;
   late FocusNode saveButtonFocusNode;
   late SharedPreferences sharedPreferences;
   late final LocalAuthentication fingerPrintAuth;
@@ -33,6 +34,7 @@ class FingerPrintSettingTabletPhoneController extends GetxController {
     enableAlwaysRequestFingerPrint = true.obs;
     fingerPrintPaymentChecked = false.obs;
     fingerPrintRegistrationCancellationChecked = false.obs;
+    fingerPrintChangePasswordChecked = false.obs;
     loadingAnimation = false.obs;
     saveButtonFocusNode = FocusNode();
 
@@ -47,6 +49,7 @@ class FingerPrintSettingTabletPhoneController extends GetxController {
     alwaysRequestFingerPrintChecked.value = await sharedPreferences.getBool("always_request_finger_print") ?? false;
     fingerPrintPaymentChecked.value = await sharedPreferences.getBool("finger_print_available_payment") ?? false;
     fingerPrintRegistrationCancellationChecked.value = await sharedPreferences.getBool("finger_print_for_registration_cancellation") ?? false;
+    fingerPrintChangePasswordChecked.value = await sharedPreferences.getBool("finger_print_change_password") ?? false;
 
     enableAlwaysRequestFingerPrint.value = !fingerPrintLoginChecked.value;
   }
@@ -74,6 +77,10 @@ class FingerPrintSettingTabletPhoneController extends GetxController {
     fingerPrintRegistrationCancellationChecked.value = !fingerPrintRegistrationCancellationChecked.value;
   }
 
+  fingerPrintChangePasswordPressed(){
+    fingerPrintChangePasswordChecked.value = !fingerPrintChangePasswordChecked.value;
+  }
+
   _checkFingerPrint() async {
     if(await fingerPrintAuth.canCheckBiometrics){
       var authenticate = await fingerPrintAuth.authenticate(
@@ -97,6 +104,7 @@ class FingerPrintSettingTabletPhoneController extends GetxController {
         await sharedPreferences.setBool("always_request_finger_print", alwaysRequestFingerPrintChecked.value);
         await sharedPreferences.setBool("finger_print_available_payment", fingerPrintPaymentChecked.value);
         await sharedPreferences.setBool("finger_print_for_registration_cancellation", fingerPrintRegistrationCancellationChecked.value);
+        await sharedPreferences.setBool("finger_print_change_password", fingerPrintChangePasswordChecked.value);
 
         await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
         Get.back();

@@ -140,6 +140,22 @@ class _FingerPrintSettingTabletPhonePageState extends State<FingerPrintSettingTa
                                       ),
                                     ),
                                   ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 1.h),
+                                    child: Card(
+                                      elevation: 3,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(1.h),
+                                      ),
+                                      child: Obx(
+                                        () => SwitchWidget(
+                                          text: "Habilitar a digital para redefinir a senha?",
+                                          checked: controller.fingerPrintChangePasswordChecked.value,
+                                          onClicked: () => controller.fingerPrintChangePasswordPressed(),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

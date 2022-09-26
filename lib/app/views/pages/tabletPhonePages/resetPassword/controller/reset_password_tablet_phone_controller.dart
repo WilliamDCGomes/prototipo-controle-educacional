@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:projeto_tcc/app/utils/logged_user.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/login/page/login_page_tablet_phone_page.dart';
 import 'package:projeto_tcc/base/services/user_service.dart';
@@ -24,6 +25,7 @@ class ResetPasswordTabletPhoneController extends GetxController {
   late FocusNode confirmNewPasswordFocusNode;
   late FocusNode resetPasswordButtonFocusNode;
   late final GlobalKey<FormState> formKey;
+  late final LocalAuthentication fingerPrintAuth;
   late SharedPreferences sharedPreferences;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late IUserService _userService;
@@ -53,6 +55,7 @@ class ResetPasswordTabletPhoneController extends GetxController {
     confirmNewPasswordFocusNode = FocusNode();
     resetPasswordButtonFocusNode = FocusNode();
     formKey = GlobalKey<FormState>();
+    fingerPrintAuth = LocalAuthentication();
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimation: loadingAnimation,
     );
@@ -73,39 +76,67 @@ class ResetPasswordTabletPhoneController extends GetxController {
     }
   }
 
+  _checkFingerPrint() async {
+    if(await fingerPrintAuth.canCheckBiometrics && (await sharedPreferences.getBool("finger_print_change_password") ?? false)){
+      var authenticate = await fingerPrintAuth.authenticate(
+        localizedReason: "Utilize a sua digital para redefinir a sua senha.",
+      );
+
+      if (authenticate) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  }
+
   resetPasswordButtonPressed() async {
     try{
       if(formKey.currentState!.validate()){
         resetPasswordButtonFocusNode.requestFocus();
-        loadingAnimation.value = true;
 
-        await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
-        await Future.delayed(Duration(milliseconds: 500));
+        if(await _checkFingerPrint()){
+          loadingAnimation.value = true;
 
-        if(await InternetConnection.checkConnection()){
-          var valid = await _validPasswordReset();
+          await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+          await Future.delayed(Duration(milliseconds: 500));
+          if(await InternetConnection.checkConnection()){
+            var valid = await _validPasswordReset();
 
-          if(valid ?? false){
-            if(await _userService.updatePassword(newPasswordInput.text)){
-              await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
-              await showDialog(
+            if(valid ?? false){
+              if(await _userService.updatePassword(newPasswordInput.text)){
+                await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
+                await showDialog(
+                  context: Get.context!,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return InformationTabletPhonePopup(
+                      warningMessage: "Senha alterada com sucesso!\nNecessário refazer o login.",
+                    );
+                  },
+                );
+
+                await sharedPreferences.setBool("keep-connected", false);
+                await sharedPreferences.remove("user_finger_print");
+                await Get.offAll(() => LoginPageTabletPhone());
+                return;
+              }
+            }
+            else if(valid == null) {
+              throw Exception();
+            }
+            else{
+              await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
+              showDialog(
                 context: Get.context!,
                 barrierDismissible: false,
                 builder: (BuildContext context) {
                   return InformationTabletPhonePopup(
-                    warningMessage: "Senha alterada com sucesso!\nNecessário refazer o login.",
+                    warningMessage: "A senha atual está incorreta!",
                   );
                 },
               );
-
-              await sharedPreferences.setBool("keep-connected", false);
-              await sharedPreferences.remove("user_finger_print");
-              await Get.offAll(() => LoginPageTabletPhone());
-              return;
             }
-          }
-          else if(valid == null) {
-            throw Exception();
           }
           else{
             await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
@@ -114,23 +145,11 @@ class ResetPasswordTabletPhoneController extends GetxController {
               barrierDismissible: false,
               builder: (BuildContext context) {
                 return InformationTabletPhonePopup(
-                  warningMessage: "A senha atual está incorreta!",
+                  warningMessage: "É necessário uma conexão com a internet para redefinir a senha.",
                 );
               },
             );
           }
-        }
-        else{
-          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
-          showDialog(
-            context: Get.context!,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return InformationTabletPhonePopup(
-                warningMessage: "É necessário uma conexão com a internet para redefinir a senha.",
-              );
-            },
-          );
         }
       }
     }
