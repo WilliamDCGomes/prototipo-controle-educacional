@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import '../../../../../../base/services/interfaces/ionline_student_card_service.dart';
+import '../../../../../../base/services/online_student_card_service.dart';
 import '../../../../../enums/enums.dart';
 import '../../../../../utils/paths.dart';
 import 'package:local_auth/local_auth.dart';
@@ -89,6 +91,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late ICourseService courseService;
   late IEducationInstitutionService educationInstitutionService;
   late IItensOrderByUserService itensOrderByUserService;
+  late IOnlineStudentCardService _onlineStudentCardService;
   static const String quick_buttons = "quick_buttons";
   static const String request_buttons = "request_buttons";
   static const String group_menu = "group_menu";
@@ -142,6 +145,7 @@ class MainMenuTabletPhoneController extends GetxController {
     courseService = CourseService();
     educationInstitutionService = EducationInstitutionService();
     itensOrderByUserService = ItensOrderByUserService();
+    _onlineStudentCardService = OnlineStudentCardService();
   }
 
   _initializeLists(){
@@ -1334,9 +1338,9 @@ class MainMenuTabletPhoneController extends GetxController {
           items[quick_buttons].forEach((element) => quickButtonsList.add(element));
           items[request_buttons].forEach((element) => requestButtonList.add(element));
 
-          _loadListMenu(quickButtonsList);
-          _loadListMenu(requestButtonList);
-          _loadListMenu(groupMenuList);
+          await _loadListMenu(quickButtonsList);
+          await _loadListMenu(requestButtonList);
+          await _loadListMenu(groupMenuList);
 
           await _saveListMenu(quick_buttons, quickButtonsList);
           await _saveListMenu(request_buttons, requestButtonList);
@@ -1410,7 +1414,7 @@ class MainMenuTabletPhoneController extends GetxController {
       var orderList = await sharedPreferences.getStringList(key);
       if(orderList != null){
         for(var item in orderList) {
-          _setList(item);
+          await _setList(item);
         }
       }
       else{
@@ -1440,7 +1444,7 @@ class MainMenuTabletPhoneController extends GetxController {
             break;
         }
 
-        list.forEach((element) => _setList(element));
+        list.forEach((element) async => await _setList(element));
 
         await sharedPreferences.setStringList(
           key,
@@ -1487,11 +1491,11 @@ class MainMenuTabletPhoneController extends GetxController {
     }
   }
 
-  _loadListMenu(List<Map<String, dynamic>> items){
+  _loadListMenu(List<Map<String, dynamic>> items) async {
     try{
       for(var item in items){
         if(item["visible"]){
-          _setList(item["id"]);
+          await _setList(item["id"]);
         }
       }
     }
@@ -1500,7 +1504,7 @@ class MainMenuTabletPhoneController extends GetxController {
     }
   }
 
-  _setList(String key){
+  _setList(String key) async {
     switch(key){
       case "quick_actions_id":
         List<Widget> requestList = <Widget>[];
@@ -1564,15 +1568,17 @@ class MainMenuTabletPhoneController extends GetxController {
         );
         break;
       case "online_student_card_id":
-        quickItemsList.add(
-          MenuOptionsTabletPhoneWidget(
-            id_option: "online_student_card_id",
-            text: "Carteirinha Online",
-            imagePath: Paths.Icone_Carterinha_Estudante,
-            textColor: AppColors.blackColor,
-            onTap: () => quickActionsClicked(quickActionsOptions.onlineStudentCard),
-          ),
-        );
+        if(await _onlineStudentCardService.checkOnlineStudentCardExist()){
+          quickItemsList.add(
+            MenuOptionsTabletPhoneWidget(
+              id_option: "online_student_card_id",
+              text: "Carteirinha Online",
+              imagePath: Paths.Icone_Carterinha_Estudante,
+              textColor: AppColors.blackColor,
+              onTap: () => quickActionsClicked(quickActionsOptions.onlineStudentCard),
+            ),
+          );
+        }
         break;
       case "academic_record_id":
         quickItemsList.add(

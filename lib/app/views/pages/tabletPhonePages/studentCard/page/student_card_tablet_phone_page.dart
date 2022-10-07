@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/app/utils/date_format_to_brazil.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../../widgetsShared/text_widget.dart';
 import '../../shared/widgets/copy_bar_code_tablet_phone_widget.dart';
 import '../../shared/widgets/information_container_tablet_phone_widget.dart';
@@ -11,10 +13,25 @@ import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../widgets/student_card_tablet_phone_widget.dart';
 
-class StudentCardTabletPhonePage extends StatelessWidget {
-  final StudentCardTabletPhoneController controller = Get.put(StudentCardTabletPhoneController());
+class StudentCardTabletPhonePage extends StatefulWidget {
+  const StudentCardTabletPhonePage({Key? key}) : super(key: key);
 
-  StudentCardTabletPhonePage({Key? key}) : super(key: key);
+  @override
+  State<StudentCardTabletPhonePage> createState() => _StudentCardTabletPhonePageState();
+}
+
+class _StudentCardTabletPhonePageState extends State<StudentCardTabletPhonePage> {
+  late final StudentCardTabletPhoneController controller;
+
+  @override
+  void initState() {
+    controller = Get.put(StudentCardTabletPhoneController());
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await controller.getOnlineStudentCard();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +80,14 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 2.h,),
                           child: ListView(
                             children: [
-                              StudentCardTabletPhoneWidget(
-                                imageBasePath: controller.imageBasePath,
-                                cardNumber: controller.cardNumber,
-                                raNumber: controller.raNumber,
-                                nameStudent: controller.studentName,
-                                validateCard: controller.validateCard,
+                              Obx(
+                                () => StudentCardTabletPhoneWidget(
+                                  imageBasePath: controller.imageBasePath,
+                                  cardNumber: controller.onlineStudentCard[0].onlineCardNumber,
+                                  raNumber: LoggedUser.ra.toString(),
+                                  nameStudent: LoggedUser.name,
+                                  validateCard: DateFormatToBrazil.mounthAndYearReduced(controller.onlineStudentCard[0].expirationDate),
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 2.h),
@@ -82,7 +101,7 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(top: 1.h),
                                 child: TextWidget(
-                                  controller.studentName,
+                                  LoggedUser.name,
                                   textColor: AppColors.blackColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18.sp,
@@ -101,7 +120,7 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(top: 1.h),
                                 child: TextWidget(
-                                  controller.raNumber,
+                                  LoggedUser.ra.toString(),
                                   textColor: AppColors.blackColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18.sp,
@@ -119,26 +138,28 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                               ),
                               Align(
                                 alignment: Alignment.centerLeft,
-                                child: CopyBarCodeTabletPhoneWidget(
-                                  successText: "Número da Carteirinha copiado com sucesso!",
-                                  valueCopy: controller.cardNumber,
-                                  widgetCustom: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SvgPicture.asset(
-                                        Paths.Icone_Copiar,
-                                        width: 2.h,
-                                      ),
-                                      TextWidget(
-                                        " ${controller.cardNumber}",
-                                        maxLines: 1,
-                                        textColor: AppColors.blueLinkColor,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.bold,
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ],
+                                child: Obx(
+                                      () => CopyBarCodeTabletPhoneWidget(
+                                    successText: "Número da Carteirinha copiado com sucesso!",
+                                    valueCopy: controller.onlineStudentCard[0].onlineCardNumber,
+                                    widgetCustom: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        SvgPicture.asset(
+                                          Paths.Icone_Copiar,
+                                          width: 2.h,
+                                        ),
+                                        TextWidget(
+                                          " ${controller.onlineStudentCard[0].onlineCardNumber}",
+                                          maxLines: 1,
+                                          textColor: AppColors.blueLinkColor,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold,
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -153,12 +174,14 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 1.h),
-                                child: TextWidget(
-                                  controller.validateCard,
-                                  textColor: AppColors.blackColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.sp,
-                                  textAlign: TextAlign.start,
+                                child: Obx(
+                                      () => TextWidget(
+                                    DateFormatToBrazil.mounthAndYearReduced(controller.onlineStudentCard[0].expirationDate),
+                                    textColor: AppColors.blackColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.sp,
+                                    textAlign: TextAlign.start,
+                                  ),
                                 ),
                               ),
                             ],
@@ -168,6 +191,7 @@ class StudentCardTabletPhonePage extends StatelessWidget {
                     ],
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

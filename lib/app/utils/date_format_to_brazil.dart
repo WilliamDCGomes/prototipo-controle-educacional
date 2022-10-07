@@ -26,6 +26,15 @@ class DateFormatToBrazil {
     return "";
   }
 
+  static String mounthAndYearReduced(DateTime? date) {
+    if(date != null) {
+      initializeDateFormatting('pt_BR', null);
+      Intl.defaultLocale = 'pt_BR';
+      return DateFormat('MM-yyyy').format(date).replaceAll('-', '/').toUpperCase();
+    }
+    return "";
+  }
+
   static String mounthAndYear(DateTime? date) {
     if(date != null) {
       initializeDateFormatting('pt_BR', null);
