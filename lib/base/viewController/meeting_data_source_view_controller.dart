@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'meeting_view_controller.dart';
+import '../models/academic_calendar.dart';
 
 class MeetingDataSourceViewController extends CalendarDataSource {
-  MeetingDataSourceViewController(List<MeetingViewController> source){
+  MeetingDataSourceViewController(List<AcademicCalendar> source){
     appointments = source;
   }
 
   @override
   DateTime getStartTime(int index) {
-    return appointments![index].from;
+    return appointments![index].hourStart;
   }
 
   @override
   DateTime getEndTime(int index) {
-    return appointments![index].to;
+    return appointments![index].hourEnd;
   }
 
   @override

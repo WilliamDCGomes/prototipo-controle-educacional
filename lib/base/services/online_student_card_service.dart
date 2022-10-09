@@ -6,7 +6,8 @@ import 'interfaces/ionline_student_card_service.dart';
 class OnlineStudentCardService implements IOnlineStudentCardService {
   Future<OnlineStudentCard?> getOnlineStudentCard() async {
     try {
-      var onlineStudentCard = await FirebaseFirestore.instance.collection("online_student_card")
+      var onlineStudentCard = await FirebaseFirestore.instance
+          .collection("online_student_card")
           .where("userId", isEqualTo: LoggedUser.id)
           .get()
           .timeout(Duration(minutes: 2));
@@ -22,7 +23,8 @@ class OnlineStudentCardService implements IOnlineStudentCardService {
 
   Future<bool> checkOnlineStudentCardExist() async {
     try {
-      var verification = await FirebaseFirestore.instance.collection("online_student_card")
+      var verification = await FirebaseFirestore.instance
+          .collection("online_student_card")
           .where("userId", isEqualTo: LoggedUser.id)
           .get()
           .timeout(Duration(minutes: 2));

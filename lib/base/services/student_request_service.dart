@@ -5,9 +5,12 @@ import '../models/student_request.dart';
 class StudentRequestService implements IStudentRequestService {
   Future<bool> sendNewRequest(StudentRequest newRequest) async {
     try {
-      await FirebaseFirestore.instance.collection("student_request")
+      await FirebaseFirestore.instance
+          .collection("student_request")
           .doc(newRequest.id)
-          .set(newRequest.toJson()).timeout(Duration(minutes: 2));
+          .set(newRequest.toJson())
+          .timeout(Duration(minutes: 2));
+
       return true;
     } catch (_) {
       return false;

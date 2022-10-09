@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:projeto_tcc/base/models/academic_calendar.dart';
 import 'package:projeto_tcc/base/viewController/meeting_data_source_view_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../../../base/viewController/meeting_view_controller.dart';
 import '../../stylePages/app_colors.dart';
 import '../tabletPhonePages/shared/widgets/card_calendar_information_tablet_phone_widget.dart';
 
 class CalendarWidget extends StatefulWidget {
-  final List<MeetingViewController> dataSource;
+  final List<AcademicCalendar> dataSource;
 
   const CalendarWidget({
     Key? key,
@@ -84,7 +84,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         ),
         appointmentBuilder: (context, calendarAppointmentDetails){
           return CardCalendarInformationTabletPhoneWidget(
-            meetingViewController: calendarAppointmentDetails.appointments.first,
+            events: calendarAppointmentDetails.appointments.first,
           );
         },
       ),

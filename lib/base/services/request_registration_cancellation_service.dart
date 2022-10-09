@@ -8,7 +8,8 @@ class RequestRegistrationCancellationService implements IRequestRegistrationCanc
       await FirebaseFirestore.instance
           .collection("request_registration_cancellation")
           .doc(cancellation.cpf)
-          .set(cancellation.toJson()).timeout(Duration(minutes: 2));
+          .set(cancellation.toJson())
+          .timeout(Duration(minutes: 2));
       return true;
     } catch (_) {
       return false;
@@ -21,7 +22,9 @@ class RequestRegistrationCancellationService implements IRequestRegistrationCanc
           .collection("request_registration_cancellation")
           .where("cpf", isEqualTo: cpf)
           .where("active", isEqualTo: true)
-          .get().timeout(Duration(minutes: 2));
+          .get()
+          .timeout(Duration(minutes: 2));
+
       if(requestCancellation.size > 0) {
         return RegistrationCancellation.fromJsonFirebase(requestCancellation.docs.first.data());
       }
@@ -39,6 +42,7 @@ class RequestRegistrationCancellationService implements IRequestRegistrationCanc
           .where("active", isEqualTo: true)
           .get()
           .timeout(Duration(minutes: 2));
+
       return verification.size > 0;
     } catch (_) {
       return false;
@@ -47,9 +51,11 @@ class RequestRegistrationCancellationService implements IRequestRegistrationCanc
 
   Future<bool> deleteRegistrationCancellation(RegistrationCancellation cancellation) async {
     try {
-      await FirebaseFirestore.instance.collection("request_registration_cancellation")
+      await FirebaseFirestore.instance
+          .collection("request_registration_cancellation")
           .doc(cancellation.cpf)
-          .update(cancellation.toJson()).timeout(Duration(minutes: 2));
+          .update(cancellation.toJson())
+          .timeout(Duration(minutes: 2));
 
       return true;
     } catch (_) {

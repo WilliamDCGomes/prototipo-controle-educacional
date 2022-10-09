@@ -5,9 +5,12 @@ import 'interfaces/istudent_service.dart';
 class StudentService implements IStudentService {
   Future<bool> sendNewStudent(Student newStudent) async {
     try {
-      await FirebaseFirestore.instance.collection("student")
+      await FirebaseFirestore.instance
+          .collection("student")
           .doc(newStudent.cpf)
-          .set(newStudent.toJson()).timeout(Duration(minutes: 2));
+          .set(newStudent.toJson())
+          .timeout(Duration(minutes: 2));
+
       return true;
     } catch (_) {
       return false;
@@ -16,8 +19,12 @@ class StudentService implements IStudentService {
 
   Future<Student?> getStudent(int ra) async {
     try {
-      var lastRaRegistered = await FirebaseFirestore.instance.collection("student")
-          .where("ra", isEqualTo: ra).get().timeout(Duration(minutes: 2));
+      var lastRaRegistered = await FirebaseFirestore.instance
+          .collection("student")
+          .where("ra", isEqualTo: ra)
+          .get()
+          .timeout(Duration(minutes: 2));
+
       if(lastRaRegistered.size > 0) {
         return Student.fromJsonFirebase(lastRaRegistered.docs.first.data());
       }
@@ -29,8 +36,12 @@ class StudentService implements IStudentService {
 
   Future<bool> verificationStudentExists(String cpf) async {
     try {
-      var verification = await FirebaseFirestore.instance.collection("student")
-          .doc(cpf).get().timeout(Duration(minutes: 2));
+      var verification = await FirebaseFirestore.instance
+          .collection("student")
+          .doc(cpf)
+          .get()
+          .timeout(Duration(minutes: 2));
+
       return verification.exists;
     } catch (_) {
       return false;
@@ -39,8 +50,12 @@ class StudentService implements IStudentService {
 
   Future<bool> verificationEmailExists(String email) async {
     try {
-      var verification = await FirebaseFirestore.instance.collection("student")
-          .where("email", isEqualTo: email).get().timeout(Duration(minutes: 2));
+      var verification = await FirebaseFirestore.instance
+          .collection("student")
+          .where("email", isEqualTo: email)
+          .get()
+          .timeout(Duration(minutes: 2));
+
       return verification.size > 0;
     } catch (_) {
       return false;

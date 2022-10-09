@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewController/meeting_view_controller.dart';
+import '../../../../../../base/models/academic_calendar.dart';
 import '../../../../../utils/date_format_to_brazil.dart';
 import '../../../../../utils/format_hours.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -12,7 +12,7 @@ import '../../../widgetsShared/text_widget.dart';
 class AcademicCalendarTabletPhonePopup {
   static List<Widget> getWidgetList(
       context,
-      final MeetingViewController meetingViewController,
+      final AcademicCalendar event,
       ){
     return [
       Center(
@@ -33,7 +33,7 @@ class AcademicCalendarTabletPhonePopup {
           padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
           child: Center(
             child: TextWidget(
-              meetingViewController.eventName,
+              event.eventName,
               textColor: AppColors.whiteColor,
               fontSize: 16.sp,
               textAlign: TextAlign.center,
@@ -50,7 +50,7 @@ class AcademicCalendarTabletPhonePopup {
           firstTextColor: AppColors.blackColor,
           firstTextFontWeight: FontWeight.normal,
           firstTextSize: 16.sp,
-          secondText: meetingViewController.eventDescription,
+          secondText: event.eventDescription,
           secondTextColor: AppColors.blackColor,
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
@@ -64,7 +64,7 @@ class AcademicCalendarTabletPhonePopup {
           firstTextColor: AppColors.blackColor,
           firstTextFontWeight: FontWeight.normal,
           firstTextSize: 16.sp,
-          secondText: meetingViewController.eventPlace,
+          secondText: event.eventPlace,
           secondTextColor: AppColors.blackColor,
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
@@ -87,7 +87,7 @@ class AcademicCalendarTabletPhonePopup {
         padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
         child: Center(
           child: TextWidget(
-            DateFormatToBrazil.formatDateFull(meetingViewController.eventDay),
+            DateFormatToBrazil.formatDateFull(event.eventDay),
             textColor: AppColors.orangeColor,
             fontSize: 16.sp,
             fontWeight: FontWeight.bold,
@@ -121,7 +121,7 @@ class AcademicCalendarTabletPhonePopup {
                   child: Center(
                     child: TextWidget(
                       FormatHours.formatHour(
-                        "${meetingViewController.from.hour}:${meetingViewController.from.minute}",
+                        "${event.hourStart.hour}:${event.hourStart.minute}",
                       ),
                       textColor: AppColors.purpleDefaultColor,
                       fontWeight: FontWeight.bold,
@@ -153,7 +153,7 @@ class AcademicCalendarTabletPhonePopup {
                   child: Center(
                     child: TextWidget(
                       FormatHours.formatHour(
-                        "${meetingViewController.to.hour}:${meetingViewController.to.minute}",
+                        "${event.hourEnd.hour}:${event.hourEnd.minute}",
                       ),
                       textColor: AppColors.purpleDefaultColor,
                       fontWeight: FontWeight.bold,

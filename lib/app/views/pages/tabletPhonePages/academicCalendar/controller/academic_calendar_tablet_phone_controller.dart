@@ -1,68 +1,64 @@
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:projeto_tcc/base/models/academic_calendar.dart';
+import 'package:projeto_tcc/base/services/academic_calendar_service.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../../../../../base/viewController/meeting_view_controller.dart';
+import '../../../../../../base/services/interfaces/iacademic_calendar_service.dart';
 import '../../shared/popups/bottom_sheet_tablet_phone_popup.dart';
+import '../../shared/popups/information_tablet_phone_popup.dart';
+import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 import '../popup/academic_calendar_tablet_phone_popup.dart';
 
 class AcademicCalendarTabletPhoneController extends GetxController {
+  late List<AcademicCalendar> events;
+  late RxBool loadingAnimation;
+  late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late CalendarController calendarController;
+  late IAcademicCalendarService _academicCalendarService;
 
   AcademicCalendarTabletPhoneController(){
     _inicializeVariables();
   }
 
   _inicializeVariables(){
+    events = <AcademicCalendar>[].obs;
+    loadingAnimation = false.obs;
+    loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
+      loadingAnimation: loadingAnimation,
+    );
     calendarController = CalendarController();
+    _academicCalendarService = AcademicCalendarService();
   }
 
-  List<MeetingViewController> getDataSource() {
-    final List<MeetingViewController> meetings = [
-      MeetingViewController(
-        "Prova de Cálculo",
-        "Agendamento para a prova de Cálculo remarcada",
-        "Faculdades Integradas de Bauru",
-        DateTime.now(),
-        DateTime.now().add(Duration(days: 1)).add(Duration(hours: 2)),
-        DateTime.now(),
-        false,
-      ),
-      MeetingViewController(
-        "Maratona de Programação",
-        "Evento para incentivar a programação competitiva entre os alunos",
-        "Uiversidade Paulista",
-        DateTime.now(),
-        DateTime.now().add(Duration(hours: 6)),
-        DateTime.now(),
-        false,
-      ),
-      MeetingViewController(
-        "Visita no Google",
-        "Visita técnica ao escritório do Google com os alunos de Ciência da Computação",
-        "São Paulo",
-        DateTime.now().add(Duration(days: 7)),
-        DateTime.now().add(Duration(days: 8)).add(Duration(hours: 2)),
-        DateTime.now(),
-        false,
-      ),
-      MeetingViewController(
-        "Palesta Industria 4.0",
-        "Palesta sobre a Industria 4.0, com ex-aluno da universidade",
-        "Faculdades Integradas de Bauru",
-        DateTime.now().add(Duration(days: -2)),
-        DateTime.now().add(Duration(hours: 1)),
-        DateTime.now(),
-        false,
-      ),
-    ];
-    return meetings;
+  getDataSource() async {
+    try{
+      loadingAnimation.value = true;
+      await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+      await Future.delayed(Duration(milliseconds: 200));
+      events = await _academicCalendarService.getEvents();
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+    }
+    catch(e){
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Não foi possível carregar o Calendário Acadêmico.\n" + e.toString(),
+          );
+        },
+      );
+      Get.back();
+    }
   }
 
-  openAcademicCalendarPopup(MeetingViewController _meetingViewController){
+  openAcademicCalendarPopup(AcademicCalendar _event){
     BottomSheetTabletPhonePopup.showAlert(
       Get.context!,
       AcademicCalendarTabletPhonePopup.getWidgetList(
         Get.context!,
-        _meetingViewController,
+        _event,
       ),
     );
   }

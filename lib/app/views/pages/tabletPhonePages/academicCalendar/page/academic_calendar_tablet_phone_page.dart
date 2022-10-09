@@ -25,6 +25,12 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
   void initState() {
     controller = Get.put(AcademicCalendarTabletPhoneController(), tag: "academic-calendar-tablet-phone-controller");
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await controller.getDataSource();
+      setState(() {
+        controller.events;
+      });
+    });
   }
 
   @override
@@ -96,7 +102,7 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 2.h),
                           child: CalendarWidget(
-                            dataSource: controller.getDataSource(),
+                            dataSource: controller.events,
                           ),
                         ),
                       ),
@@ -117,6 +123,7 @@ class _AcademicCalendarTabletPhonePageState extends State<AcademicCalendarTablet
                     ],
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),
