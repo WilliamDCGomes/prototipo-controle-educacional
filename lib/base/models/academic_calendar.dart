@@ -9,6 +9,7 @@ class AcademicCalendar extends CoreEntity{
   late String eventDescription;
   late String eventPlace;
   late bool isAllDay;
+  late bool newsOrEvents;
   late DateTime hourStart;
   late DateTime hourEnd;
   late DateTime eventDay;
@@ -31,6 +32,7 @@ class AcademicCalendar extends CoreEntity{
     eventDescription = json["eventDescription"];
     eventPlace = json["eventPlace"];
     isAllDay = json["isAllDay"];
+    newsOrEvents = json["newsOrEvents"];
     hourStart = json["hourStart"];
     hourEnd = json["hourEnd"];
     eventDay = json["eventDay"];
@@ -46,6 +48,7 @@ class AcademicCalendar extends CoreEntity{
     eventDescription = json["eventDescription"];
     eventPlace = json["eventPlace"];
     isAllDay = json["isAllDay"];
+    newsOrEvents = json["newsOrEvents"];
     hourStart = (json["hourStart"] as Timestamp).toDate();
     hourEnd = (json["hourEnd"] as Timestamp).toDate();
     eventDay = (json["eventDay"] as Timestamp).toDate();
@@ -62,6 +65,7 @@ class AcademicCalendar extends CoreEntity{
     data["eventDescription"] = this.eventDescription;
     data["eventPlace"] = this.eventPlace;
     data["isAllDay"] = this.isAllDay;
+    data["newsOrEvents"] = this.newsOrEvents;
     data["hourStart"] = this.hourStart;
     data["hourEnd"] = this.hourEnd;
     data["eventDay"] = this.eventDay;

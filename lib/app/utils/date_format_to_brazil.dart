@@ -8,6 +8,12 @@ class DateFormatToBrazil {
     return "";
   }
 
+  static String formatDateAndHour(DateTime? date) {
+    if(date != null)
+      return "${DateFormat('dd-MM-yyyy').format(date).replaceAll('-', '/')} às ${DateFormat('HH:mm').format(date)}";
+    return "";
+  }
+
   static String formatDateFull(DateTime? date) {
     if(date != null) {
       initializeDateFormatting('pt_BR', null);

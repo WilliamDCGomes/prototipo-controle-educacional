@@ -25,7 +25,15 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
   @override
   void initState() {
     controller = Get.put(NewsAndEventsTabletPhoneController());
+
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await controller.getDataSource();
+      setState(() {
+        controller.newsAndEventsOnScreen;
+      });
+    });
   }
 
   @override
@@ -87,6 +95,12 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                   size: 3.h,
                                 ),
                                 keyboardType: TextInputType.name,
+                                onChanged: (value) {
+                                  controller.searchNewsAndEvents(value);
+                                  setState(() {
+                                    controller.newsAndEventsOnScreen;
+                                  });
+                                },
                               ),
                             ),
                             Expanded(
@@ -101,10 +115,10 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                                   child: ListView.builder(
                                     shrinkWrap: true,
                                     padding: EdgeInsets.zero,
-                                    itemCount: controller.newsAndEventsList.length,
+                                    itemCount: controller.newsAndEventsOnScreen.length,
                                     itemBuilder: (context, index){
                                       return NewsAndEventsCardTabletPhoneWidget(
-                                        newsAndEventsViewController: controller.newsAndEventsList[index],
+                                        newsAndEvents: controller.newsAndEventsOnScreen[index],
                                       );
                                     },
                                   ),
@@ -117,6 +131,7 @@ class _NewsAndEventsTabletPhonePageState extends State<NewsAndEventsTabletPhoneP
                     ],
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

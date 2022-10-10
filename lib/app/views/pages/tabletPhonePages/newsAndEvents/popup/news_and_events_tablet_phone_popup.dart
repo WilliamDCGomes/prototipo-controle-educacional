@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/base/models/academic_calendar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewController/news_and_events_view_controller.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
+import '../../../../../utils/format_hours.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
@@ -10,7 +12,7 @@ import '../../../widgetsShared/text_widget.dart';
 class NewsAndEventsTabletPhonePopup {
   static List<Widget> getWidgetList(
       context,
-      final NewsAndEventsViewController newsAndEventsViewController,
+      final AcademicCalendar newsAndEvents,
       ){
     return [
       Center(
@@ -31,7 +33,7 @@ class NewsAndEventsTabletPhonePopup {
           padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
           child: Center(
             child: TextWidget(
-              newsAndEventsViewController.newEventName,
+              newsAndEvents.eventName,
               textColor: AppColors.whiteColor,
               fontSize: 16.sp,
               textAlign: TextAlign.center,
@@ -48,7 +50,7 @@ class NewsAndEventsTabletPhonePopup {
           firstTextColor: AppColors.blackColor,
           firstTextFontWeight: FontWeight.normal,
           firstTextSize: 16.sp,
-          secondText: newsAndEventsViewController.newEventDescription,
+          secondText: newsAndEvents.eventDescription,
           secondTextColor: AppColors.blackColor,
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
@@ -62,7 +64,7 @@ class NewsAndEventsTabletPhonePopup {
           firstTextColor: AppColors.blackColor,
           firstTextFontWeight: FontWeight.normal,
           firstTextSize: 16.sp,
-          secondText: newsAndEventsViewController.newEventPlace,
+          secondText: newsAndEvents.eventPlace,
           secondTextColor: AppColors.blackColor,
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
@@ -85,7 +87,7 @@ class NewsAndEventsTabletPhonePopup {
         padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
         child: Center(
           child: TextWidget(
-            newsAndEventsViewController.newEventDate,
+            DateFormatToBrazil.formatDate(newsAndEvents.eventDay),
             textColor: AppColors.orangeColor,
             fontSize: 16.sp,
             fontWeight: FontWeight.bold,
@@ -118,7 +120,9 @@ class NewsAndEventsTabletPhonePopup {
                   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
                   child: Center(
                     child: TextWidget(
-                      newsAndEventsViewController.newEventHourStart,
+                      FormatHours.formatHourFromDateTime(
+                        newsAndEvents.hourStart,
+                      ),
                       textColor: AppColors.purpleDefaultColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16.sp,
@@ -148,7 +152,9 @@ class NewsAndEventsTabletPhonePopup {
                   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
                   child: Center(
                     child: TextWidget(
-                      newsAndEventsViewController.newEventHourEnd,
+                      FormatHours.formatHourFromDateTime(
+                        newsAndEvents.hourEnd,
+                      ),
                       textColor: AppColors.purpleDefaultColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16.sp,

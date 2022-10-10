@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projeto_tcc/app/utils/paths.dart';
+import 'package:projeto_tcc/base/models/academic_calendar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../../base/viewController/news_and_events_view_controller.dart';
+import '../../../../../utils/date_format_to_brazil.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
@@ -10,11 +11,11 @@ import '../../shared/popups/bottom_sheet_tablet_phone_popup.dart';
 import '../popup/news_and_events_tablet_phone_popup.dart';
 
 class NewsAndEventsCardTabletPhoneWidget extends StatelessWidget {
-  final NewsAndEventsViewController newsAndEventsViewController;
+  final AcademicCalendar newsAndEvents;
 
   const NewsAndEventsCardTabletPhoneWidget(
       { Key? key,
-        required this.newsAndEventsViewController,
+        required this.newsAndEvents,
       }) : super(key: key);
 
   @override
@@ -35,7 +36,7 @@ class NewsAndEventsCardTabletPhoneWidget extends StatelessWidget {
               context,
               NewsAndEventsTabletPhonePopup.getWidgetList(
                 context,
-                newsAndEventsViewController,
+                newsAndEvents,
               ),
             );
           },
@@ -58,7 +59,7 @@ class NewsAndEventsCardTabletPhoneWidget extends StatelessWidget {
                             height: .2.h,
                           ),
                           TextWidget(
-                            newsAndEventsViewController.newEventName,
+                            newsAndEvents.eventName,
                             textColor: AppColors.purpleDefaultColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 19.sp,
@@ -68,7 +69,7 @@ class NewsAndEventsCardTabletPhoneWidget extends StatelessWidget {
                           Expanded(
                             child: Center(
                               child: TextWidget(
-                                newsAndEventsViewController.newEventDescription,
+                                newsAndEvents.eventDescription,
                                 maxLines: 2,
                                 fontSize: 17.sp,
                                 textColor: AppColors.blackColor,
@@ -87,7 +88,7 @@ class NewsAndEventsCardTabletPhoneWidget extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 2.w),
                                   child: TextWidget(
-                                    "${newsAndEventsViewController.newEventDate} às ${newsAndEventsViewController.newEventHourStart}",
+                                    DateFormatToBrazil.formatDateAndHour(newsAndEvents.hourStart),
                                     maxLines: 1,
                                     textColor: AppColors.blackColor,
                                     fontSize: 17.sp,

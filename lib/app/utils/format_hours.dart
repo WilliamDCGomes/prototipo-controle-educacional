@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class FormatHours {
   static String formatHour(String? hour) {
     if(hour != null && hour.length < 5){
@@ -11,5 +13,11 @@ class FormatHours {
       return "${hourValue[0]}:${hourValue[1]}";
     }
     return hour ?? "";
+  }
+
+  static String formatHourFromDateTime(DateTime? hour) {
+    if(hour != null)
+      return "${DateFormat('HH:mm').format(hour)}";
+    return "";
   }
 }

@@ -45,7 +45,7 @@ class AcademicCalendarTabletPhoneController extends GetxController {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return InformationTabletPhonePopup(
-            warningMessage: "Não foi possível carregar o Calendário Acadêmico.\n" + e.toString(),
+            warningMessage: "Não foi possível carregar o Calendário Acadêmico.",
           );
         },
       );
