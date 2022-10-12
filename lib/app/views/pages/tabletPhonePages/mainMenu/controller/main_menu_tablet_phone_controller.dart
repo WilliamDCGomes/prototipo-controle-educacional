@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../base/services/interfaces/ionline_student_card_service.dart';
 import '../../../../../../base/services/online_student_card_service.dart';
 import '../../../../../enums/enums.dart';
+import '../../../../../utils/get_profile_picture_controller.dart';
 import '../../../../../utils/paths.dart';
 import 'package:local_auth/local_auth.dart';
 import '../../../../../utils/logged_user.dart';
@@ -56,12 +57,14 @@ class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
   late bool firstRegister;
   late RxInt creditDebtCardActiveStep;
-  late RxString nameInitials;
-  late RxString nameProfile;
   late RxBool hasPicture;
   late RxBool deliveryTabSelected;
+  late RxBool loadingPicture;
+  late RxString nameInitials;
+  late RxString nameProfile;
   late RxString courseName;
   late RxString welcomePhrase;
+  late RxString profileImagePath;
   late PaymentFinishedViewController nextBillToPay;
   late List<CardProfileTabListTabletPhoneWidget> cardProfileTabList;
   late List<CardPaymentViewController> cardPaymentList;
@@ -106,11 +109,17 @@ class MainMenuTabletPhoneController extends GetxController {
   void onInit() async {
     sharedPreferences = await SharedPreferences.getInstance();
     await _getUserLogged();
+    _getValues();
+    await GetProfilePictureController.loadProfilePicture(
+      loadingPicture,
+      hasPicture,
+      profileImagePath,
+      userService,
+    );
     await _getCourseName();
     await _getEducationInstitutionName();
     _loadCards();
     await _getListOrderByUser();
-    _getValues();
     await _checkFingerPrintUser();
     super.onInit();
   }
@@ -119,7 +128,9 @@ class MainMenuTabletPhoneController extends GetxController {
     firstRegister = true;
     nameProfile = "".obs;
     nameInitials = "".obs;
+    profileImagePath = "".obs;
     hasPicture = false.obs;
+    loadingPicture = true.obs;
     deliveryTabSelected = false.obs;
     activeStep = 0;
     creditDebtCardActiveStep = 0.obs;
@@ -1652,7 +1663,6 @@ class MainMenuTabletPhoneController extends GetxController {
       LoggedUser.nameInitials = nameInitials.value;
     }
 
-    hasPicture.value = false;
     courseName = LoggedUser.courseName.obs;
   }
 
@@ -1780,8 +1790,8 @@ class MainMenuTabletPhoneController extends GetxController {
           return ConfirmationTabletPhonePopup(
             title: "Aviso",
             subTitle: "Deseja habilitar o login por digital?",
-            buttonYes: () => sharedPreferences.setBool("user_finger_print", true),
-            buttonNo: () => sharedPreferences.setBool("user_finger_print", false),
+            firstButton: () => sharedPreferences.setBool("user_finger_print", false),
+            secondButton: () => sharedPreferences.setBool("user_finger_print", true),
           );
         },
       );
@@ -1789,7 +1799,17 @@ class MainMenuTabletPhoneController extends GetxController {
   }
 
   openProfile() async {
-    Get.to(() => UserProfileTablePhonePage());
+    Get.to(() => UserProfileTablePhonePage(mainMenuController: this,));
+  }
+
+  refreshProfilePicture() async {
+    await Future.delayed(Duration(seconds: 2));
+    await GetProfilePictureController.loadProfilePicture(
+      loadingPicture,
+      hasPicture,
+      profileImagePath,
+      userService,
+    );
   }
 
   openConfiguration() async {

@@ -9,6 +9,7 @@ class AppColors {
   static final Color standardColor = Color(0XFF62407E);
   static final Color appBarColor = Color(0XFF492260);
   static final Color grayCardBillFilter = Color(0XFFEEEEEE);
+  static final Color grayBackgroundPictureColor = Color(0XFFB2B1B2);
   static final Color bottomBarColor = Color(0XFF664583);
   static final Color blueLinkColor = Color(0XFF5797AF);
   static final Color lightOrangeColor = Color(0XFFFEBB94);

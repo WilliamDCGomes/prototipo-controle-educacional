@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:projeto_tcc/base/models/student.dart';
 import '../models/user.dart';
 import 'interfaces/iuser_service.dart';
@@ -168,6 +172,62 @@ class UserService implements IUserService {
     }
     catch(_){
       return false;
+    }
+  }
+
+  Future<bool> sendUserProfilePicture(XFile image, Function progress) async {
+    try{
+      if(FirebaseAuth.instance.currentUser != null){
+        FirebaseStorage storage = FirebaseStorage.instance;
+        Reference path = storage.ref();
+        Reference file = path
+            .child("profile")
+            .child("${await FirebaseAuth.instance.currentUser!.uid}.jpg");
+
+        UploadTask task = file.putFile(File(image.path));
+
+        task.snapshotEvents.listen((event) async => await progress(event));
+
+        return true;
+      }
+      else{
+        throw Exception();
+      }
+    }
+    catch(_){
+      return false;
+    }
+  }
+
+  Future<String> getUserProfilePicture() async {
+    try{
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference path = storage.ref();
+      Reference file = path
+          .child("profile")
+          .child("${await FirebaseAuth.instance.currentUser!.uid}.jpg");
+
+      return await file.getDownloadURL();
+    }
+    catch(_){
+      return "";
+    }
+  }
+
+  Future _refreshPicture() async {
+    try{
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference path = storage.ref();
+      Reference file = path
+          .child("profile")
+          .child("${await FirebaseAuth.instance.currentUser!.uid}.jpg");
+
+      String pyth = await file.getDownloadURL();
+
+
+    }
+    catch(_){
+
     }
   }
 }

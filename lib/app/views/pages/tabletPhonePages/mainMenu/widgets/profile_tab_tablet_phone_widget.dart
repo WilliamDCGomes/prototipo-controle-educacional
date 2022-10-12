@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../utils/logged_user.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/profile_picture_tablet_phone_widget.dart';
 import '../../userProfile/page/user_profile_tablet_phone_page.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../utils/paths.dart';
@@ -71,32 +72,14 @@ class _ProfileTabTabletPhoneWidgetState extends State<ProfileTabTabletPhoneWidge
                   ),
                 ),
                 TextButtonWidget(
-                  onTap: () => Get.to(() => UserProfileTablePhonePage()),
+                  onTap: () => Get.to(() => UserProfileTablePhonePage(mainMenuController: widget.controller,)),
                   borderRadius: 2.h,
                   widgetCustom: Column(
                     children: [
-                      Container(
-                        height: 14.h,
-                        width: 14.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7.h),
-                          color: AppColors.purpleDefaultColor,
-                        ),
-                        child: Obx(
-                        () => widget.controller.hasPicture.value ?
-                          Image.asset(
-                              ""
-                          ) :
-                          Center(
-                            child: TextWidget(
-                              LoggedUser.nameInitials,
-                              textColor: AppColors.backgroundColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26.sp,
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ),
+                      ProfilePictureTabletPhoneWidget(
+                        hasPicture: widget.controller.hasPicture,
+                        loadingPicture: widget.controller.loadingPicture,
+                        profileImagePath: widget.controller.profileImagePath,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 1.h, bottom: .5.h),

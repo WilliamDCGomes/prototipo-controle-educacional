@@ -18,7 +18,7 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
 
   @override
   void initState() {
-    controller = Get.put(MainMenuTabletPhoneController());
+    controller = Get.put(MainMenuTabletPhoneController(), tag: 'main-menu-tablet-phone-controller');
     controller.tabController = TabController(
       length: 4,
       vsync: this,
@@ -29,7 +29,6 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: () async {
         return AppCloseController.verifyCloseScreen();

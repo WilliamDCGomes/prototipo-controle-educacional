@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import '../../models/user.dart';
 
 abstract class IUserService {
@@ -22,4 +23,8 @@ abstract class IUserService {
   Future<bool> loginUser(String email, String password);
 
   Future<bool> logoutUser();
+
+  Future<bool> sendUserProfilePicture(XFile image, Function progress);
+
+  Future<String> getUserProfilePicture();
 }

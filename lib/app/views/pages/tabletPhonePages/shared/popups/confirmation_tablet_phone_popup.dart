@@ -9,14 +9,19 @@ import '../../../widgetsShared/text_widget.dart';
 class ConfirmationTabletPhonePopup extends StatefulWidget {
   final String title;
   final String? subTitle;
-  final Function buttonYes;
-  final Function buttonNo;
+  final String? firstButtonText;
+  final String? secondButtonText;
+  final Function firstButton;
+  final Function secondButton;
+
   const ConfirmationTabletPhonePopup({
     Key? key,
     required this.title,
     this.subTitle,
-    required this.buttonYes,
-    required this.buttonNo,
+    this.firstButtonText,
+    this.secondButtonText,
+    required this.firstButton,
+    required this.secondButton,
   }) : super(key: key);
 
   @override
@@ -94,7 +99,7 @@ class _ConfirmationTabletPhonePopupState extends State<ConfirmationTabletPhonePo
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ButtonWidget(
-                              hintText: "NÃO",
+                              hintText: widget.firstButtonText ?? "NÃO",
                               heightButton: 5.h,
                               widthButton: 32.w,
                               fontWeight: FontWeight.bold,
@@ -102,17 +107,17 @@ class _ConfirmationTabletPhonePopupState extends State<ConfirmationTabletPhonePo
                               borderColor: AppColors.orangeColor,
                               textColor: AppColors.orangeColor,
                               onPressed: () {
-                                widget.buttonNo();
+                                widget.firstButton();
                                 Get.back();
                               },
                             ),
                             ButtonWidget(
-                              hintText: "SIM",
+                              hintText: widget.secondButtonText ?? "SIM",
                               heightButton: 5.h,
                               widthButton: 32.w,
                               fontWeight: FontWeight.bold,
                               onPressed: () {
-                                widget.buttonYes();
+                                widget.secondButton();
                                 Get.back();
                               },
                             ),

@@ -1,6 +1,9 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/utils/logged_user.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/mainMenu/page/main_menu_tablet_phone_page.dart';
 import 'package:projeto_tcc/base/models/user.dart';
@@ -12,6 +15,7 @@ import '../../../../../../base/services/interfaces/iuser_service.dart';
 import '../../../../../../base/services/request_registration_cancellation_service.dart';
 import '../../../../../../base/services/user_service.dart';
 import '../../../../../utils/brazil_address_informations.dart';
+import '../../../../../utils/get_profile_picture_controller.dart';
 import '../../../../../utils/internet_connection.dart';
 import '../../../../../utils/text_field_validators.dart';
 import '../../../../../utils/valid_cellphone_mask.dart';
@@ -21,14 +25,16 @@ import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.d
 import '../widget/user_profile_tabs_widget.dart';
 
 class UserProfileTabletPhoneController extends GetxController {
-  late String nameInitials;
   late String disciplineName;
+  late RxString nameInitials;
   late RxString userName;
   late RxString ufSelected;
   late RxString periodSelected;
   late RxString buttonText;
   late RxString genderSelected;
+  late RxString profileImagePath;
   late RxBool hasPicture;
+  late RxBool loadingPicture;
   late RxBool currentPasswordFieldEnabled;
   late RxBool newPasswordFieldEnabled;
   late RxBool confirmNewPasswordFieldEnabled;
@@ -82,6 +88,8 @@ class UserProfileTabletPhoneController extends GetxController {
   late List<String> periodList;
   late List<String> genderList;
   late RxList<String> ufsList;
+  late XFile? profilePicture;
+  late final ImagePicker _picker;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late Users user;
   late IConsultCepService consultCepService;
@@ -98,18 +106,26 @@ class UserProfileTabletPhoneController extends GetxController {
   @override
   void onInit() async {
     await _checkCancellationVisibility();
+    await GetProfilePictureController.loadProfilePicture(
+      loadingPicture,
+      hasPicture,
+      profileImagePath,
+      userService,
+    );
     super.onInit();
   }
 
   _initializeVariables(){
-    nameInitials = LoggedUser.nameInitials;
     disciplineName = LoggedUser.courseName;
+    nameInitials = LoggedUser.nameInitials.obs;
     userName = LoggedUser.nameAndLastName.obs;
     ufSelected = "".obs;
     periodSelected = "".obs;
     buttonText = "EDITAR".obs;
     genderSelected = "".obs;
+    profileImagePath = "".obs;
     hasPicture = false.obs;
+    loadingPicture = false.obs;
     profileIsDisabled = true.obs;
     loadingAnimation = false.obs;
     currentPasswordFieldEnabled = true.obs;
@@ -158,6 +174,7 @@ class UserProfileTabletPhoneController extends GetxController {
     emailFocusNode = FocusNode();
     confirmEmailFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
+    _picker = ImagePicker();
     maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimation: loadingAnimation,
@@ -500,6 +517,51 @@ class UserProfileTabletPhoneController extends GetxController {
         },
       );
       return false;
+    }
+  }
+
+  getProfileImage(imageOrigin origin) async {
+    try{
+      profilePicture = await _picker.pickImage(
+        source: origin == imageOrigin.camera ?
+          ImageSource.camera : ImageSource.gallery
+      );
+      if(profilePicture != null){
+        await _saveProfilePicture();
+      }
+    }
+    catch(_){
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Erro ao atualizar a imagem de perfil.",
+          );
+        },
+      );
+    }
+  }
+
+  _saveProfilePicture() async {
+    await userService.sendUserProfilePicture(profilePicture!, _progressImage);
+  }
+
+  _progressImage(TaskSnapshot storageEvent) async {
+    if(storageEvent.state == TaskState.running){
+      loadingPicture.value = true;
+    }
+    else if(storageEvent.state == TaskState.success){
+      await GetProfilePictureController.loadProfilePicture(
+        loadingPicture,
+        hasPicture,
+        profileImagePath,
+        userService,
+      );
+    }
+    else if(storageEvent.state == TaskState.error){
+      loadingPicture.value = false;
+      hasPicture.value = false;
     }
   }
 

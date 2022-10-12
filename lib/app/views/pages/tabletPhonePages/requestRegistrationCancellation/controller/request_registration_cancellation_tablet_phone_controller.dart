@@ -96,12 +96,12 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
         return ConfirmationTabletPhonePopup(
           title: "Aviso",
           subTitle: "Deseja realmente excluir a solicitação de cancelamento?",
-          buttonYes: () async {
+          secondButton: () async {
             if(await _checkFingerPrint("Utilize a sua digital para excluir a solicitação de cancelamento da matrícula.")){
               _deleteRegistrationCancellation();
             }
           },
-          buttonNo: (){},
+          firstButton: (){},
         );
       },
     );
@@ -155,12 +155,12 @@ class RequestRegistrationCancellationTabletPhoneController extends GetxControlle
         return ConfirmationTabletPhonePopup(
           title: "Aviso",
           subTitle: "Deseja realmente solicitar o cancelamento de matrícula?",
-          buttonYes: () async {
+          secondButton: () async {
             if(await _checkFingerPrint("Utilize a sua digital para solicitar o cancelamento da matrícula.")){
               _requestRegistrationCancellation();
             }
           },
-          buttonNo: (){},
+          firstButton: (){},
         );
       },
     );

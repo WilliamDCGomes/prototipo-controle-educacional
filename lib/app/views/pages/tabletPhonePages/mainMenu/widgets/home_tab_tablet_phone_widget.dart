@@ -4,9 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../../../../utils/platform_type.dart';
 import '../../../widgetsShared/text_button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
+import '../../shared/widgets/profile_picture_tablet_phone_widget.dart';
 import '../controller/main_menu_tablet_phone_controller.dart';
 import '../../../../../utils/paths.dart';
 import '../../../../../utils/reorderer_lists.dart';
@@ -31,6 +33,7 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_){
       setState(() {
         widget.controller.activeStep = 0;
+        LoggedUser.nameInitials;
       });
     });
   }
@@ -72,22 +75,12 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                                 width: 6.5.h,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(3.25.h),
-                                  color: AppColors.standardColor,
                                 ),
-                                child: Obx(
-                                  () => widget.controller.hasPicture.value ?
-                                  Image.asset(
-                                      ""
-                                  ) :
-                                  Center(
-                                    child: TextWidget(
-                                      widget.controller.nameInitials.value,
-                                      textColor: AppColors.grayColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.sp,
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ),
+                                child: ProfilePictureTabletPhoneWidget(
+                                  fontSize: 18.sp,
+                                  hasPicture: widget.controller.hasPicture,
+                                  loadingPicture: widget.controller.loadingPicture,
+                                  profileImagePath: widget.controller.profileImagePath,
                                 ),
                               ),
                             ),

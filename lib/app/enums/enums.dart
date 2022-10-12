@@ -72,3 +72,8 @@ enum forgotInformation {
   ra,
   password,
 }
+
+enum imageOrigin {
+  camera,
+  gallery,
+}
