@@ -214,7 +214,7 @@ class UserService implements IUserService {
     }
   }
 
-  Future _refreshPicture() async {
+  Future<bool> deleteProfilePicture() async {
     try{
       FirebaseStorage storage = FirebaseStorage.instance;
       Reference path = storage.ref();
@@ -222,12 +222,12 @@ class UserService implements IUserService {
           .child("profile")
           .child("${await FirebaseAuth.instance.currentUser!.uid}.jpg");
 
-      String pyth = await file.getDownloadURL();
+      await file.delete().timeout(Duration(minutes: 2));
 
-
+      return true;
     }
     catch(_){
-
+      return false;
     }
   }
 }

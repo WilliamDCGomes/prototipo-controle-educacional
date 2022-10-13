@@ -24,14 +24,13 @@ class InternetConnection {
       await Future.delayed(Duration(seconds: 1));
 
       final result = await InternetAddress.lookup('google.com');
-      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         return true;
       }
       throw Exception();
     }
     catch (_) {
-      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
       await showDialog(
         context: Get.context!,
         barrierDismissible: false,

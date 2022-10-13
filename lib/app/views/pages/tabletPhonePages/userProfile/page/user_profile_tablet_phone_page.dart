@@ -1,7 +1,7 @@
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/mainMenu/controller/main_menu_tablet_phone_controller.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -104,7 +104,12 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                           children: [
                             TextButtonWidget(
                               onTap: () {
-
+                                if(controller.profileImagePath.value.isNotEmpty){
+                                  showImageViewer(
+                                    context,
+                                    Image.network(controller.profileImagePath.value).image,
+                                  );
+                                }
                               },
                               componentPadding: EdgeInsets.zero,
                               borderRadius: 10.h,
@@ -126,12 +131,17 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                                         context: Get.context!,
                                         builder: (BuildContext context) {
                                           return ConfirmationTabletPhonePopup(
-                                            title: "Aviso",
-                                            subTitle: "Escolha o método desejado para adicionar a foto de perfil!",
-                                            firstButtonText: "GALERIA",
-                                            secondButtonText: "CÂMERA",
-                                            firstButton: () async => await controller.getProfileImage(imageOrigin.gallery),
-                                            secondButton: () async => await controller.getProfileImage(imageOrigin.camera),
+                                            title: "Escolha uma das opções",
+                                            subTitle: "Deseja alterar ou apagar a foto de perfil?",
+                                            showSecondButton: controller.profileImagePath.value.isNotEmpty,
+                                            firstButtonText: "APAGAR",
+                                            secondButtonText: "ALTERAR",
+                                            firstButton: () {
+                                              controller.confirmationDeleteProfilePicture();
+                                            },
+                                            secondButton: () {
+                                              controller.editProfilePicture();
+                                            },
                                           );
                                         },
                                       ),

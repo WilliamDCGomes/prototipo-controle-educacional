@@ -21,6 +21,7 @@ import '../../../../../utils/text_field_validators.dart';
 import '../../../../../utils/valid_cellphone_mask.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
+import '../../shared/popups/confirmation_tablet_phone_popup.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
 import '../../shared/widgets/loading_profile_picture_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
@@ -98,7 +99,7 @@ class UserProfileTabletPhoneController extends GetxController {
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late Users user;
   late IConsultCepService consultCepService;
-  late IUserService userService;
+  late IUserService _userService;
   late IRequestRegistrationCancellationService _requestRegistrationCancellationService;
 
   UserProfileTabletPhoneController(){
@@ -115,7 +116,7 @@ class UserProfileTabletPhoneController extends GetxController {
       loadingPicture,
       hasPicture,
       profileImagePath,
-      userService,
+      _userService,
     );
     super.onInit();
   }
@@ -190,7 +191,7 @@ class UserProfileTabletPhoneController extends GetxController {
     );
     user = Users();
     consultCepService = ConsultCepService();
-    userService = UserService();
+    _userService = UserService();
     _requestRegistrationCancellationService = RequestRegistrationCancellationService();
   }
 
@@ -379,6 +380,7 @@ class UserProfileTabletPhoneController extends GetxController {
         _setUserToUpdate();
 
         if(await _saveStudent()){
+          await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
           await showDialog(
             context: Get.context!,
             barrierDismissible: false,
@@ -536,9 +538,7 @@ class UserProfileTabletPhoneController extends GetxController {
           ImageSource.camera : ImageSource.gallery
       );
       if(profilePicture != null){
-        await _saveProfilePicture();
-
-        if(hasPicture.value){
+        if(await _saveProfilePicture()){
           imageChanged = true;
           SnackbarTabletPhoneWidget(
             warningText: "Aviso",
@@ -548,7 +548,7 @@ class UserProfileTabletPhoneController extends GetxController {
         }
       }
     }
-    catch(_){
+    catch(e){
       showDialog(
         context: Get.context!,
         barrierDismissible: false,
@@ -561,8 +561,8 @@ class UserProfileTabletPhoneController extends GetxController {
     }
   }
 
-  _saveProfilePicture() async {
-    await userService.sendUserProfilePicture(profilePicture!, _progressImage);
+  Future<bool> _saveProfilePicture() async {
+    return await _userService.sendUserProfilePicture(profilePicture!, _progressImage);
   }
 
   _progressImage(TaskSnapshot storageEvent) async {
@@ -574,7 +574,7 @@ class UserProfileTabletPhoneController extends GetxController {
         loadingPicture,
         hasPicture,
         profileImagePath,
-        userService,
+        _userService,
       );
     }
     else if(storageEvent.state == TaskState.error){
@@ -588,8 +588,7 @@ class UserProfileTabletPhoneController extends GetxController {
 
     while(true){
       try{
-        if(await userService.updateUser(user)) {
-          loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
+        if(await _userService.updateUser(user)) {
           return true;
         }
         else{
@@ -614,5 +613,74 @@ class UserProfileTabletPhoneController extends GetxController {
         return false;
       }
     }
+  }
+
+  confirmationDeleteProfilePicture() async {
+    await Future.delayed(Duration(milliseconds: 200));
+    await showDialog(
+        context: Get.context!,
+        builder: (BuildContext context) {
+          return ConfirmationTabletPhonePopup(
+            title: "Aviso",
+            subTitle: "Tem certeza que deseja apagar a foto de perfil",
+            firstButton: () {},
+            secondButton: () => _deleteProfilePicture(),
+          );
+        },
+    );
+  }
+
+  _deleteProfilePicture() async {
+    try{
+      loadingAnimation.value = true;
+      await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+      await _userService.deleteProfilePicture();
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation();
+      imageChanged = true;
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Imagem de perfil apagada com sucesso!",
+          );
+        },
+      );
+      await GetProfilePictureController.loadProfilePicture(
+        loadingPicture,
+        hasPicture,
+        profileImagePath,
+        _userService,
+      );
+    }
+    catch(_){
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(fail: true);
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Erro ao apagar a foto de perfil.\n Tente novamente mais tarde",
+          );
+        },
+      );
+    }
+  }
+
+  editProfilePicture() async {
+    await Future.delayed(Duration(milliseconds: 200));
+    await showDialog(
+      context: Get.context!,
+      builder: (BuildContext context) {
+        return ConfirmationTabletPhonePopup(
+          title: "Aviso",
+          subTitle: "Escolha o método desejado para adicionar a foto de perfil!",
+          firstButtonText: "GALERIA",
+          secondButtonText: "CÂMERA",
+          firstButton: () async => await getProfileImage(imageOrigin.gallery),
+          secondButton: () async => await getProfileImage(imageOrigin.camera),
+        );
+      },
+    );
   }
 }

@@ -7,6 +7,7 @@ import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/text_widget.dart';
 
 class ConfirmationTabletPhonePopup extends StatefulWidget {
+  final bool? showSecondButton;
   final String title;
   final String? subTitle;
   final String? firstButtonText;
@@ -17,6 +18,7 @@ class ConfirmationTabletPhonePopup extends StatefulWidget {
   const ConfirmationTabletPhonePopup({
     Key? key,
     required this.title,
+    this.showSecondButton,
     this.subTitle,
     this.firstButtonText,
     this.secondButtonText,
@@ -96,20 +98,24 @@ class _ConfirmationTabletPhonePopupState extends State<ConfirmationTabletPhonePo
                       Padding(
                         padding: EdgeInsets.only(top: 2.h),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: (widget.showSecondButton ?? true) ?
+                          MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
                           children: [
-                            ButtonWidget(
-                              hintText: widget.firstButtonText ?? "NÃO",
-                              heightButton: 5.h,
-                              widthButton: 32.w,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: AppColors.whiteColor,
-                              borderColor: AppColors.orangeColor,
-                              textColor: AppColors.orangeColor,
-                              onPressed: () {
-                                widget.firstButton();
-                                Get.back();
-                              },
+                            Visibility(
+                              visible: widget.showSecondButton ?? true,
+                              child: ButtonWidget(
+                                hintText: widget.firstButtonText ?? "NÃO",
+                                heightButton: 5.h,
+                                widthButton: 32.w,
+                                fontWeight: FontWeight.bold,
+                                backgroundColor: AppColors.whiteColor,
+                                borderColor: AppColors.orangeColor,
+                                textColor: AppColors.orangeColor,
+                                onPressed: () {
+                                  widget.firstButton();
+                                  Get.back();
+                                },
+                              ),
                             ),
                             ButtonWidget(
                               hintText: widget.secondButtonText ?? "SIM",

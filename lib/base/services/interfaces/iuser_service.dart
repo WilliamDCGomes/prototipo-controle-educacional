@@ -27,4 +27,6 @@ abstract class IUserService {
   Future<bool> sendUserProfilePicture(XFile image, Function progress);
 
   Future<String> getUserProfilePicture();
+
+  Future<bool> deleteProfilePicture();
 }
