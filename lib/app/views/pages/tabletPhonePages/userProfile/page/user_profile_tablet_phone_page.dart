@@ -5,7 +5,6 @@ import 'package:projeto_tcc/app/enums/enums.dart';
 import 'package:projeto_tcc/app/views/pages/tabletPhonePages/mainMenu/controller/main_menu_tablet_phone_controller.dart';
 import 'package:projeto_tcc/app/views/pages/widgetsShared/text_button_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../../utils/get_profile_picture_controller.dart';
 import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
@@ -43,7 +42,9 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
 
   @override
   void dispose() {
-    widget.mainMenuController.refreshProfilePicture();
+    if(controller.imageChanged) {
+      widget.mainMenuController.refreshProfilePicture();
+    }
     super.dispose();
   }
 
@@ -96,26 +97,71 @@ class _UserProfileTablePhonePageState extends State<UserProfileTablePhonePage> w
                           ],
                         ),
                       ),
-                      TextButtonWidget(
-                        onTap: () => showDialog(
-                          context: Get.context!,
-                          builder: (BuildContext context) {
-                            return ConfirmationTabletPhonePopup(
-                              title: "Aviso",
-                              subTitle: "Escolha o método desejado para adicionar a foto de perfil!",
-                              firstButtonText: "GALERIA",
-                              secondButtonText: "CÂMERA",
-                              firstButton: () async => await controller.getProfileImage(imageOrigin.gallery),
-                              secondButton: () async => await controller.getProfileImage(imageOrigin.camera),
-                            );
-                          },
-                        ),
-                        componentPadding: EdgeInsets.zero,
-                        borderRadius: 7.h,
-                        widgetCustom: ProfilePictureTabletPhoneWidget(
-                          hasPicture: controller.hasPicture,
-                          loadingPicture: controller.loadingPicture,
-                          profileImagePath: controller.profileImagePath,
+                      SizedBox(
+                        height: 20.h,
+                        width: 20.h,
+                        child: Stack(
+                          children: [
+                            TextButtonWidget(
+                              onTap: () {
+
+                              },
+                              componentPadding: EdgeInsets.zero,
+                              borderRadius: 10.h,
+                              widgetCustom: ProfilePictureTabletPhoneWidget(
+                                hasPicture: controller.hasPicture,
+                                loadingPicture: controller.loadingPicture,
+                                profileImagePath: controller.profileImagePath,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: Obx(
+                                () => Visibility(
+                                  visible: !controller.loadingPicture.value,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 1.h),
+                                    child: TextButtonWidget(
+                                      onTap: () => showDialog(
+                                        context: Get.context!,
+                                        builder: (BuildContext context) {
+                                          return ConfirmationTabletPhonePopup(
+                                            title: "Aviso",
+                                            subTitle: "Escolha o método desejado para adicionar a foto de perfil!",
+                                            firstButtonText: "GALERIA",
+                                            secondButtonText: "CÂMERA",
+                                            firstButton: () async => await controller.getProfileImage(imageOrigin.gallery),
+                                            secondButton: () async => await controller.getProfileImage(imageOrigin.camera),
+                                          );
+                                        },
+                                      ),
+                                      height: 5.5.h,
+                                      width: 5.5.h,
+                                      componentPadding: EdgeInsets.zero,
+                                      borderRadius: 1.h,
+                                      widgetCustom: Center(
+                                        child: Container(
+                                          height: 4.5.h,
+                                          width: 4.5.h,
+                                          padding: EdgeInsets.all(.2.h),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(1.h),
+                                            color: AppColors.black40TransparentColor,
+                                          ),
+                                          child: Center(
+                                            child: Image.asset(
+                                              Paths.edit_photo,
+                                              color: AppColors.whiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(

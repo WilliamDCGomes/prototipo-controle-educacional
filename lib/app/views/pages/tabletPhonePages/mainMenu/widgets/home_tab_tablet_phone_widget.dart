@@ -76,11 +76,13 @@ class _HomeTabTabletPhoneWidgetState extends State<HomeTabTabletPhoneWidget> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(3.25.h),
                                 ),
-                                child: ProfilePictureTabletPhoneWidget(
-                                  fontSize: 18.sp,
-                                  hasPicture: widget.controller.hasPicture,
-                                  loadingPicture: widget.controller.loadingPicture,
-                                  profileImagePath: widget.controller.profileImagePath,
+                                child: Center(
+                                  child: ProfilePictureTabletPhoneWidget(
+                                    fontSize: 18.sp,
+                                    hasPicture: widget.controller.hasPicture,
+                                    loadingPicture: widget.controller.loadingPicture,
+                                    profileImagePath: widget.controller.profileImagePath,
+                                  ),
                                 ),
                               ),
                             ),

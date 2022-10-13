@@ -9,6 +9,8 @@ class ProfilePictureTabletPhoneWidget extends StatefulWidget {
   late final double? fontSize;
   late final RxBool loadingPicture;
   late final RxBool hasPicture;
+  late final RxString profileImagePath;
+
   ProfilePictureTabletPhoneWidget({
     Key? key,
     this.fontSize,
@@ -16,8 +18,6 @@ class ProfilePictureTabletPhoneWidget extends StatefulWidget {
     required this.hasPicture,
     required this.profileImagePath,
   }) : super(key: key);
-
-  late final RxString profileImagePath;
 
   @override
   State<ProfilePictureTabletPhoneWidget> createState() => _ProfilePictureTabletPhoneWidgetState();
@@ -31,9 +31,7 @@ class _ProfilePictureTabletPhoneWidgetState extends State<ProfilePictureTabletPh
       SizedBox(
         height: 20.h,
         width: 20.h,
-        child: CircularProgressIndicator(
-          backgroundColor: AppColors.transparentColor,
-        ),
+        child: CircularProgressIndicator(),
       ) :
       widget.hasPicture.value ?
       Container(

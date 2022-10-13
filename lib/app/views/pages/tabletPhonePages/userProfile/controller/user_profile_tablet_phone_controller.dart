@@ -19,12 +19,16 @@ import '../../../../../utils/get_profile_picture_controller.dart';
 import '../../../../../utils/internet_connection.dart';
 import '../../../../../utils/text_field_validators.dart';
 import '../../../../../utils/valid_cellphone_mask.dart';
+import '../../../../stylePages/app_colors.dart';
 import '../../../../stylePages/masks_for_text_fields.dart';
 import '../../shared/popups/information_tablet_phone_popup.dart';
+import '../../shared/widgets/loading_profile_picture_widget.dart';
 import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
+import '../../shared/widgets/snackbar_tablet_phone_widget.dart';
 import '../widget/user_profile_tabs_widget.dart';
 
 class UserProfileTabletPhoneController extends GetxController {
+  late bool imageChanged;
   late String disciplineName;
   late RxString nameInitials;
   late RxString userName;
@@ -90,6 +94,7 @@ class UserProfileTabletPhoneController extends GetxController {
   late RxList<String> ufsList;
   late XFile? profilePicture;
   late final ImagePicker _picker;
+  late LoadingProfilePictureWidget loadingProfilePicture;
   late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
   late Users user;
   late IConsultCepService consultCepService;
@@ -116,6 +121,7 @@ class UserProfileTabletPhoneController extends GetxController {
   }
 
   _initializeVariables(){
+    imageChanged = false;
     disciplineName = LoggedUser.courseName;
     nameInitials = LoggedUser.nameInitials.obs;
     userName = LoggedUser.nameAndLastName.obs;
@@ -125,7 +131,7 @@ class UserProfileTabletPhoneController extends GetxController {
     genderSelected = "".obs;
     profileImagePath = "".obs;
     hasPicture = false.obs;
-    loadingPicture = false.obs;
+    loadingPicture = true.obs;
     profileIsDisabled = true.obs;
     loadingAnimation = false.obs;
     currentPasswordFieldEnabled = true.obs;
@@ -176,6 +182,9 @@ class UserProfileTabletPhoneController extends GetxController {
     confirmPasswordFocusNode = FocusNode();
     _picker = ImagePicker();
     maskCellPhoneFormatter = MasksForTextFields.phoneNumberAcceptExtraNumberMask;
+    loadingProfilePicture = LoadingProfilePictureWidget(
+      loadingAnimation: loadingPicture,
+    );
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimation: loadingAnimation,
     );
@@ -528,6 +537,15 @@ class UserProfileTabletPhoneController extends GetxController {
       );
       if(profilePicture != null){
         await _saveProfilePicture();
+
+        if(hasPicture.value){
+          imageChanged = true;
+          SnackbarTabletPhoneWidget(
+            warningText: "Aviso",
+            informationText: "Foto de perfil alterada com sucesso.",
+            backgrondColor: AppColors.purpleDefaultColor,
+          );
+        }
       }
     }
     catch(_){
