@@ -19,7 +19,7 @@ class EducationInstitutionService implements IEducationInstitutionService {
       }
 
       return [];
-    } catch (_) {
+    } catch (e) {
       return [];
     }
   }

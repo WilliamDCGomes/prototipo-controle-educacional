@@ -662,7 +662,7 @@ class RegisterUserTabletPhoneController extends GetxController {
     switch(activeStep.value){
       case 0:
         if(formKeyPersonalInformation.currentState!.validate()){
-          Loading.startAndPauseLoading(
+          await Loading.startAndPauseLoading(
             () => _validPersonalInformationAndAdvanceNextStep(),
             loadingAnimation,
             loadingWithSuccessOrErrorTabletPhoneWidget,

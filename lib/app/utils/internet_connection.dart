@@ -25,6 +25,7 @@ class InternetConnection {
 
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
         return true;
       }
       throw Exception();
