@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_tcc/app/utils/format_hours.dart';
+import 'package:projeto_tcc/base/services/discipline_service.dart';
+import '../../../../../../base/models/discipline.dart';
+import '../../../../../../base/services/interfaces/idiscipline_service.dart';
 import '../../../../../../base/services/interfaces/ionline_student_card_service.dart';
 import '../../../../../../base/services/online_student_card_service.dart';
 import '../../../../../enums/enums.dart';
@@ -66,6 +70,8 @@ class MainMenuTabletPhoneController extends GetxController {
   late RxString welcomePhrase;
   late RxString profileImagePath;
   late PaymentFinishedViewController nextBillToPay;
+  late List<Discipline> disciplines;
+  late List<Discipline> disciplinesFromActualSemester;
   late List<CardProfileTabListTabletPhoneWidget> cardProfileTabList;
   late List<CardPaymentViewController> cardPaymentList;
   late List<CurriculumDeliveryViewController> curriculumTabList;
@@ -95,6 +101,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late IEducationInstitutionService educationInstitutionService;
   late IItensOrderByUserService itensOrderByUserService;
   late IOnlineStudentCardService _onlineStudentCardService;
+  late IDisciplineService _disciplineService;
   static const String quick_buttons = "quick_buttons";
   static const String request_buttons = "request_buttons";
   static const String group_menu = "group_menu";
@@ -118,6 +125,7 @@ class MainMenuTabletPhoneController extends GetxController {
     );
     await _getCourseName();
     await _getEducationInstitutionName();
+    await _getDisciplinesOfCourse();
     _loadCards();
     await _getListOrderByUser();
     await _checkFingerPrintUser();
@@ -157,6 +165,7 @@ class MainMenuTabletPhoneController extends GetxController {
     educationInstitutionService = EducationInstitutionService();
     itensOrderByUserService = ItensOrderByUserService();
     _onlineStudentCardService = OnlineStudentCardService();
+    _disciplineService = DisciplineService();
   }
 
   _initializeLists(){
@@ -166,6 +175,8 @@ class MainMenuTabletPhoneController extends GetxController {
       FinancialTabTabletPhoneWidget(controller: this),
       ProfileTabTabletPhoneWidget(controller: this),
     ];
+    disciplines = <Discipline>[];
+    disciplinesFromActualSemester = <Discipline>[];
     groupMenuHomeList = <GroupMenuHomeTabletPhoneWidget>[].obs;
     quickItemsList = <MenuOptionsTabletPhoneWidget>[].obs;
     requestItemsList = <MenuOptionsTabletPhoneWidget>[].obs;
@@ -1326,6 +1337,25 @@ class MainMenuTabletPhoneController extends GetxController {
     }
   }
 
+  _getDisciplinesOfCourse() async {
+    try{
+      disciplines = await _disciplineService.getDisciplines(
+        LoggedUser.educationInstitutionId,
+        LoggedUser.courseId,
+        LoggedUser.period,
+      );
+
+      for(var discipline in disciplines){
+        if(discipline.semester == LoggedUser.semester.toString()){
+          disciplinesFromActualSemester.add(discipline);
+        }
+      }
+    }
+    catch(_){
+
+    }
+  }
+
   _getEducationInstitutionName() async {
     try{
       LoggedUser.educationInstitutionName = await  educationInstitutionService.getEducationInstitutionNameById(LoggedUser.educationInstitutionId);
@@ -1685,18 +1715,19 @@ class MainMenuTabletPhoneController extends GetxController {
         fourthText: "${LoggedUser.semester}º Semestre",
         showSeparator: true,
       ),
-      CardMainMenuTabletPhoneWidget(
-        firstText: "Próxima Aula",
-        secondText: "Banco de Dados",
-        thirdText: "19:00 às 20:50",
-        fourthText: "25/04",
-        showSeparator: true,
-      ),
+    ];
+
+    _getActualNextClass();
+
+    cardMainMenuList.add(
       CardMainMenuTabletPhoneWidget(
         firstText: "Próxima Fatura",
         secondText: "R\$ 746,99",
         thirdText: "Vencimento: 05/06",
       ),
+    );
+
+    cardMainMenuList.add(
       CardMainMenuTabletPhoneWidget(
         firstText: "Próxima Prova",
         secondText: "Programação Orientada a Objetos",
@@ -1704,12 +1735,15 @@ class MainMenuTabletPhoneController extends GetxController {
         fourthText: "30/06",
         showSeparator: true,
       ),
+    );
+
+    cardMainMenuList.add(
       CardMainMenuTabletPhoneWidget(
         firstText: "Última nota postada",
         secondText: "Nota: 7,75",
         thirdText: "Segurança de Rede de Computadores",
       ),
-    ];
+    );
 
     cardAcademicRecordList.value = [
       CardAcademicRecordTabletPhoneWidget(
@@ -1778,6 +1812,96 @@ class MainMenuTabletPhoneController extends GetxController {
         creditDebtCardTypeEnum: creditDebtCardType.credit,
       ),
     ];
+  }
+
+  _getActualNextClass(){
+    List<Discipline> disciplesOfTheDay = _getNextClass();
+    if(disciplesOfTheDay.isNotEmpty){
+      for(var discipline in disciplesOfTheDay){
+        int hoursBegin = FormatHours.formatHourStringToMinuteInt(discipline.disciplinesPeriod.first.start_hour);
+        int hoursEnd = FormatHours.formatHourStringToMinuteInt(discipline.disciplinesPeriod.first.end_hour);
+        DateTime hour = DateTime.now();
+        int actualHour = ((hour.hour * 60) + hour.minute);
+        if(actualHour < hoursBegin){
+          cardMainMenuList.add(
+            CardMainMenuTabletPhoneWidget(
+              firstText: "Próxima Aula",
+              secondText: discipline.name,
+              thirdText: FormatHours.hourToHour(
+                discipline.disciplinesPeriod.first.start_hour,
+                discipline.disciplinesPeriod.first.end_hour,
+              ),
+              fourthText: DateFormatToBrazil.dayAndMounth(hour),
+              showSeparator: true,
+            ),
+          );
+          break;
+        }
+        else if(actualHour <= hoursEnd){
+          cardMainMenuList.add(
+            CardMainMenuTabletPhoneWidget(
+              firstText: "Aula Atual",
+              secondText: discipline.name,
+              thirdText: FormatHours.hourToHour(
+                discipline.disciplinesPeriod.first.start_hour,
+                discipline.disciplinesPeriod.first.end_hour,
+              ),
+              fourthText: DateFormatToBrazil.dayAndMounth(hour),
+              showSeparator: true,
+            ),
+          );
+          break;
+        }
+      }
+    }
+  }
+
+  List<Discipline> _getNextClass(){
+    List<Discipline> disciplinesOfTheDay = <Discipline>[];
+
+    for(var discipline in disciplinesFromActualSemester){
+      for(var periods in discipline.disciplinesPeriod){
+        switch(DateTime.now().weekday){
+          case DateTime.monday:
+            if(periods.day == "Segunda-Feira"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+          case DateTime.tuesday:
+            if(periods.day == "Terça-Feira"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+          case DateTime.wednesday:
+            if(periods.day == "Quarta-Feira"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+          case DateTime.thursday:
+            if(periods.day == "Quinta-Feira"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+          case DateTime.friday:
+            if(periods.day == "Sexta-Feira"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+          case DateTime.saturday:
+            if(periods.day == "Sábado"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+          case DateTime.sunday:
+            if(periods.day == "Domingo"){
+              disciplinesOfTheDay.add(discipline);
+            }
+            break;
+        }
+      }
+    }
+
+    return disciplinesOfTheDay;
   }
 
   _checkFingerPrintUser() async {
