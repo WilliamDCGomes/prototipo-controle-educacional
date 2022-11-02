@@ -61,6 +61,7 @@ class MainMenuTabletPhoneController extends GetxController {
   late int activeStep;
   late bool firstRegister;
   late RxInt creditDebtCardActiveStep;
+  late RxBool isLoadingMainMenu;
   late RxBool hasPicture;
   late RxBool deliveryTabSelected;
   late RxBool loadingPicture;
@@ -126,9 +127,11 @@ class MainMenuTabletPhoneController extends GetxController {
     await _getCourseName();
     await _getEducationInstitutionName();
     await _getDisciplinesOfCourse();
-    _loadCards();
+    await _loadCards();
     await _getListOrderByUser();
     await _checkFingerPrintUser();
+    isLoadingMainMenu.value = false;
+    _getDisciplinesName();
     super.onInit();
   }
 
@@ -137,6 +140,7 @@ class MainMenuTabletPhoneController extends GetxController {
     nameProfile = "".obs;
     nameInitials = "".obs;
     profileImagePath = "".obs;
+    isLoadingMainMenu = true.obs;
     hasPicture = false.obs;
     loadingPicture = true.obs;
     deliveryTabSelected = false.obs;
@@ -1356,6 +1360,19 @@ class MainMenuTabletPhoneController extends GetxController {
     }
   }
 
+  _getDisciplinesName() async {
+    try{
+      for(var discipline in disciplines){
+        if(discipline.name == ""){
+          discipline.name = await _disciplineService.getDisciplineName(discipline.id);
+        }
+      }
+    }
+    catch(_){
+
+    }
+  }
+
   _getEducationInstitutionName() async {
     try{
       LoggedUser.educationInstitutionName = await  educationInstitutionService.getEducationInstitutionNameById(LoggedUser.educationInstitutionId);
@@ -1706,7 +1723,7 @@ class MainMenuTabletPhoneController extends GetxController {
       welcomePhrase = "Boa noite!".obs;
   }
 
-  _loadCards(){
+  _loadCards() async {
     cardMainMenuList.value = [
       CardMainMenuTabletPhoneWidget(
         firstText: "Meu Painel",
@@ -1717,7 +1734,7 @@ class MainMenuTabletPhoneController extends GetxController {
       ),
     ];
 
-    _getActualNextClass();
+    await _getActualNextClass();
 
     cardMainMenuList.add(
       CardMainMenuTabletPhoneWidget(
@@ -1814,7 +1831,7 @@ class MainMenuTabletPhoneController extends GetxController {
     ];
   }
 
-  _getActualNextClass(){
+  _getActualNextClass() async {
     List<Discipline> disciplesOfTheDay = _getNextClass();
     if(disciplesOfTheDay.isNotEmpty){
       for(var discipline in disciplesOfTheDay){
@@ -1823,6 +1840,7 @@ class MainMenuTabletPhoneController extends GetxController {
         DateTime hour = DateTime.now();
         int actualHour = ((hour.hour * 60) + hour.minute);
         if(actualHour < hoursBegin){
+          discipline.name = await _disciplineService.getDisciplineName(discipline.id);
           cardMainMenuList.add(
             CardMainMenuTabletPhoneWidget(
               firstText: "Próxima Aula",
@@ -1838,6 +1856,7 @@ class MainMenuTabletPhoneController extends GetxController {
           break;
         }
         else if(actualHour <= hoursEnd){
+          discipline.name = await _disciplineService.getDisciplineName(discipline.id);
           cardMainMenuList.add(
             CardMainMenuTabletPhoneWidget(
               firstText: "Aula Atual",

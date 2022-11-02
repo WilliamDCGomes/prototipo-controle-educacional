@@ -93,7 +93,7 @@ class _PaymentCardSelectTabletPhoneWidgetState extends State<PaymentCardSelectTa
             visible: widget.creditDebtCardList.length > 1,
             child: Center(
               child: DotStepper(
-                dotCount: widget.creditDebtCardList.length,
+                dotCount: widget.creditDebtCardList.length < 2 ? 2 : widget.creditDebtCardList.length,
                 dotRadius: 1.h,
                 activeStep: widget.creditDebtCardActiveStep.value,
                 shape: Shape.stadium,

@@ -56,7 +56,6 @@ class DisciplineService implements IDisciplineService {
               var disc = Discipline.fromJsonFirebase(discipline);
               if(disc.disciplinesPeriod.any((element) => element.moment == period)){
                 disc.disciplinesPeriod = disc.disciplinesPeriod.where((element) => element.moment == period).toList();
-                disc.name = await getDisciplineName(disc.id);
                 disciplines.add(disc);
               }
             }
