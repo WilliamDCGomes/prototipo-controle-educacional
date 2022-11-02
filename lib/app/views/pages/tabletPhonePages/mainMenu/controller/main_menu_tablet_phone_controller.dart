@@ -24,7 +24,6 @@ import '../widgets/profile_tab_tablet_phone_widget.dart';
 import '../widgets/academic_tab_tablet_phone_widget.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import '../widgets/menu_options_tablet_phone_widget.dart';
-import '../widgets/financial_tab_tablet_phone_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:projeto_tcc/base/services/user_service.dart';
 import '../widgets/group_menu_home_tablet_phone_widgets.dart';
@@ -176,7 +175,7 @@ class MainMenuTabletPhoneController extends GetxController {
     tabMainMenuList = [
       HomeTabTabletPhoneWidget(controller: this),
       AcademicTabTabletPhoneWidget(controller: this),
-      FinancialTabTabletPhoneWidget(controller: this),
+      //FinancialTabTabletPhoneWidget(controller: this),
       ProfileTabTabletPhoneWidget(controller: this),
     ];
     disciplines = <Discipline>[];

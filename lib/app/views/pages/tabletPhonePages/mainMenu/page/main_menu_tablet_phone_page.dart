@@ -20,7 +20,8 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
   void initState() {
     controller = Get.put(MainMenuTabletPhoneController(), tag: 'main-menu-tablet-phone-controller');
     controller.tabController = TabController(
-      length: 4,
+      length: 3,
+      //length: 4,
       vsync: this,
     );
 
@@ -92,14 +93,14 @@ class _MainMenuTabletPhonePageState extends State<MainMenuTabletPhonePage> with 
                       ),
                       height: 9.h,
                     ),
-                    Tab(
+                    /*Tab(
                       text: "Financeiro",
                       icon: ImageIcon(
                         AssetImage(Paths.Icone_Financeiro),
                         size: 4.h,
                       ),
                       height: 9.h,
-                    ),
+                    ),*/
                     Tab(
                       text: "Perfil",
                       icon: ImageIcon(
