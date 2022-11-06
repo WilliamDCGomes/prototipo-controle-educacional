@@ -17,6 +17,7 @@ class AppColors {
   static final Color blueMoneyFinancialCardColor = Color(0XFF5A93C4);
   static final Color greenTagFilterColor = Color(0XFF5C9445);
   static final Color greenColor = const Color(0XFF008001);
+  static final Color shimmerColor = const Color(0XFFBDBDBD);
   static final Color redColor = const Color(0XFFC81B1B);
   static final Color lightRedColor = const Color(0XFFCC4E4E);
   static final Color yellowDarkColor = const Color(0XFFE2CE1C);

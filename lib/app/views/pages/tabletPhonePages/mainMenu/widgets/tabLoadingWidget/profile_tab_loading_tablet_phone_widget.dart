@@ -37,7 +37,7 @@ class _ProfileTabLoadingTabletPhoneWidgetState extends State<ProfileTabLoadingTa
             ),
           ),
           Shimmer.fromColors(
-            baseColor: AppColors.purpleDefaultColor,
+            baseColor: AppColors.shimmerColor,
             highlightColor: AppColors.grayColor,
             child: Padding(
               padding: EdgeInsets.fromLTRB(2.h, 2.h, 2.h, 0),

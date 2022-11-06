@@ -1366,6 +1366,7 @@ class MainMenuTabletPhoneController extends GetxController {
           discipline.name = await _disciplineService.getDisciplineName(discipline.id);
         }
       }
+      disciplinesFromActualSemester.forEach((element) => print(element.id + " - " + element.name + " - " + element.disciplinesPeriod.first.start_hour + " - " + element.disciplinesPeriod.first.end_hour + " - " + element.disciplinesPeriod.first.day + " - " + element.disciplinesPeriod.first.moment));
     }
     catch(_){
 
@@ -1696,13 +1697,13 @@ class MainMenuTabletPhoneController extends GetxController {
   }
 
   _getValues(){
-    var names = LoggedUser.name.split(" ");
+    var names = LoggedUser.name.trim().split(" ");
 
-    if(names.isNotEmpty){
+    if(names.isNotEmpty && names.first != ""){
       nameProfile.value = names[0];
       LoggedUser.nameAndLastName = names[0];
       nameInitials.value = nameProfile.value[0];
-      if(names.length > 1){
+      if(names.length > 1 && names.last != ""){
         nameInitials.value += names.last[0];
         LoggedUser.nameAndLastName += " ${names.last}";
       }

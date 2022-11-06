@@ -51,7 +51,7 @@ class _AcademicTabLoadingTabletPhoneWidgetState extends State<AcademicTabLoading
           Scaffold(
             backgroundColor: AppColors.transparentColor,
             body: Shimmer.fromColors(
-              baseColor: AppColors.purpleDefaultColor,
+              baseColor: AppColors.shimmerColor,
               highlightColor: AppColors.grayColor,
               child: Padding(
                 padding: EdgeInsets.only(top: 2.h,),

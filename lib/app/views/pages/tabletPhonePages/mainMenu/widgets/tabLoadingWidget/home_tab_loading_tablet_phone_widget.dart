@@ -40,7 +40,7 @@ class _HomeTabLoadingTabletPhoneWidgetState extends State<HomeTabLoadingTabletPh
           Padding(
             padding: EdgeInsets.only(top: 2.h,),
             child: Shimmer.fromColors(
-              baseColor: AppColors.purpleDefaultColor,
+              baseColor: AppColors.shimmerColor,
               highlightColor: AppColors.grayColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
