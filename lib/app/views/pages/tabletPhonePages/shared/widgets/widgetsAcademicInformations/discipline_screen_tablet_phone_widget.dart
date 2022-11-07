@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeto_tcc/app/utils/platform_type.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../utils/paths.dart';
-import '../../../../../../utils/reorderer_lists.dart';
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/text_field_widget.dart';
 import '../../../academicRecord/controller/academic_record_tablet_phone_controller.dart';
@@ -88,7 +87,7 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
               padding: EdgeInsets.only(left: 2.h, top: 2.h, right: 2.h,),
               child: SizedBox(
                 width: double.infinity,
-                child: ReorderableListView.builder(
+                child: ListView.builder(
                   itemCount: widget.disciplineCardList.length,
                   itemBuilder: (context, index){
                     return Container(
@@ -96,14 +95,6 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
                       child: widget.disciplineCardList[index],
                     );
                   },
-                  onReorder: (oldIndex, newIndex) {
-                    var newList = ReorderListHelper.reorderList(
-                      oldIndex,
-                      newIndex,
-                      widget.disciplineCardList,
-                    );
-                    //TODO Fazer um método para salvar a nova lista
-                  }
                 ),
               ),
             ),

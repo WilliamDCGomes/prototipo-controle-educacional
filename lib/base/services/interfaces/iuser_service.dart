@@ -16,6 +16,8 @@ abstract class IUserService {
 
   Future<String> getEmail(String userCpf);
 
+  Future<String> getName(String userCpf);
+
   Future<bool> registerNewUser(String email, String password);
 
   Future<bool> loggedUser();

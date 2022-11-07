@@ -86,25 +86,28 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                       ),
                       Expanded(
                         child: Center(
-                          child: CarouselSlider.builder(
-                            carouselController: controller.academicRecordCarouselController,
-                            itemCount: controller.cardAcademicRecordList.length,
-                            options: CarouselOptions(
-                              viewportFraction: 1,
-                              height: double.infinity,
-                              enlargeStrategy: CenterPageEnlargeStrategy.height,
-                              enlargeCenterPage: true,
-                              enableInfiniteScroll: false,
+                          child: Obx(
+                            () => CarouselSlider.builder(
+                              carouselController: controller.academicRecordCarouselController,
+                              itemCount: controller.cardAcademicRecordList.length,
+                              options: CarouselOptions(
+                                viewportFraction: 1,
+                                height: double.infinity,
+                                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                                enlargeCenterPage: true,
+                                enableInfiniteScroll: false,
+                              ),
+                              itemBuilder: (context, itemIndex, pageViewIndex) {
+                                return controller.cardAcademicRecordList[itemIndex];
+                              },
                             ),
-                            itemBuilder: (context, itemIndex, pageViewIndex) {
-                              return controller.cardAcademicRecordList[itemIndex];
-                            },
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

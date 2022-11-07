@@ -39,6 +39,35 @@ class DisciplineService implements IDisciplineService {
     }
   }
 
+  Future<Discipline?> getDiscipline(String disciplineId, String educationalInstitutionId, String courseId) async {
+    try {
+      var courses = await FirebaseFirestore.instance
+          .collection("educational_institution")
+          .where("id", isEqualTo: educationalInstitutionId)
+          .get()
+          .timeout(Duration(minutes: 2));
+
+      if(courses.size > 0) {
+        var course = courses.docs.first["courses"];
+        for(var item in course){
+          if(item["id_course"] == courseId){
+            for(var discipline in item["disciplines"]){
+              var disc = Discipline.fromJsonFirebase(discipline);
+              if(disc.id == disciplineId){
+                return disc;
+              }
+            }
+            break;
+          }
+        }
+      }
+      return null;
+    }
+    catch (_) {
+      return null;
+    }
+  }
+
   Future<List<Discipline>> getDisciplines(String educationalInstitutionId, String courseId, String period) async {
     try {
       List<Discipline> disciplines = <Discipline>[];

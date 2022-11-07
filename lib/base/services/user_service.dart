@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -81,6 +80,23 @@ class UserService implements IUserService {
 
       if(student.size > 0) {
         return Users.fromJsonFirebase(student.docs.first.data()).email;
+      }
+      return "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  Future<String> getName(String userCpf) async {
+    try {
+      var student = await FirebaseFirestore.instance
+          .collection("users")
+          .where("cpf", isEqualTo: userCpf)
+          .get()
+          .timeout(Duration(minutes: 2));
+
+      if(student.size > 0) {
+        return Users.fromJsonFirebase(student.docs.first.data()).name;
       }
       return "";
     } catch (_) {

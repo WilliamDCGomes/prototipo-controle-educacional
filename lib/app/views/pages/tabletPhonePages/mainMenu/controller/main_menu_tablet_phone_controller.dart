@@ -1366,7 +1366,6 @@ class MainMenuTabletPhoneController extends GetxController {
           discipline.name = await _disciplineService.getDisciplineName(discipline.id);
         }
       }
-      disciplinesFromActualSemester.forEach((element) => print(element.id + " - " + element.name + " - " + element.disciplinesPeriod.first.start_hour + " - " + element.disciplinesPeriod.first.end_hour + " - " + element.disciplinesPeriod.first.day + " - " + element.disciplinesPeriod.first.moment));
     }
     catch(_){
 
