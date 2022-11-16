@@ -112,8 +112,11 @@ class LoginTabletPhoneController extends GetxController {
   loginPressed() async {
     try{
       if(formKey.currentState!.validate()){
+        loadingAnimation.value = true;
+        await loadingTabletPhoneWidget.startAnimation();
         loginButtonFocusNode.requestFocus();
         if(!await InternetConnection.checkConnection()){
+          await loadingTabletPhoneWidget.stopAnimation(justLoading: true);
           await showDialog(
             context: Get.context!,
             barrierDismissible: false,
@@ -125,8 +128,6 @@ class LoginTabletPhoneController extends GetxController {
           );
           return;
         }
-        loadingAnimation.value = true;
-        await loadingTabletPhoneWidget.startAnimation();
 
         String userCpf = await _userService.getCpf(int.parse(raInputController.text));
 
