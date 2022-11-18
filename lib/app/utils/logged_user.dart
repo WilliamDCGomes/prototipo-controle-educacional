@@ -1,4 +1,5 @@
 import 'package:age_calculator/age_calculator.dart';
+import 'format_numbers.dart';
 
 class LoggedUser {
   static String id = "";
@@ -40,6 +41,18 @@ class LoggedUser {
     }
     catch(_){
       return "";
+    }
+  }
+
+  static String getStudentAttendance(int firstFaults, int secondFaults, double workload, int classDuration){
+    try{
+      int fullFaults = firstFaults + secondFaults;
+      int numberOfClasses = (workload * 60) ~/ classDuration;
+
+      return FormatNumbers.numbersToString(100 - ((100 * fullFaults) / numberOfClasses)) + "%";
+    }
+    catch(_){
+      return "100%";
     }
   }
 }

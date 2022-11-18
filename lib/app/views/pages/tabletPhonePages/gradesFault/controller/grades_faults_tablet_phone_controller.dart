@@ -111,10 +111,13 @@ class GradesFaultsTabletPhoneController extends GetxController {
 
         _disciplineCardTabletPhoneWidgetList.add(
           DisciplineCardTabletPhoneWidget(
-            disciplineCode: "",
             disciplineName: discipline != null ? discipline.name : "",
             disciplineWorkload:  discipline != null ? discipline.workload : "",
-            firstCardInformation: "${gradeAndFaults.fault} faltas | 88,9% Frequência",
+            firstFaults: gradeAndFaults.fault.first["faults"],
+            secondFaults: gradeAndFaults.fault.last["faults"],
+            firstNote: gradeAndFaults.grades.first["grade"],
+            secondNote: gradeAndFaults.grades.last["grade"],
+            classDuration: 100,
             professorDiscipline: await _professorService.getProfessorName(gradeAndFaults.id_professor),
           ),
         );

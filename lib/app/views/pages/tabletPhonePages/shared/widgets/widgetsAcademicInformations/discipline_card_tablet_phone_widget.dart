@@ -8,22 +8,24 @@ import 'discipline_body_card_tablet_phone_widget.dart';
 import 'discipline_header_card_tablet_phone_widget.dart';
 
 class DisciplineCardTabletPhoneWidget extends StatelessWidget {
-  final String disciplineCode;
   final String disciplineName;
   final String disciplineWorkload;
-  final String firstCardInformation;
+  final int firstFaults;
+  final int secondFaults;
   final String professorDiscipline;
   final double? firstNote;
   final double? secondNote;
   final bool? approved;
+  final int classDuration;
 
   const DisciplineCardTabletPhoneWidget(
       { Key? key,
-        required this.disciplineCode,
         required this.disciplineName,
         required this.disciplineWorkload,
-        required this.firstCardInformation,
+        required this.firstFaults,
+        required this.secondFaults,
         required this.professorDiscipline,
+        required this.classDuration,
         this.firstNote,
         this.secondNote,
         this.approved,
@@ -39,14 +41,15 @@ class DisciplineCardTabletPhoneWidget extends StatelessWidget {
             context,
             DisciplineInformationTabletPhonePopup.getWidgetList(
               context,
-              disciplineCode,
               disciplineName,
               disciplineWorkload,
-              firstCardInformation,
+              firstFaults,
+              secondFaults,
               professorDiscipline,
               firstNote,
               secondNote,
               approved,
+              classDuration,
             ),
           );
         },
@@ -55,12 +58,14 @@ class DisciplineCardTabletPhoneWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             DisciplineHeaderCardTabletPhoneWidget(
-              disciplineCode: disciplineCode,
               disciplineName: disciplineName,
               disciplineWorkload: disciplineWorkload,
             ),
             DisciplineBodyCardTabletPhoneWidget(
-              firstCardInformation: firstCardInformation,
+              firstFaults: firstFaults,
+              secondFaults: secondFaults,
+              disciplineWorkload: disciplineWorkload,
+              classDuration: classDuration,
               noteAverage: firstNote != null && secondNote != null ?
                 FormatNumbers.getNumberAverage(firstNote!, secondNote!) : "-",
               approved: approved,

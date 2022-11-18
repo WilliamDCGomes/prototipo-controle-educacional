@@ -3,9 +3,8 @@ import 'base/coreSendEntity.dart';
 
 class GradesAndFaults extends CoreSendEntity{
   //#region Atributos
-  late int fault;
-  late double grade;
-  late String bimester;
+  late List<Map<String, dynamic>> fault;
+  late List<Map<String, dynamic>> grades;
   late String semester;
   late String studentId;
   late String id_professor;
@@ -20,9 +19,24 @@ class GradesAndFaults extends CoreSendEntity{
 
   //#region Conversões
   GradesAndFaults.fromJson(Map<String, dynamic> json) {
-    fault = json["fault"];
-    grade = json["grade"];
-    bimester = json["bimester"];
+    if(json["fault"] != null){
+      fault = <Map<String, dynamic>>[];
+      for(var item in json["fault"]){
+        fault.add({
+          "bimester": item["bimester"],
+          "faults": item["faults"]
+        });
+      }
+    }
+    if(json["grades"] != null){
+      grades = <Map<String, dynamic>>[];
+      for(var item in json["grades"]){
+        grades.add({
+          "bimester": item["bimester"],
+          "grade": item["grade"]
+        });
+      }
+    }
     semester = json["semester"];
     studentId = json["studentId"];
     id_professor = json["id_professor"];
@@ -37,9 +51,24 @@ class GradesAndFaults extends CoreSendEntity{
   }
 
   GradesAndFaults.fromJsonFirebase(Map<String, dynamic> json) {
-    fault = json["fault"];
-    grade = json["grade"];
-    bimester = json["bimester"];
+    if(json["fault"] != null){
+      fault = <Map<String, dynamic>>[];
+      for(var item in json["fault"]){
+        fault.add({
+          "bimester": item["bimester"],
+          "faults": item["faults"]
+        });
+      }
+    }
+    if(json["grades"] != null){
+      grades = <Map<String, dynamic>>[];
+      for(var item in json["grades"]){
+        grades.add({
+          "bimester": item["bimester"],
+          "grade": item["grade"]
+        });
+      }
+    }
     semester = json["semester"];
     studentId = json["studentId"];
     id_professor = json["id_professor"];
@@ -54,8 +83,7 @@ class GradesAndFaults extends CoreSendEntity{
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data["fault"] = this.fault;
-    data["grade"] = this.grade;
-    data["bimester"] = this.bimester;
+    data["grades"] = this.grades;
     data["semester"] = this.semester;
     data["studentId"] = this.studentId;
     data["id_professor"] = this.id_professor;

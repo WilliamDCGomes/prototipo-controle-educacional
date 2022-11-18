@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../../utils/get_status_academic_icon.dart';
+import '../../../../../../utils/logged_user.dart';
 import '../../../../../stylePages/app_colors.dart';
 import '../../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
 
 class DisciplineBodyCardTabletPhoneWidget extends StatelessWidget {
-  final String firstCardInformation;
+  final int firstFaults;
+  final int secondFaults;
+  final String disciplineWorkload;
   final String noteAverage;
+  final int classDuration;
   final bool? approved;
 
   const DisciplineBodyCardTabletPhoneWidget(
       { Key? key,
-        required this.firstCardInformation,
+        required this.firstFaults,
+        required this.secondFaults,
+        required this.disciplineWorkload,
         required this.noteAverage,
+        required this.classDuration,
         this.approved,
       }) : super(key: key);
 
@@ -29,7 +36,10 @@ class DisciplineBodyCardTabletPhoneWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
           child: Center(
             child: TextWidget(
-              firstCardInformation,
+              disciplineWorkload.isNotEmpty ?
+              (firstFaults + secondFaults).toString() + " faltas | " +
+              LoggedUser.getStudentAttendance(firstFaults, secondFaults, double.parse(disciplineWorkload), classDuration) + " frequência" :
+              "0 faltas | 100% frequência",
               textColor: AppColors.blackColor,
               fontSize: 14.5.sp,
               textAlign: TextAlign.center,

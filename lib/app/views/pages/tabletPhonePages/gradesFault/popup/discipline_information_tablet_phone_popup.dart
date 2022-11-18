@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../utils/format_numbers.dart';
 import '../../../../../utils/get_status_academic_icon.dart';
+import '../../../../../utils/logged_user.dart';
 import '../../../../stylePages/app_colors.dart';
 import '../../../widgetsShared/button_widget.dart';
 import '../../../widgetsShared/rich_text_two_different_widget.dart';
@@ -11,14 +12,15 @@ import '../../../widgetsShared/text_widget.dart';
 class DisciplineInformationTabletPhonePopup {
   static List<Widget> getWidgetList(
     context,
-    final String disciplineCode,
     final String disciplineName,
     final String disciplineWorkload,
-    final String firstCardInformation,
+    final int firstFaults,
+    final int secondFaults,
     final String professorDiscipline,
     final double? firstNote,
     final double? secondNote,
     final bool? approved,
+    final int classDuration,
   ){
     return [
       Center(
@@ -38,16 +40,12 @@ class DisciplineInformationTabletPhonePopup {
           ),
           padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
           child: Center(
-            child: RichTextTwoDifferentWidget(
-              firstText: "$disciplineCode - ",
-              firstTextColor: AppColors.whiteColor,
-              firstTextFontWeight: FontWeight.normal,
-              firstTextSize: 16.sp,
-              secondText: disciplineName,
-              secondTextColor: AppColors.whiteColor,
-              secondTextFontWeight: FontWeight.bold,
-              secondTextSize: 16.sp,
-              secondTextDecoration: TextDecoration.none,
+            child: TextWidget(
+              disciplineName,
+              textColor: AppColors.whiteColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 16.sp,
+              textDecoration: TextDecoration.none,
               maxLines: 1,
             ),
           ),
@@ -79,30 +77,6 @@ class DisciplineInformationTabletPhonePopup {
           secondTextFontWeight: FontWeight.bold,
           secondTextSize: 16.sp,
           secondTextDecoration: TextDecoration.none,
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 1.h),
-        child: TextWidget(
-          "Faltas:",
-          textColor: AppColors.blackColor,
-          fontSize: 16.sp,
-          textAlign: TextAlign.start,
-          maxLines: 1,
-        ),
-      ),
-      Container(
-        height: 5.h,
-        color: AppColors.grayAcademicCardColor,
-        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
-        child: Center(
-          child: TextWidget(
-            firstCardInformation,
-            textColor: AppColors.orangeColor,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center,
-          ),
         ),
       ),
       Padding(
@@ -197,8 +171,8 @@ class DisciplineInformationTabletPhonePopup {
             children: [
               TextWidget(
                 firstNote != null && secondNote != null ?
-                  FormatNumbers.getNumberAverage(firstNote, secondNote) :
-                  "-",
+                FormatNumbers.getNumberAverage(firstNote, secondNote) :
+                "-",
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 textAlign: TextAlign.center,
@@ -209,6 +183,100 @@ class DisciplineInformationTabletPhonePopup {
                 child: GetStatusAcademicIcon.getStatusNoteAverage(approved),
               ),
             ],
+          ),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 2.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: .5.h),
+                  child: TextWidget(
+                    "Faltas 1º Bimestre:",
+                    textColor: AppColors.blackColor,
+                    fontSize: 16.sp,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  height: 5.h,
+                  width: 44.w,
+                  color: AppColors.grayAcademicCardColor,
+                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+                  child: Center(
+                    child: TextWidget(
+                      firstFaults.toString(),
+                      textColor: AppColors.purpleDefaultColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.sp,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: .5.h),
+                  child: TextWidget(
+                    "Faltas 2º Bimestre:",
+                    textColor: AppColors.blackColor,
+                    fontSize: 16.sp,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  height: 5.h,
+                  width: 44.w,
+                  color: AppColors.grayAcademicCardColor,
+                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+                  child: Center(
+                    child: TextWidget(
+                      secondFaults.toString(),
+                      textColor: AppColors.purpleDefaultColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.sp,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(bottom: 1.h),
+        child: TextWidget(
+          "Frequência:",
+          textColor: AppColors.blackColor,
+          fontSize: 16.sp,
+          textAlign: TextAlign.start,
+          maxLines: 1,
+        ),
+      ),
+      Container(
+        height: 5.h,
+        color: AppColors.grayAcademicCardColor,
+        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+        child: Center(
+          child: TextWidget(
+            disciplineWorkload.isNotEmpty ?
+            LoggedUser.getStudentAttendance(firstFaults, secondFaults, double.parse(disciplineWorkload), classDuration) + " frequência" :
+            "100%",
+            fontSize: 16.sp,
+            fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
+            textColor: AppColors.purpleDefaultColor,
           ),
         ),
       ),

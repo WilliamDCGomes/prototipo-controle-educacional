@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../../stylePages/app_colors.dart';
-import '../../../../widgetsShared/rich_text_two_different_widget.dart';
 import '../../../../widgetsShared/text_widget.dart';
 
 class DisciplineHeaderCardTabletPhoneWidget extends StatelessWidget {
-  final String disciplineCode;
   final String disciplineName;
   final String disciplineWorkload;
 
   const DisciplineHeaderCardTabletPhoneWidget(
       { Key? key,
-        required this.disciplineCode,
         required this.disciplineName,
         required this.disciplineWorkload,
       }) : super(key: key);
@@ -28,16 +25,12 @@ class DisciplineHeaderCardTabletPhoneWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-              child: RichTextTwoDifferentWidget(
-                firstText: "$disciplineCode - ",
-                firstTextColor: AppColors.whiteColor,
-                firstTextFontWeight: FontWeight.normal,
-                firstTextSize: 16.sp,
-                secondText: disciplineName,
-                secondTextColor: AppColors.whiteColor,
-                secondTextFontWeight: FontWeight.bold,
-                secondTextSize: 16.sp,
-                secondTextDecoration: TextDecoration.none,
+              child: TextWidget(
+                disciplineName,
+                textColor: AppColors.whiteColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
+                textDecoration: TextDecoration.none,
                 maxLines: 1,
               ),
             ),
