@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:projeto_tcc/base/models/custom_notification.dart';
+import 'package:projeto_tcc/base/services/notification_service.dart';
 import 'package:projeto_tcc/base/services/user_service.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../base/services/interfaces/iuser_service.dart';
 import '../../../../../utils/internet_connection.dart';
@@ -111,6 +114,19 @@ class LoginTabletPhoneController extends GetxController {
 
   loginPressed() async {
     try{
+      /*Provider.of<NotificationService>(
+        Get.context!,
+        listen: false,
+      ).showNotification(
+        CustomNotification(
+          id: 1,
+          title: "Nova nota postada",
+          body: "Nota de Ciência de Dados II Postada!",
+          payload: "",
+        )
+      );
+
+      return;*/
       if(formKey.currentState!.validate()){
         loadingAnimation.value = true;
         await loadingTabletPhoneWidget.startAnimation();

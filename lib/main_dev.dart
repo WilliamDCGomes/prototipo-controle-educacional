@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_tcc/base/services/notification_service.dart';
+import 'package:provider/provider.dart';
 import 'app.dart';
 import 'app/enums/enums.dart';
 import 'app/views/stylePages/app_colors.dart';
+import 'base/services/firebase_messaging_service.dart';
 import 'flavors.dart';
 
 void main() {
@@ -19,5 +22,13 @@ void main() {
   };
   MaterialColor colorCustom = MaterialColor(0XFF62407E, color);
   F.appFlavor = Flavor.DEV;
-  runApp(App(color: colorCustom));
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider<NotificationService>(create: (context) => NotificationService()),
+        Provider<FirebaseMessagingService>(create: (context) => FirebaseMessagingService(context.read<NotificationService>())),
+      ],
+      child: App(color: colorCustom),
+    ),
+  );
 }
