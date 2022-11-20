@@ -7,7 +7,7 @@
 
 #### A primeira do aplicativo é uma tela de introdução, onde é falado um pouco sobre o aplicativo em si.
 
-![Tela de Introduçãoa](https://github.com/WilliamDCGomes/projeto-tcc/blob/main/ReadmeFiles/Introdu%C3%A7%C3%A3o.mp4)
+![Tela de Introduçãoa](https://github.com/WilliamDCGomes/projeto-tcc/blob/main/ReadmeFiles/Introdu%C3%A7%C3%A3o.gif)
 
 ### Tela de Login
 
