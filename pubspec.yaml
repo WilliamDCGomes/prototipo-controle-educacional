@@ -14,35 +14,39 @@ dependencies:
 
   dio: ^4.0.6
   get: ^4.6.5
-  uuid: ^3.0.6
+  uuid: ^3.0.7
   intl: ^0.17.0
-  lottie: ^1.4.2
-  pinput: ^2.2.12
+  lottie: ^2.0.0
+  pinput: ^2.2.16
   shimmer: ^2.0.0
+  timezone: ^0.9.0
+  provider: ^6.0.4
   flip_card: ^0.6.0
-  sqflite: ^2.0.3+1
+  sqflite: ^2.2.0+3
   local_auth: ^2.1.2
-  flutter_svg: ^1.1.5
+  flutter_svg: ^1.1.6
   image_picker: ^0.8.6
   im_stepper: ^1.0.1+1
-  reorderables: ^0.5.0
-  firebase_auth: ^3.8.0
+  reorderables: ^0.5.1
+  firebase_auth: ^4.1.3
   age_calculator: ^1.0.0
-  firebase_core: ^1.22.0
+  firebase_core: ^2.3.0
   carousel_slider: ^4.1.1
-  cloud_firestore: ^3.4.7
+  cloud_firestore: ^4.1.0
   cupertino_icons: ^1.0.5
   qr_code_scanner: ^1.0.1
   email_validator: ^2.1.17
-  responsive_sizer: ^3.1.0
-  easy_image_viewer: ^1.1.0
-  firebase_storage: ^10.3.8
-  flutter_flavorizr: ^2.1.4
+  responsive_sizer: ^3.1.1
+  easy_image_viewer: ^1.2.0
+  firebase_storage: ^11.0.6
+  flutter_flavorizr: ^2.1.5
   shared_preferences: ^2.0.15
   font_awesome_flutter: ^10.2.1
+  flutter_native_timezone: ^2.0.0
   credit_card_type_detector: ^2.0.0
   mask_text_input_formatter: ^2.4.0
-  syncfusion_flutter_calendar: ^20.2.48
+  syncfusion_flutter_calendar: ^20.3.57
+  flutter_local_notifications: ^12.0.3+1
 
 dev_dependencies:
   flutter_test:
