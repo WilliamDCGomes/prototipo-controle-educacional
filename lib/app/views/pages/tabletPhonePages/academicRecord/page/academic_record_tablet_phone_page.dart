@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../widgetsShared/text_button_widget.dart';
 import '../../shared/widgets/title_with_back_button_tablet_phone_widget.dart';
 import '../../../../../utils/paths.dart';
 import '../../../../stylePages/app_colors.dart';
@@ -57,40 +56,21 @@ class _AcademicRecordTabletPhonePageState extends State<AcademicRecordTabletPhon
                       Container(
                         height: 8.h,
                         margin: EdgeInsets.symmetric(horizontal: 2.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: TitleWithBackButtonTabletPhoneWidget(
-                                title: "Histórico Acadêmico",
-                              ),
-                            ),
-                            TextButtonWidget(
-                              onTap: () {
-
-                              },
-                              height: 6.5.w,
-                              width: 7.w,
-                              componentPadding: EdgeInsets.all(.5.w),
-                              widgetCustom: Center(
-                                child: Icon(
-                                  Icons.download_rounded,
-                                  size: 6.w,
-                                  color: AppColors.purpleDefaultColor,
-                                ),
-                              ),
-                            ),
-                          ],
+                        child: TitleWithBackButtonTabletPhoneWidget(
+                          title: "Histórico Acadêmico",
                         ),
                       ),
                       Expanded(
                         child: Center(
-                          child: controller.cardAcademicRecordTabletPhoneWidget
+                          child: Obx(
+                            () => controller.cardAcademicRecordTabletPhoneWidget.value,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
+                controller.loadingWithSuccessOrErrorTabletPhoneWidget,
               ],
             ),
           ),

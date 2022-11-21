@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:projeto_tcc/base/services/discipline_service.dart';
+import 'package:projeto_tcc/base/services/grades_and_faults_service.dart';
+import 'package:projeto_tcc/base/services/interfaces/idiscipline_service.dart';
+import 'package:projeto_tcc/base/services/professor_service.dart';
+import '../../../../../../base/models/discipline.dart';
+import '../../../../../../base/models/grades_and_faults.dart';
+import '../../../../../../base/services/interfaces/igrades_and_faults_service.dart';
+import '../../../../../../base/services/interfaces/iprofessor_service.dart';
 import '../../../../../utils/logged_user.dart';
+import '../../shared/popups/information_tablet_phone_popup.dart';
+import '../../shared/widgets/loading_with_success_or_error_tablet_phone_widget.dart';
 import '../../shared/widgets/widgetsAcademicInformations/discipline_card_tablet_phone_widget.dart';
 import '../../shared/widgets/widgetsAcademicInformations/discipline_screen_tablet_phone_widget.dart';
 
@@ -11,14 +21,30 @@ class AcademicRecordTabletPhoneController extends GetxController {
   late String studentClass;
   late String studentCourse;
   late String studentStatus;
-  late DisciplineScreenTabletPhoneWidget cardAcademicRecordTabletPhoneWidget;
+  late RxBool loadingAnimation;
+  late Rx<DisciplineScreenTabletPhoneWidget> cardAcademicRecordTabletPhoneWidget;
   late TextEditingController searchDisciplineController;
+  late LoadingWithSuccessOrErrorTabletPhoneWidget loadingWithSuccessOrErrorTabletPhoneWidget;
+  late IGradesAndFaultsService _gradesAndFaultsService;
+  late IDisciplineService _disciplioneService;
+  late IProfessorService _professorService;
 
   AcademicRecordTabletPhoneController(){
     _inicializeVariables();
   }
 
+  @override
+  void onInit() async {
+    await Future.delayed(Duration(milliseconds: 100));
+    await _getAcademicRecord();
+    super.onInit();
+  }
+
   _inicializeVariables(){
+    loadingAnimation = false.obs;
+    loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
+      loadingAnimation: loadingAnimation,
+    );
     studentName = LoggedUser.name.toUpperCase();
     studentBirthday = "30/01/1998";
     studentRA = LoggedUser.ra.toString();
@@ -30,75 +56,70 @@ class AcademicRecordTabletPhoneController extends GetxController {
       yearValueText: "2019",
       semesterValueText: "1º Semestre",
       academicRecordTabletPhoneController: this,
-      disciplineCardList: _getDisciplinesSemesterList(),
-    );
+      disciplineCardList: [],
+    ).obs;
+    _gradesAndFaultsService = GradesAndFaultsService();
+    _disciplioneService = DisciplineService();
+    _professorService = ProfessorService();
   }
 
-  List<DisciplineCardTabletPhoneWidget> _getDisciplinesSemesterList(){
-    return [
-      DisciplineCardTabletPhoneWidget(
-        disciplineName: "Projeto I",
-        disciplineWorkload: "40",
-        firstFaults: 4,
-        secondFaults: 5,
-        classDuration: 200,
-        professorDiscipline: "Torres",
-      ),
-      DisciplineCardTabletPhoneWidget(
-        disciplineName: "Ciência de Dados",
-        disciplineWorkload: "56",
-        firstFaults: 1,
-        secondFaults: 1,
-        classDuration: 200,
-        professorDiscipline: "André Farina",
-        firstNote: 5.8,
-        secondNote: 9.4,
-        approved: false,
-      ),
-      DisciplineCardTabletPhoneWidget(
-        disciplineName: "Qualidade e Testes de Software",
-        disciplineWorkload: "40",
-        firstFaults: 1,
-        secondFaults: 5,
-        classDuration: 100,
-        professorDiscipline: "Ivan",
-        firstNote: 7.5,
-        secondNote: 6.59,
-        approved: true,
-      ),
-      DisciplineCardTabletPhoneWidget(
-        disciplineName: "Modelagem Computacional em Grafos",
-        disciplineWorkload: "56",
-        firstFaults: 2,
-        secondFaults: 3,
-        classDuration: 200,
-        professorDiscipline: "Leandro",
-        firstNote: 7.96,
-        secondNote: 4.96,
-        approved: false,
-      ),
-      DisciplineCardTabletPhoneWidget(
-        disciplineName: "Segurança em Sistemas de Informação",
-        disciplineWorkload: "40",
-        firstFaults: 0,
-        secondFaults: 5,
-        classDuration: 100,
-        professorDiscipline: "Marco",
-        firstNote: 9.85,
-        secondNote: 7.52,
-        approved: true,
-      ),
-      DisciplineCardTabletPhoneWidget(
-        disciplineName: "Tópicos em Computação",
-        disciplineWorkload: "54",
-        firstFaults: 0,
-        secondFaults: 0,
-        classDuration: 100,
-        professorDiscipline: "Torres",
-        firstNote: 7.50,
-        secondNote: 6.95,
-        approved: true,
-      ),
-    ];
+  _getAcademicRecord() async {
+    try{
+      await Future.delayed(Duration(milliseconds: 100));
+      loadingAnimation.value = true;
+      await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
+      await Future.delayed(Duration(seconds: 1));
+
+      List<DisciplineCardTabletPhoneWidget> _disciplineCardTabletPhoneWidgetList = <DisciplineCardTabletPhoneWidget>[];
+
+      List<GradesAndFaults> _gradesAndFaults = await _gradesAndFaultsService.getAllGradesAndFaults(
+        LoggedUser.id,
+        LoggedUser.courseId,
+        LoggedUser.educationInstitutionId,
+      );
+
+      for(var gradeAndFaults in _gradesAndFaults){
+        Discipline? discipline = await _disciplioneService.getDiscipline(gradeAndFaults.id_discipline, gradeAndFaults.educationInstitutionId, gradeAndFaults.courseId);
+
+        if(discipline != null){
+          discipline.name = await _disciplioneService.getDisciplineName(discipline.id);
+        }
+
+        _disciplineCardTabletPhoneWidgetList.add(
+          DisciplineCardTabletPhoneWidget(
+            disciplineName: discipline != null ? discipline.name : "",
+            disciplineWorkload:  discipline != null ? discipline.workload : "",
+            firstFaults: gradeAndFaults.fault.first["faults"],
+            secondFaults: gradeAndFaults.fault.last["faults"],
+            firstNote: gradeAndFaults.grades.first["grade"],
+            secondNote: gradeAndFaults.grades.last["grade"],
+            classDuration: 100,
+            professorDiscipline: await _professorService.getProfessorName(gradeAndFaults.id_professor),
+          ),
+        );
+      }
+
+      cardAcademicRecordTabletPhoneWidget.value = DisciplineScreenTabletPhoneWidget(
+        yearValueText: LoggedUser.studentYear.toString(),
+        semesterValueText: "${LoggedUser.semester}º Semestre",
+        academicRecordTabletPhoneController: this,
+        disciplineCardList: _disciplineCardTabletPhoneWidgetList,
+      );
+
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+    }
+    catch(e){
+      await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
+      await showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return InformationTabletPhonePopup(
+            warningMessage: "Erro ao carregar as Notas e Faltas",
+          );
+        },
+      );
+      Get.back();
+    }
   }
 }
