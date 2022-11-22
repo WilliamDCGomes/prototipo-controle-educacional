@@ -26,4 +26,27 @@ class GradesAndFaultsService implements IGradesAndFaultsService {
       return [];
     }
   }
+
+  Future<List<GradesAndFaults>> getAllGradesAndFaults(String studentId, String courseId, String educationInstitutionId) async {
+    try {
+      List<GradesAndFaults> gradesAndFaultsList = <GradesAndFaults>[];
+      var gradesAndFaults = await FirebaseFirestore.instance
+          .collection("grades_and_faults")
+          .where("studentId", isEqualTo: studentId)
+          .where("courseId", isEqualTo: courseId)
+          .where("educationInstitutionId", isEqualTo: educationInstitutionId)
+          .get()
+          .timeout(Duration(minutes: 2));
+
+      if(gradesAndFaults.size > 0){
+        for(var gradeAndFault in gradesAndFaults.docs){
+          gradesAndFaultsList.add(GradesAndFaults.fromJsonFirebase(gradeAndFault.data()));
+        }
+      }
+
+      return gradesAndFaultsList;
+    } catch (_) {
+      return [];
+    }
+  }
 }
