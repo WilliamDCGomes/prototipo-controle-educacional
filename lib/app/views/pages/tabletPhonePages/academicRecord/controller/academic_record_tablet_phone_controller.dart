@@ -88,16 +88,20 @@ class AcademicRecordTabletPhoneController extends GetxController {
         _disciplineCardTabletPhoneWidgetList.add(
           DisciplineCardTabletPhoneWidget(
             disciplineName: discipline != null ? discipline.name : "",
-            disciplineWorkload:  discipline != null ? discipline.workload : "",
+            disciplineWorkload: discipline != null ? discipline.workload : "",
             firstFaults: gradeAndFaults.fault.first["faults"],
             secondFaults: gradeAndFaults.fault.last["faults"],
-            firstNote: gradeAndFaults.grades.first["grade"],
-            secondNote: gradeAndFaults.grades.last["grade"],
+            firstNote: gradeAndFaults.grades.first["grade"] != null ? gradeAndFaults.grades.first["grade"] * 1.0 : null,
+            secondNote: gradeAndFaults.grades.last["grade"] != null ? gradeAndFaults.grades.last["grade"] * 1.0 : null,
             classDuration: 100,
+            semester: discipline != null ? discipline.semester : "",
             professorDiscipline: await _professorService.getProfessorName(gradeAndFaults.id_professor),
           ),
         );
       }
+
+      _disciplineCardTabletPhoneWidgetList.sort((a, b) => a.disciplineName.compareTo(b.disciplineName));
+      _disciplineCardTabletPhoneWidgetList.sort((a, b) => a.semester.compareTo(b.semester));
 
       cardAcademicRecordTabletPhoneWidget.value = DisciplineScreenTabletPhoneWidget(
         yearValueText: LoggedUser.studentYear.toString(),
@@ -115,7 +119,7 @@ class AcademicRecordTabletPhoneController extends GetxController {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return InformationTabletPhonePopup(
-            warningMessage: "Erro ao carregar as Notas e Faltas",
+            warningMessage: "Erro ao carregar as Histórico Acadêmico",
           );
         },
       );

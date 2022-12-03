@@ -39,7 +39,7 @@ class ButtonWidget extends StatelessWidget {
         focusNode: focusNode,
         style: ElevatedButton.styleFrom(
           elevation: 2,
-          primary: backgroundColor ?? AppColors.backgroundButtonColor,
+          backgroundColor: backgroundColor ?? AppColors.backgroundButtonColor,
           side: BorderSide(
             width: .25.h,
             color: borderColor ?? AppColors.backgroundButtonColor,

@@ -115,9 +115,10 @@ class GradesFaultsTabletPhoneController extends GetxController {
             disciplineWorkload:  discipline != null ? discipline.workload : "",
             firstFaults: gradeAndFaults.fault.first["faults"],
             secondFaults: gradeAndFaults.fault.last["faults"],
-            firstNote: gradeAndFaults.grades.first["grade"],
-            secondNote: gradeAndFaults.grades.last["grade"],
+            firstNote: gradeAndFaults.grades.first["grade"] != null ? gradeAndFaults.grades.first["grade"] * 1.0 : null,
+            secondNote: gradeAndFaults.grades.last["grade"] != null ? gradeAndFaults.grades.last["grade"] * 1.0 : null,
             classDuration: 100,
+            semester: discipline != null ? discipline.semester : "",
             professorDiscipline: await _professorService.getProfessorName(gradeAndFaults.id_professor),
           ),
         );
@@ -125,7 +126,7 @@ class GradesFaultsTabletPhoneController extends GetxController {
 
       return _disciplineCardTabletPhoneWidgetList;
     }
-    catch(_){
+    catch(e){
       return [];
     }
   }

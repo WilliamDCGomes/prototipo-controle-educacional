@@ -17,6 +17,7 @@ class DisciplineCardTabletPhoneWidget extends StatelessWidget {
   final double? secondNote;
   final bool? approved;
   final int classDuration;
+  final String semester;
 
   const DisciplineCardTabletPhoneWidget(
       { Key? key,
@@ -26,6 +27,7 @@ class DisciplineCardTabletPhoneWidget extends StatelessWidget {
         required this.secondFaults,
         required this.professorDiscipline,
         required this.classDuration,
+        required this.semester,
         this.firstNote,
         this.secondNote,
         this.approved,
