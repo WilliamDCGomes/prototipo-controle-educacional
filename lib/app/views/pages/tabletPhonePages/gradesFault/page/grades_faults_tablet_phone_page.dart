@@ -58,30 +58,8 @@ class _GradesFaultsTabletPhonePageState extends State<GradesFaultsTabletPhonePag
                       Container(
                         height: 8.h,
                         margin: EdgeInsets.symmetric(horizontal: 2.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: TitleWithBackButtonTabletPhoneWidget(
-                                title: "Notas e Faltas",
-                              ),
-                            ),
-                            TextButtonWidget(
-                              onTap: () {
-
-                              },
-                              height: 6.5.w,
-                              width: 7.w,
-                              componentPadding: EdgeInsets.all(.5.w),
-                              widgetCustom: Center(
-                                child: Icon(
-                                  Icons.download_rounded,
-                                  size: 6.w,
-                                  color: AppColors.purpleDefaultColor,
-                                ),
-                              ),
-                            ),
-                          ],
+                        child: TitleWithBackButtonTabletPhoneWidget(
+                          title: "Notas e Faltas",
                         ),
                       ),
                       Expanded(

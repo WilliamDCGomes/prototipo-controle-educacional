@@ -72,6 +72,7 @@ class GradesAndFaults extends CoreSendEntity{
     semester = json["semester"];
     studentId = json["studentId"];
     id_discipline = json["id_discipline"];
+    id_professor = json["id_professor"];
     courseId = json["courseId"];
     educationInstitutionId = json["educationInstitutionId"];
     active = json["active"];
