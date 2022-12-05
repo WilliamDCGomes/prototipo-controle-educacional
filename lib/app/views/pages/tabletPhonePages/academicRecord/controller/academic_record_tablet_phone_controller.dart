@@ -21,6 +21,8 @@ class AcademicRecordTabletPhoneController extends GetxController {
   late String studentClass;
   late String studentCourse;
   late String studentStatus;
+  late List<DisciplineCardTabletPhoneWidget> disciplineCardList;
+  late List<DisciplineCardTabletPhoneWidget> disciplineCardListOnScreen;
   late RxBool loadingAnimation;
   late Rx<DisciplineScreenTabletPhoneWidget> cardAcademicRecordTabletPhoneWidget;
   late TextEditingController searchDisciplineController;
@@ -41,6 +43,8 @@ class AcademicRecordTabletPhoneController extends GetxController {
   }
 
   _inicializeVariables(){
+    disciplineCardList = <DisciplineCardTabletPhoneWidget>[];
+    disciplineCardListOnScreen = <DisciplineCardTabletPhoneWidget>[];
     loadingAnimation = false.obs;
     loadingWithSuccessOrErrorTabletPhoneWidget = LoadingWithSuccessOrErrorTabletPhoneWidget(
       loadingAnimation: loadingAnimation,
@@ -70,8 +74,6 @@ class AcademicRecordTabletPhoneController extends GetxController {
       await loadingWithSuccessOrErrorTabletPhoneWidget.startAnimation();
       await Future.delayed(Duration(seconds: 1));
 
-      List<DisciplineCardTabletPhoneWidget> _disciplineCardTabletPhoneWidgetList = <DisciplineCardTabletPhoneWidget>[];
-
       List<GradesAndFaults> _gradesAndFaults = await _gradesAndFaultsService.getAllGradesAndFaults(
         LoggedUser.id,
         LoggedUser.courseId,
@@ -88,7 +90,7 @@ class AcademicRecordTabletPhoneController extends GetxController {
           continue;
         }
 
-        _disciplineCardTabletPhoneWidgetList.add(
+        disciplineCardList.add(
           DisciplineCardTabletPhoneWidget(
             disciplineName: discipline.name,
             disciplineWorkload: discipline.workload,
@@ -103,14 +105,15 @@ class AcademicRecordTabletPhoneController extends GetxController {
         );
       }
 
-      _disciplineCardTabletPhoneWidgetList.sort((a, b) => a.disciplineName.compareTo(b.disciplineName));
-      _disciplineCardTabletPhoneWidgetList.sort((a, b) => a.semester.compareTo(b.semester));
+      disciplineCardList.sort((a, b) => a.disciplineName.compareTo(b.disciplineName));
+      disciplineCardList.sort((a, b) => a.semester.compareTo(b.semester));
 
+      disciplineCardListOnScreen = disciplineCardList;
       cardAcademicRecordTabletPhoneWidget.value = DisciplineScreenTabletPhoneWidget(
         yearValueText: LoggedUser.studentYear.toString(),
         semesterValueText: "${LoggedUser.semester}º Semestre",
         academicRecordTabletPhoneController: this,
-        disciplineCardList: _disciplineCardTabletPhoneWidgetList,
+        disciplineCardList: disciplineCardList,
       );
 
       await loadingWithSuccessOrErrorTabletPhoneWidget.stopAnimation(justLoading: true);
@@ -127,6 +130,25 @@ class AcademicRecordTabletPhoneController extends GetxController {
         },
       );
       Get.back();
+    }
+  }
+
+  searchByName(String name) {
+    try{
+      if(disciplineCardList.isNotEmpty){
+        if(name.isNotEmpty){
+          disciplineCardListOnScreen = disciplineCardList.where(
+                  (element) => element.disciplineName.toLowerCase().startsWith(name.toLowerCase())
+          ).toList();
+        }
+        else{
+          disciplineCardListOnScreen = disciplineCardList;
+        }
+      }
+    }
+    catch(_){
+      disciplineCardList = <DisciplineCardTabletPhoneWidget>[];
+      disciplineCardListOnScreen = <DisciplineCardTabletPhoneWidget>[];
     }
   }
 }

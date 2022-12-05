@@ -39,6 +39,10 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
   @override
   void initState() {
     searchDisciplineController = TextEditingController();
+    if(widget.gradesFaultsTabletPhoneController != null){
+      widget.gradesFaultsTabletPhoneController!.disciplineCardList = widget.disciplineCardList;
+      widget.gradesFaultsTabletPhoneController!.disciplineCardListOnScreen = widget.disciplineCardList;
+    }
     super.initState();
   }
 
@@ -80,6 +84,20 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
                 size: 3.h,
               ),
               keyboardType: TextInputType.name,
+              onChanged: (value) {
+                if(widget.gradesFaultsTabletPhoneController != null){
+                  widget.gradesFaultsTabletPhoneController!.searchByName(value);
+                  setState(() {
+                    widget.gradesFaultsTabletPhoneController!.disciplineCardListOnScreen;
+                  });
+                }
+                else if(widget.academicRecordTabletPhoneController != null){
+                  widget.academicRecordTabletPhoneController!.searchByName(value);
+                  setState(() {
+                    widget.academicRecordTabletPhoneController!.disciplineCardListOnScreen;
+                  });
+                }
+              },
             ),
           ),
           Expanded(
@@ -88,11 +106,19 @@ class _DisciplineScreenWidgetState extends State<DisciplineScreenTabletPhoneWidg
               child: SizedBox(
                 width: double.infinity,
                 child: ListView.builder(
-                  itemCount: widget.disciplineCardList.length,
+                  itemCount: widget.gradesFaultsTabletPhoneController != null ?
+                             widget.gradesFaultsTabletPhoneController!.disciplineCardListOnScreen.length :
+                             widget.academicRecordTabletPhoneController != null ?
+                             widget.academicRecordTabletPhoneController!.disciplineCardListOnScreen.length :
+                             widget.disciplineCardList.length,
                   itemBuilder: (context, index){
                     return Container(
                       key: Key("$index"),
-                      child: widget.disciplineCardList[index],
+                      child: widget.gradesFaultsTabletPhoneController != null ?
+                             widget.gradesFaultsTabletPhoneController!.disciplineCardListOnScreen[index] :
+                             widget.academicRecordTabletPhoneController != null ?
+                             widget.academicRecordTabletPhoneController!.disciplineCardListOnScreen[index] :
+                             widget.disciplineCardList[index],
                     );
                   },
                 ),

@@ -16,6 +16,8 @@ import '../../shared/widgets/widgetsAcademicInformations/discipline_card_tablet_
 import '../../shared/widgets/widgetsAcademicInformations/discipline_screen_tablet_phone_widget.dart';
 
 class GradesFaultsTabletPhoneController extends GetxController {
+  late List<DisciplineCardTabletPhoneWidget> disciplineCardList;
+  late List<DisciplineCardTabletPhoneWidget> disciplineCardListOnScreen;
   late RxBool loadingAnimation;
   late RxList<DisciplineScreenTabletPhoneWidget> cardAcademicRecordList;
   late CarouselController academicRecordCarouselController;
@@ -37,6 +39,8 @@ class GradesFaultsTabletPhoneController extends GetxController {
   }
 
   _inicializeVariables(){
+    disciplineCardList = <DisciplineCardTabletPhoneWidget>[];
+    disciplineCardListOnScreen = <DisciplineCardTabletPhoneWidget>[];
     loadingAnimation = false.obs;
     cardAcademicRecordList = <DisciplineScreenTabletPhoneWidget>[].obs;
     searchDisciplineController = TextEditingController();
@@ -142,5 +146,24 @@ class GradesFaultsTabletPhoneController extends GetxController {
   nextAcademicRecordCard() async {
     await Future.delayed(Duration(milliseconds: 100));
     academicRecordCarouselController.nextPage();
+  }
+
+  searchByName(String name) {
+    try{
+      if(disciplineCardList.isNotEmpty){
+        if(name.isNotEmpty){
+          disciplineCardListOnScreen = disciplineCardList.where(
+            (element) => element.disciplineName.toLowerCase().startsWith(name.toLowerCase())
+          ).toList();
+        }
+        else{
+          disciplineCardListOnScreen = disciplineCardList;
+        }
+      }
+    }
+    catch(_){
+      disciplineCardList = <DisciplineCardTabletPhoneWidget>[];
+      disciplineCardListOnScreen = <DisciplineCardTabletPhoneWidget>[];
+    }
   }
 }
