@@ -1,6 +1,6 @@
 # Protótipo de Controle Educacional
 
-## Esse aplicativo foi feito na intenção de facilitar e agilizar a troca de informações entre uma instituição de ensino e o estudante. Com ele, um aluno é capaz de acompanhar suas notas e falta, trabalhos, aulas, avisos e requisitar algumas coisas diretamente pelo aplicativo.
+## Este aplicativo foi feito na intenção de facilitar e agilizar a troca de informações entre uma instituição de ensino e o estudante. Com ele, um aluno é capaz de acompanhar suas notas e falta, trabalhos, aulas, avisos e requisitar algumas coisas diretamente pelo aplicativo.
 
 ### Tela de Introdução
 
